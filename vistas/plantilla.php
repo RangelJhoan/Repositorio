@@ -11,6 +11,5 @@
             echo "Poner plantilla";
             require_once $vistas;
         }
-
     ?>
-</body>
+
