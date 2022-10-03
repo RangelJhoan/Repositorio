@@ -10,7 +10,9 @@ class vistasModelo{
             }else{
                 $contenido = "404";
             }
-        }elseif($vistas == "login" || $vistas == "index"){
+        }elseif($vistas == "home"){
+            $contenido = "home";
+        }elseif($vistas == "login"){
             $contenido = "login";
         }else{
             $contenido = "404";

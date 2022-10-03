@@ -8,8 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./login-registration-style.css">
-    <title>MIERDA</title>
+    <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/contenidos/login-registration-style.css">
+    <title>Login</title>
 </head>
 <body>
     <!--CONTAINER GENERAL-->
@@ -87,7 +87,7 @@
                     <p>Cree su cuenta para que pueda tener una experiencia más personalizada a la hora de usar el repositorio institucional.</p>
                     <button class="btn transparent" id="sign-up-btn">Registrarse</button>
                 </div>
-                <img src="./login.svg" class="image" alt="" />
+                <img src="<?php echo SERVER_URL; ?>vistas/contenidos/login.svg" class="image" alt="" />
             </div>
             <!--Panel 2. Derecho = Iniciar Sesión-->
             <div class="panel right-panel">
@@ -96,7 +96,7 @@
                     <p>Ingrese a su perfil facilmente utilizando su correo electrónico y su contraseña.</p>
                 <button class="btn transparent" id="sign-in-btn">Iniciar sesión</button>
                 </div>
-                <img src="./signup.svg" class="image" alt="" />
+                <img src="<?php echo SERVER_URL; ?>vistas/contenidos/signup.svg" class="image" alt="" />
             </div>
         </section>
     </div>
@@ -104,7 +104,7 @@
 
     <!--APARTADO PARA LOS SCRIPTS-->
     <!--Script necesario para poder cambiar de manera dinámica los formularios-->
-    <script src="app.js"></script>
+    <script src="<?php echo SERVER_URL; ?>vistas/contenidos/app.js"></script>
     <!--Script necesario para usar los íconos (fas fa...)-->
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
 </body>
