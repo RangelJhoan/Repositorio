@@ -35,25 +35,25 @@
 
 
                 <!--Formulario 2: Crear cuenta-->
-                <form action="#" class="sign-up-form">
+                <form action="<?php echo SERVER_URL; ?>ajax/usuarioAjax.php" class="sign-up-form" method="POST">
                     <h2 class="title">Registrarse</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Nombres" />
+                        <input name="nombre" type="text" placeholder="Nombres" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Apellidos" />
+                        <input name="apellido" type="text" placeholder="Apellidos" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Correo electrónico" />
+                        <input name="correo" type="email" placeholder="Correo electrónico" />
                     </div>
                     <!--Select tag-->
                     <div class="input-field ">
                         <i class="fas fa-solid fa-address-card"></i>
                         <div class="select-option">
-                            <select name="Tipo de documento" id="" class="combobox-titulo">
+                            <select name="tipoDocumento" name="tipoDocumento" class="combobox-titulo">
                                 <option selected disabled class="combobox-opciones">Tipo de documento</option>
                                 <option value="TI">Tarjeta de Identidad (TI)</option>
                                 <option value="CC">Cédula de Ciudadanía (CC)</option>
@@ -63,15 +63,15 @@
                     </div>
                     <div class="input-field">
                         <i class="fas fa-solid fa-address-card"></i>
-                        <input type="number" placeholder="Número de documento" />
+                        <input name="documento" type="number" placeholder="Número de documento" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Contraseña" />
+                        <input name="clave" type="password" placeholder="Contraseña" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Confirmar contraseña" />
+                        <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" />
                     </div>
                     <input type="submit" class="btn" value="Crear cuenta" />
                 </form>
