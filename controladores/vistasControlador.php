@@ -6,7 +6,7 @@ class vistasControlador extends vistasModelo{
 
     /*----- Controlador para obtener plantilla -----*/
     public function obtener_plantilla_controlador(){
-        return require_once "./vistas/plantilla.php";
+        return require_once "./vistas/plantilla-Admin.php";
     }
 
     /*----- Controlador para obtener vistas -----*/
