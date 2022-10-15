@@ -35,7 +35,7 @@
 
 
                 <!--Formulario 2: Crear cuenta-->
-                <form action="<?php echo SERVER_URL; ?>ajax/usuarioAjax.php" class="sign-up-form" method="POST">
+                <form action="" class="sign-up-form" method="POST" data-form="save" autocomplete="off">
                     <h2 class="title">Registrarse</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
@@ -54,7 +54,7 @@
                         <i class="fas fa-solid fa-address-card"></i>
                         <div class="select-option">
                             <select name="tipoDocumento" name="tipoDocumento" class="combobox-titulo">
-                                <option selected disabled class="combobox-opciones">Tipo de documento</option>
+                                <option selected disabled value="" class="combobox-opciones">Tipo de documento</option>
                                 <option value="TI">Tarjeta de Identidad (TI)</option>
                                 <option value="CC">Cédula de Ciudadanía (CC)</option>
                                 <option value="CE">Tarjeta de Extranjería (CE)</option>
@@ -107,5 +107,15 @@
     <script src="<?php echo SERVER_URL; ?>vistas/contenidos/app.js"></script>
     <!--Script necesario para usar los íconos (fas fa...)-->
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <script src="<?php echo SERVER_URL; ?>vistas/js/evitar_reenvio.js"></script>
 </body>
 </html>
+
+<?php
+
+if(isset($_POST['documento']) && isset($_POST['correo']) && isset($_POST['clave']))
+    require_once "./controladores/usuarioControlador.php";
+    $ins_usuario = new usuarioControlador();
+
+    echo $ins_usuario->agregar_usuario_loginReg_controlador();
+?>

@@ -1,5 +1,6 @@
 <body>
     <?php
+        $peticionAjax = false;
         require_once "./controladores/vistasControlador.php";
         $IV = new vistasControlador();
 
