@@ -3,7 +3,7 @@
             <i class="uil uil-bars sidebar-toggle"></i>
             <h1 class="center-name">Banco de recursos digitales audiovisuales</h1>
             <div class="profile-details">
-                <img src="<?php echo SERVER_URL; ?>vistas/contenidos/admin-dashboard-img.png" alt="Icono Admin" onclick="toggleMenu()">
+                <img src="<?php echo SERVER_URL; ?>vistas/assets/img/admin-dashboard-img.png" alt="Icono Admin" onclick="toggleMenu()">
                 <!-- <span class="admin-name">Nombre admin</span> -->
                 <!-- <i class="uil uil-angle-down"></i> -->
             </div>

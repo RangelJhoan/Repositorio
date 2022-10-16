@@ -83,7 +83,8 @@ nav{
     background-color: var(--white-color);
     border-right: 1px solid var(--border-color);
     transition: var(--trans-05);
-    overflow: auto;
+    overflow:hidden;
+    overflow-y: auto;
 }
 nav.close{
     width: 73px;
@@ -195,7 +196,7 @@ nav.close li a .option-name{
     background-color: var(--gray-color);
 }
 .menu-options-section .nav-other-options{
-    padding-top: 10px;
+    padding-top-navbartop: 10px;
     border-top: 1px solid var(--border-color);
 }
 .menu-options-section .mode{
@@ -230,6 +231,7 @@ body.dark .switch:before{
     width: calc(100% - 250px);
     padding: 10px 14px;
     transition:var(--trans-05);
+    padding-top: 100px;
 }
 nav.close ~.top-navbar{
     left:73px;

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--ESTILOS CSS Y DEMÁS ESTILOS-->
     <?php include "inc/link.php";?>
-    <title>Repositorio Institucional - Dashboard</title>
+    <title>Repositorio Institucional</title>
 </head>
 
 <body class="mode">

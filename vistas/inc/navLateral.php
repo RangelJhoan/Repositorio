@@ -3,7 +3,7 @@
         <!--Sección de logo y nombre-->
         <section class="logo-section">
             <div class="logo-image">
-                <img src="<?php echo SERVER_URL ?>vistas/contenidos/dashboard-ri-logo.png" alt="Logo Repositorio Institucional">
+                <img src="<?php echo SERVER_URL ?>vistas/assets/img/dashboard-ri-logo.png" alt="Logo Repositorio Institucional">
             </div>
 
             <span class="logo-name">Administrador</span>
@@ -61,12 +61,6 @@
 
             <!--Demás opciones-->
             <ul class="nav-other-options">
-                <li>
-                    <a href="#">
-                        <i class="uil uil-user"></i>
-                        <span class="option-name">Mi perfil</span>
-                    </a>
-                </li>
                 <li class="mode">
                     <a href="#">
                         <i class="uil uil-moon"></i>
@@ -75,12 +69,6 @@
                     <div class="mode-toggle">
                         <span class="switch"></span>
                     </div>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="uil uil-sign-out-alt"></i>
-                        <span class="option-name">Cerrar sesión</span>
-                    </a>
                 </li>
             </ul>
         </section>
