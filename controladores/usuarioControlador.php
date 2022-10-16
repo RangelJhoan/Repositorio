@@ -31,33 +31,50 @@ class usuarioControlador extends usuarioModelo{
             exit();
         }
 
-        $datos_usuario_reg = [
-            "tipoDocumento" => $tipoDocumento,
-            "documento" => $documento,
-            "nombre" => $nombre,
-            "apellido" => $apellido
-        ];
+        $check_documento = mainModel::ejecutar_consulta_simple("SELECT documento FROM persona WHERE documento = '$documento';");
 
-        $agregar_usuario = usuarioModelo::agregar_usuario_modelo($datos_usuario_reg);
-
-        if($agregar_usuario->rowCount() == 1){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Exitoso",
-                "Texto"=>"Usuario creado correctamente por favor espere activar el usuario",
-                "Tipo"=>"success"
-            ];
-            echo json_encode($alerta);
-            exit();
-        }else{
+        if($check_documento->rowCount() > 0){
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
-                "Texto"=>"Error al crear el usuario",
+                "Texto"=>"Documento de indentidad ya se encuentra registrado en el repositorio",
                 "Tipo"=>"error"
             ];
             echo json_encode($alerta);
             exit();
+        }else{
+
+            $datos_usuario_reg = [
+                "tipoDocumento" => $tipoDocumento,
+                "documento" => $documento,
+                "nombre" => $nombre,
+                "apellido" => $apellido,
+                "correo" => $correo,
+                "clave" => $clave,
+                "idTipoUsuario" => 3
+            ];
+
+            $agregar_usuario = usuarioModelo::agregar_usuario_modelo($datos_usuario_reg);
+
+            if($agregar_usuario->rowCount() == 1){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Exitoso",
+                    "Texto"=>"Usuario creado correctamente por favor espere activar el usuario",
+                    "Tipo"=>"success"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }else{
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Error",
+                    "Texto"=>"Error al crear el usuario",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
         }
     }
 

@@ -112,10 +112,10 @@
 </html>
 
 <?php
-
-if(isset($_POST['documento']) && isset($_POST['correo']) && isset($_POST['clave']))
+if(isset($_POST['documento']) && isset($_POST['correo']) && isset($_POST['clave'])){
     require_once "./controladores/usuarioControlador.php";
     $ins_usuario = new usuarioControlador();
 
     echo $ins_usuario->agregar_usuario_loginReg_controlador();
+}
 ?>
