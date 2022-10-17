@@ -14,7 +14,7 @@
             <!--Opciones principales-->
             <ul class="nav-links">
                 <li>
-                    <a href="#">
+                    <a href="<?php echo SERVER_URL ?>adminDashboard/">
                         <i class="uil uil-dashboard"></i>
                         <span class="option-name">Dashboard</span>
                     </a>
@@ -26,7 +26,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                <a href="<?php echo SERVER_URL ?>adminUsuarios/">
                         <i class="uil uil-users-alt"></i>
                         <span class="option-name">Usuarios</span>
                     </a>

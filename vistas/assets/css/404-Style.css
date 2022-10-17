@@ -70,14 +70,13 @@ a{
     z-index: 1;
 }
 
-button{
+.button-404{
     font-size: 1.1rem;
     background-color: transparent;
     border:none;
     cursor:pointer;
     padding-bottom: 2rem;
     width: 150px;
-    background-color: var(--main-color);
     outline: none;
     border-radius: 49px;
     color: var(--white-color);
@@ -85,7 +84,6 @@ button{
     font-weight: 600;
     cursor: pointer;
     transition: 0.5s;
-    border:none;
 }
 /**Estilo para el botón*/
 a::before{
@@ -138,7 +136,7 @@ a:active{
     img{
         width: 100%;
     }
-    button{
+    .button-404{
         padding-bottom:0;
     }
 }
