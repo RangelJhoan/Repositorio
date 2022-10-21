@@ -19,7 +19,9 @@
 
         if($vistas == "login" || $vistas == "404" || $vistas == "home"){
             require_once "./vistas/contenidos/".$vistas."-view.php";
-        }else{?>
+        }else{
+            $pagina = explode("/", $_GET['views']);
+            ?>
                 <!---NAVLATERAL-->
                 <?php include "inc/navLateral.php";?>
                 <!--TOPBAR-->
