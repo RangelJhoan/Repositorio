@@ -22,6 +22,24 @@
             return $sql;
         }
 
+        /*------- Función para encriptar cadenas ------*/
+        public function encryption($string){
+			$output=FALSE;
+			$key=hash('sha256', SECRET_KEY);
+			$iv=substr(hash('sha256', SECRET_IV), 0, 16);
+			$output=openssl_encrypt($string, ENCRYPTION_METHOD, $key, 0, $iv);
+			$output=base64_encode($output);
+			return $output;
+		}
+
+        /*------- Función para desencriptar cadenas ------*/
+		protected static function decryption($string){
+			$key=hash('sha256', SECRET_KEY);
+			$iv=substr(hash('sha256', SECRET_IV), 0, 16);
+			$output=openssl_decrypt(base64_decode($string), ENCRYPTION_METHOD, $key, 0, $iv);
+			return $output;
+		}
+
     }
 
 ?>

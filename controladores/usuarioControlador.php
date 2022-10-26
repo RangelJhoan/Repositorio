@@ -100,6 +100,18 @@ class usuarioControlador extends usuarioModelo{
             exit();
         }
 
+        if($clave != $confirmarClave){
+            echo '<script>
+                    Swal.fire({
+                        title: "Ocurrió un error",
+                        text: "Las contraseñas ingresadas no coinciden",
+                        icon: "error",
+                        confirmButtonText: "Aceptar"
+                    });
+                </script>';
+            exit();
+        }
+
         $check_documento = mainModel::ejecutar_consulta_simple("SELECT documento FROM persona WHERE documento = '$documento';");
 
         if($check_documento->rowCount() > 0){
@@ -112,6 +124,7 @@ class usuarioControlador extends usuarioModelo{
                     });
                 </script>';
         }else{
+            $clave = mainModel::encryption($clave);
             $datos_usuario_reg = [
                 "tipoDocumento" => $tipoDocumento,
                 "documento" => $documento,
@@ -143,6 +156,40 @@ class usuarioControlador extends usuarioModelo{
                         });
                     </script>';
             }
+        }
+    }
+
+    /*---------- Controlador para agregar usuario ----------*/
+    public function iniciarSesion_usuario_controlador(){
+        $correo = $_POST['correo'];
+        $clave = $_POST['clave'];
+
+        if($correo == "" || $clave == ""){
+            echo '<script>
+                    Swal.fire({
+                        title: "Error",
+                        text: "Por favor llene todos los campos requeridos",
+                        icon: "error",
+                        confirmButtonText: "Aceptar"
+                    });
+                </script>';
+                exit();
+        }
+
+        $clave = mainModel::encryption($clave);
+        $check_account = mainModel::ejecutar_consulta_simple("SELECT correo FROM usuario WHERE correo = '$correo' && clave = '$clave';");
+
+        if($check_account->rowCount() > 0){
+            echo "<script>window.location.href='".SERVER_URL."adminDashboard/';</script>";
+        }else{
+            echo '<script>
+                    Swal.fire({
+                        title: "Error",
+                        text: "Error al validar credenciales del usuario",
+                        icon: "error",
+                        confirmButtonText: "Aceptar"
+                    });
+                </script>';
         }
     }
 
