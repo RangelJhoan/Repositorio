@@ -43,7 +43,7 @@ class usuarioControlador extends usuarioModelo{
             echo json_encode($alerta);
             exit();
         }else{
-
+            $clave = mainModel::encryption($clave);
             $datos_usuario_reg = [
                 "tipoDocumento" => $tipoDocumento,
                 "documento" => $documento,
