@@ -46,11 +46,19 @@ function enviar_formulario_ajax(e){
     }).then((result) => {
         if (result.isConfirmed) {
             fetch(action, config)
-            .then(respuesta =>
-                respuesta.json())
+            .then(respuesta =>{
+                return respuesta.json();
+            })
+            .catch(e =>{
+                console.log("error " + e)
+            })
             .then(respuesta => {
-                return alertas_ajax(respuesta);
-            });
+                if(respuesta != undefined){
+                    return alertas_ajax(respuesta);
+                }else{
+                    console.log("Error respuesta indefinida");
+                }
+            })
         }
     })
 

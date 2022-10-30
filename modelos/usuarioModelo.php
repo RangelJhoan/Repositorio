@@ -1,35 +1,29 @@
 <?php
 
     require_once "mainModel.php";
+    if($peticionAjax){
+        //Modelo llamado desde el archivo Ajax
+        require_once "../entidades/Persona.php";
+    }else{
+        //Modelo llamado desde la vista Index
+        require_once "./entidades/Persona.php";
+    }
 
     class usuarioModelo extends mainModel{
 
         /*---------- Modelo para agregar usuario ----------*/
-        protected static function agregar_usuario_modelo($datos){
-            $sql = mainModel::conectar()->prepare("INSERT INTO usuario(correo, clave, idTipoUsuario) VALUES(:correo, :clave, :idTipoUsuario)");
+        protected static function agregar_usuario_modelo(Persona $persona){
+            $sql = mainModel::conectar()->prepare("INSERT INTO usuario(correo, clave, idTipoUsuario) VALUES(?, ?, ?);");
+            $sql->execute([$persona->getCorreo(), $persona->getClave(), $persona->getIdTipoUsuario()]);
 
-            $sql->bindParam(":correo", $datos['correo']);
-            $sql->bindParam(":clave", $datos['clave']);
-            $sql->bindParam(":idTipoUsuario", $datos['idTipoUsuario']);
-
-            $sql->execute();
-
-            $sqlQuery = mainModel::conectar()->prepare("SELECT id FROM usuario WHERE correo = :correo;");
-            $sqlQuery->bindParam(":correo", $datos['correo']);
-            $sqlQuery->execute();
+            $sqlQuery = mainModel::conectar()->prepare("SELECT id FROM usuario WHERE correo = ?;");
+            $sqlQuery->execute([$persona->getCorreo()]);
             $row = $sqlQuery->fetch();
             $idUsuario = $row['id'];
 
             if($sql->rowCount() == 1){
-                $sql = mainModel::conectar()->prepare("INSERT INTO persona(tipoDocumento, documento, nombre, apellido, idUsuario) VALUES(:tipoDocumento, :documento, :nombre, :apellido, :idUsuario)");
-
-                $sql->bindParam(":tipoDocumento", $datos['tipoDocumento']);
-                $sql->bindParam(":documento", $datos['documento']);
-                $sql->bindParam(":nombre", $datos['nombre']);
-                $sql->bindParam(":apellido", $datos['apellido']);
-                $sql->bindParam(":idUsuario", $idUsuario);
-
-                $sql->execute();
+                $sql = mainModel::conectar()->prepare("INSERT INTO persona(tipoDocumento, documento, nombre, apellido, idUsuario) VALUES(?, ?, ?, ?, ?)");
+                $sql->execute([$persona->getTipoDocumento(), $persona->getDocumento(), $persona->getNombre(), $persona->getApellido(), $idUsuario]);
 
                 return $sql;
             }else{

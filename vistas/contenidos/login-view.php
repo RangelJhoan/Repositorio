@@ -33,6 +33,7 @@
                 <!--Formulario 2: Crear cuenta-->
                 <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                     <h2 class="title">Registrarse</h2>
+                    <input name="tipoUsuario" type="hidden" value="3">
                     <div class="input-field">
                         <i class="fas fa-user"></i>
                         <input name="nombre" type="text" placeholder="Nombres" />
@@ -109,12 +110,7 @@
 </html>
 
 <?php
-if(isset($_POST['documento']) && isset($_POST['correo']) && isset($_POST['clave'])){
-    require_once "./controladores/usuarioControlador.php";
-    $ins_usuario = new usuarioControlador();
-
-    echo $ins_usuario->agregar_usuario_loginReg_controlador();
-}else if(isset($_POST['correo']) && isset($_POST['clave'])){
+if(isset($_POST['correo']) && isset($_POST['clave'])){
     require_once "./controladores/usuarioControlador.php";
     $ins_usuario = new usuarioControlador();
 

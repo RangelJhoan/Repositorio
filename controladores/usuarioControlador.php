@@ -3,24 +3,29 @@
 if($peticionAjax){
     //Modelo llamado desde el archivo Ajax
     require_once "../modelos/usuarioModelo.php";
+    require_once "../entidades/Persona.php";
 }else{
     //Modelo llamado desde la vista Index
     require_once "./modelos/usuarioModelo.php";
+    require_once "./entidades/Persona.php";
 }
 
 class usuarioControlador extends usuarioModelo{
 
     /*---------- Controlador para agregar usuario ----------*/
     public function agregar_usuario_controlador(){
-        $nombre = $_POST['nombre'];
-        $apellido = $_POST['apellido'];
-        $correo = $_POST['correo'];
-        $tipoDocumento = $_POST['tipoDocumento'];
-        $documento = $_POST['documento'];
-        $clave = $_POST['clave'];
+        $persona = new Persona();
+        $persona->setNombre($_POST['nombre']);
+        $persona->setApellido($_POST['apellido']);
+        $persona->setCorreo($_POST['correo']);
+        $persona->setTipoDocumento($_POST['tipoDocumento']);
+        $persona->setDocumento($_POST['documento']);
+        $persona->setClave($_POST['clave']);
+        $persona->setIdTipoUsuario($_POST['tipoUsuario']);
         $confirmarClave = $_POST['confirmarClave'];
 
-        if($nombre=="" || $apellido=="" || $correo =="" || $tipoDocumento=="" || $documento==""){
+
+        if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getCorreo() == "" || $persona->getTipoDocumento() == "" || $persona->getDocumento() == ""){
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
@@ -31,7 +36,18 @@ class usuarioControlador extends usuarioModelo{
             exit();
         }
 
-        $check_documento = mainModel::ejecutar_consulta_simple("SELECT documento FROM persona WHERE documento = '$documento';");
+        if($persona->getClave() != $confirmarClave){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"Las claves ingresadas no coinciden",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $check_documento = mainModel::ejecutar_consulta_simple("SELECT documento FROM persona WHERE documento = '".$persona->getDocumento()."';");
 
         if($check_documento->rowCount() > 0){
             $alerta=[
@@ -43,22 +59,12 @@ class usuarioControlador extends usuarioModelo{
             echo json_encode($alerta);
             exit();
         }else{
-            $clave = mainModel::encryption($clave);
-            $datos_usuario_reg = [
-                "tipoDocumento" => $tipoDocumento,
-                "documento" => $documento,
-                "nombre" => $nombre,
-                "apellido" => $apellido,
-                "correo" => $correo,
-                "clave" => $clave,
-                "idTipoUsuario" => 3
-            ];
-
-            $agregar_usuario = usuarioModelo::agregar_usuario_modelo($datos_usuario_reg);
+            $persona->setClave(mainModel::encryption($persona->getClave()));
+            $agregar_usuario = usuarioModelo::agregar_usuario_modelo($persona);
 
             if($agregar_usuario->rowCount() == 1){
                 $alerta=[
-                    "Alerta"=>"simple",
+                    "Alerta"=>"recargar",
                     "Titulo"=>"Exitoso",
                     "Texto"=>"Usuario creado correctamente por favor espere activar el usuario",
                     "Tipo"=>"success"
@@ -74,87 +80,6 @@ class usuarioControlador extends usuarioModelo{
                 ];
                 echo json_encode($alerta);
                 exit();
-            }
-        }
-    }
-
-    /*---------- Controlador para agregar usuario desde el formulario de registro e iniciar sesión ----------*/
-    public function agregar_usuario_loginReg_controlador(){
-        $nombre = $_POST['nombre'];
-        $apellido = $_POST['apellido'];
-        $correo = $_POST['correo'];
-        $tipoDocumento = $_POST['tipoDocumento'];
-        $documento = $_POST['documento'];
-        $clave = $_POST['clave'];
-        $confirmarClave = $_POST['confirmarClave'];
-
-        if($nombre=="" || $apellido=="" || $correo =="" || $tipoDocumento=="" || $documento==""){
-            echo '<script>
-                    Swal.fire({
-                        title: "Ocurrió un error",
-                        text: "Por favor llene todos los campos requeridos",
-                        icon: "error",
-                        confirmButtonText: "Aceptar"
-                    });
-                </script>';
-            exit();
-        }
-
-        if($clave != $confirmarClave){
-            echo '<script>
-                    Swal.fire({
-                        title: "Ocurrió un error",
-                        text: "Las contraseñas ingresadas no coinciden",
-                        icon: "error",
-                        confirmButtonText: "Aceptar"
-                    });
-                </script>';
-            exit();
-        }
-
-        $check_documento = mainModel::ejecutar_consulta_simple("SELECT documento FROM persona WHERE documento = '$documento';");
-
-        if($check_documento->rowCount() > 0){
-            echo '<script>
-                    Swal.fire({
-                        title: "Error",
-                        text: "Documento de indentidad ya se encuentra registrado en el repositorio",
-                        icon: "error",
-                        confirmButtonText: "Aceptar"
-                    });
-                </script>';
-        }else{
-            $clave = mainModel::encryption($clave);
-            $datos_usuario_reg = [
-                "tipoDocumento" => $tipoDocumento,
-                "documento" => $documento,
-                "nombre" => $nombre,
-                "apellido" => $apellido,
-                "correo" => $correo,
-                "clave" => $clave,
-                "idTipoUsuario" => 3
-            ];
-
-            $agregar_usuario = usuarioModelo::agregar_usuario_modelo($datos_usuario_reg);
-
-            if($agregar_usuario->rowCount() == 1){
-                echo '<script>
-                        Swal.fire({
-                            title: "Exitoso",
-                            text: "Usuario creado correctamente por favor espere activar el usuario",
-                            icon: "success",
-                            confirmButtonText: "Aceptar"
-                        });
-                    </script>';
-            }else{
-                echo '<script>
-                        Swal.fire({
-                            title: "Error",
-                            text: "Error al crear el usuario",
-                            icon: "error",
-                            confirmButtonText: "Aceptar"
-                        });
-                    </script>';
             }
         }
     }
