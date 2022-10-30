@@ -31,6 +31,21 @@
             }
         }
 
+        /*---------- Modelo para eliminar usuario ----------*/
+        protected static function eliminar_usuario_modelo($idPersona, $idUsuario){
+            $sqlEliminarPersona = mainModel::conectar()->prepare("DELETE FROM persona WHERE id = ?");
+            $sqlEliminarPersona->execute([$idPersona]);
+
+            if($sqlEliminarPersona->rowCount() > 0){
+                $sqlEliminarUsuario = mainModel::conectar()->prepare("DELETE FROM usuario WHERE id = ?");
+                $sqlEliminarUsuario->execute([$idUsuario]);
+
+                return $sqlEliminarUsuario;
+            }else{
+                return $sqlEliminarPersona;
+            }
+        }
+
     }
 
 ?>

@@ -118,6 +118,34 @@ class usuarioControlador extends usuarioModelo{
         }
     }
 
+    /*---------- Controlador para eliminar usuario ----------*/
+    public function eliminar_usuario_controlador(){
+        $idPersona = mainModel::decryption($_POST['idPersona']);
+        $idUsuario = mainModel::decryption($_POST['idUsuario']);
+
+        $eliminarUsuario = usuarioModelo::eliminar_usuario_modelo($idPersona, $idUsuario);
+
+        if($eliminarUsuario->rowCount() == 1){
+            $alerta=[
+                "Alerta"=>"recargar",
+                "Titulo"=>"Exitoso",
+                "Texto"=>"Usuario eliminado exitosamente",
+                "Tipo"=>"success"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }else{
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrió un error",
+                "Texto"=>"No se pudo eliminar el usuario. Intente nuevamente",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+    }
+
     /*---------- Controlador enlistar usuarios ----------*/
     public function paginador_usuario_controlador($pagina, $registros, $id, $url, $busqueda){
         $url = SERVER_URL.$url."/";
@@ -170,9 +198,13 @@ class usuarioControlador extends usuarioModelo{
                                     <div class="btn-group-action">
                                         <button class="btn-editar-usuario"><i class="uil uil-edit"></i></button>
                                         </div>
-                                    <div class="btn-group-action">
-                                        <button class="btn-eliminar-usuario"><i class="uil uil-trash-alt"></i></button>
+                                    <form class="FormularioAjax" action="'.SERVER_URL.'ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
+                                        <div class="btn-group-action">
+                                            <input type="hidden" name="idPersona" value="'.mainModel::encryption($rows['id']).'">
+                                            <input type="hidden" name="idUsuario" value="'.mainModel::encryption($rows['idUsuario']).'">
+                                            <button type="submit" class="btn-eliminar-usuario"><i class="uil uil-trash-alt"></i></button>
                                         </div>
+                                    </form>
                                 </div>
                             </td>
                         </tr>';
