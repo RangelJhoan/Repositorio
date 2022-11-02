@@ -3,7 +3,9 @@
         <!--Sección de logo y nombre-->
         <section class="logo-section">
             <div class="logo-image">
+                <a title="Home" href="<?php echo SERVER_URL; ?>home/">
                 <img src="<?php echo SERVER_URL ?>vistas/assets/img/dashboard-ri-logo.png" alt="Logo Repositorio Institucional">
+                </a>
             </div>
 
             <span class="logo-name">Administrador</span>
@@ -19,12 +21,12 @@
                         <span class="option-name">Dashboard</span>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="#">
                         <i class="uil uil-home"></i>
                         <span class="option-name">Inicio</span>
                     </a>
-                </li>
+                </li> -->
                 <li>
                 <a href="<?php echo SERVER_URL ?>adminUsuarios/">
                         <i class="uil uil-users-alt"></i>

@@ -284,12 +284,167 @@ label{
 
 
 
+/*?MODAL AGREGAR USUARIO*/
+#btn-modal-crear-usuario{
+    display:none;
+    transition: all 300ms ease;
+}
+.container-modal-crear-usuario{
+    width: 100%;
+    height: 100vh;
+    position:fixed;
+    top:0;left:0;
+    background-color: rgba(144,148,150,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+#btn-modal-crear-usuario:checked ~ .container-modal-crear-usuario{
+    display: flex;
+    transition: all 300ms ease;
+}
+.content-modal-crear-usuario{
+    width: 100%;
+    max-width: 400px;
+    padding:20px;
+    background-color: #dbdbdb;
+    border-radius: 4px;
+}
+.content-modal-titulo{
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.4rem;
+    color:var(--create-button-hover);
+}
 
+/*Contenedor botones*/
+.botones-accion-modal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 15px;
+}
+/*Botón cerrar*/
+.content-modal-crear-usuario .btn-cerrar-crear-usuario{
+    background-color: var(--delete-button);
+    cursor: pointer;
+    padding: 7px 10px;
+    border-radius: 4px;
+    transition: all 300ms ease;
+    color:#fff;
+    font-size: var(--usuarios--normal-font-size);
+    border-style: none;
+    margin-left: 10px;
+}
+.content-modal-crear-usuario .btn-cerrar-crear-usuario:hover{
+    background-color: var(--delete-button-hover);
+}
+/*Botón crear*/
+.content-modal-crear-usuario .btn-crear-usuario{
+    background-color: var(--create-button);
+    cursor: pointer;
+    padding: 7px 10px;
+    border-radius: 4px;
+    transition: all 300ms ease;
+    color:#fff;
+    border-style: none;
+    font-size: var(--usuarios--normal-font-size);
+}
+.content-modal-crear-usuario .btn-crear-usuario:hover{
+    background-color: var(--create-button-hover);
+}
+/**Campos de los input*/
+.input-field {
+    max-width: 380px;
+    width: 100%;
+    background-color: var(--input-box-color);
+    margin: 7px 0;
+    height: 55px;
+    border-radius: 55px;
+    display: grid;
+    /* grid-template-columns: 15% 85%; */
+    padding: 0 0.4rem;
+    position: relative;
+    
+}
+/*Eliminar lineas del número de doc*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button{
+    appearance:none ;
+    -webkit-appearance:none ;
+    margin:0;
+}
+/*Eliminar lineas del número de doc firefox*/
+input[type=number]{
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
 
+/**Input al momento de digitar*/
+.input-field input {
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 400;
+    font-size: var(--usuarios--normal-font-size);
+    color:var(--text-color);
+}
+/**Estilo al placeholder del input*/
+.input-field input::placeholder {
+    color:var(--text-color);
+    font-weight: 400;
+}
 
-
-
-
+/**Estilos del SELECT TAG (Tipo de documento)*/
+select{
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border:0;
+    background:  var(--input-box-color);
+    background-image: none;
+    flex:1;
+    color:var(--text-color);
+    cursor:pointer;
+    font-size: var(--usuarios--normal-font-size);
+    text-align: start;
+    font-weight: 400;
+    font-family: "Poppins", sans-serif;
+    border-radius: 55px;
+}
+select::-ms-expand{
+    display: none;
+}
+.select-option{
+    position:relative;
+    display: flex;
+    max-width: 380px;
+    width: 100%;
+    line-height: 3;
+    background: var(--input-box-color);
+    overflow: hidden;
+    border-color:var(--input-box-color); 
+    border-radius: 55px;
+    font-family: "Poppins", sans-serif;
+    color:var(--title-color);
+}
+.select-option::after{
+    content: '\25BC';
+    position: absolute;
+    top:0;
+    right: 0;
+    padding:0 -2em;
+    background-color: transparent;
+    cursor:pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+    color:var(--title-color);
+}
+.select-option:hover::after{
+    color:var(--main-color);
+}
 
 
 
@@ -348,6 +503,9 @@ label{
         .pagination a{
             font-size: var(--usuarios--pequeña-font-size);
         }
+        .content-modal-crear-usuario{
+            width: 90%;
+        }
     }
 
     /*500px*/
@@ -361,5 +519,14 @@ label{
         .btn-group-action{
             display: flex;
             margin-left: 10px;
+        }
+        .input-field {
+            margin: 5px 0;
+            height: 40px;
+        }
+
+        /**Input al momento de digitar*/
+        .input-field input {
+        font-size: 1rem;
         }
     }

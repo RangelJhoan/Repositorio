@@ -211,7 +211,6 @@ select::-ms-expand{
 .password-forget-text:hover{
   color:var(--title-color);
   text-decoration:underline;
-
 }
 
 /**Botón acceder y crear cuenta*/

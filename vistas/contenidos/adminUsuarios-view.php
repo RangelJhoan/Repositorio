@@ -22,11 +22,65 @@
             </div>
             <!--BOTÓN CREAR-->
             <div class="new-user-container">
-                <button onclick="location.href='crearxD'" type="button" class="btn-agregar-usuario" data-toggle="modal" data-target="#modal" data-dismiss="modalclose"><i class="uil uil-plus-circle"></i>Nuevo</button>
+                <label for="btn-modal-crear-usuario" class="btn-agregar-usuario">
+                    <i class="uil uil-plus-circle"></i>Nuevo
+                </label>
+            </div>
+            <!--MODAL CREAR-->
+            <input type="checkbox" id="btn-modal-crear-usuario">
+            <div class="container-modal-crear-usuario">
+                <div class="content-modal-crear-usuario">
+                    <h3 class="content-modal-titulo">Nuevo usuario</h3>
+                    <form action="" class="crear-usuario">
+                        <div class="input-field ">
+                            <div class="select-option">
+                                <select name="tipoUsuario" class="combobox-titulo">
+                                    <option selected disabled value="" class="combobox-opciones">Tipo de usuario</option>
+                                    <option value="Administrador">Administrador</option>
+                                    <option value="Docente">Docente</option>
+                                    <option value="Estudiante">Estudiante</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <input name="nombre" type="text" placeholder="Nombres" />
+                        </div>
+                        <div class="input-field">
+                            <input name="apellido" type="text" placeholder="Apellidos" />
+                        </div>
+                        <!--Select tag-->
+                        <div class="input-field ">
+                            <div class="select-option">
+                                <select name="tipoDocumento" class="combobox-titulo">
+                                    <option selected disabled value="" class="combobox-opciones">Tipo de documento</option>
+                                    <option value="TI">Tarjeta de Identidad (TI)</option>
+                                    <option value="CC">Cédula de Ciudadanía (CC)</option>
+                                    <option value="CE">Tarjeta de Extranjería (CE)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <input name="documento" type="number" placeholder="Número de documento" />
+                        </div>
+                        <div class="input-field">
+                            <input name="correo" type="email" placeholder="Correo electrónico" />
+                        </div>
+                        <div class="input-field">
+                            <input name="clave" type="password" placeholder="Contraseña" />
+                        </div>
+                        <div class="input-field">
+                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" />
+                        </div>
+                        <div class="botones-accion-modal">
+                            <input type="submit" class="btn-crear-usuario" value="Crear" />
+                            <label for="btn-modal-crear-usuario" class="btn-cerrar-crear-usuario">Cerrar</label>
+                        </div>
+            
+                    </form>
+                </div>
             </div>
             <!--TABLA-->
             <?php
-
                 require_once "./controladores/usuarioControlador.php";
                 $ins_usuario = new usuarioControlador();
 
@@ -35,9 +89,7 @@
                 }else{
                     echo $ins_usuario->paginador_usuario_controlador(-1, 15, 3, $pagina[0], "");
                 }
-
             ?>
-            <!--MODAL CREAR-->
 
         <div>
     </section>

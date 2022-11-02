@@ -21,21 +21,21 @@ function enviar_formulario_ajax(e){
     let texto_alerta;
 
     if(tipo === "save"){
-        texto_alerta = "Los datos quedarán guardados en el sistema";
+        texto_alerta = "Los datos quedarán guardados en el repositorio";
     }else if(tipo === "delete"){
-        texto_alerta = "Los datos serán eliminados completamente del sistema";
+        texto_alerta = "Los datos serán eliminados completamente del repositorio";
     }else if(tipo === "update"){
-        texto_alerta = "Los datos del sistema serán actualizados"
+        texto_alerta = "Los datos del repositorio serán actualizados"
     }else if(tipo === "search"){
         texto_alerta = "Se eliminará el término de búsqueda y tendrá que escribir uno nuevo";
     }else if(tipo === "loans"){
         texto_alerta = "Desea remover los datos seleccionados para préstamos o reservaciones";
     }else{
-        texto_alerta = "¿Quieres realizar la operacion solicitada?";
+        texto_alerta = "¿Quiere realizar la operacion solicitada?";
     }
 
     Swal.fire({
-        title: '¿Estás seguro?',
+        title: '¿Está seguro?',
         text: texto_alerta,
         icon: 'question',
         showCancelButton: true,
