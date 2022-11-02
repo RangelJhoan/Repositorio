@@ -203,8 +203,8 @@ class usuarioControlador extends usuarioModelo{
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <button class="btn-editar-usuario"><i class="uil uil-edit"></i></button>
-                                        </div>
+                                        <label for="btn-modal-editar-usuario" class="btn-editar-usuario"><i class="uil uil-edit"></i></label>
+                                    </div>
                                     <form class="FormularioAjax" action="'.SERVER_URL.'ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
                                             <input type="hidden" name="idPersona" value="'.mainModel::encryption($rows['id']).'">

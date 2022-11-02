@@ -285,11 +285,10 @@ label{
 
 
 /*?MODAL AGREGAR USUARIO*/
-#btn-modal-crear-usuario{
+#btn-modal-crear-usuario, #btn-modal-editar-usuario{
     display:none;
-    transition: all 300ms ease;
 }
-.container-modal-crear-usuario{
+.container-modal-crear-usuario,.container-modal-editar-usuario{
     width: 100%;
     height: 100vh;
     position:fixed;
@@ -302,9 +301,12 @@ label{
 }
 #btn-modal-crear-usuario:checked ~ .container-modal-crear-usuario{
     display: flex;
-    transition: all 300ms ease;
 }
-.content-modal-crear-usuario{
+#btn-modal-editar-usuario:checked ~ .container-modal-editar-usuario{
+    display: flex;
+}
+.content-modal-crear-usuario,
+.content-modal-editar-usuario{
     width: 100%;
     max-width: 400px;
     padding:20px;
@@ -314,8 +316,9 @@ label{
 .content-modal-titulo{
     margin-bottom: 15px;
     text-align: center;
-    font-size: 1.4rem;
-    color:var(--create-button-hover);
+    font-size: 1.875em;
+    font-weight: 600;
+    color:#505050;
 }
 
 /*Contenedor botones*/
@@ -326,7 +329,8 @@ label{
     margin-top: 15px;
 }
 /*Botón cerrar*/
-.content-modal-crear-usuario .btn-cerrar-crear-usuario{
+.content-modal-crear-usuario .btn-cerrar-crear-usuario,
+.content-modal-editar-usuario .btn-cerrar-editar-usuario{
     background-color: var(--delete-button);
     cursor: pointer;
     padding: 7px 10px;
@@ -337,11 +341,13 @@ label{
     border-style: none;
     margin-left: 10px;
 }
-.content-modal-crear-usuario .btn-cerrar-crear-usuario:hover{
+.content-modal-crear-usuario .btn-cerrar-crear-usuario:hover,
+.content-modal-editar-usuario .btn-cerrar-editar-usuario:hover{
     background-color: var(--delete-button-hover);
 }
 /*Botón crear*/
-.content-modal-crear-usuario .btn-crear-usuario{
+.content-modal-crear-usuario .btn-crear-usuario,
+.content-modal-editar-usuario .btn-editar-usuario{
     background-color: var(--create-button);
     cursor: pointer;
     padding: 7px 10px;
@@ -350,6 +356,15 @@ label{
     color:#fff;
     border-style: none;
     font-size: var(--usuarios--normal-font-size);
+}
+.content-modal-editar-usuario .btn-editar-usuario{
+    background-color: var(--edit-button);
+}
+.content-modal-editar-usuario .btn-cerrar-editar-usuario{
+    background-color: var(--delete-button);
+}
+.content-modal-editar-usuario .btn-editar-usuario:hover{
+    background-color: var(--edit-button-hover);
 }
 .content-modal-crear-usuario .btn-crear-usuario:hover{
     background-color: var(--create-button-hover);
@@ -366,7 +381,6 @@ label{
     /* grid-template-columns: 15% 85%; */
     padding: 0 0.4rem;
     position: relative;
-    
 }
 /*Eliminar lineas del número de doc*/
 input[type="number"]::-webkit-inner-spin-button,
@@ -389,11 +403,10 @@ input[type=number]{
     line-height: 1;
     font-weight: 400;
     font-size: var(--usuarios--normal-font-size);
-    color:var(--text-color);
 }
 /**Estilo al placeholder del input*/
 .input-field input::placeholder {
-    color:var(--text-color);
+    color:#464646;
     font-weight: 400;
 }
 
@@ -406,7 +419,7 @@ select{
     background:  var(--input-box-color);
     background-image: none;
     flex:1;
-    color:var(--text-color);
+    color:#464646;
     cursor:pointer;
     font-size: var(--usuarios--normal-font-size);
     text-align: start;
@@ -428,7 +441,7 @@ select::-ms-expand{
     border-color:var(--input-box-color); 
     border-radius: 55px;
     font-family: "Poppins", sans-serif;
-    color:var(--title-color);
+    color:#464646;
 }
 .select-option::after{
     content: '\25BC';
@@ -440,15 +453,11 @@ select::-ms-expand{
     cursor:pointer;
     pointer-events: none;
     transition: .25s all ease;
-    color:var(--title-color);
+    color:#575757;
 }
 .select-option:hover::after{
-    color:var(--main-color);
+    color:#383838;
 }
-
-
-
-
 
     /*?RESPONSIVE*/
     /*1000px*/

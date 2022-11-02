@@ -28,7 +28,7 @@
             </div>
             <!--MODAL CREAR-->
             <input type="checkbox" id="btn-modal-crear-usuario">
-            <div class="container-modal-crear-usuario">
+                <div class="container-modal-crear-usuario">
                 <div class="content-modal-crear-usuario">
                     <h3 class="content-modal-titulo">Nuevo usuario</h3>
                     <form action="" class="crear-usuario">
@@ -76,6 +76,68 @@
                             <label for="btn-modal-crear-usuario" class="btn-cerrar-crear-usuario">Cerrar</label>
                         </div>
             
+                    </form>
+                </div>
+            </div>
+            <!--MODAL EDITAR-->
+            <input type="checkbox" id="btn-modal-editar-usuario">
+                <div class="container-modal-editar-usuario">
+                <div class="content-modal-editar-usuario">
+                    <h3 class="content-modal-titulo">Editar usuario</h3>
+                    <form action="" class="editar-usuario">
+                        <div class="input-field">
+                            <div class="select-option">
+                                <select name="tipoUsuario" class="combobox-titulo">
+                                    <option selected disabled value="" class="combobox-opciones">Tipo de usuario</option>
+                                    <option value="Administrador">Administrador</option>
+                                    <option value="Docente">Docente</option>
+                                    <option value="Estudiante">Estudiante</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <input name="nombre" type="text" placeholder="Nombres" />
+                        </div>
+                        <div class="input-field">
+                            <input name="apellido" type="text" placeholder="Apellidos" />
+                        </div>
+                        <!--Select tag-->
+                        <div class="input-field ">
+                            <div class="select-option">
+                                <select name="tipoDocumento" class="combobox-titulo">
+                                    <option selected disabled value="" class="combobox-opciones">Tipo de documento</option>
+                                    <option value="TI">Tarjeta de Identidad (TI)</option>
+                                    <option value="CC">Cédula de Ciudadanía (CC)</option>
+                                    <option value="CE">Tarjeta de Extranjería (CE)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <input name="documento" type="number" placeholder="Número de documento" />
+                        </div>
+                        <div class="input-field">
+                            <input name="correo" type="email" placeholder="Correo electrónico" />
+                        </div>
+                        <div class="input-field">
+                            <input name="clave" type="password" placeholder="Contraseña" />
+                        </div>
+                        <div class="input-field">
+                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" />
+                        </div>
+                        <!--Select tag-->
+                        <div class="input-field ">
+                            <div class="select-option">
+                                <select name="estado" class="combobox-titulo">
+                                    <option selected disabled value="" class="combobox-opciones">Estado</option>
+                                    <option value="0">Inactivo</option>
+                                    <option value="1">Activo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="botones-accion-modal">
+                            <input type="submit" class="btn-editar-usuario" value="Editar" />
+                            <label for="btn-modal-editar-usuario" class="btn-cerrar-editar-usuario">Cerrar</label>
+                        </div>
                     </form>
                 </div>
             </div>
