@@ -147,7 +147,17 @@ class usuarioControlador extends usuarioModelo{
         }
     }
 
-    /*---------- Controlador enlistar usuarios ----------*/
+    /**
+     * Paginador de usuarios, vista principal Admin
+     * 
+     * @param String $pagina Numero pagina actual
+     * @param String $registros Cantidad de registros a buscar
+     * @param String $id ID del administrador logueado
+     * @param String $url Direccion URL actual
+     * @param String $busqueda Parametro de busqueda
+     * 
+     * @return String código HTML con la lista de usuarios en una tabla
+     */
     public function paginador_usuario_controlador($pagina, $registros, $id, $url, $busqueda){
         $url = SERVER_URL.$url."/";
         $tabla = "";
@@ -155,9 +165,15 @@ class usuarioControlador extends usuarioModelo{
         $inicio = ($pagina>0) ? (($pagina*$registros)-$registros) : 0;
 
         if(isset($busqueda) && $busqueda != ""){
-            $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM persona p JOIN usuario u ON u.id = p.id_usuario WHERE p.id != '$id' AND (p.documento LIKE '%$busqueda%' OR p.nombre LIKE '%$busqueda%' OR p.apellido LIKE '%$busqueda%') ORDER BY p.documento ASC LIMIT $inicio,$registros";
+            $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, p.documento, p.tipo_documento, p.id_usuario, u.estado, tu.descripcion 
+            FROM persona p JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
+            WHERE p.id != '$id' AND (p.documento LIKE '%$busqueda%' OR p.nombre LIKE '%$busqueda%' OR p.apellido LIKE '%$busqueda%') 
+            ORDER BY p.nombre ASC LIMIT $inicio,$registros";
         }else{
-            $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM persona p JOIN usuario u ON u.id = p.id_usuario WHERE p.id != '$id' ORDER BY p.nombre ASC LIMIT $inicio,$registros";
+            $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, p.documento, p.tipo_documento, p.id_usuario, u.estado, tu.descripcion 
+            FROM persona p JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
+            WHERE p.id != '$id' 
+            ORDER BY p.nombre ASC LIMIT $inicio,$registros";
         }
 
         $conexion = mainModel::conectar();
@@ -194,11 +210,12 @@ class usuarioControlador extends usuarioModelo{
                 }else{
                     $estado = "active";
                 }
-                $tabla.='<tr>
+                $tabla.='
+                <tr>
                             <td data-titulo="#">'.$contador.'</td>
                             <td data-titulo="NOMBRE">'.$rows['nombre'].' '.$rows['apellido'].'</td>
                             <td data-titulo="DOCUMENTO">'.$rows['documento'].'</td>
-                            <td data-titulo="TIPO">Estudiante</td>
+                            <td data-titulo="TIPO">'.$rows['descripcion'].'</td>
                             <td data-titulo="ESTADO"><span class="'.$estado.'"></span></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
