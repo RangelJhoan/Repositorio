@@ -7,6 +7,7 @@ class Usuario extends TipoUsuario{
     private $idUsuario;
     private $correo;
     private $clave;
+    private $estado;
 
     public function __construct(){}
 
@@ -23,6 +24,10 @@ class Usuario extends TipoUsuario{
         return $this->clave;
     }
 
+    public function getEstado(){
+        return $this->estado;
+    }
+
     //Setters
     public function setIdUsuario($idUsuario){
         $this->idUsuario = $idUsuario;
@@ -34,6 +39,10 @@ class Usuario extends TipoUsuario{
 
     public function setClave($clave){
         $this->clave = $clave;
+    }
+
+    public function setEstado($estado){
+        $this->estado = $estado;
     }
 
 }

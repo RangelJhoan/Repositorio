@@ -34,6 +34,7 @@
                 <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                     <h2 class="title">Registrarse</h2>
                     <input name="tipoUsuario" type="hidden" value="3">
+                    <input name="estado" type="hidden" value="0">
                     <div class="input-field">
                         <i class="fas fa-user"></i>
                         <input name="nombre" type="text" placeholder="Nombres" />

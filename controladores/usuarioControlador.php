@@ -22,10 +22,11 @@ class usuarioControlador extends usuarioModelo{
         $persona->setDocumento($_POST['documento']);
         $persona->setClave($_POST['clave']);
         $persona->setIdTipoUsuario($_POST['tipoUsuario']);
+        $persona->setEstado($_POST['estado']);
         $confirmarClave = $_POST['confirmarClave'];
 
 
-        if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getCorreo() == "" || $persona->getTipoDocumento() == "" || $persona->getDocumento() == ""){
+        if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getCorreo() == "" || $persona->getTipoDocumento() == "" || $persona->getDocumento() == "" || $persona->getEstado() == ""){
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
@@ -154,9 +155,9 @@ class usuarioControlador extends usuarioModelo{
         $inicio = ($pagina>0) ? (($pagina*$registros)-$registros) : 0;
 
         if(isset($busqueda) && $busqueda != ""){
-            $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM persona WHERE id != '$id' AND (documento LIKE '%$busqueda%' OR nombre LIKE '%$busqueda%' OR apellido LIKE '%$busqueda%') ORDER BY documento ASC LIMIT $inicio,$registros";
+            $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM persona p JOIN usuario u ON u.id = p.id_usuario WHERE p.id != '$id' AND (p.documento LIKE '%$busqueda%' OR p.nombre LIKE '%$busqueda%' OR p.apellido LIKE '%$busqueda%') ORDER BY p.documento ASC LIMIT $inicio,$registros";
         }else{
-            $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM persona WHERE id != '$id' ORDER BY nombre ASC LIMIT $inicio,$registros";
+            $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM persona p JOIN usuario u ON u.id = p.id_usuario WHERE p.id != '$id' ORDER BY p.nombre ASC LIMIT $inicio,$registros";
         }
 
         $conexion = mainModel::conectar();
@@ -187,12 +188,18 @@ class usuarioControlador extends usuarioModelo{
         if($total >= 1 && $pagina <= $Npaginas){
             $contador = $inicio+1;
             foreach($datos as $rows){
+                $estado = "";
+                if($rows['estado'] == "0"){
+                    $estado = "inactive";
+                }else{
+                    $estado = "active";
+                }
                 $tabla.='<tr>
                             <td data-titulo="#">'.$contador.'</td>
                             <td data-titulo="NOMBRE">'.$rows['nombre'].' '.$rows['apellido'].'</td>
                             <td data-titulo="DOCUMENTO">'.$rows['documento'].'</td>
                             <td data-titulo="TIPO">Estudiante</td>
-                            <td data-titulo="ESTADO"><span class="active"></span></td>
+                            <td data-titulo="ESTADO"><span class="'.$estado.'"></span></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
@@ -201,7 +208,7 @@ class usuarioControlador extends usuarioModelo{
                                     <form class="FormularioAjax" action="'.SERVER_URL.'ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
                                             <input type="hidden" name="idPersona" value="'.mainModel::encryption($rows['id']).'">
-                                            <input type="hidden" name="idUsuario" value="'.mainModel::encryption($rows['idUsuario']).'">
+                                            <input type="hidden" name="idUsuario" value="'.mainModel::encryption($rows['id_usuario']).'">
                                             <button type="submit" class="btn-eliminar-usuario"><i class="uil uil-trash-alt"></i></button>
                                         </div>
                                     </form>
