@@ -80,7 +80,7 @@
                 </div>
             </div>
             <!--MODAL EDITAR-->
-            <input type="checkbox" id="btn-modal-editar-usuario">
+            <input type="checkbox" id="btn-modal-editar-usuario" class="btn-classmodal-editar-usuario">
                 <div class="container-modal-editar-usuario">
                 <div class="content-modal-editar-usuario">
                     <h3 class="content-modal-titulo">Editar usuario</h3>
@@ -136,7 +136,7 @@
                         </div>
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-editar-usuario" value="Editar" />
-                            <label for="btn-modal-editar-usuario" class="btn-cerrar-editar-usuario">Cerrar</label>
+                            <label for="btn-modal-editar-usuario" id="btn-cerrar-editar-usuario" class="btn-classcerrar-editar-usuario">Cerrar</label>
                         </div>
                     </form>
                 </div>

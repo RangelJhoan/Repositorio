@@ -285,7 +285,7 @@ label{
 
 
 /*?MODAL AGREGAR USUARIO*/
-#btn-modal-crear-usuario, #btn-modal-editar-usuario{
+#btn-modal-crear-usuario, .btn-classmodal-editar-usuario{
     display:none;
 }
 .container-modal-crear-usuario,.container-modal-editar-usuario{
@@ -302,7 +302,7 @@ label{
 #btn-modal-crear-usuario:checked ~ .container-modal-crear-usuario{
     display: flex;
 }
-#btn-modal-editar-usuario:checked ~ .container-modal-editar-usuario{
+.btn-classmodal-editar-usuario:checked ~ .container-modal-editar-usuario{
     display: flex;
 }
 .content-modal-crear-usuario,
@@ -330,7 +330,7 @@ label{
 }
 /*Botón cerrar*/
 .content-modal-crear-usuario .btn-cerrar-crear-usuario,
-.content-modal-editar-usuario .btn-cerrar-editar-usuario{
+.content-modal-editar-usuario .btn-classcerrar-editar-usuario{
     background-color: var(--delete-button);
     cursor: pointer;
     padding: 7px 10px;
@@ -342,7 +342,7 @@ label{
     margin-left: 10px;
 }
 .content-modal-crear-usuario .btn-cerrar-crear-usuario:hover,
-.content-modal-editar-usuario .btn-cerrar-editar-usuario:hover{
+.content-modal-editar-usuario .btn-classcerrar-editar-usuario:hover{
     background-color: var(--delete-button-hover);
 }
 /*Botón crear*/
@@ -360,7 +360,7 @@ label{
 .content-modal-editar-usuario .btn-editar-usuario{
     background-color: var(--edit-button);
 }
-.content-modal-editar-usuario .btn-cerrar-editar-usuario{
+.content-modal-editar-usuario .btn-classcerrar-editar-usuario{
     background-color: var(--delete-button);
 }
 .content-modal-editar-usuario .btn-editar-usuario:hover{
