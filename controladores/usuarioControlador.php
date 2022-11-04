@@ -26,7 +26,8 @@ class usuarioControlador extends usuarioModelo{
         $confirmarClave = $_POST['confirmarClave'];
 
 
-        if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getCorreo() == "" || $persona->getTipoDocumento() == "" || $persona->getDocumento() == "" || $persona->getEstado() == ""){
+        if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getCorreo() == "" || $persona->getTipoDocumento() == "" ||
+            $persona->getDocumento() == "" || $persona->getClave() == "" || $persona->getIdTipoUsuario() == "" || $persona->getEstado() == ""){
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
@@ -149,13 +150,13 @@ class usuarioControlador extends usuarioModelo{
 
     /**
      * Paginador de usuarios, vista principal Admin
-     * 
+     *
      * @param String $pagina Numero pagina actual
      * @param String $registros Cantidad de registros a buscar
      * @param String $id ID del administrador logueado
      * @param String $url Direccion URL actual
      * @param String $busqueda Parametro de busqueda
-     * 
+     *
      * @return Object código HTML con la lista de usuarios en una tabla
      */
     public function paginador_usuario_controlador($pagina, $registros, $id, $url, $busqueda){

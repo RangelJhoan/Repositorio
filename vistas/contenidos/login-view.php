@@ -51,7 +51,7 @@
                     <div class="input-field ">
                         <i class="fas fa-solid fa-address-card"></i>
                         <div class="select-option">
-                            <select name="tipoDocumento" name="tipoDocumento" class="combobox-titulo">
+                            <select name="tipoDocumento" class="combobox-titulo">
                                 <option selected value="" class="combobox-opciones">Tipo de documento</option>
                                 <option value="TI">Tarjeta de Identidad (TI)</option>
                                 <option value="CC">Cédula de Ciudadanía (CC)</option>

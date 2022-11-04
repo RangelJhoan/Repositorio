@@ -31,17 +31,18 @@
                 <div class="container-modal-crear-usuario">
                 <div class="content-modal-crear-usuario">
                     <h3 class="content-modal-titulo">Nuevo usuario</h3>
-                    <form action="" class="crear-usuario">
+                    <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                         <div class="input-field ">
                             <div class="select-option">
                                 <select name="tipoUsuario" class="combobox-titulo">
-                                    <option selected disabled value="" class="combobox-opciones">Tipo de usuario</option>
-                                    <option value="Administrador">Administrador</option>
-                                    <option value="Docente">Docente</option>
-                                    <option value="Estudiante">Estudiante</option>
+                                    <option selected value="" class="combobox-opciones">Tipo de usuario</option>
+                                    <option value="1">Administrador</option>
+                                    <option value="2">Docente</option>
+                                    <option value="3">Estudiante</option>
                                 </select>
                             </div>
                         </div>
+                        <input name="estado" type="hidden" value="1">
                         <div class="input-field">
                             <input name="nombre" type="text" placeholder="Nombres" />
                         </div>
@@ -52,7 +53,7 @@
                         <div class="input-field ">
                             <div class="select-option">
                                 <select name="tipoDocumento" class="combobox-titulo">
-                                    <option selected disabled value="" class="combobox-opciones">Tipo de documento</option>
+                                    <option selected value="" class="combobox-opciones">Tipo de documento</option>
                                     <option value="TI">Tarjeta de Identidad (TI)</option>
                                     <option value="CC">Cédula de Ciudadanía (CC)</option>
                                     <option value="CE">Tarjeta de Extranjería (CE)</option>
