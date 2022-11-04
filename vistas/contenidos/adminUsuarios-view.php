@@ -44,10 +44,10 @@
                         </div>
                         <input name="estado" type="hidden" value="1">
                         <div class="input-field">
-                            <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-Z]+" maxlength="30" title="Por favor, complete el campo" required/>
+                            <input name="nombre" type="text" placeholder="Nombres" pattern="^[a-zA-Z\s]+" minlength="3" maxlength="30" title="Por favor, complete el campo" required/>
                         </div>
                         <div class="input-field">
-                            <input name="apellido" type="text" placeholder="Apellidos" pattern="[a-zA-Z]+" maxlength="30" title="Por favor, complete el campo" required/>
+                            <input name="apellido" type="text" placeholder="Apellidos" pattern="^[a-zA-Z\s]+" minlength="3" maxlength="30" title="Por favor, complete el campo" required/>
                         </div>
                         <!--Select tag-->
                         <div class="input-field ">
@@ -61,16 +61,16 @@
                             </div>
                         </div>
                         <div class="input-field">
-                            <input name="documento" type="number" placeholder="Número de documento" maxlength="15" minlength="10" pattern="[0-9]+" title="Por favor, complete el campo" required  />
+                            <input name="documento" type="number" placeholder="Número de documento" minlength="10" maxlength="15"  pattern="[0-9]+" title="Por favor, complete el campo" required  />
                         </div>
                         <div class="input-field">
-                            <input name="correo" type="email" placeholder="Correo electrónico" maxlength="60" title="Por favor, ingrese el correo electrónico" required  />
+                            <input name="correo" type="email" placeholder="Correo electrónico" minlength="8" maxlength="60" title="Por favor, ingrese el correo electrónico" required  />
                         </div>
                         <div class="input-field">
-                            <input name="clave" type="password" placeholder="Contraseña" maxlength="80" minlength="8" title="Por favor, ingrese la contraseña" required/>
+                            <input name="clave" type="password" placeholder="Contraseña" minlength="8" maxlength="80" title="Por favor, ingrese la contraseña" required/>
                         </div>
                         <div class="input-field">
-                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" maxlength="80" minlength="8" title="Por favor, ingrese la contraseña" required />
+                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" minlength="8" maxlength="80" title="Por favor, ingrese la contraseña" required />
                         </div>
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-crear-usuario" value="Crear" />
@@ -79,67 +79,6 @@
                     </form>
                 </div>
             </div>
-            <!--MODAL EDITAR-->
-            <!-- <input type="checkbox" id="btn-modal-editar-usuario" class="btn-classmodal-editar-usuario"> -->
-            <div class="container-modal-editar-usuario" id="modal-container-edit-user">
-                <div class="content-modal-editar-usuario">
-                    <h3 class="content-modal-titulo">Editar usuario</h3>
-                    <form action="" class="editar-usuario">
-                        <div class="input-field">
-                            <div class="select-option">
-                                <select name="tipoUsuario" class="combobox-titulo" title="Tipo de usuario">
-                                    <option selected disabled value="" class="combobox-opciones">Tipo de usuario</option>
-                                    <option value="Administrador">Administrador</option>
-                                    <option value="Docente">Docente</option>
-                                    <option value="Estudiante">Estudiante</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="input-field">
-                            <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-Z]+" maxlength="30" title="Nombres"/>
-                        </div>
-                        <div class="input-field">
-                            <input name="apellido" type="text" placeholder="Apellidos" pattern="[a-zA-Z]+" maxlength="30" title="Apellidos" />
-                        </div>
-                        <!--Select tag-->
-                        <div class="input-field ">
-                            <div class="select-option">
-                                <select name="tipoDocumento" class="combobox-titulo" title="Tipo de documento">
-                                    <option selected disabled value="" class="combobox-opciones">Tipo de documento</option>
-                                    <option value="TI">Tarjeta de Identidad (TI)</option>
-                                    <option value="CC">Cédula de Ciudadanía (CC)</option>
-                                    <option value="CE">Tarjeta de Extranjería (CE)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="input-field">
-                            <input name="documento" type="number" placeholder="Número de documento" maxlength="15" minlength="10" pattern="[0-9]+" title="Número de documento"/>
-                        </div>
-                        <div class="input-field">
-                            <input name="correo" type="email" placeholder="Correo electrónico" maxlength="60" title="Correo electrónico"/>
-                        </div>
-                        <div class="input-field">
-                            <input name="clave" type="password" placeholder="Contraseña" maxlength="80" minlength="8" title="Contraseña"/>
-                        </div>
-                        <div class="input-field">
-                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" maxlength="80" minlength="8" title="Confirmar"/>
-                        </div>
-                        <!--Select tag-->
-                        <div class="input-field ">
-                            <div class="select-option">
-                                <select name="estado" class="combobox-titulo" title="Estado">
-                                    <option selected disabled value="" class="combobox-opciones">Estado</option>
-                                    <option value="0">Inactivo</option>
-                                    <option value="1">Activo</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="botones-accion-modal">
-                            <button type="submit" class="btn-editar-usuario">Editar</button>
-                            <button type="button" id="btn-cerrar-editar-usuario" class="btn-classcerrar-editar-usuario">Cerrar</button>
-                        </div>
-                    </form>
-                </div>
             </div>
             <!--TABLA-->
             <?php
@@ -189,7 +128,9 @@
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <button id="btn-abrir-editar-usuario" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit"></i></button>
+                                        <!-- <button id="btn-abrir-editar-usuario" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit"></i></button> -->
+                                        <!-- <a href="editar-usuario.php?id=<?php echo $row["id_usuario"];?>" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit"></i></a> -->
+                                        <a href="<?php echo SERVER_URL ?>editarUsuario/" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit btn-editar-usuario"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
@@ -217,6 +158,5 @@
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/datatables.js"></script> 
-    <script src="<?php echo SERVER_URL ?>vistas/assets/js/prueba.js"></script> 
 </body>
 </html>

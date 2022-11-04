@@ -18,11 +18,11 @@
                     <h2 class="title">Iniciar Sesión</h2>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input name="correo" type="email" placeholder="Correo electrónico" maxlength="60" title="Por favor, ingrese el correo electrónico" required />
+                        <input name="correo" type="email" placeholder="Correo electrónico" minlength="8" maxlength="60" title="Por favor, ingrese el correo electrónico" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="clave" type="password" placeholder="Contraseña" maxlength="80" minlength="8" title="Por favor, ingrese la contraseña" required/>
+                        <input name="clave" type="password" placeholder="Contraseña" minlength="8" maxlength="80"  title="Por favor, ingrese la contraseña" required/>
                     </div>
 
                     <input type="submit" value="Acceder" class="btn solid" />
@@ -37,15 +37,15 @@
                     <input name="estado" type="hidden" value="0">
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-Z]+" maxlength="30" title="Por favor, complete el campo" required/>
+                        <input name="nombre" type="text" placeholder="Nombres" pattern="^[a-zA-Z\s]+" minlength="3" maxlength="30" title="Por favor, complete el campo" required/>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input name="apellido" type="text" placeholder="Apellidos" pattern="[a-zA-Z]+" maxlength="30" title="Por favor, complete el campo" required />
+                        <input name="apellido" type="text" placeholder="Apellidos" pattern="^[a-zA-Z\s]+" minlength="3" maxlength="30" title="Por favor, complete el campo" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input name="correo" type="email" placeholder="Correo electrónico" maxlength="60" title="Por favor, complete el campo" required />
+                        <input name="correo" type="email" placeholder="Correo electrónico" minlength="8" maxlength="60" title="Por favor, complete el campo" required />
                     </div>
                     <!--Select tag-->
                     <div class="input-field ">
@@ -61,15 +61,15 @@
                     </div>
                     <div class="input-field">
                         <i class="fas fa-solid fa-address-card"></i>
-                        <input name="documento" type="number" placeholder="Número de documento" maxlength="15" minlength="10" pattern="[0-9]+" title="Por favor, complete el campo" required />
+                        <input name="documento" type="number" placeholder="Número de documento" minlength="10" maxlength="15"  pattern="[0-9]+" title="Por favor, complete el campo" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="clave" type="password" placeholder="Contraseña" maxlength="80" minlength="8" title="Por favor, complete el campo" required />
+                        <input name="clave" type="password" placeholder="Contraseña" minlength="8" maxlength="80"  title="Por favor, complete el campo" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" maxlength="80" minlength="8" title="Por favor, complete el campo" required />
+                        <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" minlength="8" maxlength="80"  title="Por favor, complete el campo" required />
                     </div>
                     <input type="submit" class="btn" value="Crear cuenta" />
                 </form>

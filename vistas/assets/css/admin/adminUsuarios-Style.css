@@ -218,13 +218,15 @@ label{
     display: flex;
     align-items: center;
     color:white;
+    text-decoration: none;
 }
 
 .btn-editar-usuario{
-    background-color:  var(--edit-button);
+    background-color: var(--edit-button) ;
     border-radius: 5px;
     border-style: none;
     transition: all .5s;
+    text-decoration: none;
 }
 .btn-eliminar-usuario{
     background-color:  var(--delete-button);
@@ -238,12 +240,6 @@ label{
 .btn-eliminar-usuario:hover{
     background-color:  var(--delete-button-hover);
 }
-
-
-
-
-
-
 
 
 /*?MOSTRANDO DE X 1 X DE X ENTRADAS*/
@@ -293,7 +289,7 @@ label{
     height: 100vh;
     position:fixed;
     top:0;left:0;
-    background-color: rgba(144,148,150,0.8);
+    background-color: #1d1d1d7c;
     display: none;
     justify-content: center;
     align-items: center;
@@ -303,8 +299,8 @@ label{
     display: flex;
 }
 
-.container-modal-editar-usuario{
-    /* display: none; */
+/* .container-modal-editar-usuario{
+    display: none;
     position:fixed;
     top:0;
     left:0;
@@ -317,30 +313,20 @@ label{
     display:flex;
     opacity: 0;
     pointer-events: none;
+    pointer-events: none;
     transition: opacity 0.4s ease;
-}
-
+} */
+/* 
 .container-modal-editar-usuario.mostrar-modal-editarusuario-js{
     pointer-events: auto;
     opacity: 1;
+} */
+
+.container-modal-editar-usuario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .content-modal-crear-usuario,
 .content-modal-editar-usuario{
@@ -349,6 +335,7 @@ label{
     padding:20px;
     background-color: #dbdbdb;
     border-radius: 4px;
+    
 }
 .content-modal-titulo{
     margin-bottom: 15px;
@@ -365,6 +352,7 @@ label{
     justify-content: center;
     margin-top: 15px;
 }
+
 /*Botón cerrar*/
 .content-modal-crear-usuario .btn-cerrar-crear-usuario,
 .content-modal-editar-usuario .btn-classcerrar-editar-usuario{
@@ -377,6 +365,7 @@ label{
     font-size: var(--usuarios--normal-font-size);
     border-style: none;
     margin-left: 10px;
+    text-decoration: none;;
 }
 .content-modal-crear-usuario .btn-cerrar-crear-usuario:hover,
 .content-modal-editar-usuario .btn-classcerrar-editar-usuario:hover{
@@ -396,6 +385,7 @@ label{
 }
 .content-modal-editar-usuario .btn-editar-usuario{
     background-color: var(--edit-button);
+    text-decoration: none;
 }
 .content-modal-editar-usuario .btn-classcerrar-editar-usuario{
     background-color: var(--delete-button);
@@ -406,6 +396,7 @@ label{
 .content-modal-crear-usuario .btn-crear-usuario:hover{
     background-color: var(--create-button-hover);
 }
+
 /**Campos de los input*/
 .input-field {
     max-width: 380px;

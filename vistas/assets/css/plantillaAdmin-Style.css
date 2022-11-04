@@ -89,6 +89,7 @@ nav{
 }
 nav.close{
     width: 73px;
+    opacity: 1 !important;
 }
 
 /**LOGO Y NOMBRE*/
