@@ -22,7 +22,7 @@
             </div>
             <!--BOTÓN CREAR-->
             <div class="new-user-container">
-                <label for="btn-modal-crear-usuario" class="btn-agregar-usuario">
+                <label for="btn-modal-crear-usuario" class="btn-agregar-usuario" title="Crear usuario">
                     <i class="uil uil-plus-circle"></i>Nuevo
                 </label>
             </div>
@@ -34,7 +34,7 @@
                     <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                         <div class="input-field ">
                             <div class="select-option">
-                                <select name="tipoUsuario" class="combobox-titulo">
+                                <select name="tipoUsuario" class="combobox-titulo" title="Por favor, seleccione un tipo de usuario" required>
                                     <option selected value="" class="combobox-opciones">Tipo de usuario</option>
                                     <option value="1">Administrador</option>
                                     <option value="2">Docente</option>
@@ -44,15 +44,15 @@
                         </div>
                         <input name="estado" type="hidden" value="1">
                         <div class="input-field">
-                            <input name="nombre" type="text" placeholder="Nombres" />
+                            <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-Z]+" maxlength="30" title="Por favor, complete el campo" required/>
                         </div>
                         <div class="input-field">
-                            <input name="apellido" type="text" placeholder="Apellidos" />
+                            <input name="apellido" type="text" placeholder="Apellidos" pattern="[a-zA-Z]+" maxlength="30" title="Por favor, complete el campo" required/>
                         </div>
                         <!--Select tag-->
                         <div class="input-field ">
                             <div class="select-option">
-                                <select name="tipoDocumento" class="combobox-titulo">
+                                <select name="tipoDocumento" class="combobox-titulo" title="Por favor, seleccione un tipo de documento" required>
                                     <option selected value="" class="combobox-opciones">Tipo de documento</option>
                                     <option value="TI">Tarjeta de Identidad (TI)</option>
                                     <option value="CC">Cédula de Ciudadanía (CC)</option>
@@ -61,16 +61,16 @@
                             </div>
                         </div>
                         <div class="input-field">
-                            <input name="documento" type="number" placeholder="Número de documento" />
+                            <input name="documento" type="number" placeholder="Número de documento" maxlength="15" minlength="10" pattern="[0-9]+" title="Por favor, complete el campo" required  />
                         </div>
                         <div class="input-field">
-                            <input name="correo" type="email" placeholder="Correo electrónico" />
+                            <input name="correo" type="email" placeholder="Correo electrónico" maxlength="60" title="Por favor, ingrese el correo electrónico" required  />
                         </div>
                         <div class="input-field">
-                            <input name="clave" type="password" placeholder="Contraseña" />
+                            <input name="clave" type="password" placeholder="Contraseña" maxlength="80" minlength="8" title="Por favor, ingrese la contraseña" required/>
                         </div>
                         <div class="input-field">
-                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" />
+                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" maxlength="80" minlength="8" title="Por favor, ingrese la contraseña" required />
                         </div>
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-crear-usuario" value="Crear" />
@@ -87,7 +87,7 @@
                     <form action="" class="editar-usuario">
                         <div class="input-field">
                             <div class="select-option">
-                                <select name="tipoUsuario" class="combobox-titulo">
+                                <select name="tipoUsuario" class="combobox-titulo" title="Tipo de usuario">
                                     <option selected disabled value="" class="combobox-opciones">Tipo de usuario</option>
                                     <option value="Administrador">Administrador</option>
                                     <option value="Docente">Docente</option>
@@ -96,15 +96,15 @@
                             </div>
                         </div>
                         <div class="input-field">
-                            <input name="nombre" type="text" placeholder="Nombres" />
+                            <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-Z]+" maxlength="30" title="Nombres"/>
                         </div>
                         <div class="input-field">
-                            <input name="apellido" type="text" placeholder="Apellidos" />
+                            <input name="apellido" type="text" placeholder="Apellidos" pattern="[a-zA-Z]+" maxlength="30" title="Apellidos" />
                         </div>
                         <!--Select tag-->
                         <div class="input-field ">
                             <div class="select-option">
-                                <select name="tipoDocumento" class="combobox-titulo">
+                                <select name="tipoDocumento" class="combobox-titulo" title="Tipo de documento">
                                     <option selected disabled value="" class="combobox-opciones">Tipo de documento</option>
                                     <option value="TI">Tarjeta de Identidad (TI)</option>
                                     <option value="CC">Cédula de Ciudadanía (CC)</option>
@@ -113,21 +113,21 @@
                             </div>
                         </div>
                         <div class="input-field">
-                            <input name="documento" type="number" placeholder="Número de documento" />
+                            <input name="documento" type="number" placeholder="Número de documento" maxlength="15" minlength="10" pattern="[0-9]+" title="Número de documento"/>
                         </div>
                         <div class="input-field">
-                            <input name="correo" type="email" placeholder="Correo electrónico" />
+                            <input name="correo" type="email" placeholder="Correo electrónico" maxlength="60" title="Correo electrónico"/>
                         </div>
                         <div class="input-field">
-                            <input name="clave" type="password" placeholder="Contraseña" />
+                            <input name="clave" type="password" placeholder="Contraseña" maxlength="80" minlength="8" title="Contraseña"/>
                         </div>
                         <div class="input-field">
-                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" />
+                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" maxlength="80" minlength="8" title="Confirmar"/>
                         </div>
                         <!--Select tag-->
                         <div class="input-field ">
                             <div class="select-option">
-                                <select name="estado" class="combobox-titulo">
+                                <select name="estado" class="combobox-titulo" title="Estado">
                                     <option selected disabled value="" class="combobox-opciones">Estado</option>
                                     <option value="0">Inactivo</option>
                                     <option value="1">Activo</option>
@@ -189,13 +189,13 @@
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <label for="btn-modal-editar-usuario" class="btn-editar-usuario"><i class="uil uil-edit"></i></label>
+                                        <label for="btn-modal-editar-usuario" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit"></i></label>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
                                             <input type="hidden" name="idPersona" value="<?php echo $ins_usuario->encryption($rows['id']) ?>">
                                             <input type="hidden" name="idUsuario" value="<?php echo $ins_usuario->encryption($rows['id_usuario']) ?>">
-                                            <button type="submit" class="btn-eliminar-usuario"><i class="uil uil-trash-alt"></i></button>
+                                            <button type="submit" class="btn-eliminar-usuario" title="Eliminar usuario"><i class="uil uil-trash-alt"></i></button>
                                         </div>
                                     </form>
                                 </div>
