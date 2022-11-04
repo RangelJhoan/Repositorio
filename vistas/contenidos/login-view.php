@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/loginReg-Style.css">
     <title>Login</title>
 </head>
@@ -18,11 +18,11 @@
                     <h2 class="title">Iniciar Sesión</h2>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input name="correo" type="text" placeholder="Correo electrónico" />
+                        <input name="correo" type="email" placeholder="Correo electrónico" maxlength="60" title="Por favor, ingrese el correo electrónico" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="clave" type="password" placeholder="Contraseña" />
+                        <input name="clave" type="password" placeholder="Contraseña" maxlength="80" minlength="8" title="Por favor, ingrese la contraseña" required/>
                     </div>
 
                     <input type="submit" value="Acceder" class="btn solid" />
@@ -37,21 +37,21 @@
                     <input name="estado" type="hidden" value="0">
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input name="nombre" type="text" placeholder="Nombres" />
+                        <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-Z]+" maxlength="30" title="Por favor, complete el campo" required/>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input name="apellido" type="text" placeholder="Apellidos" />
+                        <input name="apellido" type="text" placeholder="Apellidos" pattern="[a-zA-Z]+" maxlength="30" title="Por favor, complete el campo" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input name="correo" type="email" placeholder="Correo electrónico" />
+                        <input name="correo" type="email" placeholder="Correo electrónico" maxlength="60" title="Por favor, complete el campo" required />
                     </div>
                     <!--Select tag-->
                     <div class="input-field ">
                         <i class="fas fa-solid fa-address-card"></i>
                         <div class="select-option">
-                            <select name="tipoDocumento" class="combobox-titulo">
+                            <select name="tipoDocumento" class="combobox-titulo" title="Por favor, seleccione el tipo de documento" required>
                                 <option selected value="" class="combobox-opciones">Tipo de documento</option>
                                 <option value="TI">Tarjeta de Identidad (TI)</option>
                                 <option value="CC">Cédula de Ciudadanía (CC)</option>
@@ -61,15 +61,15 @@
                     </div>
                     <div class="input-field">
                         <i class="fas fa-solid fa-address-card"></i>
-                        <input name="documento" type="number" placeholder="Número de documento" />
+                        <input name="documento" type="number" placeholder="Número de documento" maxlength="15" minlength="10" pattern="[0-9]+" title="Por favor, complete el campo" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="clave" type="password" placeholder="Contraseña" />
+                        <input name="clave" type="password" placeholder="Contraseña" maxlength="80" minlength="8" title="Por favor, complete el campo" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" />
+                        <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" maxlength="80" minlength="8" title="Por favor, complete el campo" required />
                     </div>
                     <input type="submit" class="btn" value="Crear cuenta" />
                 </form>

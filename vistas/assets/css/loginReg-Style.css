@@ -117,14 +117,14 @@ form.sign-in-form {
 /*Eliminar lineas del número de doc*/
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button{
-  appearance:none ;
   -webkit-appearance:none ;
+  appearance:none ;
   margin:0;
 }
 /*Eliminar lineas del número de doc firefox*/
 input[type=number]{
-  appearance: textfield;
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 /**Estilos para los íconos (fas fa...)*/
