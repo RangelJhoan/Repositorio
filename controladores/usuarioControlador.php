@@ -156,11 +156,10 @@ class usuarioControlador extends usuarioModelo{
      * @param String $url Direccion URL actual
      * @param String $busqueda Parametro de busqueda
      * 
-     * @return String código HTML con la lista de usuarios en una tabla
+     * @return Object código HTML con la lista de usuarios en una tabla
      */
     public function paginador_usuario_controlador($pagina, $registros, $id, $url, $busqueda){
         $url = SERVER_URL.$url."/";
-        $tabla = "";
         $pagina = (isset($pagina) && $pagina > 0) ? (int) $pagina : 1;
         $inicio = ($pagina>0) ? (($pagina*$registros)-$registros) : 0;
 
@@ -186,62 +185,11 @@ class usuarioControlador extends usuarioModelo{
 
         $Npaginas = ceil($total/$registros);
 
-        $tabla .= '<div class="tablaUsuariosContainer">
-                    <!-- <table id="tablaUsuarios" class="table table-striped display responsive nowrap" style="width:100%"> -->
-                    <table id="tablaUsuarios" class="tbUsuarios" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Documento</th>
-                                <th>Tipo</th>
-                                <th>Estado</th>
-                                <th>Acción</th>
-                            </tr>
-                        </thead>
-                        <tbody>';
-
         if($total >= 1 && $pagina <= $Npaginas){
-            $contador = $inicio+1;
-            foreach($datos as $rows){
-                $estado = "";
-                if($rows['estado'] == "0"){
-                    $estado = "inactive";
-                }else{
-                    $estado = "active";
-                }
-                $tabla.='
-                <tr>
-                            <td data-titulo="#">'.$contador.'</td>
-                            <td data-titulo="NOMBRE">'.$rows['nombre'].' '.$rows['apellido'].'</td>
-                            <td data-titulo="DOCUMENTO">'.$rows['documento'].'</td>
-                            <td data-titulo="TIPO">'.$rows['descripcion'].'</td>
-                            <td data-titulo="ESTADO"><span class="'.$estado.'"></span></td>
-                            <td data-titulo="ACCIÓN">
-                                <div class="action-options-container">
-                                    <div class="btn-group-action">
-                                        <label for="btn-modal-editar-usuario" class="btn-editar-usuario"><i class="uil uil-edit"></i></label>
-                                    </div>
-                                    <form class="FormularioAjax" action="'.SERVER_URL.'ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
-                                        <div class="btn-group-action">
-                                            <input type="hidden" name="idPersona" value="'.mainModel::encryption($rows['id']).'">
-                                            <input type="hidden" name="idUsuario" value="'.mainModel::encryption($rows['id_usuario']).'">
-                                            <button type="submit" class="btn-eliminar-usuario"><i class="uil uil-trash-alt"></i></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>';
-                        $contador++;
-            }
+            return $datos;
         }else{
-            $tabla.='<tr><td colspan="6">No hay registros en la base de datos</td></tr>';
+            return 0;
         }
-
-        $tabla .= '</tbody></table></div>';
-
-        return $tabla;
-
     }
 
 }

@@ -75,13 +75,12 @@
                             <input type="submit" class="btn-crear-usuario" value="Crear" />
                             <label for="btn-modal-crear-usuario" class="btn-cerrar-crear-usuario">Cerrar</label>
                         </div>
-            
                     </form>
                 </div>
             </div>
             <!--MODAL EDITAR-->
             <input type="checkbox" id="btn-modal-editar-usuario" class="btn-classmodal-editar-usuario">
-                <div class="container-modal-editar-usuario">
+            <div class="container-modal-editar-usuario">
                 <div class="content-modal-editar-usuario">
                     <h3 class="content-modal-titulo">Editar usuario</h3>
                     <form action="" class="editar-usuario">
@@ -146,13 +145,69 @@
                 require_once "./controladores/usuarioControlador.php";
                 $ins_usuario = new usuarioControlador();
 
+                $cantidadRegistros = 1000;
                 if(count($pagina) > 1){
-                    echo $ins_usuario->paginador_usuario_controlador($pagina[1], 15, 3, $pagina[0], "");
+                    $paginaActual = $pagina[1];
+                    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 9, $pagina[0], "");
                 }else{
-                    echo $ins_usuario->paginador_usuario_controlador(-1, 15, 3, $pagina[0], "");
+                    $paginaActual = -1;
+                    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 9, $pagina[0], "");
                 }
             ?>
-
+            <div class="tablaUsuariosContainer">
+                <table id="tablaUsuarios" class="tbUsuarios" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Documento</th>
+                            <th>Tipo</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $inicio = ($paginaActual>0) ? (($paginaActual*$cantidadRegistros)-$cantidadRegistros) : 0;
+                        $contador = $inicio+1;
+                        if($datos != 0){
+                            foreach($datos as $rows){
+                                $estado = "";
+                                if($rows['estado'] == "0"){
+                                    $estado = "inactive";
+                                }else{
+                                    $estado = "active";
+                                }
+                        ?>
+                        <tr>
+                            <td data-titulo="#"><?php echo $contador ?></td>
+                            <td data-titulo="NOMBRE"><?php echo $rows['nombre'].' '.$rows['apellido'] ?></td>
+                            <td data-titulo="DOCUMENTO"><?php echo $rows['documento'] ?></td>
+                            <td data-titulo="TIPO"><?php echo $rows['descripcion'] ?></td>
+                            <td data-titulo="ESTADO"><span class="<?php echo $estado ?>"></span></td>
+                            <td data-titulo="ACCIÓN">
+                                <div class="action-options-container">
+                                    <div class="btn-group-action">
+                                        <label for="btn-modal-editar-usuario" class="btn-editar-usuario"><i class="uil uil-edit"></i></label>
+                                    </div>
+                                    <form class="FormularioAjax" action="'.SERVER_URL.'ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
+                                        <div class="btn-group-action">
+                                            <input type="hidden" name="idPersona" value="<?php echo $ins_usuario->encryption($rows['id']) ?>">
+                                            <input type="hidden" name="idUsuario" value="<?php echo $ins_usuario->encryption($rows['id_usuario']) ?>">
+                                            <button type="submit" class="btn-eliminar-usuario"><i class="uil uil-trash-alt"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                            $contador++;
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         <div>
     </section>
     <!--SCRIPTS NECESARIOS PARA EL DATATABLE-->
