@@ -18,11 +18,11 @@
                     <h2 class="title">Iniciar Sesión</h2>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input name="correo" type="email" placeholder="Correo electrónico" minlength="8" maxlength="60" title="Por favor, ingrese el correo electrónico" required />
+                        <input name="correo" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60" title="Por favor, ingrese el correo electrónico" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="clave" type="password" placeholder="Contraseña" minlength="8" maxlength="80"  title="Por favor, ingrese la contraseña" required/>
+                        <input name="clave" type="password" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Por favor, ingrese la contraseña" required/>
                     </div>
 
                     <input type="submit" value="Acceder" class="btn solid" />
@@ -37,15 +37,15 @@
                     <input name="estado" type="hidden" value="0">
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input name="nombre" type="text" placeholder="Nombres" pattern="^[a-zA-Z\s]+" minlength="3" maxlength="30" title="Por favor, complete el campo" required/>
+                        <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Por favor, complete el campo" required/>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input name="apellido" type="text" placeholder="Apellidos" pattern="^[a-zA-Z\s]+" minlength="3" maxlength="30" title="Por favor, complete el campo" required />
+                        <input name="apellido" type="text" placeholder="Apellidos" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Por favor, complete el campo" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input name="correo" type="email" placeholder="Correo electrónico" minlength="8" maxlength="60" title="Por favor, complete el campo" required />
+                        <input name="correo" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60" title="Por favor, complete el campo" required />
                     </div>
                     <!--Select tag-->
                     <div class="input-field ">
@@ -65,11 +65,11 @@
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="clave" type="password" placeholder="Contraseña" minlength="8" maxlength="80"  title="Por favor, complete el campo" required />
+                        <input name="clave" type="password" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="La contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres." required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" minlength="8" maxlength="80"  title="Por favor, complete el campo" required />
+                        <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}"  title="Por favor, complete el campo" required />
                     </div>
                     <input type="submit" class="btn" value="Crear cuenta" />
                 </form>

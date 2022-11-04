@@ -29,10 +29,10 @@
                             </div>
                         </div>
                         <div class="input-field">
-                            <input name="nombre" type="text" placeholder="Nombres" pattern="^[a-zA-Z\s]+" minlength="3" maxlength="30" title="Nombres"/>
+                            <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Nombres"/>
                         </div>
                         <div class="input-field">
-                            <input name="apellido" type="text" placeholder="Apellidos" pattern="^[a-zA-Z\s]+" minlength="3" title="Apellidos" />
+                            <input name="apellido" type="text" placeholder="Apellidos" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Apellidos" />
                         </div>
                         <!--Select tag-->
                         <div class="input-field ">
@@ -49,18 +49,18 @@
                             <input name="documento" type="number" placeholder="Número de documento" minlength="10" maxlength="15"  pattern="[0-9]+" title="Número de documento"/>
                         </div>
                         <div class="input-field">
-                            <input name="correo" type="email" placeholder="Correo electrónico" minlength="8" maxlength="60"  title="Correo electrónico"/>
+                            <input name="correo" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60"  title="Correo electrónico"/>
                         </div>
                         <div class="input-field">
-                            <input name="clave" type="password" placeholder="Contraseña" minlength="8" maxlength="80"  title="Contraseña"/>
+                            <input name="clave" type="password" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Recuerde que la contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres."/>
                         </div>
                         <div class="input-field">
-                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" minlength="8" maxlength="80"  title="Confirmar"/>
+                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Confirmar contraseña"/>
                         </div>
                         <!--Select tag-->
                         <div class="input-field ">
                             <div class="select-option">
-                                <select name="estado" class="combobox-titulo" title="Estado">
+                                <select name="estado" class="combobox-titulo" title="Estado del usuario">
                                     <option selected disabled value="" class="combobox-opciones">Estado</option>
                                     <option value="0">Inactivo</option>
                                     <option value="1">Activo</option>
