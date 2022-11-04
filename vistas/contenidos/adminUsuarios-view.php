@@ -80,8 +80,8 @@
                 </div>
             </div>
             <!--MODAL EDITAR-->
-            <input type="checkbox" id="btn-modal-editar-usuario" class="btn-classmodal-editar-usuario">
-            <div class="container-modal-editar-usuario">
+            <!-- <input type="checkbox" id="btn-modal-editar-usuario" class="btn-classmodal-editar-usuario"> -->
+            <div class="container-modal-editar-usuario" id="modal-container-edit-user">
                 <div class="content-modal-editar-usuario">
                     <h3 class="content-modal-titulo">Editar usuario</h3>
                     <form action="" class="editar-usuario">
@@ -135,8 +135,8 @@
                             </div>
                         </div>
                         <div class="botones-accion-modal">
-                            <input type="submit" class="btn-editar-usuario" value="Editar" />
-                            <label for="btn-modal-editar-usuario" id="btn-cerrar-editar-usuario" class="btn-classcerrar-editar-usuario">Cerrar</label>
+                            <button type="submit" class="btn-editar-usuario">Editar</button>
+                            <button type="button" id="btn-cerrar-editar-usuario" class="btn-classcerrar-editar-usuario">Cerrar</button>
                         </div>
                     </form>
                 </div>
@@ -189,7 +189,7 @@
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <label for="btn-modal-editar-usuario" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit"></i></label>
+                                        <button id="btn-abrir-editar-usuario" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit"></i></button>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
@@ -217,5 +217,6 @@
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/datatables.js"></script> 
+    <script src="<?php echo SERVER_URL ?>vistas/assets/js/prueba.js"></script> 
 </body>
 </html>
