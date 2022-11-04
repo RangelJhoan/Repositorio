@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="input-field">
-                            <input name="documento" type="number" placeholder="Número de documento" pattern="[0-9]+" minlength="10" maxlength="15"title="Por favor, complete el campo" required  />
+                            <input name="documento" type="number" placeholder="Número de documento" pattern="[0-9]+" min="1000" max="100000000000" title="Por favor, complete el campo" required  />
                         </div>
                         <div class="input-field">
                             <input name="correo" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60" title="Por favor, ingrese el correo electrónico" required  />

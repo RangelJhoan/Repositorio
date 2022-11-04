@@ -61,7 +61,7 @@
                     </div>
                     <div class="input-field">
                         <i class="fas fa-solid fa-address-card"></i>
-                        <input name="documento" type="number" placeholder="Número de documento" minlength="10" maxlength="15"  pattern="[0-9]+" title="Por favor, complete el campo" required />
+                        <input name="documento" type="number" placeholder="Número de documento" min="1000" max="100000000000"  pattern="[0-9]+" title="Por favor, complete el campo" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
