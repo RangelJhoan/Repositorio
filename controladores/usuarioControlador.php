@@ -148,6 +148,13 @@ class usuarioControlador extends usuarioModelo{
         }
     }
 
+    /*---------- Controlador datos usuario ----------*/
+    public function datos_usuario_controlador($tipo, $id){
+        $id = mainModel::decryption($id);
+
+        return usuarioModelo::datos_usuario_modelo($tipo, $id);
+    }
+
     /**
      * Paginador de usuarios, vista principal Admin
      *

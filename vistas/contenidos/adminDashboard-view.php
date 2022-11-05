@@ -8,6 +8,13 @@
     <title>Repositorio Institucional</title>
 </head>
 <body>
+    <?php 
+
+    require_once "./controladores/usuarioControlador.php";
+    $ins_usuario = new usuarioControlador();
+    $total_usuarios = $ins_usuario->datos_usuario_controlador("Conteo", 0);
+
+    ?>
     <section class="dashboard-container">
         <div class="overview">
             <div class="title">
@@ -18,7 +25,7 @@
                 <div class="card card1">
                     <span class="cards-title-name">Usuarios</span>
                     <i class="uil uil-users-alt"></i>
-                    <span class="cards-total-count">100</span>
+                    <span class="cards-total-count"><?php echo $total_usuarios->rowCount(); ?></span>
                 </div>
                 <div class="card card2">
                     <span class="cards-title-name">Programas</span>

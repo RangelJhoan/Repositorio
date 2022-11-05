@@ -130,7 +130,7 @@
                                     <div class="btn-group-action">
                                         <!-- <button id="btn-abrir-editar-usuario" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit"></i></button> -->
                                         <!-- <a href="editar-usuario.php?id=<?php echo $row["id_usuario"];?>" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit"></i></a> -->
-                                        <a href="<?php echo SERVER_URL ?>editarUsuario/" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit btn-editar-usuario"></i></a>
+                                        <a href="<?php echo SERVER_URL ?>editarUsuario/<?php echo $ins_usuario->encryption($rows['id'])?>/" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit btn-editar-usuario"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
