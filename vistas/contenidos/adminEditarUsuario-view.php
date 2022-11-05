@@ -8,6 +8,16 @@
     <title>Repositorio Institucional</title>
 </head>
 <body>
+<?php
+
+require_once "./controladores/usuarioControlador.php";
+$ins_usuario = new usuarioControlador();
+
+$datos_usuario = $ins_usuario->datos_usuario_controlador("Unico", $pagina[1]);
+
+if($datos_usuario->rowCount()>0){
+    $campos = $datos_usuario->fetch();
+    ?>
 <section class="users-container">
         <div class="overviewUsers">
             <!--TÍTULO-->
@@ -76,5 +86,8 @@
             </div>
         <div>
     </section>
+<?php }else{ ?>
+<p>Error no existe usuario</p>
+<?php } ?>
 </body>
 </html>

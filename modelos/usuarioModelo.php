@@ -45,6 +45,21 @@
             }
         }
 
+        /*---------- Modelo datos usuario ----------*/
+        protected static function datos_usuario_modelo($tipo, $id){
+            if($tipo == "Unico"){
+                $sql = mainModel::conectar()->prepare("SELECT p.id, p.nombre, p.apellido, p.tipo_documento, p.documento, u.correo, u.clave, u.estado 
+                FROM persona p JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
+                WHERE p.id = :ID;");
+                $sql->bindParam(":ID", $id);
+            }elseif($tipo == "Conteo"){
+                $sql = mainModel::conectar()->prepare("SELECT p.id 
+                FROM persona p JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario;");
+            }
+            $sql->execute();
+            return $sql;
+        }
+
     }
 
 ?>
