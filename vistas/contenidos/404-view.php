@@ -12,13 +12,13 @@
         <section class="text-section">
             <h1>404</h1>
             <p>¡Ups! La página a la que intenta acceder no se encuentra disponible.</p>
+            <a href="<?php echo SERVER_URL; ?>home/" class="button-404">
+            Ir a inicio
+        </a>
         </section>
         <section class="img-section">
             <img src="<?php echo SERVER_URL; ?>vistas/assets/img/404Error.png" alt="404 - Page Not Found">
         </section>
-        <a href="<?php echo SERVER_URL; ?>home/">
-            <button class="button-404">Ir a inicio</button>
-        </a>
     </div>
 </body>
 </html>

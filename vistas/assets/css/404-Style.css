@@ -23,40 +23,37 @@ body{
     width: 100%;
     min-height: 100vh;
     background-color: var(--background-color);
-    display: grid;
-    place-content: center;
+    /* display: grid;
+    place-content: center; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
 }
 
-/*?ESTILOS  MÓVIL. MOBILE FIRST*/
 .container{
-    margin-top: -10rem;
-}
-
-.text-section{
-    margin-bottom: 1rem;
-}
-
-.img-section{
-    width: 100%;
-    max-width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 
 img{
-    width: 80%;
-    height: 100%;
+    max-width: 50vw;
     object-fit: cover;
 }
 
 h1{
     color:var(--title-color);
-    font-size: 6.5rem;
+    font-size: 15rem;
+    margin-bottom: -50px;
 }
 
 p{
     color:var(--paragraph-color);
-    margin-top: 1rem;
     font-size: 1.1rem;
     font-weight: 500;
+    margin-bottom: 1rem;
 }
 
 a{
@@ -72,10 +69,9 @@ a{
 
 .button-404{
     font-size: 1.1rem;
-    background-color: transparent;
+    background-color:  var(--paragraph-color);
     border:none;
     cursor:pointer;
-    padding-bottom: 2rem;
     width: 150px;
     outline: none;
     border-radius: 49px;
@@ -84,59 +80,63 @@ a{
     font-weight: 600;
     cursor: pointer;
     transition: 0.5s;
+    margin-top: 20px;
+    border-radius: .3rem;
+    -webkit-border-radius: .3rem;
+    -moz-border-radius: .3rem;
+    -ms-border-radius: .3rem;
+    -o-border-radius: .3rem;
+    transition: opacity .5s all;
+    -webkit-transition: opacity .5s all;
+    -moz-transition: opacity .5s all;
+    -ms-transition: opacity .5s all;
+    -o-transition: opacity .5s all;
 }
 /**Estilo para el botón*/
-a::before{
-    content:'';
-    position: absolute;
-    top:0;
-    left:0;
-    width: 100%;
-    height: 100%;
+.button-404:hover{
     background-color: var(--title-color);
-    z-index: -1;
-
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: 200ms ease-in-out transform;
-}
-a:hover::before{
-    transform:scaleX(1);
-    transform-origin: left;
-}
-a:active{
-    transform: scale(.9);
-    transition: .2s all ease;
+    transition: opacity .5s all;
+    -webkit-transition: opacity .5s all;
+    -moz-transition: opacity .5s all;
+    -ms-transition: opacity .5s all;
+    -o-transition: opacity .5s all;  
 }
 
-/*?ESTILOS  TABLET - PC.*/
-@media only screen and (min-width: 900px){
+@media only screen and (max-width: 1000px){
     .container{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        margin-top: 0;
+        flex-direction: column;
     }
-    .text-section{
-        grid-column: 1 / 2;
-        align-self: flex-end;
-        justify-self: center;
-    }
-    .img-section{
-        grid-column: 2 / 3;
-        grid-row: 1 / 3;
-    }
-    h1{
-        font-size: 16rem;
-    }
-    a{
-        justify-self: center;
-        align-self: flex-start;
+    body{
+        flex-direction: row;
     }
     img{
-        width: 100%;
+        margin-top: 20px;
+    }
+    h1{
+        color:var(--title-color);
+        font-size: 10rem;
+    }
+    
+    p{
+        font-size: 1.1rem;
+    }
+}
+@media only screen and (max-width: 500px){
+    h1{
+        color:var(--title-color);
+        font-size: 5rem;
+    }
+    p{
+        margin-top: 20px;
+        font-size: .9rem;
+        padding-left: 15px;
+        padding-right: 15px;
     }
     .button-404{
-        padding-bottom:0;
+        font-size: .9rem;
+    }
+    img{
+        max-width: 260px;
+        object-fit: cover;
     }
 }
