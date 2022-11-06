@@ -46,8 +46,8 @@ html{
 }
 body.dark{
     --text-color:#fff;
-    --background-color: #585858;
-    --white-color:#464646;
+    --background-color: #1a1a1a;
+    --white-color:#121212;
     --normal-font-size: 1.1rem;
     --gray-color:#c9c9c9;
 }

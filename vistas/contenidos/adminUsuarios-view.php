@@ -4,12 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminUsuarios-Style.css">
-    <!--BOOTSTRAP-->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css"> -->
+    <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
     <title>Repositorio Institucional</title>
 </head>
 <body>
@@ -128,9 +123,7 @@
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <!-- <button id="btn-abrir-editar-usuario" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit"></i></button> -->
-                                        <!-- <a href="editar-usuario.php?id=<?php echo $row["id_usuario"];?>" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit"></i></a> -->
-                                        <a href="<?php echo SERVER_URL ?>editarUsuario/<?php echo $ins_usuario->encryption($rows['id'])?>/" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit btn-editar-usuario"></i></a>
+                                        <a href="<?php echo SERVER_URL ?>adminEditarUsuario/<?php echo $ins_usuario->encryption($rows['id'])?>/" class="btn-editar-usuario" title="Editar usuario"><i class="uil uil-edit btn-editar-usuario"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">

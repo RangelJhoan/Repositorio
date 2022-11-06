@@ -18,7 +18,7 @@
 
                 <ul>
                     <li>
-                    <a href="#" class="submenu-link">
+                    <a href="<?php echo SERVER_URL ?>editarPerfil/" class="submenu-link">
                         <i class="uil uil-user"></i>
                         <p class="option-name">Mi perfil</p>
                     </a>

@@ -1,0 +1,302 @@
+
+    /*?VARIABLES GLOBALES*/
+    :root {
+        --main-color: #DBA034;
+        --text-color: #464646;
+        --background-color: #e9e9e9;
+        --row-altern-color: #dbdbdb;
+        --row-selected-color: #c5c5c5;
+        --white-color: #fff;
+
+        --create-button:#65ca65;
+        --create-button-hover:rgb(30, 165, 64);
+        --edit-button:rgb(36, 118, 151);
+        --edit-button-hover:rgb(31, 84, 153);
+        --delete-button:rgb(241, 95, 95);
+        --delete-button-hover:rgb(187, 42, 42);
+
+        --active-status-color: rgb(40, 158, 40);
+        --inactive-status-color: rgb(255, 57, 57);
+    
+        --title-font-size: 2.2rem;
+        --title-tablet-font-size: 2rem;
+        --title-mobile-font-size: 1.8rem;
+
+        --usuarios--normal-font-size: 1rem;
+        --usuarios--pequeña-font-size: 0.8rem;
+    }
+
+
+/*?TITULO*/
+    .users-container .title {
+        display: flex;
+        align-items: center;
+        margin: 25px 0 30px 0;
+    }
+
+    .users-container .title i {
+        position: relative;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--title-font-size);
+    }
+
+    .users-container .title .panel-title-name {
+        font-size: var(--title-font-size);
+        font-weight: 600;
+        color: var(--text-color);
+        margin-left: 10px;
+        text-transform: uppercase;
+    }
+
+
+
+.container-modal-editar-usuario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-modal-crear-usuario,
+.content-modal-editar-usuario{
+    width: 100%;
+    max-width: 400px;
+    padding:20px;
+    background-color: #dbdbdb;
+    border-radius: 4px;
+    
+}
+.content-modal-titulo{
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.875em;
+    font-weight: 600;
+    color:#505050;
+}
+
+/*Contenedor botones*/
+.botones-accion-modal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/*Botón cerrar*/
+.content-modal-crear-usuario .btn-cerrar-crear-usuario,
+.content-modal-editar-usuario .btn-classcerrar-editar-usuario{
+    background-color: var(--delete-button);
+    cursor: pointer;
+    padding: 7px 10px;
+    border-radius: 4px;
+    transition: all 300ms ease;
+    color:#fff;
+    font-size: var(--usuarios--normal-font-size);
+    border-style: none;
+    margin-left: 10px;
+    text-decoration: none;;
+}
+.content-modal-crear-usuario .btn-cerrar-crear-usuario:hover,
+.content-modal-editar-usuario .btn-classcerrar-editar-usuario:hover{
+    background-color: var(--delete-button-hover);
+}
+/*Botón guardar*/
+.content-modal-crear-usuario .btn-crear-usuario,
+.content-modal-editar-usuario .btn-editar-usuario{
+    background-color: var(--create-button);
+    cursor: pointer;
+    padding: 7px 10px;
+    border-radius: 4px;
+    transition: all 300ms ease;
+    color:#fff;
+    border-style: none;
+    font-size: var(--usuarios--normal-font-size);
+}
+.content-modal-editar-usuario .btn-editar-usuario{
+    background-color: var(--edit-button);
+    text-decoration: none;
+}
+.content-modal-editar-usuario .btn-classcerrar-editar-usuario{
+    background-color: var(--delete-button);
+}
+.content-modal-editar-usuario .btn-editar-usuario:hover{
+    background-color: var(--edit-button-hover);
+}
+.content-modal-crear-usuario .btn-crear-usuario:hover{
+    background-color: var(--create-button-hover);
+}
+
+/**Campos de los input*/
+.input-field {
+    max-width: 380px;
+    width: 100%;
+    background-color: var(--input-box-color);
+    margin: 7px 0;
+    height: 55px;
+    border-radius: 55px;
+    display: grid;
+    /* grid-template-columns: 15% 85%; */
+    padding: 0 0.4rem;
+    position: relative;
+}
+/*Eliminar lineas del número de doc*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button{
+    appearance:none ;
+    -webkit-appearance:none ;
+    margin:0;
+}
+/*Eliminar lineas del número de doc firefox*/
+input[type=number]{
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+/**Input al momento de digitar*/
+.input-field input {
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 400;
+    font-size: var(--usuarios--normal-font-size);
+}
+/**Estilo al placeholder del input*/
+.input-field input::placeholder {
+    color:#464646;
+    font-weight: 400;
+}
+
+/**Estilos del SELECT TAG (Tipo de documento)*/
+select{
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border:0;
+    background:  var(--input-box-color);
+    background-image: none;
+    flex:1;
+    color:#464646;
+    cursor:pointer;
+    font-size: var(--usuarios--normal-font-size);
+    text-align: start;
+    font-weight: 400;
+    font-family: "Poppins", sans-serif;
+    border-radius: 55px;
+}
+select::-ms-expand{
+    display: none;
+}
+.select-option{
+    position:relative;
+    display: flex;
+    max-width: 380px;
+    width: 100%;
+    line-height: 3;
+    background: var(--input-box-color);
+    overflow: hidden;
+    border-color:var(--input-box-color); 
+    border-radius: 55px;
+    font-family: "Poppins", sans-serif;
+    color:#464646;
+}
+.select-option::after{
+    content: '\25BC';
+    position: absolute;
+    top:0;
+    right: 0;
+    padding:0 -2em;
+    background-color: transparent;
+    cursor:pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+    color:#575757;
+}
+.select-option:hover::after{
+    color:#383838;
+}
+
+    /*?RESPONSIVE*/
+    /*1000px*/
+    @media (max-width:1000px) {
+        .users-container .title .panel-title-name {
+            font-size: var(--title-tablet-font-size);
+        }
+    }
+
+    /*650px*/
+    @media (max-width:650px) {
+        .btn-agregar-usuario,
+        .dataTables_length,
+        label,
+        .form-select.form-select-sm{
+            font-size: var(--usuarios--pequeña-font-size);
+        }
+        .tablaUsuariosContainer .tbUsuarios{
+            width: 100%;
+            
+        }
+        .tablaUsuariosContainer .tbUsuarios tr{
+            display: flex;
+            flex-direction:column;
+            border:1px solid var(--text-color);
+            padding:1em;
+            margin-bottom: 1em;
+            font-size: var(--usuarios--pequeña-font-size);
+        }
+        .tablaUsuariosContainer .tbUsuarios td[data-titulo]{
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--usuarios--pequeña-font-size);
+        }
+        .tablaUsuariosContainer .tbUsuarios td[data-titulo]::before{
+            content: attr(data-titulo);
+            color:var(--text-color);
+            font-weight: bolder;
+        }
+        .tablaUsuariosContainer .tbUsuarios thead{
+            display:none;
+        }
+        .dataTables_paginate{
+            display: inline-flex;
+        }
+        .pagination{
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+        .dataTables_info,
+        .pagination a{
+            font-size: var(--usuarios--pequeña-font-size);
+        }
+        .content-modal-crear-usuario{
+            width: 90%;
+        }
+    }
+
+    /*500px*/
+    @media (max-width:500px) {
+        .users-container .title .panel-title-name {
+            font-size: var(--title-mobile-font-size);
+        }
+        .btn-group-action i{
+            font-size: 16px;
+        }
+        .btn-group-action{
+            display: flex;
+            margin-left: 10px;
+        }
+        .input-field {
+            margin: 5px 0;
+            height: 40px;
+        }
+
+        /**Input al momento de digitar*/
+        .input-field input {
+        font-size: 1rem;
+        }
+    }

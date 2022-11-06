@@ -9,6 +9,11 @@
         --row-altern-color: #dbdbdb;
         --row-selected-color: #c5c5c5;
         --white-color: #fff;
+        --modal-container-color:#e9e9e9;
+        --input-modify-info:#d9d9d9;
+        --input-text-for-write:#46464679;
+
+
 
         --create-button:#65ca65;
         --create-button-hover:rgb(30, 165, 64);
@@ -28,39 +33,25 @@
         --usuarios--pequeña-font-size: 0.8rem;
     }
 
-    /*?SETEO DE ESTILOS POR DEFAULT DEL NAVEGADOR*/
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
-    }
-
-    body {
-        min-height: 100vh;
-        --background-color: #e9e9e9;
-    }
-
-    html {
-        --background-color: #e9e9e9;
-    }
 
     body.dark {
         --text-color: #fff;
-        --background-color: #585858;
+        --background-color: #1a1a1a;
         --row-altern-color: #616161;
-        --row-selected-color: #616161;
-        --white-color: #464646;
+        --row-selected-color: #121212;
+        --white-color: #121212;
+        --modal-container-color:#232323;
+        --input-modify-info:#1e1e1e;
+        --input-text-for-write:rgba(255, 255, 255, 0.564);
     }
 
-/*?TITULO*/
+/*?TITULO DE LAS SECCIONES*/
     .users-container .title {
         display: flex;
         align-items: center;
         margin: 25px 0 30px 0;
     }
-
-    .users-container .title i {
+    .users-container .title i{
         position: relative;
         height: 40px;
         width: 40px;
@@ -73,14 +64,13 @@
         font-size: var(--title-font-size);
     }
 
-    .users-container .title .panel-title-name {
+    .users-container .title .panel-title-name{        
         font-size: var(--title-font-size);
         font-weight: 600;
         color: var(--text-color);
         margin-left: 10px;
         text-transform: uppercase;
     }
-
 
 /*?BOTÓN NUEVO*/
 .btn-agregar-usuario{
@@ -96,7 +86,7 @@
     text-align: center;
     cursor: pointer;
     font-size: var(--usuarios--normal-font-size);
-    color:#464646;
+    color:var(--text-color);
     transition: all .5s;
 }
 .btn-agregar-usuario:hover{
@@ -280,7 +270,7 @@ label{
 
 
 
-/*?MODAL USUARIO*/
+/*?MODALES CREAR*/
 #btn-modal-crear-usuario, .btn-classmodal-editar-usuario{
     display:none;
 }
@@ -299,29 +289,6 @@ label{
     display: flex;
 }
 
-/* .container-modal-editar-usuario{
-    display: none;
-    position:fixed;
-    top:0;
-    left:0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(144,148,150,0.8);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    display:flex;
-    opacity: 0;
-    pointer-events: none;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-} */
-/* 
-.container-modal-editar-usuario.mostrar-modal-editarusuario-js{
-    pointer-events: auto;
-    opacity: 1;
-} */
-
 .container-modal-editar-usuario{
     display: flex;
     justify-content: center;
@@ -334,7 +301,7 @@ label{
     width: 100%;
     max-width: 400px;
     padding:20px;
-    background-color: #dbdbdb;
+    background-color: var(--modal-container-color);
     border-radius: 4px;
     
 }
@@ -343,7 +310,7 @@ label{
     text-align: center;
     font-size: 1.875em;
     font-weight: 600;
-    color:#505050;
+    color:var(--text-color);
 }
 
 /*Contenedor botones*/
@@ -402,12 +369,11 @@ label{
 .input-field {
     max-width: 380px;
     width: 100%;
-    background-color: var(--input-box-color);
+    background-color: var(--input-modify-info);
     margin: 7px 0;
     height: 55px;
     border-radius: 55px;
     display: grid;
-    /* grid-template-columns: 15% 85%; */
     padding: 0 0.4rem;
     position: relative;
 }
@@ -432,10 +398,11 @@ input[type=number]{
     line-height: 1;
     font-weight: 400;
     font-size: var(--usuarios--normal-font-size);
+    color:var(--text-color);
 }
 /**Estilo al placeholder del input*/
 .input-field input::placeholder {
-    color:#464646;
+    color:var(--input-text-for-write);
     font-weight: 400;
 }
 
@@ -445,10 +412,10 @@ select{
     outline: 0;
     box-shadow: none;
     border:0;
-    background:  var(--input-box-color);
+    background:  var(--input-modify-info);
     background-image: none;
     flex:1;
-    color:#464646;
+    color:var(--input-text-for-write);
     cursor:pointer;
     font-size: var(--usuarios--normal-font-size);
     text-align: start;
@@ -465,12 +432,11 @@ select::-ms-expand{
     max-width: 380px;
     width: 100%;
     line-height: 3;
-    background: var(--input-box-color);
+    background: var(--input-modify-info);
     overflow: hidden;
-    border-color:var(--input-box-color); 
+    border-color:var(--input-modify-info);
     border-radius: 55px;
     font-family: "Poppins", sans-serif;
-    color:#464646;
 }
 .select-option::after{
     content: '\25BC';
@@ -482,7 +448,7 @@ select::-ms-expand{
     cursor:pointer;
     pointer-events: none;
     transition: .25s all ease;
-    color:#575757;
+    color:var(--input-text-for-write);
 }
 .select-option:hover::after{
     color:#383838;
@@ -497,7 +463,7 @@ select::-ms-expand{
     }
 
     /*650px*/
-    @media (max-width:650px) {
+    @media (max-width:850px) {
         .btn-agregar-usuario,
         .dataTables_length,
         label,

@@ -5,39 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
+    <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminEditarMiPerfil-Style.css">
     <title>Repositorio Institucional</title>
 </head>
 <body>
-<?php
-
-require_once "./controladores/usuarioControlador.php";
-$ins_usuario = new usuarioControlador();
-
-$datos_usuario = $ins_usuario->datos_usuario_controlador("Unico", $pagina[1]);
-
-if($datos_usuario->rowCount()>0){
-    $campos = $datos_usuario->fetch();
-    ?>
 <section class="users-container">
         <div class="overviewUsers">
             <!--TÍTULO-->
             <div class="title">
-                <i class="uil uil-users-alt"></i>
-                <h1 class="panel-title-name">Editar Usuario</h1>
+            <i class="uil uil-user"></i>
+                <h1 class="panel-title-name">Editar Mi Perfil</h1>
             </div>
             <div class="container-modal-editar-usuario" id="modal-container-edit-user">
                 <div class="content-modal-editar-usuario">
                     <form action="" class="editar-usuario">
-                        <div class="input-field">
-                            <div class="select-option">
-                                <select name="tipoUsuario" class="combobox-titulo" title="Tipo de usuario">
-                                    <option selected disabled value="" class="combobox-opciones">Tipo de usuario</option>
-                                    <option value="Administrador">Administrador</option>
-                                    <option value="Docente">Docente</option>
-                                    <option value="Estudiante">Estudiante</option>
-                                </select>
-                            </div>
-                        </div>
                         <div class="input-field">
                             <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Nombres"/>
                         </div>
@@ -67,27 +48,15 @@ if($datos_usuario->rowCount()>0){
                         <div class="input-field">
                             <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Confirmar contraseña"/>
                         </div>
-                        <!--Select tag-->
-                        <div class="input-field ">
-                            <div class="select-option">
-                                <select name="estado" class="combobox-titulo" title="Estado del usuario">
-                                    <option selected disabled value="" class="combobox-opciones">Estado</option>
-                                    <option value="0">Inactivo</option>
-                                    <option value="1">Activo</option>
-                                </select>
-                            </div>
-                        </div>
                         <div class="botones-accion-modal">
                             <button type="submit" class="btn-editar-usuario">Guardar cambios</button>
-                            <a href="<?php echo SERVER_URL ?>adminUsuarios/" class="btn-classcerrar-editar-usuario" title="Volver atrás">Volver atrás</a>
+                            <!-- <a href="<?php echo SERVER_URL ?>adminUsuarios/" class="btn-classcerrar-editar-usuario" title="Volver atrás">Volver atrás</a> -->
+                            <a href="#" class="btn-classcerrar-editar-usuario" title="Volver atrás">Volver atrás</a>
                         </div>
                     </form>
                 </div>
             </div>
         <div>
     </section>
-<?php }else{ ?>
-<p>Error no existe usuario</p>
-<?php } ?>
 </body>
 </html>
