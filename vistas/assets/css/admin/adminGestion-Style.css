@@ -1,7 +1,7 @@
     /*Se importa la tipografía desde google*/
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
-    /*?VARIABLES GLOBALES*/
+    /*?-------------VARIABLES GLOBALES----------------*/
     :root {
         --main-color: #DBA034;
         --text-color: #464646;
@@ -9,11 +9,9 @@
         --row-altern-color: #dbdbdb;
         --row-selected-color: #c5c5c5;
         --white-color: #fff;
-        --modal-container-color:#e9e9e9;
+        --modal-container-color:rgb(227, 227, 227);
         --input-modify-info:#d9d9d9;
-        --input-text-for-write:#46464679;
-
-
+        --input-text-for-write:#464646d3;
 
         --create-button:#65ca65;
         --create-button-hover:rgb(30, 165, 64);
@@ -31,8 +29,10 @@
 
         --usuarios--normal-font-size: 1rem;
         --usuarios--pequeña-font-size: 0.8rem;
-    }
 
+        --titlecards-font-size: 1.5rem;
+        --numbercards-font-size: 1.9rem;
+    }
 
     body.dark {
         --text-color: #fff;
@@ -45,7 +45,7 @@
         --input-text-for-write:rgba(255, 255, 255, 0.564);
     }
 
-/*?TITULO DE LAS SECCIONES*/
+/*?----------------TITULO DE LAS SECCIONES GENERALES-----------------*/
     .users-container .title {
         display: flex;
         align-items: center;
@@ -63,7 +63,6 @@
         justify-content: center;
         font-size: var(--title-font-size);
     }
-
     .users-container .title .panel-title-name{        
         font-size: var(--title-font-size);
         font-weight: 600;
@@ -71,6 +70,118 @@
         margin-left: 10px;
         text-transform: uppercase;
     }
+
+/*?------------PANEL DASHBOARD-----------*/
+/**Título*/
+.dashboard-container .title {
+    display: flex;
+    align-items: center;
+    margin: 25px 0 30px 0;
+}
+
+.dashboard-container .title i {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    background-color: var(--main-color);
+    border-radius: 50%;
+    color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--title-font-size);
+}
+
+.dashboard-container .title .panel-title-name {
+    font-size: var(--title-font-size);
+    font-weight: 600;
+    color: var(--text-color);
+    margin-left: 10px;
+    text-transform: uppercase;
+}
+
+/**Tarjetas panel*/
+.dashboard-container .cards-container {
+    display: grid;
+    /*Espacio entre tarjetas*/
+    gap: 1rem;
+    /*Alto de la tarjeta*/
+    grid-auto-rows: 14rem;
+    /*Tarjetas ajustadas*/
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.dashboard-container .cards-container .card {
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* width: calc(100% / 4 - 15px); */
+    /* padding: 15px 20px; */
+    user-select: none;
+    text-transform: capitalize;
+}
+
+/*Icono de la tarjeta*/
+.cards-container .card i {
+    font-size: 5rem;
+    font-weight: 500;
+    color: var(--cards-text-color);
+}
+
+/*Titulo de la tarjeta*/
+.cards-container .card .cards-title-name {
+    white-space: nowrap;
+    font-size: var(--titlecards-font-size);
+    font-weight: 400;
+    color: var(--cards-text-color);
+}
+
+/*Número total de registros*/
+.cards-container .card .cards-total-count {
+    white-space: nowrap;
+    font-size: var(--numbercards-font-size);
+    font-weight: 600;
+    color: var(--cards-text-color);
+}
+
+.cards-container .card.card1,
+.cards-container .card.card3 {
+    background: linear-gradient(-45deg, #faac1d, #DBA034, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+.cards-container .card.card2,
+.cards-container .card.card4 {
+    background: linear-gradient(-95deg, #23a6d5, #DBA034, #faac1d, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 30s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 /*?BOTÓN NUEVO*/
 .btn-agregar-usuario{
@@ -231,6 +342,12 @@ label{
     background-color:  var(--delete-button-hover);
 }
 
+/**Mensaje usuario no se encuentra, no existe*/
+.message-user-not-found{
+    text-align: center;
+    color:var(--text-color);
+    font-size: var(--usuarios--normal-font-size);
+}
 
 /*?MOSTRANDO DE X 1 X DE X ENTRADAS*/
 .dataTables_info{
@@ -380,14 +497,16 @@ label{
 /*Eliminar lineas del número de doc*/
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button{
-    appearance:none ;
     -webkit-appearance:none ;
+    appearance:none ;
     margin:0;
 }
 /*Eliminar lineas del número de doc firefox*/
 input[type=number]{
-    appearance: textfield;
     -moz-appearance: textfield;
+    -webkit-appearance:textfield;
+    appearance: textfield;
+
 }
 
 /**Input al momento de digitar*/
@@ -454,10 +573,60 @@ select::-ms-expand{
     color:#383838;
 }
 
-    /*?RESPONSIVE*/
-    /*1000px*/
+
+/*?------------------ERROR EDITAR USUARIO----------------*/
+
+.btn-UserNotFound{
+    font-size: 1.1rem;
+    background-color:  var(--main-color);
+    border:none;
+    cursor:pointer;
+    width: 150px;
+    outline: none;
+    border-radius: 49px;
+    color: var(--white-color);
+    text-transform:capitalize;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+    margin-top: 20px;
+    padding:5px;
+    border-radius: .3rem;
+    text-decoration: none;
+    -webkit-border-radius: .3rem;
+    -moz-border-radius: .3rem;
+    -ms-border-radius: .3rem;
+    -o-border-radius: .3rem;
+    transition: opacity .5s all;
+    -webkit-transition: opacity .5s all;
+    -moz-transition: opacity .5s all;
+    -ms-transition: opacity .5s all;
+    -o-transition: opacity .5s all;
+}
+.btn-UserNotFound:hover{
+    background-color: #ecab33;
+    transition: opacity .5s all;
+    -webkit-transition: opacity .5s all;
+    -moz-transition: opacity .5s all;
+    -ms-transition: opacity .5s all;
+    -o-transition: opacity .5s all;  
+}
+
+
+
+
+
+
+
+
+
+
+/*?--------------------- RESPONSIVE DESIGN-----------------------*/
     @media (max-width:1000px) {
         .users-container .title .panel-title-name {
+            font-size: var(--title-tablet-font-size);
+        }
+        .dashboard-container .title .panel-title-name {
             font-size: var(--title-tablet-font-size);
         }
     }
@@ -528,9 +697,10 @@ select::-ms-expand{
             margin: 5px 0;
             height: 40px;
         }
-
-        /**Input al momento de digitar*/
         .input-field input {
         font-size: 1rem;
+        }
+        .dashboard-container .title .panel-title-name {
+            font-size: var(--title-mobile-font-size);
         }
     }

@@ -118,6 +118,8 @@ nav .logo-section .logo-name{
     margin-left: 14px;
     transition:var(--trans-05);
     user-select: none;
+
+    -webkit-user-select: none;
 }
 nav.close .logo-name{
     opacity: 0;

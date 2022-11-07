@@ -447,13 +447,9 @@ select::-ms-expand{
 
 
 /*?MEDIA QUERY MÓVIL*/
-@media (max-width: 570px) {
+@media (max-width: 830px) {
   form {
     padding: 0 1.5rem;
-  }
-
-  .image {
-    display: none;
   }
   .panel .content {
     padding: 0.5rem 1rem;
@@ -487,4 +483,10 @@ select::-ms-expand{
   select{
     font-size: 1rem;
   }
+}
+/*?MEDIA QUERY MÓVIL*/
+@media (max-width: 600px) {
+  .image {
+    display: none;
+    }
 }
