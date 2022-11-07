@@ -1,7 +1,7 @@
     /*Se importa la tipografía desde google*/
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
-    /*?-------------VARIABLES GLOBALES----------------*/
+    /*?-------------------VARIABLES GLOBALES------------------------*/
     :root {
         --main-color: #DBA034;
         --text-color: #464646;
@@ -33,7 +33,7 @@
         --titlecards-font-size: 1.5rem;
         --numbercards-font-size: 1.9rem;
     }
-
+    /*?----------------VARIABLES COLORES DARK MODE/MODO OSCURO-------------------*/
     body.dark {
         --text-color: #fff;
         --background-color: #1a1a1a;
@@ -45,7 +45,7 @@
         --input-text-for-write:rgba(255, 255, 255, 0.564);
     }
 
-/*?----------------TITULO DE LAS SECCIONES GENERALES-----------------*/
+/*?--------------------TITULO DE LAS SECCIONES GENERALES---------------------*/
     .users-container .title {
         display: flex;
         align-items: center;
@@ -71,14 +71,13 @@
         text-transform: uppercase;
     }
 
-/*?------------PANEL DASHBOARD-----------*/
+/*?-------------------PANEL DASHBOARD----------------------*/
 /**Título*/
 .dashboard-container .title {
     display: flex;
     align-items: center;
     margin: 25px 0 30px 0;
 }
-
 .dashboard-container .title i {
     position: relative;
     height: 40px;
@@ -91,7 +90,6 @@
     justify-content: center;
     font-size: var(--title-font-size);
 }
-
 .dashboard-container .title .panel-title-name {
     font-size: var(--title-font-size);
     font-weight: 600;
@@ -99,7 +97,6 @@
     margin-left: 10px;
     text-transform: uppercase;
 }
-
 /**Tarjetas panel*/
 .dashboard-container .cards-container {
     display: grid;
@@ -110,7 +107,6 @@
     /*Tarjetas ajustadas*/
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
-
 .dashboard-container .cards-container .card {
     border-radius: 12px;
     display: flex;
@@ -121,14 +117,12 @@
     user-select: none;
     text-transform: capitalize;
 }
-
 /*Icono de la tarjeta*/
 .cards-container .card i {
     font-size: 5rem;
     font-weight: 500;
     color: var(--cards-text-color);
 }
-
 /*Titulo de la tarjeta*/
 .cards-container .card .cards-title-name {
     white-space: nowrap;
@@ -136,7 +130,6 @@
     font-weight: 400;
     color: var(--cards-text-color);
 }
-
 /*Número total de registros*/
 .cards-container .card .cards-total-count {
     white-space: nowrap;
@@ -144,46 +137,32 @@
     font-weight: 600;
     color: var(--cards-text-color);
 }
-
+/*Colores especiales tarjetas*/
 .cards-container .card.card1,
 .cards-container .card.card3 {
     background: linear-gradient(-45deg, #faac1d, #DBA034, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
 }
-
 .cards-container .card.card2,
 .cards-container .card.card4 {
     background: linear-gradient(-95deg, #23a6d5, #DBA034, #faac1d, #23d5ab);
     background-size: 400% 400%;
     animation: gradient 30s ease infinite;
 }
-
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
     }
-
     50% {
         background-position: 100% 50%;
     }
-
     100% {
         background-position: 0% 50%;
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-/*?BOTÓN NUEVO*/
+/*?-------------------------BOTÓN NUEVO------------------*/
 .btn-agregar-usuario{
     align-items: flex-start;
     background-color:  var(--create-button);
@@ -204,7 +183,7 @@
     background-color:  var(--create-button-hover);
 }
 
-/*?MOSTRAR X REGISTROS*/
+/*?-------------------MOSTRAR X REGISTROS----------------------*/
 .dataTables_length{
     color:var(--text-color);
     line-height: 22.5px;
@@ -231,7 +210,7 @@ label{
     line-height:22.5px;
 }
 
-/*?BARRA DE BÚSQUEDA*/
+/*?---------------------BARRA DE BÚSQUEDA---------------------*/
 .dataTables_filter{
     text-align: right;
     color:var(--text-color);
@@ -241,7 +220,6 @@ label{
     font-size: var(--usuarios--normal-font-size);
     margin-bottom: 20px;
 }
-
 .form-control.form-control-sm{
     background-color: var(--white-color);
     border-radius: 5px;
@@ -255,7 +233,7 @@ label{
     padding:3.75px 7.5px;
 }
 
-/*?TABLA*/
+/*?-----------------------TABLA DE REGISTROS -------------------*/
 /*Tabla general*/
 .tablaUsuariosContainer .tbUsuarios{
     width: 100%!important;
@@ -283,7 +261,6 @@ label{
 .tablaUsuariosContainer .tbUsuarios tbody tr{
     color:var(--text-color);
 }
-
 /*Color de fila coloreada al posicionarnos sobre un registro*/
 .tablaUsuariosContainer .tbUsuarios tbody tr:hover{
     background-color: var(--row-selected-color);
@@ -305,11 +282,13 @@ label{
     color:var(--inactive-status-color);
     font-weight: 500;
 }
-/*Botones editar y elimianr*/
+/*?BOTONES TABLA: EDITAR Y ELIMINAR*/
+/*Contenedor de los dos botones*/
 .action-options-container{
     display: flex;
     flex-direction: row;
 }
+/*Estilo del ícono*/
 .btn-group-action i{
     padding:8px 8px;
     text-align: center;
@@ -320,8 +299,11 @@ label{
     align-items: center;
     color:white;
     text-decoration: none;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
 }
-
 .btn-editar-usuario{
     background-color: var(--edit-button) ;
     border-radius: 5px;
@@ -342,14 +324,7 @@ label{
     background-color:  var(--delete-button-hover);
 }
 
-/**Mensaje usuario no se encuentra, no existe*/
-.message-user-not-found{
-    text-align: center;
-    color:var(--text-color);
-    font-size: var(--usuarios--normal-font-size);
-}
-
-/*?MOSTRANDO DE X 1 X DE X ENTRADAS*/
+/*?---------------------MOSTRANDO DE X 1 X DE X ENTRADAS----------------------*/
 .dataTables_info{
     color:var(--text-color);
     border-top: 1px solid var(--text-color);
@@ -359,9 +334,9 @@ label{
     justify-content: flex-start;
     position: absolute;
     line-height: 20px;
-    /* position:absolute; */
 }
-/*?PAGINACIÓN*/
+
+/*?--------------------PAGINACIÓN--------------------*/
 .dataTables_paginate{
     display: flex;
     justify-content: flex-end;
@@ -385,9 +360,7 @@ label{
     color:var(--main-color);
 }
 
-
-
-/*?MODALES CREAR*/
+/*?------------------------MODAL NUEVO/CREAR--------------------------*/
 #btn-modal-crear-usuario, .btn-classmodal-editar-usuario{
     display:none;
 }
@@ -405,14 +378,12 @@ label{
 #btn-modal-crear-usuario:checked ~ .container-modal-crear-usuario{
     display: flex;
 }
-
 .container-modal-editar-usuario{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: -25px;
 }
-
 .content-modal-crear-usuario,
 .content-modal-editar-usuario{
     width: 100%;
@@ -429,15 +400,14 @@ label{
     font-weight: 600;
     color:var(--text-color);
 }
-
 /*Contenedor botones*/
 .botones-accion-modal{
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-top: 15px;
+    overflow:hidden ;
 }
-
 /*Botón cerrar*/
 .content-modal-crear-usuario .btn-cerrar-crear-usuario,
 .content-modal-editar-usuario .btn-classcerrar-editar-usuario{
@@ -451,6 +421,7 @@ label{
     border-style: none;
     margin-left: 10px;
     text-decoration: none;;
+    text-align: center;
 }
 .content-modal-crear-usuario .btn-cerrar-crear-usuario:hover,
 .content-modal-editar-usuario .btn-classcerrar-editar-usuario:hover{
@@ -508,7 +479,6 @@ input[type=number]{
     appearance: textfield;
 
 }
-
 /**Input al momento de digitar*/
 .input-field input {
     background: none;
@@ -524,7 +494,6 @@ input[type=number]{
     color:var(--input-text-for-write);
     font-weight: 400;
 }
-
 /**Estilos del SELECT TAG (Tipo de documento)*/
 select{
     appearance: none;
@@ -573,9 +542,45 @@ select::-ms-expand{
     color:#383838;
 }
 
-
 /*?------------------ERROR EDITAR USUARIO----------------*/
-
+/*Contenedor general*/
+.errorEditContainer{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 70vh;
+}
+/*Sección 1: Título y párrafo*/
+.errorTextSection
+{
+    text-align: center;
+}
+/*Título*/
+.title-errorTextSection{
+    color:var(--text-color);
+    font-size: var(--title-font-size);
+}
+/*Mensaje usuario no se encuentra, no existe*/
+.message-user-not-found{
+    text-align: center;
+    color:var(--text-color);
+    font-size: var(--usuarios--normal-font-size);
+    padding-bottom: 20px;
+}
+/*Sección 2: Imagen*/
+.img-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/*Imagen*/
+.img-errorEditUser{
+    max-width: 40vw;
+    object-fit: cover;
+}
+/*Botón volver atrás*/
 .btn-UserNotFound{
     font-size: 1.1rem;
     background-color:  var(--main-color);
@@ -586,7 +591,7 @@ select::-ms-expand{
     border-radius: 49px;
     color: var(--white-color);
     text-transform:capitalize;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     transition: 0.5s;
     margin-top: 20px;
@@ -602,7 +607,9 @@ select::-ms-expand{
     -moz-transition: opacity .5s all;
     -ms-transition: opacity .5s all;
     -o-transition: opacity .5s all;
+    text-align: center;
 }
+/*Botón volver atrás con hover*/
 .btn-UserNotFound:hover{
     background-color: #ecab33;
     transition: opacity .5s all;
@@ -612,15 +619,6 @@ select::-ms-expand{
     -o-transition: opacity .5s all;  
 }
 
-
-
-
-
-
-
-
-
-
 /*?--------------------- RESPONSIVE DESIGN-----------------------*/
     @media (max-width:1000px) {
         .users-container .title .panel-title-name {
@@ -629,9 +627,17 @@ select::-ms-expand{
         .dashboard-container .title .panel-title-name {
             font-size: var(--title-tablet-font-size);
         }
+        .img-errorEditUser{
+            max-width: 42vw;
+        }
+        .title-errorTextSection{
+            font-size: var(--title-tablet-font-size);
+        }
+        .message-user-not-found{
+            font-size: 1.1rem;
+        }
     }
 
-    /*650px*/
     @media (max-width:850px) {
         .btn-agregar-usuario,
         .dataTables_length,
@@ -679,9 +685,11 @@ select::-ms-expand{
         .content-modal-crear-usuario{
             width: 90%;
         }
+        .img-errorEditUser{
+            min-width: 65%;
+        }
     }
 
-    /*500px*/
     @media (max-width:500px) {
         .users-container .title .panel-title-name {
             font-size: var(--title-mobile-font-size);
@@ -702,5 +710,21 @@ select::-ms-expand{
         }
         .dashboard-container .title .panel-title-name {
             font-size: var(--title-mobile-font-size);
+        }
+        .img-errorEditUser{
+            max-width: 40%;
+        }
+        .title-errorTextSection{
+            font-size: var(--title-mobile-font-size);
+        }
+        .message-user-not-found{
+            font-size: var(--usuarios--pequeña-font-size);
+        }
+        .btn-UserNotFound{
+            font-size: 1rem;
+            width: auto;
+        }
+        .errorEditContainer{
+            height: auto;
         }
     }

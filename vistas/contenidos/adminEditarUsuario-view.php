@@ -89,14 +89,12 @@ if($datos_usuario->rowCount()>0){
 <?php }else{ ?>
     <div class="errorEditContainer">
         <section class="errorTextSection">
-            <h3>Hmmm...</h3>
+            <h3 class="title-errorTextSection">Hmmm...</h3>
             <p class="message-user-not-found">Ha ocurrido un error inesperado.</p>
-            <a href="<?php echo SERVER_URL; ?>adminUsuarios/" class="btn-UserNotFound">
-            Volver atrás
-            </a>
-        </div>
+        </section>
         <section class="img-section">
-            <img src="<?php echo SERVER_URL; ?>vistas/assets/img/errorEditarUsuario.svg" alt="Error al intentar editar usuario.">
+            <img class="img-errorEditUser"src="<?php echo SERVER_URL; ?>vistas/assets/img/errorEditarUsuario.svg" alt="Error al intentar editar usuario.">
+            <a href="<?php echo SERVER_URL; ?>adminUsuarios/" class="btn-UserNotFound">Volver atrás</a>
         </section>
     </div>
 <?php } ?>
