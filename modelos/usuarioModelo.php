@@ -48,7 +48,7 @@
         /*---------- Modelo datos usuario ----------*/
         protected static function datos_usuario_modelo($tipo, $id){
             if($tipo == "Unico"){
-                $sql = mainModel::conectar()->prepare("SELECT p.id, p.nombre, p.apellido, p.tipo_documento, p.documento, u.correo, u.clave, u.estado 
+                $sql = mainModel::conectar()->prepare("SELECT p.id, p.nombre, p.apellido, p.tipo_documento, p.documento, u.correo, u.clave, u.estado, tu.descripcion 
                 FROM persona p JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
                 WHERE p.id = :ID;");
                 $sql->bindParam(":ID", $id);
@@ -57,6 +57,16 @@
                 FROM persona p JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario;");
             }
             $sql->execute();
+            return $sql;
+        }
+
+        /*---------- Modelo editar usuario ----------*/
+        protected static function editar_usuario_modelo(Persona $persona){
+            $sql = mainModel::conectar()->prepare("UPDATE persona SET tipo_documento=?, documento=?, nombre=?, apellido=? WHERE id=?");
+
+            $sql->execute([$persona->getTipoDocumento(), $persona->getDocumento(), $persona->getNombre(), $persona->getApellido(), 
+            $persona->getIdPersona()]);
+            
             return $sql;
         }
 

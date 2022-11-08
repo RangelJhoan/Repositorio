@@ -27,55 +27,56 @@ if($datos_usuario->rowCount()>0){
             </div>
             <div class="container-modal-editar-usuario" id="modal-container-edit-user">
                 <div class="content-modal-editar-usuario">
-                    <form action="" class="editar-usuario">
+                    <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="editar-usuario FormularioAjax" method="POST" data-form="update" autocomplete="off">
+                        <input type="hidden" name="id_usuario_editar" value="<?php echo $pagina[1] ?>">
                         <div class="input-field">
                             <div class="select-option">
-                                <select name="tipoUsuario" class="combobox-titulo" title="Tipo de usuario">
-                                    <option selected disabled value="" class="combobox-opciones">Tipo de usuario</option>
-                                    <option value="Administrador">Administrador</option>
-                                    <option value="Docente">Docente</option>
-                                    <option value="Estudiante">Estudiante</option>
+                                <select disabled name="tipoUsuario" class="combobox-titulo" title="Tipo de usuario">
+                                    <option disabled value="" class="combobox-opciones">Tipo de usuario</option>
+                                    <option <?php if($campos['descripcion'] == 'Administrador'){echo "selected";} ?> value="Administrador">Administrador</option>
+                                    <option <?php if($campos['descripcion'] == 'Docente'){echo "selected";} ?> value="Docente">Docente</option>
+                                    <option <?php if($campos['descripcion'] == 'Estudiante'){echo "selected";} ?> value="Estudiante">Estudiante</option>
                                 </select>
                             </div>
                         </div>
                         <div class="input-field">
-                            <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Nombres"/>
+                            <input name="nombre" value="<?php echo $campos['nombre']; ?>" type="text" placeholder="Nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Nombres"/>
                         </div>
                         <div class="input-field">
-                            <input name="apellido" type="text" placeholder="Apellidos" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Apellidos" />
+                            <input name="apellido" value="<?php echo $campos['apellido']; ?>" type="text" placeholder="Apellidos" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Apellidos" />
                         </div>
                         <!--Select tag-->
                         <div class="input-field ">
                             <div class="select-option">
                                 <select name="tipoDocumento" class="combobox-titulo" title="Tipo de documento">
-                                    <option selected disabled value="" class="combobox-opciones">Tipo de documento</option>
-                                    <option value="TI">Tarjeta de Identidad (TI)</option>
-                                    <option value="CC">Cédula de Ciudadanía (CC)</option>
-                                    <option value="CE">Tarjeta de Extranjería (CE)</option>
+                                    <option disabled value="" class="combobox-opciones">Tipo de documento</option>
+                                    <option <?php if($campos['tipo_documento'] == 'TI'){echo "selected";} ?> value="TI">Tarjeta de Identidad (TI)</option>
+                                    <option <?php if($campos['tipo_documento'] == 'CC'){echo "selected";} ?> value="CC">Cédula de Ciudadanía (CC)</option>
+                                    <option <?php if($campos['tipo_documento'] == 'CE'){echo "selected";} ?> value="CE">Tarjeta de Extranjería (CE)</option>
                                 </select>
                             </div>
                         </div>
                         <div class="input-field">
-                            <input name="documento" type="number" placeholder="Número de documento" min="1000" max="100000000000"  pattern="[0-9]+" title="Número de documento"/>
+                            <input name="documento" value="<?php echo $campos['documento']; ?>" type="number" placeholder="Número de documento" min="1000" max="100000000000"  pattern="[0-9]+" title="Número de documento"/>
                         </div>
                         <div class="input-field">
-                            <input name="correo" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60"  title="Correo electrónico"/>
+                            <input disabled name="correo" value="<?php echo $campos['correo']; ?>" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60"  title="Correo electrónico"/>
+                        </div>
+                        <!--Select tag-->
+                        <div class="input-field ">
+                            <div class="select-option">
+                                <select name="estado" class="combobox-titulo" title="Estado del usuario">
+                                    <option disabled value="" class="combobox-opciones">Estado</option>
+                                    <option <?php if($campos['estado'] == '0'){echo "selected";} ?> value="0">Inactivo</option>
+                                    <option <?php if($campos['estado'] == '1'){echo "selected";} ?> value="1">Activo</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="input-field">
                             <input name="clave" type="password" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Recuerde que la contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres."/>
                         </div>
                         <div class="input-field">
                             <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Confirmar contraseña"/>
-                        </div>
-                        <!--Select tag-->
-                        <div class="input-field ">
-                            <div class="select-option">
-                                <select name="estado" class="combobox-titulo" title="Estado del usuario">
-                                    <option selected disabled value="" class="combobox-opciones">Estado</option>
-                                    <option value="0">Inactivo</option>
-                                    <option value="1">Activo</option>
-                                </select>
-                            </div>
                         </div>
                         <div class="botones-accion-modal">
                             <button type="submit" class="btn-editar-usuario">Guardar cambios</button>

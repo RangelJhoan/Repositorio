@@ -4,7 +4,7 @@ $peticionAjax = true;
 
 require_once "../config/APP.php";
 
-if(isset($_POST['correo']) || isset($_POST['idUsuario'])){
+if(isset($_POST['correo']) || isset($_POST['idUsuario']) || isset($_POST['id_usuario_editar'])){
     /*--- Instancia al controlador ---*/
     require_once "../controladores/usuarioControlador.php";
     $ins_usuario = new usuarioControlador();
@@ -19,6 +19,10 @@ if(isset($_POST['correo']) || isset($_POST['idUsuario'])){
         echo $ins_usuario->eliminar_usuario_controlador();
     }
 
+    /*--- Editar un usuario ---*/
+    if(isset($_POST['id_usuario_editar'])){
+        echo $ins_usuario->editar_usuario_controlador();
+    }
 }else{
     session_start(['name' => 'REPO']);
     session_unset();

@@ -155,6 +155,60 @@ class usuarioControlador extends usuarioModelo{
         return usuarioModelo::datos_usuario_modelo($tipo, $id);
     }
 
+    /*---------- Controlador editar usuario ----------*/
+    public function editar_usuario_controlador(){
+        $persona = new Persona();
+        //Recibiendo el ID del usuario a editar
+        $persona->setIdPersona(mainModel::decryption($_POST['id_usuario_editar']));
+
+        //Comprobar que el usuario exista en la BD
+        $check_user = mainModel::ejecutar_consulta_simple("SELECT * FROM persona WHERE id = '".$persona->getIdPersona()."'");
+
+        if($check_user->rowCount() <= 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrió un error",
+                "Texto"=>"No se encontró el usuario a editar",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $persona->setNombre($_POST['nombre']);
+        $persona->setApellido($_POST['apellido']);
+        $persona->setTipoDocumento($_POST['tipoDocumento']);
+        $persona->setDocumento($_POST['documento']);
+
+        if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getTipoDocumento() == "" || $persona->getDocumento() == ""){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"Por favor llene todos los campos requeridos",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        if(usuarioModelo::editar_usuario_modelo($persona)){
+            $alerta=[
+                "Alerta"=>"recargar",
+                "Titulo"=>"Datos actualizados",
+                "Texto"=>"Los datos han sido actualizados con éxito",
+                "Tipo"=>"success"
+            ];
+        }else{
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"Error al actualizar los datos",
+                "Tipo"=>"error"
+            ];
+        }
+        echo json_encode($alerta);
+    }
+
     /**
      * Paginador de usuarios, vista principal Admin
      *

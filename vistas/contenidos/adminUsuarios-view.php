@@ -81,12 +81,12 @@
                 $ins_usuario = new usuarioControlador();
 
                 $cantidadRegistros = 1000;
-                if(count($pagina) > 1){
+                if(count($pagina) == 0){
                     $paginaActual = $pagina[1];
-                    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 9, $pagina[0], "");
+                    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
                 }else{
                     $paginaActual = -1;
-                    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 9, $pagina[0], "");
+                    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
                 }
             ?>
             <div class="tablaUsuariosContainer">
