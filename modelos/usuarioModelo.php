@@ -60,14 +60,22 @@
             return $sql;
         }
 
-        /*---------- Modelo editar usuario ----------*/
-        protected static function editar_usuario_modelo(Persona $persona){
+        /*---------- Modelo editar persona ----------*/
+        protected static function editar_persona_modelo(Persona $persona){
             $sql = mainModel::conectar()->prepare("UPDATE persona SET tipo_documento=?, documento=?, nombre=?, apellido=? WHERE id=?");
 
             $sql->execute([$persona->getTipoDocumento(), $persona->getDocumento(), $persona->getNombre(), $persona->getApellido(), 
             $persona->getIdPersona()]);
-            
+
             return $sql;
+        }
+
+        /*---------- Modelo editar usuario ----------*/
+        protected static function editar_usuario_modelo(Persona $persona){
+            $sql_usuario = mainModel::conectar()->prepare("UPDATE usuario SET estado=?, clave=? WHERE id=?");
+            $sql_usuario->execute([$persona->getEstado(), $persona->getClave(), $persona->getIdUsuario()]);
+
+            return $sql_usuario;
         }
 
     }

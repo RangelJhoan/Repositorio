@@ -162,7 +162,27 @@ class usuarioControlador extends usuarioModelo{
         $persona->setIdPersona(mainModel::decryption($_POST['id_usuario_editar']));
 
         //Comprobar que el usuario exista en la BD
-        $check_user = mainModel::ejecutar_consulta_simple("SELECT * FROM persona WHERE id = '".$persona->getIdPersona()."'");
+        $check_person = mainModel::ejecutar_consulta_simple("SELECT * FROM persona WHERE id = '". $persona->getIdPersona() ."'");
+        if($check_person->rowCount() <= 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrió un error",
+                "Texto"=>"No se encontró el usuario a editar",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+        $datos_person = $check_person->fetch();
+
+        $persona->setIdUsuario($datos_person['id_usuario']);
+        $persona->setNombre($_POST['nombre']);
+        $persona->setApellido($_POST['apellido']);
+        $persona->setTipoDocumento($_POST['tipoDocumento']);
+        $persona->setDocumento($_POST['documento']);
+        $persona->setEstado($_POST['estado']);
+
+        $check_user = mainModel::ejecutar_consulta_simple("SELECT * FROM usuario WHERE id = '". $persona->getIdUsuario() ."'");
 
         if($check_user->rowCount() <= 0){
             $alerta=[
@@ -175,12 +195,9 @@ class usuarioControlador extends usuarioModelo{
             exit();
         }
 
-        $persona->setNombre($_POST['nombre']);
-        $persona->setApellido($_POST['apellido']);
-        $persona->setTipoDocumento($_POST['tipoDocumento']);
-        $persona->setDocumento($_POST['documento']);
+        $datos_user = $check_user->fetch();
 
-        if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getTipoDocumento() == "" || $persona->getDocumento() == ""){
+        if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getTipoDocumento() == "" || $persona->getDocumento() == "" || $persona->getEstado() == ""){
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
@@ -191,10 +208,31 @@ class usuarioControlador extends usuarioModelo{
             exit();
         }
 
-        if(usuarioModelo::editar_usuario_modelo($persona)){
+        if($_POST['clave'] != "" && $_POST['confirmarClave'] != ""){
+            $persona->setClave($_POST['clave']);
+            $confirmarClave = $_POST['confirmarClave'];
+            if($persona->getClave() != $confirmarClave){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Error",
+                    "Texto"=>"Las claves ingresadas no coinciden",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+            $persona->setClave(mainModel::encryption($persona->getClave()));
+        }else{
+            $persona->setClave($datos_user['clave']);
+        }
+
+        $editarPersona = usuarioModelo::editar_persona_modelo($persona);
+        $editarUsuario = usuarioModelo::editar_usuario_modelo($persona);
+        if($editarPersona->rowCount() > 0 || $editarUsuario->rowCount() > 0){
             $alerta=[
-                "Alerta"=>"recargar",
+                "Alerta"=>"redireccionar",
                 "Titulo"=>"Datos actualizados",
+                "URL"=>"http://localhost/Repositorio/adminUsuarios/",
                 "Texto"=>"Los datos han sido actualizados con éxito",
                 "Tipo"=>"success"
             ];
@@ -202,7 +240,7 @@ class usuarioControlador extends usuarioModelo{
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
-                "Texto"=>"Error al actualizar los datos",
+                "Texto"=>"No se pudo actualizar la información",
                 "Tipo"=>"error"
             ];
         }
