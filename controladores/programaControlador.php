@@ -52,6 +52,32 @@ class programaControlador extends programaModelo{
         }
     }
 
+    public function eliminar_programa_controlador(){
+        $idPrograma = mainModel::decryption($_POST['idPrograma']);
+
+        $eliminarPrograma = programaModelo::eliminar_programa_modelo($idPrograma);
+
+        if($eliminarPrograma->rowCount() == 1){
+            $alerta=[
+                "Alerta"=>"recargar",
+                "Titulo"=>"Exitoso",
+                "Texto"=>"Programa eliminado exitosamente",
+                "Tipo"=>"success"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }else{
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrió un error",
+                "Texto"=>"No se pudo eliminar el programa. Intente nuevamente",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+    }
+
     /**
      * Paginador de programas, vista principal Admin
      *

@@ -81,7 +81,7 @@
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/programaAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
-                                            <input type="hidden" name="idPersona" value="<?php echo $ins_programa->encryption($rows['id']) ?>">
+                                            <input type="hidden" name="idPrograma" value="<?php echo $ins_programa->encryption($rows['id']) ?>">
                                             <button type="submit" class="btn-delete-record" title="Eliminar programa"><i class="uil uil-trash-alt"></i></button>
                                         </div>
                                     </form>

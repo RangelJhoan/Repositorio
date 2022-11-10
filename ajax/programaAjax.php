@@ -4,7 +4,7 @@ $peticionAjax = true;
 
 require_once "../config/APP.php";
 
-if(isset($_POST['nombre'])){
+if(isset($_POST['nombre']) || isset($_POST['idPrograma'])){
     /*--- Instancia al controlador ---*/
     require_once "../controladores/programaControlador.php";
     $ins_programa = new programaControlador();
@@ -13,6 +13,12 @@ if(isset($_POST['nombre'])){
     if(isset($_POST['nombre'])){
         echo $ins_programa->agregar_programa_controlador();
     }
+
+    /*--- Agregar un programa ---*/
+    if(isset($_POST['idPrograma'])){
+        echo $ins_programa->eliminar_programa_controlador();
+    }
+
 }else{
     session_start(['name' => 'REPO']);
     session_unset();

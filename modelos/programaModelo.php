@@ -19,6 +19,14 @@
             return $sql;
         }
 
+        /*---------- Modelo para eliminar programa ----------*/
+        protected static function eliminar_programa_modelo($idPrograma){
+            $sqlEliminarPrograma = mainModel::conectar()->prepare("DELETE FROM programa WHERE id = ?");
+            $sqlEliminarPrograma->execute([$idPrograma]);
+
+            return $sqlEliminarPrograma;
+        }
+
     }
 
 ?>
