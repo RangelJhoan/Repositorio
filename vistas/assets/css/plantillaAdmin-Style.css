@@ -117,9 +117,8 @@ nav .logo-section .logo-name{
     color:var(--main-color);
     margin-left: 14px;
     transition:var(--trans-05);
-    user-select: none;
-
     -webkit-user-select: none;
+    user-select: none;
 }
 nav.close .logo-name{
     opacity: 0;

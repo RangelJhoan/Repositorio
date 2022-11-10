@@ -12,6 +12,7 @@
         --modal-container-color:rgb(227, 227, 227);
         --input-modify-info:#d9d9d9;
         --input-text-for-write:#464646d3;
+        --modal-open-background-color:#0e0e0e7c;
 
         --create-button:#65ca65;
         --create-button-hover:rgb(30, 165, 64);
@@ -27,8 +28,8 @@
         --title-tablet-font-size: 2rem;
         --title-mobile-font-size: 1.8rem;
 
-        --usuarios--normal-font-size: 1rem;
-        --usuarios--pequeña-font-size: 0.8rem;
+        --normal-font-size: 1.1rem;
+        --pequeña-font-size: 0.8rem;
 
         --titlecards-font-size: 1.5rem;
         --numbercards-font-size: 1.9rem;
@@ -43,15 +44,16 @@
         --modal-container-color:#232323;
         --input-modify-info:#1e1e1e;
         --input-text-for-write:rgba(255, 255, 255, 0.564);
+        --modal-open-background-color:#0e0e0ed8;
     }
 
 /*?--------------------TITULO DE LAS SECCIONES GENERALES---------------------*/
-    .users-container .title {
+    .general-admin-container .title {
         display: flex;
         align-items: center;
         margin: 25px 0 30px 0;
     }
-    .users-container .title i{
+    .general-admin-container .title i{
         position: relative;
         height: 40px;
         width: 40px;
@@ -63,7 +65,7 @@
         justify-content: center;
         font-size: var(--title-font-size);
     }
-    .users-container .title .panel-title-name{        
+    .general-admin-container .title .panel-title-name{        
         font-size: var(--title-font-size);
         font-weight: 600;
         color: var(--text-color);
@@ -114,6 +116,7 @@
     align-items: center;
     /* width: calc(100% / 4 - 15px); */
     /* padding: 15px 20px; */
+    -webkit-user-select:none;
     user-select: none;
     text-transform: capitalize;
 }
@@ -163,7 +166,7 @@
 }
 
 /*?-------------------------BOTÓN NUEVO------------------*/
-.btn-agregar-usuario{
+.btn-add-record{
     align-items: flex-start;
     background-color:  var(--create-button);
     border-radius: 5px;
@@ -175,11 +178,11 @@
     padding:8px 8px;
     text-align: center;
     cursor: pointer;
-    font-size: var(--usuarios--normal-font-size);
+    font-size: var(--normal-font-size);
     color:var(--text-color);
     transition: all .5s;
 }
-.btn-agregar-usuario:hover{
+.btn-add-record:hover{
     background-color:  var(--create-button-hover);
 }
 
@@ -187,13 +190,13 @@
 .dataTables_length{
     color:var(--text-color);
     line-height: 22.5px;
-    font-size: var(--usuarios--normal-font-size);
+    font-size: var(--normal-font-size);
     display: inline-block;
 }
 label{
     color:var(--text-color);
     display:inline-block;
-    font-size: var(--usuarios--normal-font-size);
+    font-size: var(--normal-font-size);
     line-height:22.5px;
     text-align: left;
 }
@@ -205,7 +208,7 @@ label{
     border-width: 1px;
     color:var(--text-color);
     display: inline-block;
-    font-size: var(--usuarios--normal-font-size);
+    font-size: var(--normal-font-size);
     padding:3.75px 15px 3.75px 7.5px;
     line-height:22.5px;
 }
@@ -217,7 +220,7 @@ label{
     line-height: 22.5px;
     display: inline-block;
     margin-top: 5px;
-    font-size: var(--usuarios--normal-font-size);
+    font-size: var(--normal-font-size);
     margin-bottom: 20px;
 }
 .form-control.form-control-sm{
@@ -227,7 +230,7 @@ label{
     border-width: 1px;
     color:var(--text-color);
     display:inline-block;
-    font-size: var(--usuarios--normal-font-size);
+    font-size: var(--normal-font-size);
     line-height:22.5px;
     margin: 0px 0px 0px 6.5625px;
     padding:3.75px 7.5px;
@@ -235,21 +238,21 @@ label{
 
 /*?-----------------------TABLA DE REGISTROS -------------------*/
 /*Tabla general*/
-.tablaUsuariosContainer .tbUsuarios{
+.table-admin-container .tb-admin-records{
     width: 100%!important;
     border-collapse: collapse;
     padding-left: 200px;
     padding-right: 200px;
-    font-size: var(--usuarios--normal-font-size);
+    font-size: var(--normal-font-size);
 }
 /*Espaciado de la tabla*/
-.tablaUsuariosContainer .tbUsuarios,
-.tablaUsuariosContainer .tbUsuarios th,
-.tablaUsuariosContainer .tbUsuarios td{
+.table-admin-container .tb-admin-records,
+.table-admin-container .tb-admin-records th,
+.table-admin-container .tb-admin-records td{
     padding:5px 10px;
 }
 /*Título de columna*/
-.tablaUsuariosContainer .tbUsuarios th{
+.table-admin-container .tb-admin-records th{
     font-weight: bolder;
     text-align: left;
     border-bottom: solid 1px var(--text-color);
@@ -258,26 +261,26 @@ label{
     cursor:pointer;
 }
 /*Color de texto de cada fila*/
-.tablaUsuariosContainer .tbUsuarios tbody tr{
+.table-admin-container .tb-admin-records tbody tr{
     color:var(--text-color);
 }
 /*Color de fila coloreada al posicionarnos sobre un registro*/
-.tablaUsuariosContainer .tbUsuarios tbody tr:hover{
+.table-admin-container .tb-admin-records tbody tr:hover{
     background-color: var(--row-selected-color);
 }
 /*Estilo para estado activo e inactivo*/
-.tablaUsuariosContainer .tbUsuarios tbody tr .active::after,
-.tablaUsuariosContainer .tbUsuarios tbody tr .inactive::after{
+.table-admin-container .tb-admin-records tbody tr .active::after,
+.table-admin-container .tb-admin-records tbody tr .inactive::after{
     display: inline-block;
     vertical-align: middle;
     font-weight: 500;
 }
-.tablaUsuariosContainer .tbUsuarios tbody tr .active::after{
+.table-admin-container .tb-admin-records tbody tr .active::after{
     content: 'Activo';
     color:var(--active-status-color);
     font-weight: 500;
 }
-.tablaUsuariosContainer .tbUsuarios tbody tr .inactive::after{
+.table-admin-container .tb-admin-records tbody tr .inactive::after{
     content: 'Inactivo';
     color:var(--inactive-status-color);
     font-weight: 500;
@@ -294,7 +297,6 @@ label{
     text-align: center;
     cursor: pointer;
     font-size: 20px;
-    transition: all .5s;
     display: flex;
     align-items: center;
     color:white;
@@ -303,24 +305,25 @@ label{
     -moz-transition: all .5s;
     -ms-transition: all .5s;
     -o-transition: all .5s;
+    transition: all .5s;
 }
-.btn-editar-usuario{
+.btn-admin-edit-record{
     background-color: var(--edit-button) ;
     border-radius: 5px;
     border-style: none;
     transition: all .5s;
     text-decoration: none;
 }
-.btn-eliminar-usuario{
+.btn-delete-record{
     background-color:  var(--delete-button);
     border-radius: 5px;
     border-style: none;
     transition: all .5s;
 }
-.btn-editar-usuario:hover{
+.btn-admin-edit-record:hover{
     background-color:  var(--edit-button-hover);
 }
-.btn-eliminar-usuario:hover{
+.btn-delete-record:hover{
     background-color:  var(--delete-button-hover);
 }
 
@@ -329,7 +332,7 @@ label{
     color:var(--text-color);
     border-top: 1px solid var(--text-color);
     padding-top: 20px;
-    font-size: var(--usuarios--normal-font-size);
+    font-size: var(--normal-font-size);
     display: inline-flex;
     justify-content: flex-start;
     position: absolute;
@@ -353,7 +356,7 @@ label{
     text-decoration: none;
     color:var(--text-color);
     transition: all .5s;
-    font-size: var(--usuarios--normal-font-size);
+    font-size: var(--normal-font-size);
 }
 .pagination a:hover{
     font-weight: 500;
@@ -361,31 +364,31 @@ label{
 }
 
 /*?------------------------MODAL NUEVO/CREAR--------------------------*/
-#btn-modal-crear-usuario, .btn-classmodal-editar-usuario{
+#btn-modal-admin-add-record, .btn-classmodal-editar-usuario{
     display:none;
 }
-.container-modal-crear-usuario{
+.container-modal-add-record{
     width: 100%;
     height: 100vh;
     position:fixed;
     top:0;left:0;
-    background-color: #1d1d1d7c;
+    background-color: var(--modal-open-background-color);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
-#btn-modal-crear-usuario:checked ~ .container-modal-crear-usuario{
+#btn-modal-admin-add-record:checked ~ .container-modal-add-record{
     display: flex;
 }
-.container-modal-editar-usuario{
+.container-modal-edit-record{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: -25px;
 }
-.content-modal-crear-usuario,
-.content-modal-editar-usuario{
+.content-modal-add-record,
+.content-modal-edit-record{
     width: 100%;
     max-width: 400px;
     padding:20px;
@@ -409,27 +412,29 @@ label{
     overflow:hidden ;
 }
 /*Botón cerrar*/
-.content-modal-crear-usuario .btn-cerrar-crear-usuario,
-.content-modal-editar-usuario .btn-classcerrar-editar-usuario{
+.content-modal-add-record .btn-close-add-record,
+.content-modal-edit-record .btn-close-edit-record{
     background-color: var(--delete-button);
     cursor: pointer;
     padding: 7px 10px;
     border-radius: 4px;
     transition: all 300ms ease;
     color:#fff;
-    font-size: var(--usuarios--normal-font-size);
+    font-size: var(--normal-font-size);
     border-style: none;
     margin-left: 10px;
     text-decoration: none;;
     text-align: center;
+    display: flex;
+    align-items: center;
 }
-.content-modal-crear-usuario .btn-cerrar-crear-usuario:hover,
-.content-modal-editar-usuario .btn-classcerrar-editar-usuario:hover{
+.content-modal-add-record .btn-close-add-record:hover,
+.content-modal-edit-record .btn-close-edit-record:hover{
     background-color: var(--delete-button-hover);
 }
 /*Botón crear*/
-.content-modal-crear-usuario .btn-crear-usuario,
-.content-modal-editar-usuario .btn-editar-usuario{
+.content-modal-add-record .btn-submit-add-record,
+.content-modal-edit-record .btn-admin-edit-record{
     background-color: var(--create-button);
     cursor: pointer;
     padding: 7px 10px;
@@ -437,19 +442,19 @@ label{
     transition: all 300ms ease;
     color:#fff;
     border-style: none;
-    font-size: var(--usuarios--normal-font-size);
+    font-size: var(--normal-font-size);
 }
-.content-modal-editar-usuario .btn-editar-usuario{
+.content-modal-edit-record .btn-admin-edit-record{
     background-color: var(--edit-button);
     text-decoration: none;
 }
-.content-modal-editar-usuario .btn-classcerrar-editar-usuario{
+.content-modal-edit-record .btn-close-edit-record{
     background-color: var(--delete-button);
 }
-.content-modal-editar-usuario .btn-editar-usuario:hover{
+.content-modal-edit-record .btn-admin-edit-record:hover{
     background-color: var(--edit-button-hover);
 }
-.content-modal-crear-usuario .btn-crear-usuario:hover{
+.content-modal-add-record .btn-submit-add-record:hover{
     background-color: var(--create-button-hover);
 }
 
@@ -477,7 +482,6 @@ input[type=number]{
     -moz-appearance: textfield;
     -webkit-appearance:textfield;
     appearance: textfield;
-
 }
 /**Input al momento de digitar*/
 .input-field input {
@@ -486,8 +490,25 @@ input[type=number]{
     border: none;
     line-height: 1;
     font-weight: 400;
-    font-size: var(--usuarios--normal-font-size);
+    font-size: var(--normal-font-size);
     color:var(--text-color);
+}
+/**Íconos bloqueados*/
+.icon-locked{
+    display: flex;
+    justify-content: flex-end;
+    align-self: center;
+    width: 95%;
+    position: absolute;
+    flex-direction: row;
+
+}
+.icon-no-edit-allowed {
+    text-align: center;
+    line-height: 55px;
+    color: var(--text-color);
+    transition: 0.5s;
+    font-size: var(--normal-font-size);
 }
 /**Estilo al placeholder del input*/
 .input-field input::placeholder {
@@ -505,7 +526,7 @@ select{
     flex:1;
     color:var(--input-text-for-write);
     cursor:pointer;
-    font-size: var(--usuarios--normal-font-size);
+    font-size: var(--normal-font-size);
     text-align: start;
     font-weight: 400;
     font-family: "Poppins", sans-serif;
@@ -541,8 +562,10 @@ select::-ms-expand{
 .select-option:hover::after{
     color:#383838;
 }
-
-/*?------------------ERROR EDITAR USUARIO----------------*/
+.select-option.arrow-blocked::after{
+    display: none;
+}
+/*?------------------ERROR EDITAR REGISTRO----------------*/
 /*Contenedor general*/
 .errorEditContainer{
     display: flex;
@@ -562,11 +585,11 @@ select::-ms-expand{
     color:var(--text-color);
     font-size: var(--title-font-size);
 }
-/*Mensaje usuario no se encuentra, no existe*/
-.message-user-not-found{
+/*Mensaje registro no se encuentra, no existe*/
+.message-record-not-found{
     text-align: center;
     color:var(--text-color);
-    font-size: var(--usuarios--normal-font-size);
+    font-size: var(--normal-font-size);
     padding-bottom: 20px;
 }
 /*Sección 2: Imagen*/
@@ -576,7 +599,7 @@ select::-ms-expand{
     align-items: center;
 }
 /*Imagen*/
-.img-errorEditUser{
+.image-errorEditRecord{
     max-width: 40vw;
     object-fit: cover;
 }
@@ -589,85 +612,86 @@ select::-ms-expand{
     width: 150px;
     outline: none;
     border-radius: 49px;
-    color: var(--white-color);
+    color: #1a1a1a;
     text-transform:capitalize;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.5s;
     margin-top: 20px;
     padding:5px;
-    border-radius: .3rem;
     text-decoration: none;
     -webkit-border-radius: .3rem;
     -moz-border-radius: .3rem;
     -ms-border-radius: .3rem;
     -o-border-radius: .3rem;
+    border-radius: .3rem;
     transition: opacity .5s all;
     -webkit-transition: opacity .5s all;
     -moz-transition: opacity .5s all;
     -ms-transition: opacity .5s all;
     -o-transition: opacity .5s all;
     text-align: center;
+    transition: 0.5s;
+
 }
 /*Botón volver atrás con hover*/
 .btn-UserNotFound:hover{
-    background-color: #ecab33;
-    transition: opacity .5s all;
+    background-color: #ffc965;
     -webkit-transition: opacity .5s all;
     -moz-transition: opacity .5s all;
     -ms-transition: opacity .5s all;
     -o-transition: opacity .5s all;  
+    transition: opacity .5s all;
 }
 
 /*?--------------------- RESPONSIVE DESIGN-----------------------*/
     @media (max-width:1000px) {
-        .users-container .title .panel-title-name {
+        .general-admin-container .title .panel-title-name {
             font-size: var(--title-tablet-font-size);
         }
         .dashboard-container .title .panel-title-name {
             font-size: var(--title-tablet-font-size);
         }
-        .img-errorEditUser{
+        .image-errorEditRecord{
             max-width: 42vw;
         }
         .title-errorTextSection{
             font-size: var(--title-tablet-font-size);
         }
-        .message-user-not-found{
+        .message-record-not-found{
             font-size: 1.1rem;
         }
     }
 
     @media (max-width:850px) {
-        .btn-agregar-usuario,
+        .btn-add-record,
         .dataTables_length,
         label,
         .form-select.form-select-sm{
-            font-size: var(--usuarios--pequeña-font-size);
+            font-size: var(--pequeña-font-size);
         }
-        .tablaUsuariosContainer .tbUsuarios{
+        .table-admin-container .tb-admin-records{
             width: 100%;
             
         }
-        .tablaUsuariosContainer .tbUsuarios tr{
+        .table-admin-container .tb-admin-records tr{
             display: flex;
             flex-direction:column;
             border:1px solid var(--text-color);
             padding:1em;
             margin-bottom: 1em;
-            font-size: var(--usuarios--pequeña-font-size);
+            font-size: var(--pequeña-font-size);
         }
-        .tablaUsuariosContainer .tbUsuarios td[data-titulo]{
+        .table-admin-container .tb-admin-records td[data-titulo]{
             display: flex;
             justify-content: space-between;
-            font-size: var(--usuarios--pequeña-font-size);
+            font-size: var(--pequeña-font-size);
         }
-        .tablaUsuariosContainer .tbUsuarios td[data-titulo]::before{
+        .table-admin-container .tb-admin-records td[data-titulo]::before{
             content: attr(data-titulo);
             color:var(--text-color);
             font-weight: bolder;
         }
-        .tablaUsuariosContainer .tbUsuarios thead{
+        .table-admin-container .tb-admin-records thead{
             display:none;
         }
         .dataTables_paginate{
@@ -680,18 +704,18 @@ select::-ms-expand{
         }
         .dataTables_info,
         .pagination a{
-            font-size: var(--usuarios--pequeña-font-size);
+            font-size: var(--pequeña-font-size);
         }
-        .content-modal-crear-usuario{
+        .content-modal-add-record{
             width: 90%;
         }
-        .img-errorEditUser{
+        .image-errorEditRecord{
             min-width: 65%;
         }
     }
 
     @media (max-width:500px) {
-        .users-container .title .panel-title-name {
+        .general-admin-container .title .panel-title-name {
             font-size: var(--title-mobile-font-size);
         }
         .btn-group-action i{
@@ -711,14 +735,14 @@ select::-ms-expand{
         .dashboard-container .title .panel-title-name {
             font-size: var(--title-mobile-font-size);
         }
-        .img-errorEditUser{
+        .image-errorEditRecord{
             max-width: 40%;
         }
         .title-errorTextSection{
             font-size: var(--title-mobile-font-size);
         }
-        .message-user-not-found{
-            font-size: var(--usuarios--pequeña-font-size);
+        .message-record-not-found{
+            font-size: var(--pequeña-font-size);
         }
         .btn-UserNotFound{
             font-size: 1rem;

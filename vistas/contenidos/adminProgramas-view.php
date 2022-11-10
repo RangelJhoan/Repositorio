@@ -10,12 +10,12 @@
         <div class="overview-general-admin">
             <!--TÍTULO-->
             <div class="title">
-                <i class="uil uil-users-alt"></i>
-                <h1 class="panel-title-name">Usuarios</h1>
+                <i class="uil uil-graduation-cap"></i>
+                <h1 class="panel-title-name">Programas</h1>
             </div>
             <!--BOTÓN CREAR-->
             <div class="new-record-container">
-                <label for="btn-modal-admin-add-record" class="btn-add-record" title="Crear usuario">
+                <label for="btn-modal-admin-add-record" class="btn-add-record" title="Crear programa">
                     <i class="uil uil-plus-circle"></i>Nuevo
                 </label>
             </div>
@@ -23,47 +23,13 @@
             <input type="checkbox" id="btn-modal-admin-add-record">
                 <div class="container-modal-add-record">
                 <div class="content-modal-add-record">
-                    <h3 class="content-modal-titulo">Nuevo usuario</h3>
+                    <h3 class="content-modal-titulo">Nuevo programa</h3>
                     <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
-                        <div class="input-field ">
-                            <div class="select-option">
-                                <select name="tipoUsuario" class="combobox-titulo" title="Por favor, seleccione un tipo de usuario" required>
-                                    <option selected value="" class="combobox-opciones">Tipo de usuario</option>
-                                    <option value="1">Administrador</option>
-                                    <option value="2">Docente</option>
-                                    <option value="3">Estudiante</option>
-                                </select>
-                            </div>
-                        </div>
-                        <input name="estado" type="hidden" value="1">
                         <div class="input-field">
-                            <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}"  title="Por favor, complete el campo" required/>
+                            <input name="nombre" type="text" placeholder="Nombre" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}"  title="Por favor, complete el campo" required/>
                         </div>
                         <div class="input-field">
-                            <input name="apellido" type="text" placeholder="Apellidos" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Por favor, complete el campo" required/>
-                        </div>
-                        <!--Select tag-->
-                        <div class="input-field ">
-                            <div class="select-option">
-                                <select name="tipoDocumento" class="combobox-titulo" title="Por favor, seleccione un tipo de documento" required>
-                                    <option selected value="" class="combobox-opciones">Tipo de documento</option>
-                                    <option value="TI">Tarjeta de Identidad (TI)</option>
-                                    <option value="CC">Cédula de Ciudadanía (CC)</option>
-                                    <option value="CE">Tarjeta de Extranjería (CE)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="input-field">
-                            <input name="documento" type="number" placeholder="Número de documento" pattern="[0-9]+" min="1000" max="100000000000" title="Por favor, complete el campo" required  />
-                        </div>
-                        <div class="input-field">
-                            <input name="correo" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60" title="Por favor, ingrese el correo electrónico" required  />
-                        </div>
-                        <div class="input-field">
-                            <input name="clave" type="password" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="La contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres." required/>
-                        </div>
-                        <div class="input-field">
-                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}"  title="Por favor, complete el campo" required />
+                            <input name="descripcion" type="text" placeholder="Descripción" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,300}" title="Por favor, complete el campo" required/>
                         </div>
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-submit-add-record" value="Crear" />
@@ -93,9 +59,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Nombre</th>
-                            <th>Documento</th>
-                            <th>Tipo</th>
-                            <th>Estado</th>
+                            <th>Descripción</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -115,19 +79,17 @@
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
                             <td data-titulo="NOMBRE"><?php echo $rows['nombre'].' '.$rows['apellido'] ?></td>
-                            <td data-titulo="DOCUMENTO"><?php echo $rows['documento'] ?></td>
-                            <td data-titulo="TIPO"><?php echo $rows['descripcion'] ?></td>
-                            <td data-titulo="ESTADO"><span class="<?php echo $estado ?>"></span></td>
+                            <td data-titulo="DESCRIPCIÓN"><?php echo $rows['documento'] ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <a href="<?php echo SERVER_URL ?>adminEditarUsuario/<?php echo $ins_usuario->encryption($rows['id'])?>/" class="btn-admin-edit-record" title="Editar usuario"><i class="uil uil-edit btn-admin-edit-record"></i></a>
+                                        <a href="<?php echo SERVER_URL ?>adminEditarPrograma/<?php echo $ins_usuario->encryption($rows['id'])?>/" class="btn-admin-edit-record" title="Editar programa"><i class="uil uil-edit btn-admin-edit-record"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
                                             <input type="hidden" name="idPersona" value="<?php echo $ins_usuario->encryption($rows['id']) ?>">
                                             <input type="hidden" name="idUsuario" value="<?php echo $ins_usuario->encryption($rows['id_usuario']) ?>">
-                                            <button type="submit" class="btn-delete-record" title="Eliminar usuario"><i class="uil uil-trash-alt"></i></button>
+                                            <button type="submit" class="btn-delete-record" title="Eliminar programa"><i class="uil uil-trash-alt"></i></button>
                                         </div>
                                     </form>
                                 </div>

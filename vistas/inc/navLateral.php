@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                <a href="<?php echo SERVER_URL ?>adminProgramas/">
                         <i class="uil uil-graduation-cap"></i>
                         <span class="option-name">Programas</span>
                     </a>
