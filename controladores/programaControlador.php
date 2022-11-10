@@ -15,8 +15,8 @@ class programaControlador extends programaModelo{
     /*---------- Controlador para agregar programa ----------*/
     public function agregar_programa_controlador(){
         $programa = new Programa();
-        $programa->setNombre($_POST['nombre']);
-        $programa->setDescripcion($_POST['descripcion']);
+        $programa->setNombre($_POST['nombre_ins']);
+        $programa->setDescripcion($_POST['descripcion_ins']);
 
         if($programa->getNombre() == "" || $programa->getDescripcion() == ""){
             $alerta=[
@@ -53,7 +53,7 @@ class programaControlador extends programaModelo{
     }
 
     public function eliminar_programa_controlador(){
-        $idPrograma = mainModel::decryption($_POST['idPrograma']);
+        $idPrograma = mainModel::decryption($_POST['id_programa_del']);
 
         $eliminarPrograma = programaModelo::eliminar_programa_modelo($idPrograma);
 
@@ -76,6 +76,66 @@ class programaControlador extends programaModelo{
             echo json_encode($alerta);
             exit();
         }
+    }
+
+    /*---------- Controlador datos programa ----------*/
+    public function datos_programa_controlador($tipo, $id){
+        $id = mainModel::decryption($id);
+
+        return programaModelo::datos_programa_modelo($tipo, $id);
+    }
+
+    /*---------- Controlador editar programa ----------*/
+    public function editar_usuario_controlador(){
+        $programa = new Programa();
+        //Recibiendo el ID del programa a editar
+        $programa->setIdPrograma(mainModel::decryption($_POST['id_programa_edit']));
+
+        //Comprobar que el programa exista en la BD
+        $check_program = mainModel::ejecutar_consulta_simple("SELECT * FROM programa WHERE id = '". $programa->getIdPrograma() ."'");
+        if($check_program->rowCount() <= 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrió un error",
+                "Texto"=>"No se encontró el programa a editar",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $programa->setNombre($_POST['nombre_edit']);
+        $programa->setDescripcion($_POST['descripcion_edit']);
+
+        if($programa->getNombre() == "" || $programa->getDescripcion() == ""){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"Por favor llene todos los campos requeridos",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $editarPrograma = programaModelo::editar_programa_modelo($programa);
+        if($editarPrograma->rowCount() > 0){
+            $alerta=[
+                "Alerta"=>"redireccionar",
+                "Titulo"=>"Datos actualizados",
+                "URL"=>"http://localhost/Repositorio/adminProgramas/",
+                "Texto"=>"Los datos han sido actualizados con éxito",
+                "Tipo"=>"success"
+            ];
+        }else{
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"No se pudo actualizar la información",
+                "Tipo"=>"error"
+            ];
+        }
+        echo json_encode($alerta);
     }
 
     /**

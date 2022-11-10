@@ -26,10 +26,10 @@
                     <h3 class="content-modal-titulo">Nuevo programa</h3>
                     <form action="<?php echo SERVER_URL ?>ajax/programaAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                         <div class="input-field">
-                            <input name="nombre" type="text" placeholder="Nombre"  title="Por favor, complete el campo" required/>
+                            <input name="nombre_ins" type="text" placeholder="Nombre"  title="Por favor, complete el campo" required/>
                         </div>
                         <div class="input-field">
-                            <input name="descripcion" type="text" placeholder="Descripción" title="Por favor, complete el campo" required/>
+                            <input name="descripcion_ins" type="text" placeholder="Descripción" title="Por favor, complete el campo" required/>
                         </div>
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-submit-add-record" value="Crear" />
@@ -81,7 +81,7 @@
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/programaAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
-                                            <input type="hidden" name="idPrograma" value="<?php echo $ins_programa->encryption($rows['id']) ?>">
+                                            <input type="hidden" name="id_programa_del" value="<?php echo $ins_programa->encryption($rows['id']) ?>">
                                             <button type="submit" class="btn-delete-record" title="Eliminar programa"><i class="uil uil-trash-alt"></i></button>
                                         </div>
                                     </form>

@@ -27,6 +27,30 @@
             return $sqlEliminarPrograma;
         }
 
+        /*---------- Modelo datos programa ----------*/
+        protected static function datos_programa_modelo($tipo, $id){
+            if($tipo == "Unico"){
+                $sql = mainModel::conectar()->prepare("SELECT * 
+                FROM programa 
+                WHERE id = :ID;");
+                $sql->bindParam(":ID", $id);
+            }elseif($tipo == "Conteo"){
+                $sql = mainModel::conectar()->prepare("SELECT id
+                FROM programa;");
+            }
+            $sql->execute();
+            return $sql;
+        }
+
+        /*---------- Modelo editar programa ----------*/
+        protected static function editar_programa_modelo(Programa $programa){
+            $sql = mainModel::conectar()->prepare("UPDATE programa SET nombre=?, descripcion=? WHERE id=?");
+
+            $sql->execute([$programa->getNombre(), $programa->getDescripcion(), $programa->getIdPrograma()]);
+
+            return $sql;
+        }
+
     }
 
 ?>
