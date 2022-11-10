@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="<?php echo SERVER_URL ?>adminCursos/">
                         <i class="uil uil-book-open"></i>
                         <span class="option-name">Cursos</span>
                     </a>

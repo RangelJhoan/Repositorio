@@ -29,7 +29,7 @@
         --title-mobile-font-size: 1.8rem;
 
         --normal-font-size: 1.1rem;
-        --pequeña-font-size: 0.8rem;
+        --pequeña-font-size: 0.9rem;
 
         --titlecards-font-size: 1.5rem;
         --numbercards-font-size: 1.9rem;
@@ -643,6 +643,19 @@ select::-ms-expand{
     transition: opacity .5s all;
 }
 
+.scrollTest{
+    height: 200px;
+    border:1px solid;
+    width:300px;
+    overflow-y:scroll;
+    display: inline-block;
+}
+
+
+
+
+
+
 /*?--------------------- RESPONSIVE DESIGN-----------------------*/
     @media (max-width:1000px) {
         .general-admin-container .title .panel-title-name {
@@ -670,37 +683,40 @@ select::-ms-expand{
             font-size: var(--pequeña-font-size);
         }
         .table-admin-container .tb-admin-records{
-            width: 100%;
-            
+            width: 100%!important;
         }
         .table-admin-container .tb-admin-records tr{
-            display: flex;
-            flex-direction:column;
-            border:1px solid var(--text-color);
-            padding:1em;
-            margin-bottom: 1em;
-            font-size: var(--pequeña-font-size);
+            display: flex !important;
+            flex-direction:column !important;
+            border:1px solid var(--text-color) !important;
+            padding:1em !important;
+            margin-bottom: 1em !important;
+            font-size: var(--pequeña-font-size)!important;
+            pointer-events: none!important;
+        }
+        .btn-group-action{
+            pointer-events: all!important;
         }
         .table-admin-container .tb-admin-records td[data-titulo]{
-            display: flex;
-            justify-content: space-between;
-            font-size: var(--pequeña-font-size);
+            display: flex!important;
+            justify-content: space-between!important;
+            font-size: var(--pequeña-font-size)!important;
         }
         .table-admin-container .tb-admin-records td[data-titulo]::before{
-            content: attr(data-titulo);
-            color:var(--text-color);
-            font-weight: bolder;
+            content: attr(data-titulo)!important;
+            color:var(--text-color)!important;
+            font-weight: bolder!important;
         }
         .table-admin-container .tb-admin-records thead{
-            display:none;
+            display:none!important;
         }
         .dataTables_paginate{
-            display: inline-flex;
+            display: inline-flex!important;
         }
         .pagination{
-            display: flex;
+            display: flex!important;
             justify-content: space-around;
-            margin-top: 40px;
+            margin-top: 40px!important;
         }
         .dataTables_info,
         .pagination a{
@@ -711,6 +727,11 @@ select::-ms-expand{
         }
         .image-errorEditRecord{
             min-width: 65%;
+        }
+        tr .child{
+            overflow:hidden !important;
+            display: none !important;;
+            border-color: transparent !important;;
         }
     }
 
@@ -730,7 +751,7 @@ select::-ms-expand{
             height: 40px;
         }
         .input-field input {
-        font-size: 1rem;
+        font-size: var(--pequeña-font-size);
         }
         .dashboard-container .title .panel-title-name {
             font-size: var(--title-mobile-font-size);
@@ -750,5 +771,15 @@ select::-ms-expand{
         }
         .errorEditContainer{
             height: auto;
+        }
+        select{
+            font-size: var(--pequeña-font-size);
+        }
+        .content-modal-add-record .btn-close-add-record, .content-modal-edit-record .btn-close-edit-record{
+            font-size: var(--pequeña-font-size);
+        }
+        .content-modal-add-record .btn-submit-add-record,
+        .content-modal-edit-record .btn-admin-edit-record{
+            font-size: var(--pequeña-font-size);
         }
     }
