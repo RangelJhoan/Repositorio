@@ -52,7 +52,7 @@ if($datos_usuario->rowCount()>0){
         </section>
         <section class="img-section">
             <img class="image-errorEditRecord"src="<?php echo SERVER_URL; ?>vistas/assets/img/errorEditarRegistro.svg" alt="Error al intentar editar programa.">
-            <a href="<?php echo SERVER_URL; ?>adminUsuarios/" class="btn-UserNotFound" title="Ir a programas">Volver atrás</a>
+            <a href="<?php echo SERVER_URL; ?>adminProgramas/" class="btn-UserNotFound" title="Ir a programas">Volver atrás</a>
         </section>
     </div>
 <?php } ?>

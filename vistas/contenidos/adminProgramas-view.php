@@ -24,12 +24,12 @@
                 <div class="container-modal-add-record">
                 <div class="content-modal-add-record">
                     <h3 class="content-modal-titulo">Nuevo programa</h3>
-                    <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
+                    <form action="<?php echo SERVER_URL ?>ajax/programaAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                         <div class="input-field">
-                            <input name="nombre" type="text" placeholder="Nombre" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}"  title="Por favor, complete el campo" required/>
+                            <input name="nombre" type="text" placeholder="Nombre"  title="Por favor, complete el campo" required/>
                         </div>
                         <div class="input-field">
-                            <input name="descripcion" type="text" placeholder="Descripción" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,300}" title="Por favor, complete el campo" required/>
+                            <input name="descripcion" type="text" placeholder="Descripción" title="Por favor, complete el campo" required/>
                         </div>
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-submit-add-record" value="Crear" />
@@ -41,16 +41,16 @@
             </div>
             <!--TABLA-->
             <?php
-                require_once "./controladores/usuarioControlador.php";
-                $ins_usuario = new usuarioControlador();
+                require_once "./controladores/programaControlador.php";
+                $ins_programa = new programaControlador();
 
                 $cantidadRegistros = 1000;
                 if(count($pagina) == 0){
                     $paginaActual = $pagina[1];
-                    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
+                    $datos = $ins_programa->paginador_programa_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
                 }else{
                     $paginaActual = -1;
-                    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
+                    $datos = $ins_programa->paginador_programa_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
                 }
             ?>
             <div class="table-admin-container">
@@ -69,26 +69,19 @@
                         $contador = $inicio+1;
                         if($datos != 0){
                             foreach($datos as $rows){
-                                $estado = "";
-                                if($rows['estado'] == "0"){
-                                    $estado = "inactive";
-                                }else{
-                                    $estado = "active";
-                                }
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
-                            <td data-titulo="NOMBRE"><?php echo $rows['nombre'].' '.$rows['apellido'] ?></td>
-                            <td data-titulo="DESCRIPCIÓN"><?php echo $rows['documento'] ?></td>
+                            <td data-titulo="NOMBRE"><?php echo $rows['nombre']?></td>
+                            <td data-titulo="DESCRIPCIÓN"><?php echo $rows['descripcion'] ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <a href="<?php echo SERVER_URL ?>adminEditarPrograma/<?php echo $ins_usuario->encryption($rows['id'])?>/" class="btn-admin-edit-record" title="Editar programa"><i class="uil uil-edit btn-admin-edit-record"></i></a>
+                                        <a href="<?php echo SERVER_URL ?>adminEditarPrograma/<?php echo $ins_programa->encryption($rows['id'])?>/" class="btn-admin-edit-record" title="Editar programa"><i class="uil uil-edit btn-admin-edit-record"></i></a>
                                     </div>
-                                    <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
+                                    <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/programaAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
-                                            <input type="hidden" name="idPersona" value="<?php echo $ins_usuario->encryption($rows['id']) ?>">
-                                            <input type="hidden" name="idUsuario" value="<?php echo $ins_usuario->encryption($rows['id_usuario']) ?>">
+                                            <input type="hidden" name="idPersona" value="<?php echo $ins_programa->encryption($rows['id']) ?>">
                                             <button type="submit" class="btn-delete-record" title="Eliminar programa"><i class="uil uil-trash-alt"></i></button>
                                         </div>
                                     </form>
