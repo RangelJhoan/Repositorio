@@ -3,12 +3,6 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    
 </head>
     <title>Repositorio Institucional</title>
 </head>
@@ -38,22 +32,17 @@
                         <div class="input-field">
                             <input name="descripcion" type="text" placeholder="Descripción" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,300}" title="Por favor, complete el campo" required/>
                         </div>
-                        <select data-placeholder="Nombre del programa..." multiple class="chosen-select" name="test">
-                                    <option value=""></option>
-                                    <option>Ingeniería de sistemas</option>
-                                    <option>Diseño gráfico</option>
-                                    <option>Ingeniería industrial</option>
-                                    <option>Diseño industrial</option>
-                                    <option>Ingeniería electrónica</option>
-                                </select>
-                        <select class="livesearch" multiple>
-                            <option>Ingeniería de sistemas</option>
-                            <option>Diseño gráfico</option>
-                            <option>Ingeniería industrial</option>
-                        </select>
 
-
-
+                        <label for="programaSeleccion" class="titleComboMultiple">Programa(s)</label>
+                            <select name="seleccionProg" id="programaSeleccionarCur" multiple title="Por favor, selecciona el o los programas asociados al curso">
+                                <option value="1">Ingeniería de Sistemas</option>
+                                <option value="2">Diseño gráfico</option>
+                                <option value="3">Ingeniería industrial</option>
+                                <option value="4">Ingeniería electrónica</option>
+                                <option value="5">Ingeniería eléctrica</option>
+                                <option value="6">Diseño industrial</option>
+                                <option value="7">Derecho</option>
+                            </select>
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-submit-add-record" value="Crear" />
                             <label for="btn-modal-admin-add-record" class="btn-close-add-record">Cerrar</label>
@@ -63,20 +52,6 @@
             </div>
             </div>
 
-            <select id="my-select" multiple="multiple">
-    <option value="1">January</option>
-    <option value="2">February</option>
-    <option value="3">March</option>
-    <option value="4">April</option>
-    <option value="5">May</option>
-    <option value="6">June</option>
-    <option value="7">July</option>
-    <option value="8">August</option>
-    <option value="9">September</option>
-    <option value="10">October</option>
-    <option value="11">November</option>
-    <option value="12">December</option>
-</select>
             <!--TABLA-->
             <?php
                 require_once "./controladores/usuarioControlador.php";
@@ -151,24 +126,11 @@
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
 
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script> -->
 
-    <!-- Include the default stylesheet -->
-<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/wenzhixin/multiple-select/e14b36de/multiple-select.css">
-<!-- Include plugin -->
-<script src="https://cdn.rawgit.com/wenzhixin/multiple-select/e14b36de/multiple-select.js"></script>
-    <!-- <script type="text/javascript">
-        $(".chosen-select").chosen();
-        $(".livesearch").chosen();
-    </script> -->
-
-    <script>
-    // Initialize multiple select on your regular select
-    $("#my-select").multipleSelect({
-        filter: true
-    });
-</script>
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/datatables.js"></script> 
+    <script src="<?php echo SERVER_URL ?>vistas/assets/js/multipleCombo.js"></script> 
+
+
 </body>
 </html>

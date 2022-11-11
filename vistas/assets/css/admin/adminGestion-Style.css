@@ -394,7 +394,7 @@ label{
     padding:20px;
     background-color: var(--modal-container-color);
     border-radius: 4px;
-    
+
 }
 .content-modal-titulo{
     margin-bottom: 15px;
@@ -459,7 +459,7 @@ label{
 }
 
 /**Campos de los input*/
-.input-field {
+.input-field{
     max-width: 380px;
     width: 100%;
     background-color: var(--input-modify-info);
@@ -501,15 +501,18 @@ input[type=number]{
     width: 95%;
     position: absolute;
     flex-direction: row;
-
 }
+
 .icon-no-edit-allowed {
     text-align: center;
     line-height: 55px;
     color: var(--text-color);
     transition: 0.5s;
     font-size: var(--normal-font-size);
+    color:var(--main-color);
+    z-index: 1;
 }
+
 /**Estilo al placeholder del input*/
 .input-field input::placeholder {
     color:var(--input-text-for-write);
@@ -565,6 +568,7 @@ select::-ms-expand{
 .select-option.arrow-blocked::after{
     display: none;
 }
+
 /*?------------------ERROR EDITAR REGISTRO----------------*/
 /*Contenedor general*/
 .errorEditContainer{
@@ -642,14 +646,227 @@ select::-ms-expand{
     -o-transition: opacity .5s all;  
     transition: opacity .5s all;
 }
-
-.scrollTest{
+/*Campo de texto grande con scroll*/
+.textAreaStl{
+    border: 0.4rem solid transparent;
+    font-size: var(--normal-font-size);
+    max-width: 380px;
+    width: 100%;
+    background-color: var(--input-modify-info);
+    color: var(--text-color);
+    margin: 7px 0;
     height: 200px;
-    border:1px solid;
-    width:300px;
-    overflow-y:scroll;
-    display: inline-block;
+    display: grid;
+    padding: 0 0.4rem;
+    position: relative;
+    outline: none;
+    line-height: 1;
+    font-weight: 400;
+    resize: none;
+    -webkit-border-radius:25px;
+    -moz-border-radius:25px;
+    -ms-border-radius:25px;
+    -o-border-radius:25px;
+    border-radius:25px;
 }
+
+
+/*?-------------------COMBOBOX MULTIPLE SELECCIÓN------------------------*/
+/*Lista de opciones de selección*/
+.mult-select-tag{
+    display:flex;
+    width:100%;
+    flex-direction:column;
+    align-items:center;
+    position:relative;
+    --tw-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1),0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --tw-shadow-color:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color);
+    --border-color:var(--input-text-for-write);
+    color:var(--text-color);
+    font-size: var(--normal-font-size);
+}
+.mult-select-tag .wrapper{
+    width:100%;
+}
+/*Campo como "input" general*/
+.mult-select-tag .body{
+    display:flex;
+    min-height:2.15rem;
+    width: 100%;
+    background-color: var(--input-modify-info);
+    margin: 7px 0;
+    height: 60px;
+    border-radius: 55px;
+    padding: 0 0.4rem;
+    position: relative;
+}
+.mult-select-tag .input-container{
+    display:flex;
+    flex-wrap:wrap;
+    flex:1 1 auto;
+    padding:.1rem;
+    overflow: auto;
+    border: 0.2rem solid transparent;
+}
+.mult-select-tag .input-body{
+    display:flex;
+    width:100%;
+}
+/*Barra de búsqueda*/
+.mult-select-tag .input{
+    flex:1;
+    background:0 0;
+    border-radius:.25rem;
+    padding:.45rem;
+    margin:10px;
+    color:var(--text-color);
+    outline:0;
+    border:1px solid var(--row-selected-color);
+    -webkit-border-radius:.25rem;
+    -moz-border-radius:.25rem;
+    -ms-border-radius:.25rem;
+    -o-border-radius:.25rem;
+}
+.mult-select-tag .btn-container{
+    color:#e2ebf0;
+    padding:.5rem;
+    display:flex;
+    border-left:1px solid var(--row-selected-color);
+}
+/*Flecha para abrir opciones*/
+.mult-select-tag button{
+    cursor:pointer;
+    width:100%;
+    color:var(--text-color);
+    outline:0;
+    height:100%;
+    border:none;
+    padding:0;
+    background:0 0;
+    background-image:none;
+    -webkit-appearance:none;
+    appearance: none;
+    text-transform:none;
+    margin:0;
+}
+.mult-select-tag button:first-child{
+    width:1rem;
+    height:90%;
+}
+/*Contenedor general del momento en que se abren las opciones*/
+.mult-select-tag .drawer{
+    position:absolute;
+    background: var(--input-modify-info);
+    max-height:15rem;
+    z-index:40;
+    top:98%;
+    width:100%;
+    overflow-y:scroll;
+    border:1px solid var(--row-selected-color);
+    border-radius:.25rem;
+    -webkit-border-radius:.25rem;
+    -moz-border-radius:.25rem;
+    -ms-border-radius:.25rem;
+    -o-border-radius:.25rem;
+}
+.mult-select-tag ul{
+    list-style-type:none;
+    padding:.5rem;
+    margin:0;
+}
+.mult-select-tag ul li{
+    padding:.5rem;
+    border-radius:.25rem;
+    cursor:pointer;
+    -webkit-border-radius:.25rem;
+    -moz-border-radius:.25rem;
+    -ms-border-radius:.25rem;
+    -o-border-radius:.25rem;
+}
+/*Hover al pasar por encima de las opciones*/
+.mult-select-tag ul li:hover{
+    background:var(--main-color);
+}
+/*Estilo al momento de seleccionar la opción*/
+.mult-select-tag .item-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:var(--main-color);
+    padding:.2rem .4rem;
+    margin:.2rem;
+    font-weight:500;
+    border:1px solid var(--main-color);
+    background:#ffe4b352;
+    border-radius:9999px;
+    -webkit-border-radius:9999px;
+    -moz-border-radius:9999px;
+    -ms-border-radius:9999px;
+    -o-border-radius:9999px;
+    height: fit-content;
+}
+.mult-select-tag .item-label{
+    max-width:100%;
+    line-height:1;
+    font-size:.75rem;
+    font-weight:400;
+    flex:0 1 auto;
+    color:var(--main-color);
+}
+.mult-select-tag .item-close-container{
+    display:flex;
+    flex:1 1 auto;
+    flex-direction:row-reverse;
+}
+.mult-select-tag .item-close-svg{
+    width:1rem;
+    margin-left:.5rem;
+    height:1rem;
+    cursor:pointer;
+    border-radius:9999px;
+    display:block;
+    -webkit-border-radius:9999px;
+    -moz-border-radius:9999px;
+    -ms-border-radius:9999px;
+    -o-border-radius:9999px;
+}
+.hidden{
+    display:none;
+}
+.mult-select-tag .shadow{
+    box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+}
+/*Bordes del campo general*/
+.mult-select-tag .rounded{
+    border-radius:25px;
+    -webkit-border-radius:25px;
+    -moz-border-radius:25px;
+    -ms-border-radius:25px;
+    -o-border-radius:25px;
+}
+/*Título label para el combo de selección multiple*/
+.titleComboMultiple{
+    font-size: var(--normal-font-size);
+    padding-left: 5px;
+    margin-top: 5px;
+    color:var(--input-text-for-write);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -750,6 +967,18 @@ select::-ms-expand{
             margin: 5px 0;
             height: 40px;
         }
+        .mult-select-tag .body{
+            margin: 5px 0;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        .titleComboMultiple{
+            font-size: var(--pequeña-font-size);
+        }
+        .mult-select-tag{
+            font-size: var(--pequeña-font-size);
+        }
+        
         .input-field input {
         font-size: var(--pequeña-font-size);
         }
@@ -780,6 +1009,13 @@ select::-ms-expand{
         }
         .content-modal-add-record .btn-submit-add-record,
         .content-modal-edit-record .btn-admin-edit-record{
+            font-size: var(--pequeña-font-size);
+        }
+        .form-control.form-control-sm{
+            font-size: var(--pequeña-font-size);
+            padding:3.75px 7.5px;
+        }
+        .textAreaStl{
             font-size: var(--pequeña-font-size);
         }
     }

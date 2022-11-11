@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.0/css/line.css">
     <title>Repositorio Institucional</title>
 </head>
 <body>
@@ -30,14 +30,14 @@ if($datos_usuario->rowCount()>0){
                     <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="FormularioAjax" method="POST" data-form="update" autocomplete="off">
                         <input type="hidden" name="id_programa_editar" value="<?php echo $pagina[1] ?>">
                         <div class="input-field">
-                            <input name="nombre" type="text" placeholder="Nombre" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}"  title="Por favor, complete el campo" required/>
+                            <input name="nombre" type="text" placeholder="Nombre" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}"  title="Nombre" required/>
                         </div>
-                        <div class="input-field">
-                            <input name="descripcion" type="text" placeholder="Descripción" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,300}" title="Por favor, complete el campo" required/>
+                        <div class="">
+                            <textarea class="textAreaStl" name="descripcion" type="text" placeholder="Descripción" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,300}" title="Descripción" required></textarea>
                         </div>
                         <div class="botones-accion-modal">
-                            <button type="submit" class="btn-admin-edit-record">Guardar cambios</button>
-                            <a href="<?php echo SERVER_URL ?>adminProgramas/" class="btn-close-edit-record" title="Volver atrás">Volver atrás</a>
+                            <button type="submit" class="btn-admin-edit-record" title="Actualizar">Guardar cambios</button>
+                            <a href="<?php echo SERVER_URL ?>adminProgramas/" class="btn-close-edit-record" title="Programas">Volver atrás</a>
                         </div>
                     </form>
                 </div>
@@ -52,7 +52,7 @@ if($datos_usuario->rowCount()>0){
         </section>
         <section class="img-section">
             <img class="image-errorEditRecord"src="<?php echo SERVER_URL; ?>vistas/assets/img/errorEditarRegistro.svg" alt="Error al intentar editar programa.">
-            <a href="<?php echo SERVER_URL; ?>adminUsuarios/" class="btn-UserNotFound" title="Ir a programas">Volver atrás</a>
+            <a href="<?php echo SERVER_URL; ?>adminProgramas/" class="btn-UserNotFound" title="Ir a programas">Volver atrás</a>
         </section>
     </div>
 <?php } ?>
