@@ -11,7 +11,7 @@
 
     class cursoModelo extends mainModel{
 
-        /*---------- Modelo para agregar programa ----------*/
+        /*---------- Modelo para agregar curso ----------*/
         protected static function agregar_curso_modelo(Curso $curso){
             $sql = mainModel::conectar()->prepare("INSERT INTO curso(nombre, descripcion) VALUES(?, ?);");
             $sql->execute([$curso->getNombre(), $curso->getDescripcion()]);
@@ -28,6 +28,21 @@
                 return $sql;
             }
             return $sql;
+        }
+
+        /*---------- Modelo para eliminar curso ----------*/
+        protected static function eliminar_curso_modelo($idCurso){
+            $sqlEliminarFkCurso = mainModel::conectar()->prepare("DELETE FROM curso_programa WHERE id_curso = ?");
+            $sqlEliminarFkCurso->execute([$idCurso]);
+
+            if($sqlEliminarFkCurso->rowCount() > 0){
+                $sqlEliminarUsuario = mainModel::conectar()->prepare("DELETE FROM curso WHERE id = ?");
+                $sqlEliminarUsuario->execute([$idCurso]);
+
+                return $sqlEliminarUsuario;
+            }else{
+                return $sqlEliminarFkCurso;
+            }
         }
 
         /*---------- Modelo datos curso ----------*/

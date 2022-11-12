@@ -56,6 +56,33 @@ class cursoControlador extends cursoModelo{
         }
     }
 
+    /*---------- Controlador para eliminar curso ----------*/
+    public function eliminar_curso_controlador(){
+        $idCurso = mainModel::decryption($_POST['id_curso_del']);
+
+        $eliminarCurso = cursoModelo::eliminar_curso_modelo($idCurso);
+
+        if($eliminarCurso->rowCount() > 0){
+            $alerta=[
+                "Alerta"=>"recargar",
+                "Titulo"=>"Exitoso",
+                "Texto"=>"Curso eliminado exitosamente",
+                "Tipo"=>"success"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }else{
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrió un error",
+                "Texto"=>"No se pudo eliminar el curso. Intente nuevamente",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+    }
+
     /**
      * Paginador de cursos, vista principal Admin
      *
