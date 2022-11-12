@@ -7,6 +7,13 @@
     <title>Repositorio Institucional</title>
 </head>
 <body>
+<?php
+
+require_once "./controladores/programaControlador.php";
+$ins_programa = new programaControlador();
+
+$datos_programas = $ins_programa->listar_programas_controlador();
+    ?>
     <section class="general-admin-container">
         <div class="overview-general-admin">
             <!--TÍTULO-->
@@ -35,13 +42,13 @@
 
                         <label for="programaSeleccion" class="titleComboMultiple">Programa(s)</label>
                             <select name="seleccionProg" id="programaSeleccionarCur" multiple title="Por favor, selecciona el o los programas asociados al curso">
-                                <option value="1">Ingeniería de Sistemas</option>
-                                <option value="2">Diseño gráfico</option>
-                                <option value="3">Ingeniería industrial</option>
-                                <option value="4">Ingeniería electrónica</option>
-                                <option value="5">Ingeniería eléctrica</option>
-                                <option value="6">Diseño industrial</option>
-                                <option value="7">Derecho</option>
+                                <?php
+                                foreach($datos_programas as $campos){
+                                ?>
+                                <option value="<?php echo $campos['id'] ?>"><?php echo $campos['nombre'] ?></option>
+                                <?php
+                                }
+                                ?>
                             </select>
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-submit-add-record" value="Crear" />
@@ -54,16 +61,16 @@
 
             <!--TABLA-->
             <?php
-                require_once "./controladores/usuarioControlador.php";
-                $ins_usuario = new usuarioControlador();
+                require_once "./controladores/cursoControlador.php";
+                $ins_curso = new cursoControlador();
 
                 $cantidadRegistros = 1000;
                 if(count($pagina) == 0){
                     $paginaActual = $pagina[1];
-                    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
+                    $datos = $ins_curso->paginador_curso_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
                 }else{
                     $paginaActual = -1;
-                    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
+                    $datos = $ins_curso->paginador_curso_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
                 }
             ?>
             <div class="table-admin-container">
@@ -83,27 +90,20 @@
                         $contador = $inicio+1;
                         if($datos != 0){
                             foreach($datos as $rows){
-                                $estado = "";
-                                if($rows['estado'] == "0"){
-                                    $estado = "inactive";
-                                }else{
-                                    $estado = "active";
-                                }
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
-                            <td data-titulo="NOMBRE"><?php echo $rows['nombre'].' '.$rows['apellido'] ?></td>
-                            <td data-titulo="DESCRIPCIÓN"><?php echo $rows['documento'] ?></td>
-                            <td data-titulo="PROGRAMA"><?php echo $rows['documento'] ?></td>
+                            <td data-titulo="NOMBRE"><?php echo $rows['nombre_curso'] ?></td>
+                            <td data-titulo="DESCRIPCIÓN"><?php echo $rows['descripcion_curso'] ?></td>
+                            <td data-titulo="PROGRAMA"><?php echo $rows['nombre_programa'] ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <a href="<?php echo SERVER_URL ?>adminEditarCurso/<?php echo $ins_usuario->encryption($rows['id'])?>/" class="btn-admin-edit-record" title="Editar curso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
+                                        <a href="<?php echo SERVER_URL ?>adminEditarCurso/<?php echo $ins_curso->encryption($rows['id_curso'])?>/" class="btn-admin-edit-record" title="Editar curso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
-                                            <input type="hidden" name="idPersona" value="<?php echo $ins_usuario->encryption($rows['id']) ?>">
-                                            <input type="hidden" name="idUsuario" value="<?php echo $ins_usuario->encryption($rows['id_usuario']) ?>">
+                                            <input type="hidden" name="idPersona" value="<?php echo $ins_curso->encryption($rows['id_curso']) ?>">
                                             <button type="submit" class="btn-delete-record" title="Eliminar curso"><i class="uil uil-trash-alt"></i></button>
                                         </div>
                                     </form>

@@ -32,7 +32,7 @@ if($datos_usuario->rowCount()>0){
                         <div class="input-field">
                             <div class="select-option arrow-blocked">
                                 <div class="icon-locked">
-                                    <i class="uil uil-lock icon-no-edit-allowed"></i>    
+                                    <i class="uil uil-lock icon-no-edit-allowed"></i>
                                 </div>
                                 <select disabled name="tipoUsuario" class="combobox-titulo" title="No se permite editar el tipo de usuario">
                                     <option disabled value="" class="combobox-opciones" class="input-blocked">Tipo de usuario</option>
@@ -65,7 +65,7 @@ if($datos_usuario->rowCount()>0){
                         <div class="input-field input-blocked">
                                 <div class="icon-locked">
                                     <i class="uil uil-lock icon-no-edit-allowed"></i>    
-                                </div>                            
+                                </div>
                                 <input disabled name="correo" value="<?php echo $campos['correo']; ?>" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60"  title="No se permite editar el correo electrónico"/>
                         </div>
                         <!--Select tag-->
