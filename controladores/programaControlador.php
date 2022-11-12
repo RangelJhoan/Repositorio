@@ -131,7 +131,7 @@ class programaControlador extends programaModelo{
             exit();
         }
 
-        $check_programa = mainModel::ejecutar_consulta_simple("SELECT id FROM programa WHERE nombre = '".$programa->getNombre()."';");
+        $check_programa = mainModel::ejecutar_consulta_simple("SELECT id FROM programa WHERE nombre = '".$programa->getNombre()."' and id != '".$programa->getIdPrograma()."';");
 
         if($check_programa->rowCount() > 0){
             $alerta=[
