@@ -3,12 +3,58 @@
 if($peticionAjax){
     //Modelo llamado desde el archivo Ajax
     require_once "../modelos/cursoModelo.php";
+    require_once "../entidades/Curso.php";
 }else{
     //Modelo llamado desde la vista Index
     require_once "./modelos/cursoModelo.php";
+    require_once "./entidades/Curso.php";
 }
 
 class cursoControlador extends cursoModelo{
+
+    /*---------- Controlador para agregar curso ----------*/
+    public function agregar_curso_controlador(){
+        $curso = new Curso();
+        $curso->setNombre($_POST['nombre_ins']);
+        $curso->setDescripcion($_POST['descripcion_ins']);
+        $curso->setListaProgramas([]);
+        if(isset($_POST['programas_ins'])){
+            $curso->setListaProgramas($_POST['programas_ins']);
+        }
+
+        if($curso->getNombre() == "" || $curso->getDescripcion() == "" || count($curso->getListaProgramas())<=0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"Por favor llene todos los campos requeridos",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $agregar_curso = cursoModelo::agregar_curso_modelo($curso);
+
+        if($agregar_curso->rowCount() == 1){
+            $alerta=[
+                "Alerta"=>"recargar",
+                "Titulo"=>"Exitoso",
+                "Texto"=>"Curso creado correctamente",
+                "Tipo"=>"success"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }else{
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"Error al crear el curso",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+    }
 
     /**
      * Paginador de cursos, vista principal Admin

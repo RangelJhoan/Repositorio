@@ -32,16 +32,16 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                 <div class="container-modal-add-record">
                 <div class="content-modal-add-record">
                     <h3 class="content-modal-titulo">Nuevo curso</h3>
-                    <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
+                    <form action="<?php echo SERVER_URL ?>ajax/cursoAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                         <div class="input-field">
-                            <input name="nombre" type="text" placeholder="Nombre" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}"  title="Por favor, complete el campo" required/>
+                            <input name="nombre_ins" type="text" placeholder="Nombre" title="Por favor, complete el campo" required/>
                         </div>
                         <div class="input-field">
-                            <input name="descripcion" type="text" placeholder="Descripción" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,300}" title="Por favor, complete el campo" required/>
+                            <input name="descripcion_ins" type="text" placeholder="Descripción" title="Por favor, complete el campo" required/>
                         </div>
 
                         <label for="programaSeleccion" class="titleComboMultiple">Programa(s)</label>
-                            <select name="seleccionProg" id="programaSeleccionarCur" multiple title="Por favor, selecciona el o los programas asociados al curso">
+                            <select name="programas_ins[]" id="programaSeleccionarCur" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
                                 <?php
                                 foreach($datos_programas as $campos){
                                 ?>
