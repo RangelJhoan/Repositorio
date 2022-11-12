@@ -74,7 +74,7 @@ body.dark .activity-data::-webkit-scrollbar-thumb:hover{
     background: #3A3B3C;
 }
 /*?ESTILOS SIDEBAR*/
-nav{
+.lateralNavBar{
     padding: 10px 14px!important;
     position: fixed;
     top:0;
@@ -87,31 +87,31 @@ nav{
     overflow:hidden;
     overflow-y: auto;
 }
-nav.close{
+.lateralNavBar.close{
     width: 73px;
     opacity: 1 !important;
 }
 
 /**LOGO Y NOMBRE*/
-nav .logo-section{
+.lateralNavBar .logo-section{
     display: flex;
     align-items: center;
 }
 /*Contenedor del logo*/
-nav .logo-image{
+.lateralNavBar .logo-image{
     display: flex;
     justify-content: center;
     min-width: 45px;
     background-color: var(--white-color);
 }
 /*Logo*/
-nav .logo-image img{
+.lateralNavBar .logo-image img{
     width: 40px;
     object-fit: cover;
     border-radius: 50%;
 }
 /*Nombre*/
-nav .logo-section .logo-name{
+.lateralNavBar .logo-section .logo-name{
     font-size: 1.4rem;
     font-weight: 600;
     color:var(--main-color);
@@ -120,14 +120,14 @@ nav .logo-section .logo-name{
     -webkit-user-select: none;
     user-select: none;
 }
-nav.close .logo-name{
+.lateralNavBar.close .logo-name{
     opacity: 0;
     pointer-events: none;
 }
 
 /**OPCIONES*/
 /*Separa los dos ul*/
-nav .menu-options-section{
+.lateralNavBar .menu-options-section{
     margin-top: 40px;
     height: calc(100% - 90px);
     display: flex;
@@ -135,11 +135,11 @@ nav .menu-options-section{
     justify-content: space-between;
 }
 /*Quitar puntos decorativos de la lista*/
-.menu-options-section li{
+.menu-options-section .li-plantilla{
     list-style: none;
 }
 /*Espaciado entre opciones*/
-.menu-options-section li a{
+.menu-options-section .li-plantilla a{
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -147,7 +147,7 @@ nav .menu-options-section{
     position: relative;
 }
 /*Hacer aparecer punto al primer ul solamente*/
-.nav-links li a:hover:after{
+.nav-links .li-plantilla a:hover:after{
     position:absolute;
     content:"";
     height: 5px;
@@ -171,12 +171,12 @@ nav .menu-options-section{
     color:var(--text-color);
     transform: var(--trans-05);
 }
-nav.close li a .option-name{
+.lateralNavBar.close .li-plantilla a .option-name{
     opacity: 0;
     pointer-events: none;
 }
-.menu-options-section li a:hover i,
-.menu-options-section li a:hover .option-name{
+.menu-options-section .li-plantilla a:hover i,
+.menu-options-section .li-plantilla a:hover .option-name{
     color:var(--main-color);
 }
 /**Estilo botón dark mode*/
@@ -236,7 +236,7 @@ body.dark .switch:before{
     transition:var(--trans-05);
     padding-top: 100px;
 }
-nav.close ~.top-navbar{
+.lateralNavBar.close ~.top-navbar{
     left:73px;
     width: calc(100% - 73px);
 }
@@ -254,7 +254,7 @@ nav.close ~.top-navbar{
     z-index: 10;
 }
 
-nav.close ~.top-navbar .top-container{
+.lateralNavBar.close ~.top-navbar .top-container{
     left:73px;
     width: calc(100% - 73px);
 }
@@ -378,41 +378,41 @@ nav.close ~.top-navbar .top-container{
 /*?RESPONSIVE*/
 @media (max-width:1000px){
     /**SIDEBAR*/
-    nav{
+    .lateralNavBar{
         width:73px;
     }
-    nav.close{
+    .lateralNavBar.close{
         width:250px;
     }
-    nav .logo-name{
+    .lateralNavBar .logo-name{
         opacity: 0;
         pointer-events: none;
     }
-    nav.close .logo-name{
+    .lateralNavBar.close .logo-name{
         opacity: 1;
         pointer-events: auto;
     }
-    nav li a .option-name{
+    .lateralNavBar .li-plantilla a .option-name{
         opacity: 0;
         pointer-events: none;
     }
-    nav.close li a .option-name{
+    .lateralNavBar.close .li-plantilla a .option-name{
         opacity: 1;
         pointer-events: auto;
     }
-    nav ~.top-navbar{
+    .lateralNavBar ~.top-navbar{
         left:73px;
         width: calc(100% - 73px);
     }
-    nav.close ~.top-navbar{
+    .lateralNavBar.close ~.top-navbar{
         left:250px;
         width: calc(100% - 250px);
     }
-    nav ~.top-navbar .top-container{
+    .lateralNavBar ~.top-navbar .top-container{
         left:73px;
         width: calc(100% - 73px);
     }
-    nav.close ~.top-navbar .top-container{
+    .lateralNavBar.close ~.top-navbar .top-container{
         left:250px;
         width: calc(100% - 250px);
     }
@@ -423,41 +423,41 @@ nav.close ~.top-navbar .top-container{
 }
 
 @media (max-width:500px){
-    nav{
+    .lateralNavBar{
         width:73px;
     }
-    nav.close{
+    .lateralNavBar.close{
         width:73px;
     }
-    nav .logo-name{
+    .lateralNavBar .logo-name{
         opacity: 0;
         pointer-events: none;
     }
-    nav.close .logo-name{
+    .lateralNavBar.close .logo-name{
         opacity: 0;
         pointer-events: none;
     }
-    nav li a .option-name{
+    .lateralNavBar .li-plantilla a .option-name{
         opacity: 0;
         pointer-events: none;
     }
-    nav.close li a .option-name{
+    .lateralNavBar.close .li-plantilla a .option-name{
         opacity: 0;
         pointer-events: none;
     }
-    nav ~.top-navbar{
+    .lateralNavBar ~.top-navbar{
         left:73px;
         width: calc(100% - 73px);
     }
-    nav.close ~.top-navbar{
+    .lateralNavBar.close ~.top-navbar{
         left:73px;
         width: calc(100% - 73px);
     }
-    nav ~.top-navbar .top-container{
+    .lateralNavBar ~.top-navbar .top-container{
         left:73px;
         width: calc(100% - 73px);
     }
-    nav.close ~.top-navbar .top-container{
+    .lateralNavBar.close ~.top-navbar .top-container{
         left:73px;
         width: calc(100% - 73px);
     }

@@ -8,7 +8,6 @@
     <?php include "inc/link.php";?>
     <title>Repositorio Institucional</title>
 </head>
-
 <body class="mode">
     <?php
         $peticionAjax = false;

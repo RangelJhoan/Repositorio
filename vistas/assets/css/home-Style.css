@@ -1,0 +1,284 @@
+/*Se importa la tipografía desde google*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+/*?VARIABLES GLOBALES*/
+:root{
+    --main-color:#506591;
+    --text-color:#464646;
+    --background-color: #e9e9e9;
+    --white-color:#fff;
+    --gray-color:#c9c9c9;
+    --border-color:#a0a0a08a;
+    --cards-text-color: #fff;
+
+    --normal-font-size: 1.1rem;
+    --medium-font-size:1rem;
+    --tiny-font-size:0.9rem;
+
+
+    --normal-font-size-titleLogo:1.4rem;
+    --medium-font-size-titleLogo:1.3rem;
+    --tiny-font-size-titleLogo:1.1rem;
+    --supertiny-font-size-titleLogo:0.9rem;
+
+
+
+
+    --title-table-font-size:1.2rem;
+    --numbercards-font-size:1.9rem;
+    --title-font-size:2.2rem;
+
+    --input-color:#acacac;
+    --input-field-color:#aaa;
+    --input-box-color:rgb(230, 230, 230);
+    --paragraph-color:#2B2B2B;
+    --background-color: #f0f0f0;
+}
+/*?SETEO DE ESTILOS POR DEFAULT DEL NAVEGADOR*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    font-family: "Poppins", sans-serif;
+    background-color: var(--background-color);
+}
+
+/*?ESTILO BARRA HORIZONTAL*/
+::-webkit-scrollbar {
+    width: 9px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--text-color);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--main-color);
+}
+
+
+/*?--------------BARRA DE NAVEGACIÓN HOME---------------*/
+/*Contenedor principal barra nav*/
+.nav-Home-Main{
+    background-color: var(--white-color);
+    width: 100%;
+    height: 70px;
+}
+.nav-Home-Main:after{
+    content: '';
+    clear: both;
+    display: table;
+}
+/*Título logo repositorio instiucional*/
+.nav-Home-Main .logo-Home{
+    float: left;
+    color:var(--main-color);
+    font-size: var(--normal-font-size-titleLogo);
+    font-weight: 600;
+    line-height: 65px;
+    user-select: none ;
+    padding-left: 15px;
+}
+/*Items de la lista ul*/
+.nav-Home-Main .ul-Home{
+    float: right;
+    list-style: none;
+    margin-right: 55px;
+    position: relative;
+}
+/*Lista de forma horizontal*/
+.nav-Home-Main .ul-Home .li-Home{
+    float: left;
+    margin:0 5px;
+}
+/*Estilo de las etiquetas a. Texto opciones*/
+.nav-Home-Main .ul-Home .li-Home .a-HomeNav{
+    color:var(--text-color);
+    text-decoration: none;
+    line-height: 70px;
+    font-size: var(--normal-font-size);
+    padding: 8px 15px;
+}
+.nav-Home-Main .ul-Home .li-Home .a-HomeNav:hover{
+    color:var(--main-color);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #33508f,
+                0 0 5px #415fa0;
+}
+.nav-Home-Main .ul-Home .ul-SubMenu .li-Home .a-HomeNav:hover{
+    color:var(--main-color);
+    box-shadow: none;
+}
+/*Posicionar lista */
+.nav-Home-Main .ul-Home .ul-SubMenu{
+    position: absolute;
+    top:90px;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition:top .3s;
+    -moz-transition:top .3s;
+    -ms-transition:top .3s;
+    -o-transition:top .3s;
+    transition:top .3s;
+    background-color: var(--white-color);
+    border-top: 2px solid var(--main-color);
+    width: auto;
+}
+/*Hover aparecer opciones */
+.nav-Home-Main .ul-Home .li-Home:hover > .ul-Home{
+    top:70px;
+    opacity: 1;
+    visibility: visible;
+}
+/*Submenu*/
+.nav-Home-Main .ul-Home .ul-SubMenu .li-Home{
+    position:relative;
+    margin:0px;
+    width: auto;
+    float:none;
+    display: list-item;
+    border-bottom: 1px solid var(--border-color);
+    overflow-x: hidden;
+}
+.nav-Home-Main .ul-Home .ul-SubMenu .li-Home .a-HomeNav{
+    line-height: 50px;
+}
+
+.show-Perfil, .hamburguer-Menu, input{
+    display: none;
+}
+
+#checkHamburguesaHome{
+    display: none;
+}
+
+.homeHideListFull{
+    display: none;
+}
+
+/**LOGO Y NOMBRE*/
+.nav-Home-Main .logo-section-Home{
+    display: inline-flex;
+    padding-left: 14px;
+
+}
+/*Contenedor del logo*/
+.nav-Home-Main .logo-image-Home{
+    display: flex;
+    justify-content: center;
+    min-width: 45px;
+    background-color: var(--white-color);
+    padding-top: 9px;
+}
+/*Logo*/
+.nav-Home-Main .logo-image-Home .logo-ri-home{
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 3%;
+}
+/*Nombre*/
+.nav-Home-Main .logo-section-Home .logo-name{
+    font-size: 1.4rem;
+    font-weight: 600;
+    color:var(--main-color);
+    margin-left: 14px;
+    transition:var(--trans-05);
+    -webkit-user-select: none;
+    user-select: none;
+}
+.nav-Home-Main.close .logo-name{
+    opacity: 0;
+    pointer-events: none;
+}
+
+/*?--------------RESPONSIVE DESIGN---------------*/
+@media all and (max-width:850px){
+    .nav-Home-Main .ul-Home{
+        margin-right: 0px;
+        float:left;
+    }
+    .nav-Home-Main .logo-Home{
+        width: auto;
+    }
+    .nav-Home-Main .ul-Home .li-Home,
+    .nav-Home-Main .ul-Home .ul-SubMenu .li-Home{
+        display: block;
+        width: 100%;
+    }
+    .nav-Home-Main .ul-Home .ul-SubMenu{
+        top:70px;
+        position: static;
+        border-top:none;
+        float:none;
+        display: none;
+        opacity: 1;
+        visibility: visible;
+    }
+    .nav-Home-Main .ul-Home .ul-SubMenu ul li{
+        position: static;
+    }
+    .show-Perfil{
+        display: block;
+        color:var(--main-color);
+        padding: 0 20px;
+        line-height: 70px;
+        cursor: pointer;
+    }
+    .show-Perfil:hover{
+        color:var(--main-color);
+    }
+    .hamburguer-Menu{
+        display: inline-block;
+        width: 25px;
+        position: absolute;
+        right: 40px;
+        line-height: 70px;
+        cursor:pointer;
+        margin-top: 22px;
+    }
+    .nav-Home-Main .ul-Home .li-Home .a-HomeNav:hover{
+        box-shadow: none;
+    }
+    .show-Perfil + .a-HomeNav, .ul-Home{
+        display: none;
+    }
+    #checkHamburguesaHome:checked ~ .ul-Home{
+        display: block;
+        width: fit-content;
+        overflow-x: hidden;
+        width: 100%;
+        background: var(--white-color);
+        border-top: 2px solid var(--main-color);
+    }
+    .homeHideListMin{
+        display: none;
+    }
+    .nav-Home-Main .ul-Home .li-Home .a-HomeNav{
+        font-size: var(--medium-font-size);
+    }
+    .nav-Home-Main .logo-Home{
+        font-size: var(--medium-font-size-titleLogo);
+    }
+}
+
+
+@media all and (max-width:430px){
+    .nav-Home-Main .logo-Home{
+        display: none;
+    }
+    .nav-Home-Main .ul-Home .li-Home .a-HomeNav{
+        font-size: var(--tiny-font-size);
+    }
+}

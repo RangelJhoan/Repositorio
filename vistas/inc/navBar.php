@@ -17,13 +17,13 @@
                 <hr>
 
                 <ul>
-                    <li>
+                    <li class="li-plantilla">
                     <a href="<?php echo SERVER_URL ?>editarPerfil/" class="submenu-link">
                         <i class="uil uil-user"></i>
                         <p class="option-name">Mi perfil</p>
                     </a>
                     </li>
-                    <li>
+                    <li class="li-plantilla">
                     <a href="#" class="submenu-link">
                         <i class="uil uil-sign-out-alt"></i>
                         <p class="option-profile">Cerrar sesión</p>
