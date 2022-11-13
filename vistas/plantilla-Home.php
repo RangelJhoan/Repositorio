@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--ESTILOS CSS Y DEMÁS ESTILOS-->
-    <?php include "incAdmin/link.php";?>
+    <?php include "incHome/link.php";?>
     <title>Repositorio Institucional</title>
 </head>
-<body class="mode">
+<body>
     <?php
         $peticionAjax = false;
         require_once "./controladores/vistasControlador.php";
@@ -16,22 +16,20 @@
 
         $vistas = $IV->obtener_vistas_controlador();
 
-        if($vistas == "login" || $vistas == "404" || $vistas == "home"){
+        if($vistas == "login" || $vistas == "404"){
             require_once "./vistas/contenidos/".$vistas."-view.php";
         }else{
             $pagina = explode("/", $_GET['views']);
             ?>
-                <!---NAVLATERAL-->
-                <?php include "incAdmin/navLateral.php";?>
-                <!--TOPBAR-->
-                <section class="top-navbar">
+                <!---NAVBAR-->
+                <?php include "incHome/headerHome.php";?>
+                <!--FOOTER-->
                 <?php
-                include "incAdmin/navBar.php";
                 include $vistas;
+                include "incHome/footerHome.php";
                 ?>
-                </section>
                 <!--SCRIPTS NECESARIOS-->
-                <?php include "incAdmin/scripts.php";
+                <?php include "incHome/scripts.php";
             }
         ?>
 </body>

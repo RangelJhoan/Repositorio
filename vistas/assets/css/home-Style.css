@@ -13,6 +13,7 @@
     --normal-font-size: 1.1rem;
     --medium-font-size:1rem;
     --tiny-font-size:0.9rem;
+    --supertiny-font-size:0.7rem;
 
 
     --normal-font-size-titleLogo:1.4rem;
@@ -20,10 +21,10 @@
     --tiny-font-size-titleLogo:1.1rem;
     --supertiny-font-size-titleLogo:0.9rem;
 
+    --title-normal-table-font-size:1.3rem;
+    --title-medium-table-font-size:1.1rem;
+    --title-tiny-table-font-size:0.9rem;
 
-
-
-    --title-table-font-size:1.2rem;
     --numbercards-font-size:1.9rem;
     --title-font-size:2.2rem;
 
@@ -105,6 +106,11 @@ body{
     line-height: 70px;
     font-size: var(--normal-font-size);
     padding: 8px 15px;
+    transition:all .2s;
+    -webkit-transition:all .2s;
+    -moz-transition:all .2s;
+    -ms-transition:all .2s;
+    -o-transition:all .2s;
 }
 .nav-Home-Main .ul-Home .li-Home .a-HomeNav:hover{
     color:var(--main-color);
@@ -155,7 +161,7 @@ body{
     line-height: 50px;
 }
 
-.show-Perfil, .hamburguer-Menu, input{
+.show-Perfil, .hamburguer-Menu, .input-HamburguerHome{
     display: none;
 }
 
@@ -202,6 +208,272 @@ body{
     opacity: 0;
     pointer-events: none;
 }
+
+
+/*?--------------SECCIÓN BANNER ---------------*/
+/*Contenedor principal*/
+.bannerSearchHome-Section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    max-width: 100%;
+}
+/*Banner imagen*/
+.bannerSearchHome-Section .bannerImg{
+    max-width: 100%;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/*?--------------SECCIÓN BARRA BÚSQUEDA ---------------*/
+/*Contenedor de la barra de búsqueda*/
+.form-BarraBusquedaHome{
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-bottom: 20px;
+}
+.searchBar-Container{
+    position: relative;
+    height: 55px;
+    width: 35rem;
+    /* margin: 0px 30px; */
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+}
+/*Input para buscar*/
+.searchBar-Container .input-SearchBar{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 0 70px 0 15px;
+    outline: none;
+    border: none;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    border-radius: 6px;
+    font-size: var(--normal-font-size);
+    font-weight: 500;
+    color:var(--text-color);
+    background-color: var(--white-color);
+}
+/*Input para buscar*/
+.searchBar-Container .input-SearchBar:focus{
+    border:1px solid var(--main-color);
+}
+/*Contenedor del ícono de buscar*/
+.searchBar-Container .searchBar-IconContainer{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 60px;
+    background-color: var(--main-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor:pointer;
+    -webkit-border-radius: 0 6px 6px 0;
+    -moz-border-radius: 0 6px 6px 0;
+    -ms-border-radius: 0 6px 6px 0;
+    -o-border-radius: 0 6px 6px 0;
+    border-radius: 0 6px 6px 0;
+    border-color: transparent;
+    outline: none;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+.searchBar-Container .searchBar-IconContainer:hover{
+    background-color: #799dd1;
+}
+/*Icono de buscar*/
+.searchBar-IconContainer .search-iconHome{
+    font-size: 1.5rem;
+    color: var(--white-color);
+}
+/*Icono de cerrar*/
+.close-iconHome{
+    position:absolute;
+    right: -45px;
+    top:50%;
+    -webkit-transform:translateY(-50%);
+    -moz-transform:translateY(-50%);
+    -ms-transform:translateY(-50%);
+    -o-transform:translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color:var(--main-color);
+    padding: 5px;
+}
+
+
+/*?--------------SECCIÓN FILTROS---------------*/
+.filters-main-container{
+    max-width: 100%;
+}
+
+.filters-main-container .filter-main-Title{
+    color:var(--main-color);
+    text-align: center;
+    font-size: var(--normal-font-size-titleLogo);
+}
+
+.filters-main-container .containerFor-Filters{
+    background: var(--background-color);
+    display: grid;
+    /*Espacio entre tarjetas*/
+    gap: 1rem;
+    /*Alto de la tarjeta*/
+    grid-auto-rows:20rem;
+    /*Tarjetas ajustadas*/
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    padding: 2rem 8rem 2rem 8rem;   
+    overflow: hidden;
+}
+
+.filters-main-container .containerFor-Filters .listaFiltro {
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    background: var(--white-color);
+    overflow: hidden;
+    outline: none;
+    border-bottom: 30px solid var(--white-color);
+}
+.list-group-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: .5rem 1rem;
+}
+.list-Title-Table{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: var(--title-normal-table-font-size);
+    text-decoration: none;
+    font-weight: bolder;
+    color:var(--white-color);
+    background:#799dd1;
+    -webkit-transition: all .4s;
+    -moz-transition: all .4s;
+    -ms-transition: all .4s;
+    -o-transition: all .4s;
+    transition: all .4s;
+}
+.list-Title-Table:hover{
+    background: var(--main-color);
+}
+.list-group-item .a-list-filter{
+    color:var(--text-color);
+    text-decoration: none;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--border-color);
+    transition: all .2s;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -ms-transition: all .2s;
+    -o-transition: all .2s;
+    font-size: var(--normal-font-size);
+}
+.list-group-item .a-list-filter:hover,
+.list-group-item .a-list-filter:active{
+    background-color:var(--text-color);
+    color:var(--white-color);
+}
+
+
+
+
+
+/*?--------------FOOTER---------------*/
+.footer-Home{
+    width: 100%;
+    background-color:var(--main-color);
+    overflow-x: hidden;
+    box-shadow: 0px -60px 60px 0px var(--border-color);
+}
+
+.footer-Container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-Box{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px 20px 40px;
+}
+
+.footer-Box .logoFooter-Home .logo-RI-footerHome{
+    width: 150px;
+}
+
+.footer-Box .mainText-Footer{
+    max-width: 40rem;
+    margin-top: 20px;
+    color: var(--white-color);
+    font-size: var(--medium-font-size);
+}
+
+.footer-Box .h2-title-Footer{
+    margin-bottom: 30px;
+    color: var(--white-color);
+    font-weight: 800;
+    font-size: 25px;
+}
+
+.footer-Box .link-a-footer{
+    margin-top: 10px;
+    color: var(--white-color);
+    font-weight: 600;
+    font-size: var(--tiny-font-size);
+}
+
+.footer-Box .link-a-footer:hover{
+    opacity: 0.8;
+}
+
+.copyright-Box-Footer{
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+}
+
+.copyright-Box-Footer .rights-p-Footer{
+    margin-top: 20px;
+    color: var(--white-color);
+    font-size: var(--supertiny-font-size);
+}
+
+.copyright-Box-Footer .line-divide-footer{
+    border: none;
+    height: 1px;
+    background-color: var(--white-color);
+}
+.centerInfoFooter{
+    display: flex;
+    flex-direction: column;
+}
+
 
 /*?--------------RESPONSIVE DESIGN---------------*/
 @media all and (max-width:850px){
@@ -258,9 +530,12 @@ body{
         display: block;
         width: fit-content;
         overflow-x: hidden;
+        z-index: 9999;
         width: 100%;
         background: var(--white-color);
         border-top: 2px solid var(--main-color);
+        box-shadow: 0px 10px 10px -6px var(--border-color);
+        margin-bottom: 20px;
     }
     .homeHideListMin{
         display: none;
@@ -271,8 +546,78 @@ body{
     .nav-Home-Main .logo-Home{
         font-size: var(--medium-font-size-titleLogo);
     }
+    .bannerSearchHome-Section{
+        margin-top:0;
+    }
+    .searchBar-IconContainer .search-iconHome{
+        font-size: 1.3rem;
+    }
+    .searchBar-Container{
+        height: 40px;
+    }
+    .searchBar-Container .input-SearchBar{
+        font-size: var(--medium-font-size);
+    }
+    .form-BarraBusquedaHome{
+        max-width: 90%;
+    }  
+    .footer-Box .mainText-Footer{
+        font-size: var(--medium-font-size);
+        max-width: 30rem;
+    }
+    .footer-Box .mainText-Footer{
+        text-align: center;
+    }
+    .filters-main-container .containerFor-Filters{
+        padding: 2rem 3rem 2rem 3rem;   
+        grid-auto-rows:15rem;
+    }
+    .filters-main-container .filter-main-Title{
+        font-size: var(--medium-font-size-titleLogo);
+    }
+    .list-Title-Table{
+        font-size: var(--title-medium-table-font-size);
+    }
+    .list-group-item .a-list-filter{
+        font-size: var(--medium-font-size);
+    }
 }
 
+@media all and (max-width:600px){
+    .footer-Container{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .footer-Box {
+        padding: 10px 40px;
+    }
+    .footer-Box .h2-title-Footer{
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 0;
+    }
+    .footer-Box .logoFooter-Home {
+        display: flex;
+        justify-content: center;
+    }
+    .footer-Box .logoFooter-Home .logo-RI-footerHome{
+        width: 130px;
+    }
+    .centerInfoFooter{
+        flex-direction: row;
+    }
+    .footer-Box .link-a-footer {
+        margin-top: 0;
+        padding: 10px;
+        text-align: center;
+    }
+    .filters-main-container .containerFor-Filters{
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    }
+    .filters-main-container .containerFor-Filters{
+        grid-auto-rows:12rem;
+    }
+}
 
 @media all and (max-width:430px){
     .nav-Home-Main .logo-Home{
@@ -280,5 +625,34 @@ body{
     }
     .nav-Home-Main .ul-Home .li-Home .a-HomeNav{
         font-size: var(--tiny-font-size);
+    }
+    .searchBar-IconContainer .search-iconHome{
+        font-size: 1rem;
+    }
+    .searchBar-Container{
+        height: 35px;
+    }
+    .searchBar-Container .input-SearchBar{
+        font-size: var(--tiny-font-size);
+    }
+    .footer-Box .mainText-Footer{
+        font-size: var(--tiny-font-size);
+    }
+    .footer-Box .logoFooter-Home .logo-RI-footerHome{
+        width: 100px;
+    }
+    .centerInfoFooter{
+        flex-direction: column;
+    }
+    .filters-main-container .filter-main-Title{
+        font-size: var(--tiny-font-size-titleLogo);
+    }
+    .list-Title-Table{
+        font-size: var(--title-tiny-table-font-size);
+    }
+    .list-group-item .a-list-filter{
+        font-size: var(--tiny-font-size);
+        margin-top: 1px;
+        margin-bottom: 1px;
     }
 }
