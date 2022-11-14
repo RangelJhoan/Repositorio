@@ -760,7 +760,7 @@ body{
         font-size: var(--phrgp-home-medium-font-size);
     }
     .wrapperFAQ{
-        max-width:70%;
+        max-width:85%;
     }
     .wrapperFAQ .labelFAQ .iconFAQ{
         height: 1.9rem;
