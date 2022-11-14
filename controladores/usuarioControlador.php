@@ -68,7 +68,7 @@ class usuarioControlador extends usuarioModelo{
                 $alerta=[
                     "Alerta"=>"recargar",
                     "Titulo"=>"Exitoso",
-                    "Texto"=>"Usuario creado correctamente por favor espere activar el usuario",
+                    "Texto"=>"Usuario creado correctamente",
                     "Tipo"=>"success"
                 ];
                 echo json_encode($alerta);
@@ -86,7 +86,7 @@ class usuarioControlador extends usuarioModelo{
         }
     }
 
-    /*---------- Controlador para agregar usuario ----------*/
+    /*---------- Controlador para iniciar sesion usuario ----------*/
     public function iniciarSesion_usuario_controlador(){
         $correo = $_POST['correo'];
         $clave = $_POST['clave'];
@@ -104,10 +104,30 @@ class usuarioControlador extends usuarioModelo{
         }
 
         $clave = mainModel::encryption($clave);
-        $check_account = mainModel::ejecutar_consulta_simple("SELECT correo FROM usuario WHERE correo = '$correo' && clave = '$clave';");
+        $check_account = mainModel::ejecutar_consulta_simple("SELECT p.id, p.nombre, p.apellido, p.documento, p.id_usuario, u.correo, u.estado, tu.descripcion 
+        FROM persona p JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
+        WHERE correo = '$correo' AND clave = '$clave' AND estado = '1';");
 
         if($check_account->rowCount() > 0){
-            echo "<script>window.location.href='".SERVER_URL."adminDashboard/';</script>";
+            $row = $check_account->fetch();
+
+            session_start(['name'=>'REPO']);
+            $_SESSION['id_persona'] = $row['id'];
+            $_SESSION['nombre_usuario'] = $row['nombre'];
+            $_SESSION['apellido_usuario'] = $row['apellido'];
+            $_SESSION['documento_usuario'] = $row['documento'];
+            $_SESSION['id_usuario'] = $row['id_usuario'];
+            $_SESSION['correo_usuario'] = $row['correo'];
+            $_SESSION['estado_usuario'] = $row['estado'];
+            $_SESSION['tipo_usuario'] = $row['descripcion'];
+
+            if($row['descripcion'] == "Administrador"){
+                echo "<script>window.location.href='".SERVER_URL."adminDashboard/';</script>";
+            }elseif($row['descripcion'] == "Docente"){
+                echo "<script>window.location.href='".SERVER_URL."docenteDashboard/';</script>";
+            }elseif($row['descripcion'] == "Estudiante"){
+                echo "<script>window.location.href='".SERVER_URL."estudianteDashboard/';</script>";
+            }
         }else{
             echo '<script>
                     Swal.fire({
@@ -118,6 +138,13 @@ class usuarioControlador extends usuarioModelo{
                     });
                 </script>';
         }
+    }
+
+    /*---------- Controlador para forzar cierre sesión usuario ----------*/
+    public function forzar_cierre_sesion_controlador(){
+        session_unset();
+        session_destroy();
+        echo "<script>window.location.href='".SERVER_URL."login/';</script>";
     }
 
     /*---------- Controlador para eliminar usuario ----------*/

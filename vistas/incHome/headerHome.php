@@ -1,6 +1,6 @@
 
     <!-- BARRA DE NAVEGACIÓN -->
-    <nav class="nav-Home-Main">       
+    <nav class="nav-Home-Main">
         <section class="logo-section-Home">
             <div class="logo-image-Home">
                 <a title="Repositorio Institucional" href="<?php echo SERVER_URL; ?>home/">
@@ -17,7 +17,7 @@
         <ul class="ul-Home">
             <li class="li-Home">
                 <a  class="a-HomeNav" href="#">Inicio</a></li>
-            <li class="li-Home"><a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>login/">Preguntas frecuentes</a></li>
+            <li class="li-Home"><a  class="a-HomeNav" href="#">Preguntas frecuentes</a></li>
             <li class="li-Home">
                 <input class="input-HamburguerHome" type="checkbox" id="btn-Perfil-Label" class="input-Navbar">
                 <a  class="a-HomeNav homeHideListMin" href="#">Perfil</a>
@@ -25,26 +25,21 @@
                     <li class="li-Home">
                         <a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>login/">Acceder</a>
                     </li>
-                    <li class="li-Home">
-                        <a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>login/">Registrarse</a>
-                    </li>
                 </ul>
             </li>
             <li class="li-Home homeHideListFull"><a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>login/">Acceder</a></li>
-            <li class="li-Home homeHideListFull"><a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>login/">Registrarse</a></li>
         </ul>
     </nav>
 
-    
     <!-- SECCIÓN 1: BANNER + BARRA BÚSQUEDA-->
     <section class="bannerSearchHome-Section">
         <!-- Banner -->
-        <img class="bannerImg" src="<?php echo SERVER_URL ?>vistas/assets/img/bannerHome.png" alt="Banner Repositorio Institucional"> 
+        <img class="bannerImg" src="<?php echo SERVER_URL ?>vistas/assets/img/bannerHome.png" alt="Banner Repositorio Institucional">
         <!-- Barra búsqueda -->
         <form class="form-BarraBusquedaHome" action="#" method="POST" data-form="save" autocomplete="off">
             <div class="searchBar-Container">
                 <input class="input-SearchBar" type="text" placeholder="Buscar recurso...">
-                <button type="submit" title="Buscar" class="searchBar-IconContainer">     
+                <button type="submit" title="Buscar" class="searchBar-IconContainer">
                     <i class="uil uil-search search-iconHome"></i>
                     <!-- <i class="uil uil-search search-iconHome"></i> -->
                 </button>

@@ -1,3 +1,7 @@
+<?php
+    require_once "./controladores/usuarioControlador.php";
+    $ins_usuario = new usuarioControlador();
+?>
 <!--NAVBAR-->
 <div class="top-container">
             <i class="uil uil-bars sidebar-toggle"></i>
@@ -11,14 +15,14 @@
             <div class="submenu-wrap" id="subMenu">
                 <div class="submenu">
                     <div class="user-info">
-                        <h3>Rafael Ricardo Mantilla Guiza</h3>
+                        <h3><?php echo $_SESSION['nombre_usuario'] . " " . $_SESSION['apellido_usuario']; ?></h3>
                     </div>
                 </div>
                 <hr>
 
                 <ul>
                     <li class="li-plantilla">
-                    <a href="<?php echo SERVER_URL ?>editarPerfil/" class="submenu-link">
+                    <a href="<?php echo SERVER_URL ?>adminEditarUsuario/<?php echo $ins_usuario->encryption($_SESSION['id_persona'])?>" class="submenu-link">
                         <i class="uil uil-user"></i>
                         <p class="option-name">Mi perfil</p>
                     </a>
