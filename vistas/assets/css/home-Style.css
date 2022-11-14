@@ -2,37 +2,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 /*?VARIABLES GLOBALES*/
 :root{
-    --main-color:#506591;
-    --text-color:#464646;
-    --background-color: #e9e9e9;
-    --white-color:#fff;
-    --gray-color:#c9c9c9;
-    --border-color:#a0a0a08a;
-    --cards-text-color: #fff;
+    /* Colores */
+    --main-home-color:#506591;
+    --home-text-color:#464646;
+    --home-background-color: #f0f0f0;
+    --white-home-color:#fff;
+    --gray-home-color:#c9c9c9;
+    --border-home-color:#a0a0a08a;
+    --footer-bgr-color:#2B2B2B;
+    --hover-navBarHome1: #33508f;
+    --hover-navBarHome2: #415fa0;
+    --secondary-main-homeColor:#678c8f;
 
-    --normal-font-size: 1.1rem;
-    --medium-font-size:1rem;
-    --tiny-font-size:0.9rem;
-    --supertiny-font-size:0.7rem;
+    /* Párrafos generales del repositorio*/
+    --phrgp-home-normal-font-size: 1rem;
+    --phrgp-home-medium-font-size:0.9rem;
+    --phrgp-home-tiny-font-size:0.8rem;
+    --phrgp-home-supertiny-font-size:0.7rem;
 
+    /* Títulos preguntas frecuentes */
+    --question-homepq-normal-font-size: 1.1rem;
+    --question-homepq-medium-font-size:1rem;
+    --question-homepq-tiny-font-size:0.9rem;
 
-    --normal-font-size-titleLogo:1.4rem;
-    --medium-font-size-titleLogo:1.3rem;
-    --tiny-font-size-titleLogo:1.1rem;
-    --supertiny-font-size-titleLogo:0.9rem;
+    /* Títulos campos filtros */
+    --titleFilterHome-normal-fz:1.2rem;
+    --titleFilterHome-medium-fz:1.1rem;
+    --titleFilterHome-tiny-fz:1rem;
 
-    --title-normal-table-font-size:1.3rem;
-    --title-medium-table-font-size:1.1rem;
-    --title-tiny-table-font-size:0.9rem;
-
-    --numbercards-font-size:1.9rem;
-    --title-font-size:2.2rem;
-
-    --input-color:#acacac;
-    --input-field-color:#aaa;
-    --input-box-color:rgb(230, 230, 230);
-    --paragraph-color:#2B2B2B;
-    --background-color: #f0f0f0;
+    /* Títulos principales */
+    --normal-font-size-mainSectionHome:1.3rem;
+    --medium-font-size-mainSectionHome:1.2rem;
+    --tiny-font-size-mainSectionHome:1.1rem;
+    --supertiny-font-size-mainSectionHome:0.9rem;
 }
 /*?SETEO DE ESTILOS POR DEFAULT DEL NAVEGADOR*/
 * {
@@ -44,7 +46,7 @@
 
 body{
     font-family: "Poppins", sans-serif;
-    background-color: var(--background-color);
+    background-color: var(--home-background-color);
 }
 
 /*?ESTILO BARRA HORIZONTAL*/
@@ -55,20 +57,20 @@ body{
     background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--text-color);
+    background: var(--home-text-color);
     border-radius: 12px;
     transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--main-color);
+    background: var(--main-home-color);
 }
 
 
 /*?--------------BARRA DE NAVEGACIÓN HOME---------------*/
 /*Contenedor principal barra nav*/
 .nav-Home-Main{
-    background-color: var(--white-color);
+    background-color: var(--white-home-color);
     width: 100%;
     height: 70px;
 }
@@ -80,10 +82,11 @@ body{
 /*Título logo repositorio instiucional*/
 .nav-Home-Main .logo-Home{
     float: left;
-    color:var(--main-color);
-    font-size: var(--normal-font-size-titleLogo);
+    color:var(--main-home-color);
+    font-size: var(--normal-font-size-mainSectionHome);
     font-weight: 600;
     line-height: 65px;
+    -webkit-user-select:none;
     user-select: none ;
     padding-left: 15px;
 }
@@ -101,10 +104,10 @@ body{
 }
 /*Estilo de las etiquetas a. Texto opciones*/
 .nav-Home-Main .ul-Home .li-Home .a-HomeNav{
-    color:var(--text-color);
+    color:var(--home-text-color);
     text-decoration: none;
     line-height: 70px;
-    font-size: var(--normal-font-size);
+    font-size: var(--phrgp-home-normal-font-size);
     padding: 8px 15px;
     transition:all .2s;
     -webkit-transition:all .2s;
@@ -113,17 +116,17 @@ body{
     -o-transition:all .2s;
 }
 .nav-Home-Main .ul-Home .li-Home .a-HomeNav:hover{
-    color:var(--main-color);
+    color:var(--main-home-color);
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     border-radius: 5px;
-    box-shadow: 0 0 5px #33508f,
-                0 0 5px #415fa0;
+    box-shadow: 0 0 5px var(--hover-navBarHome1),
+                0 0 5px var(--hover-navBarHome2);
 }
 .nav-Home-Main .ul-Home .ul-SubMenu .li-Home .a-HomeNav:hover{
-    color:var(--main-color);
+    color:var(--main-home-color);
     box-shadow: none;
 }
 /*Posicionar lista */
@@ -137,8 +140,8 @@ body{
     -ms-transition:top .3s;
     -o-transition:top .3s;
     transition:top .3s;
-    background-color: var(--white-color);
-    border-top: 2px solid var(--main-color);
+    background-color: var(--white-home-color);
+    border-top: 2px solid var(--main-home-color);
     width: auto;
 }
 /*Hover aparecer opciones */
@@ -154,7 +157,7 @@ body{
     width: auto;
     float:none;
     display: list-item;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-home-color);
     overflow-x: hidden;
 }
 .nav-Home-Main .ul-Home .ul-SubMenu .li-Home .a-HomeNav{
@@ -184,7 +187,7 @@ body{
     display: flex;
     justify-content: center;
     min-width: 45px;
-    background-color: var(--white-color);
+    background-color: var(--white-home-color);
     padding-top: 9px;
 }
 /*Logo*/
@@ -198,7 +201,7 @@ body{
 .nav-Home-Main .logo-section-Home .logo-name{
     font-size: 1.4rem;
     font-weight: 600;
-    color:var(--main-color);
+    color:var(--main-home-color);
     margin-left: 14px;
     transition:var(--trans-05);
     -webkit-user-select: none;
@@ -262,14 +265,14 @@ body{
     -ms-border-radius: 6px;
     -o-border-radius: 6px;
     border-radius: 6px;
-    font-size: var(--normal-font-size);
+    font-size: var(--phrgp-home-normal-font-size);
     font-weight: 500;
-    color:var(--text-color);
-    background-color: var(--white-color);
+    color:var(--home-text-color);
+    background-color: var(--white-home-color);
 }
 /*Input para buscar*/
 .searchBar-Container .input-SearchBar:focus{
-    border:1px solid var(--main-color);
+    border:1px solid var(--main-home-color);
 }
 /*Contenedor del ícono de buscar*/
 .searchBar-Container .searchBar-IconContainer{
@@ -278,7 +281,7 @@ body{
     top: 0;
     height: 100%;
     width: 60px;
-    background-color: var(--main-color);
+    background-color: var(--main-home-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -288,7 +291,7 @@ body{
     -ms-border-radius: 0 6px 6px 0;
     -o-border-radius: 0 6px 6px 0;
     border-radius: 0 6px 6px 0;
-    border-color: transparent;
+    border: none;
     outline: none;
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
@@ -297,12 +300,12 @@ body{
     transition: all .5s;
 }
 .searchBar-Container .searchBar-IconContainer:hover{
-    background-color: #799dd1;
+    background-color: var(--hover-navBarHome2);
 }
 /*Icono de buscar*/
 .searchBar-IconContainer .search-iconHome{
     font-size: 1.5rem;
-    color: var(--white-color);
+    color: var(--white-home-color);
 }
 /*Icono de cerrar*/
 .close-iconHome{
@@ -315,7 +318,7 @@ body{
     -o-transform:translateY(-50%);
     transform: translateY(-50%);
     font-size: 1.5rem;
-    color:var(--main-color);
+    color:var(--main-home-color);
     padding: 5px;
 }
 
@@ -326,13 +329,13 @@ body{
 }
 
 .filters-main-container .filter-main-Title{
-    color:var(--main-color);
+    color:var(--main-home-color);
     text-align: center;
-    font-size: var(--normal-font-size-titleLogo);
+    font-size: var(--normal-font-size-mainSectionHome);
 }
 
 .filters-main-container .containerFor-Filters{
-    background: var(--background-color);
+    background: var(--home-background-color);
     display: grid;
     /*Espacio entre tarjetas*/
     gap: 1rem;
@@ -348,10 +351,10 @@ body{
     border-radius: 12px;
     display: flex;
     flex-direction: column;
-    background: var(--white-color);
+    background: var(--white-home-color);
     overflow: hidden;
     outline: none;
-    border-bottom: 30px solid var(--white-color);
+    border-bottom: 30px solid var(--white-home-color);
 }
 .list-group-item{
     display: flex;
@@ -362,38 +365,205 @@ body{
 .list-Title-Table{
     text-align: center;
     text-transform: uppercase;
-    font-size: var(--title-normal-table-font-size);
+    font-size: var(--titleFilterHome-normal-fz);
     text-decoration: none;
     font-weight: bolder;
-    color:var(--white-color);
-    background:#799dd1;
+    color:var(--white-home-color);
+    background: linear-gradient(294deg,#6f89c1,#82b0b3d6,#799dd1);
+    background-size: 180% 180%;
+    animation: gradient-animation 5s ease infinite;
     -webkit-transition: all .4s;
     -moz-transition: all .4s;
     -ms-transition: all .4s;
     -o-transition: all .4s;
     transition: all .4s;
+    -webkit-animation: gradient-animation 5s ease infinite;
 }
+.list-Title-Table2{
+    background: linear-gradient(100deg,#82b0b3d6,#6f89c1,#82b0b3d6);
+    background-size: 180% 180%;
+    animation: gradient-animation 10s ease infinite;
+    -webkit-transition: all .4s;
+    -moz-transition: all .4s;
+    -ms-transition: all .4s;
+    -o-transition: all .4s;
+    transition: all .4s;
+    -webkit-animation: gradient-animation 12s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 .list-Title-Table:hover{
-    background: var(--main-color);
+    background: var(--main-home-color);
 }
 .list-group-item .a-list-filter{
-    color:var(--text-color);
+    color:var(--home-text-color);
     text-decoration: none;
     margin-top: 4px;
     margin-bottom: 4px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-home-color);
     transition: all .2s;
     -webkit-transition: all .2s;
     -moz-transition: all .2s;
     -ms-transition: all .2s;
     -o-transition: all .2s;
-    font-size: var(--normal-font-size);
+    font-size: var(--phrgp-home-normal-font-size);
 }
 .list-group-item .a-list-filter:hover,
 .list-group-item .a-list-filter:active{
-    background-color:var(--text-color);
-    color:var(--white-color);
+    background-color:var(--home-text-color);
+    color:var(--white-home-color);
 }
+
+
+
+
+/*?--------------SECCIÓN PREGUNTAS FRECUENTES---------------*/
+.bodyFQ{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.bodyFQ .fq-main-Title {
+    color: var(--main-home-color);
+    text-align: center;
+    font-size: var(--normal-font-size-mainSectionHome);
+}
+.wrapperFAQ{
+    max-width:60%;
+    padding: 20px 0 40px 0;
+}
+
+.wrapperFAQ .parentTabFAQ{
+    margin-bottom: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow:0px 0px 10px rgba(0,0,0,0.126);
+    -moz-box-shadow:0px 0px 10px rgba(0,0,0,0.126);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.126);
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -ms-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+}
+.wrapperFAQ .parentTabFAQ:hover{
+    -webkit-box-shadow:0px 0px 15px 1px var(--secondary-main-homeColor);
+    -moz-box-shadow: 0px 0px 15px 1px var(--secondary-main-homeColor);
+    box-shadow: 0px 0px 15px 1px var(--secondary-main-homeColor);
+
+}
+
+.wrapperFAQ .parentTabFAQ .labelFAQ,
+.wrapperFAQ .answerFAQ .labelFAQ{
+    background-color: transparent;
+    padding: 10px  20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    position: relative;
+    z-index: 99;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+.wrapperFAQ .parentTabFAQ .labelFAQ:hover{
+    background-color: var(--white-home-color);
+}
+
+.wrapperFAQ .labelFAQ .questionFAQ{
+    color:var(--secondary-main-homeColor);
+    font-size: var(--question-homepq-normal-font-size);
+}
+.wrapperFAQ .labelFAQ .iconFAQ{
+    position: relative;
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white-home-color);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+.parentTabFAQ input:checked ~ .labelFAQ .iconFAQ i::before{
+    transform: translate(0,-2px) rotate(180deg);
+    -webkit-transform: translate(0,-2px) rotate(180deg);
+    -moz-transform: translate(0,-2px) rotate(180deg);
+    -ms-transform: translate(0,-2px) rotate(180deg);
+    -o-transform: translate(0,-2px) rotate(180deg);
+}
+
+.wrapperFAQ .labelFAQ .iconFAQ i{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    color:var(--secondary-main-homeColor);
+    font-size: var(--normal-font-size-mainSectionHome);
+}
+
+.wrapperFAQ .parentTabFAQ .contentFAQ{
+    max-height: 0px;
+    overflow: hidden;
+    padding: 0px 20px;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    border-top: 1px solid var(--gray-home-color);
+}
+
+.parentTabFAQ .inputFAQ:checked ~ .contentFAQ{
+    max-height: 100vh;
+}
+.parentTabFAQ .inputFAQ:not(:checked) ~ .contentFAQ{
+    max-height: 0vh;
+}
+
+
+.wrapperFAQ .parentTabFAQ .contentFAQ .answerFAQ{
+    font-size: var(--phrgp-home-normal-font-size);
+    padding: 15px 20px;
+    background: transparent;
+    color:var(--home-text-color);
+}
+
+.wrapperFAQ .inputFAQ{
+    display: none;
+}
+
 
 
 
@@ -402,9 +572,9 @@ body{
 /*?--------------FOOTER---------------*/
 .footer-Home{
     width: 100%;
-    background-color:var(--main-color);
+    background-color:var(--footer-bgr-color);
     overflow-x: hidden;
-    box-shadow: 0px -60px 60px 0px var(--border-color);
+    box-shadow: 0px -10px 10px 0px var(--border-home-color);
 }
 
 .footer-Container{
@@ -429,22 +599,22 @@ body{
 .footer-Box .mainText-Footer{
     max-width: 40rem;
     margin-top: 20px;
-    color: var(--white-color);
-    font-size: var(--medium-font-size);
+    color: var(--white-home-color);
+    font-size: var(--phrgp-home-medium-font-size);
 }
 
 .footer-Box .h2-title-Footer{
     margin-bottom: 30px;
-    color: var(--white-color);
+    color: var(--white-home-color);
     font-weight: 800;
     font-size: 25px;
 }
 
 .footer-Box .link-a-footer{
     margin-top: 10px;
-    color: var(--white-color);
+    color: var(--white-home-color);
     font-weight: 600;
-    font-size: var(--tiny-font-size);
+    font-size: var(--phrgp-home-tiny-font-size);
 }
 
 .footer-Box .link-a-footer:hover{
@@ -460,14 +630,14 @@ body{
 
 .copyright-Box-Footer .rights-p-Footer{
     margin-top: 20px;
-    color: var(--white-color);
-    font-size: var(--supertiny-font-size);
+    color: var(--white-home-color);
+    font-size: var(--phrgp-home-supertiny-font-size);
 }
 
 .copyright-Box-Footer .line-divide-footer{
     border: none;
     height: 1px;
-    background-color: var(--white-color);
+    background-color: var(--white-home-color);
 }
 .centerInfoFooter{
     display: flex;
@@ -503,13 +673,13 @@ body{
     }
     .show-Perfil{
         display: block;
-        color:var(--main-color);
+        color:var(--main-home-color);
         padding: 0 20px;
         line-height: 70px;
         cursor: pointer;
     }
     .show-Perfil:hover{
-        color:var(--main-color);
+        color:var(--main-home-color);
     }
     .hamburguer-Menu{
         display: inline-block;
@@ -528,23 +698,24 @@ body{
     }
     #checkHamburguesaHome:checked ~ .ul-Home{
         display: block;
+        width:-moz-fit-content;
         width: fit-content;
         overflow-x: hidden;
         z-index: 9999;
         width: 100%;
-        background: var(--white-color);
-        border-top: 2px solid var(--main-color);
-        box-shadow: 0px 10px 10px -6px var(--border-color);
+        background: var(--white-home-color);
+        border-top: 2px solid var(--main-home-color);
+        box-shadow: 0px 10px 10px -6px var(--border-home-color);
         margin-bottom: 20px;
     }
     .homeHideListMin{
         display: none;
     }
     .nav-Home-Main .ul-Home .li-Home .a-HomeNav{
-        font-size: var(--medium-font-size);
+        font-size: var(--phrgp-home-medium-font-size);
     }
     .nav-Home-Main .logo-Home{
-        font-size: var(--medium-font-size-titleLogo);
+        font-size: var(--medium-font-size-mainSectionHome);
     }
     .bannerSearchHome-Section{
         margin-top:0;
@@ -556,13 +727,13 @@ body{
         height: 40px;
     }
     .searchBar-Container .input-SearchBar{
-        font-size: var(--medium-font-size);
+        font-size: var(--phrgp-home-medium-font-size);
     }
     .form-BarraBusquedaHome{
         max-width: 90%;
     }  
     .footer-Box .mainText-Footer{
-        font-size: var(--medium-font-size);
+        font-size: var(--phrgp-home-medium-font-size);
         max-width: 30rem;
     }
     .footer-Box .mainText-Footer{
@@ -572,14 +743,28 @@ body{
         padding: 2rem 3rem 2rem 3rem;   
         grid-auto-rows:15rem;
     }
-    .filters-main-container .filter-main-Title{
-        font-size: var(--medium-font-size-titleLogo);
+    .filters-main-container .filter-main-Title,
+    .bodyFQ .fq-main-Title{
+        font-size: var(--medium-font-size-mainSectionHome);
     }
     .list-Title-Table{
-        font-size: var(--title-medium-table-font-size);
+        font-size: var(--titleFilterHome-normal-fz);
     }
     .list-group-item .a-list-filter{
-        font-size: var(--medium-font-size);
+        font-size: var(--phrgp-home-medium-font-size);
+    }
+    .wrapperFAQ .labelFAQ .questionFAQ{
+        font-size: var(--question-homepq-medium-font-size);
+    }
+    .wrapperFAQ .parentTabFAQ .contentFAQ .answerFAQ{
+        font-size: var(--phrgp-home-medium-font-size);
+    }
+    .wrapperFAQ{
+        max-width:70%;
+    }
+    .wrapperFAQ .labelFAQ .iconFAQ{
+        height: 1.9rem;
+        width: 1.9rem;
     }
 }
 
@@ -617,6 +802,13 @@ body{
     .filters-main-container .containerFor-Filters{
         grid-auto-rows:12rem;
     }
+    .wrapperFAQ{
+        max-width:80%;
+    }
+    .wrapperFAQ .labelFAQ .iconFAQ{
+        height: 1.7rem;
+        width: 1.7rem;
+    }
 }
 
 @media all and (max-width:430px){
@@ -624,7 +816,7 @@ body{
         display: none;
     }
     .nav-Home-Main .ul-Home .li-Home .a-HomeNav{
-        font-size: var(--tiny-font-size);
+        font-size: var(--phrgp-home-tiny-font-size);
     }
     .searchBar-IconContainer .search-iconHome{
         font-size: 1rem;
@@ -633,10 +825,10 @@ body{
         height: 35px;
     }
     .searchBar-Container .input-SearchBar{
-        font-size: var(--tiny-font-size);
+        font-size: var(--phrgp-home-tiny-font-size);
     }
     .footer-Box .mainText-Footer{
-        font-size: var(--tiny-font-size);
+        font-size: var(--phrgp-home-tiny-font-size);
     }
     .footer-Box .logoFooter-Home .logo-RI-footerHome{
         width: 100px;
@@ -644,15 +836,41 @@ body{
     .centerInfoFooter{
         flex-direction: column;
     }
-    .filters-main-container .filter-main-Title{
-        font-size: var(--tiny-font-size-titleLogo);
+    .filters-main-container .filter-main-Title,
+    .bodyFQ .fq-main-Title{
+        font-size: var(--tiny-font-size-mainSectionHome);
     }
     .list-Title-Table{
-        font-size: var(--title-tiny-table-font-size);
+        font-size: var(--titleFilterHome-medium-fz);
     }
     .list-group-item .a-list-filter{
-        font-size: var(--tiny-font-size);
+        font-size: var(--phrgp-home-tiny-font-size);
         margin-top: 1px;
         margin-bottom: 1px;
+    }
+    .wrapperFAQ .labelFAQ .questionFAQ{
+        font-size: var(--question-homepq-tiny-font-size);
+    }
+    .wrapperFAQ .parentTabFAQ{
+        margin-bottom: 5px;
+    }
+    .wrapperFAQ .parentTabFAQ .contentFAQ .answerFAQ{
+        font-size: var(--phrgp-home-tiny-font-size);
+        padding: 10px;
+        text-align: justify;
+    }
+    .wrapperFAQ{
+        max-width:85%;
+    }
+    .wrapperFAQ .labelFAQ .iconFAQ{
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+    .wrapperFAQ .parentTabFAQ .labelFAQ,
+    .wrapperFAQ .answerFAQ .labelFAQ{
+    padding: 5px 10px;
+    }
+    .wrapperFAQ .parentTabFAQ .contentFAQ{
+        padding: 0px 1px;
     }
 }

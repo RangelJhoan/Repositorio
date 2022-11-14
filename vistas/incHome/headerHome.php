@@ -16,8 +16,8 @@
         </label>
         <ul class="ul-Home">
             <li class="li-Home">
-                <a  class="a-HomeNav" href="#">Inicio</a></li>
-            <li class="li-Home"><a  class="a-HomeNav" href="#">Preguntas frecuentes</a></li>
+                <a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>home/">Inicio</a></li>
+            <li class="li-Home"><a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>preguntasFreq/">Preguntas frecuentes</a></li>
             <li class="li-Home">
                 <input class="input-HamburguerHome" type="checkbox" id="btn-Perfil-Label" class="input-Navbar">
                 <a  class="a-HomeNav homeHideListMin" href="#">Perfil</a>

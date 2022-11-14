@@ -12,15 +12,15 @@
                 <a class="list-Title-Table" href="" title="Filtrar todo por autor">Autor</a>
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a class="a-list-filter" href="">Autor 1</a>
+                        <a class="a-list-filter" href="">Autor 1 Autor2 Autor3 Autor4 Autor5 Autor6 Autor 7</a>
                         <a class="a-list-filter" href="">Autor 2</a>
                         <a class="a-list-filter" href="">Autor 3</a>
                         <a class="a-list-filter" href="">Autor 4</a>
                     </li>
                 </ul>
-            </div>
+            </div>  
             <div class="listaFiltro">
-                <a class="list-Title-Table" href="" title="Filtrar todo por título">Título</a>
+                <a class="list-Title-Table list-Title-Table2" href="" title="Filtrar todo por título">Título</a>
                 <ul class="list-group">
                     <li class="list-group-item">
                         <a class="a-list-filter" href="">Título 1</a>
@@ -29,7 +29,7 @@
                         <a class="a-list-filter" href="">Título 4</a>
                     </li>
                 </ul>
-            </div>
+            </div>                  
             <div class="listaFiltro">
                 <a class="list-Title-Table" href="" title="Filtrar todo por curso">Curso</a>
                 <ul class="list-group">
@@ -37,12 +37,19 @@
                         <a class="a-list-filter" href="">Curso 1</a>
                         <a class="a-list-filter" href="">Curso 2</a>
                         <a class="a-list-filter" href="">Curso 3</a>
+                        <a class="a-list-filter" href="">Curso 3</a>
+                        <a class="a-list-filter" href="">Curso 3</a>
+                        <a class="a-list-filter" href="">Curso 3</a>
+                        <a class="a-list-filter" href="">Curso 3</a>
+                        <a class="a-list-filter" href="">Curso 4</a>
+                        <a class="a-list-filter" href="">Curso 4</a>
+                        <a class="a-list-filter" href="">Curso 4</a>
                         <a class="a-list-filter" href="">Curso 4</a>
                     </li>
                 </ul>
-            </div>
+            </div>                  
             <div class="listaFiltro">
-                <a class="list-Title-Table" href="" title="Filtrar todo por fecha de publicación">Fecha de publicación</a>
+                <a class="list-Title-Table list-Title-Table2" href="" title="Filtrar todo por fecha de publicación">Fecha de publicación</a>
                 <ul class="list-group">
                     <li class="list-group-item">
                         <a class="a-list-filter" href="">Fecha 1</a>
@@ -51,7 +58,7 @@
                         <a class="a-list-filter" href="">Fecha 4</a>
                     </li>
                 </ul>
-            </div>
+            </div>              
         </div>
     </section>
 </body>
