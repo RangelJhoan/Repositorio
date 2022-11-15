@@ -5,7 +5,7 @@
     /* Colores */
     --main-home-color:#506591;
     --home-text-color:#464646;
-    --home-background-color: #f0f0f0;
+    --home-background-color: #e9e9e9;
     --white-home-color:#fff;
     --gray-home-color:#c9c9c9;
     --border-home-color:#a0a0a08a;
@@ -367,7 +367,7 @@ body{
     text-transform: uppercase;
     font-size: var(--titleFilterHome-normal-fz);
     text-decoration: none;
-    font-weight: bolder;
+    font-weight: 500;
     color:var(--white-home-color);
     background: linear-gradient(294deg,#6f89c1,#82b0b3d6,#799dd1);
     background-size: 180% 180%;
@@ -404,7 +404,8 @@ body{
 }
 
 .list-Title-Table:hover{
-    background: var(--main-home-color);
+    background-color: var(--main-home-color);
+    opacity: 0.8;
 }
 .list-group-item .a-list-filter{
     color:var(--home-text-color);
