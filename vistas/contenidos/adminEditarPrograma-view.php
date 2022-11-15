@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.0/css/line.css">
     <title>Repositorio Institucional</title>
 </head>
 <body>
 <?php
 
-require_once "./controladores/usuarioControlador.php";
-$ins_usuario = new usuarioControlador();
+require_once "./controladores/programaControlador.php";
+$ins_programa = new programaControlador();
 
-$datos_usuario = $ins_usuario->datos_usuario_controlador("Unico", $pagina[1]);
+$datos_programa = $ins_programa->datos_programa_controlador("Unico", $pagina[1]);
 
-if($datos_usuario->rowCount()>0){
-    $campos = $datos_usuario->fetch();
+if($datos_programa->rowCount()>0){
+    $campos = $datos_programa->fetch();
     ?>
 <section class="general-admin-container">
         <div class="overview-general-admin">
@@ -27,17 +27,17 @@ if($datos_usuario->rowCount()>0){
             </div>
             <div class="container-modal-edit-record" id="modal-container-edit-user">
                 <div class="content-modal-edit-record">
-                    <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="FormularioAjax" method="POST" data-form="update" autocomplete="off">
-                        <input type="hidden" name="id_programa_editar" value="<?php echo $pagina[1] ?>">
+                    <form action="<?php echo SERVER_URL ?>ajax/programaAjax.php" class="FormularioAjax" method="POST" data-form="update" autocomplete="off">
+                        <input type="hidden" name="id_programa_edit" value="<?php echo $pagina[1] ?>">
                         <div class="input-field">
-                            <input name="nombre" type="text" placeholder="Nombre" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}"  title="Por favor, complete el campo" required/>
+                            <input name="nombre_edit" type="text" value="<?php echo $campos['nombre'] ?>" placeholder="Nombre" title="Por favor, complete el campo" required/>
                         </div>
-                        <div class="input-field">
-                            <input name="descripcion" type="text" placeholder="Descripción" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,300}" title="Por favor, complete el campo" required/>
+                        <div class="">
+                            <textarea class="textAreaStl" name="descripcion_edit" type="text" placeholder="Descripción" title="Por favor, complete el campo" required><?php echo $campos['descripcion'] ?></textarea>
                         </div>
                         <div class="botones-accion-modal">
-                            <button type="submit" class="btn-admin-edit-record">Guardar cambios</button>
-                            <a href="<?php echo SERVER_URL ?>adminProgramas/" class="btn-close-edit-record" title="Volver atrás">Volver atrás</a>
+                            <button type="submit" class="btn-admin-edit-record" title="Actualizar">Guardar cambios</button>
+                            <a href="<?php echo SERVER_URL ?>adminProgramas/" class="btn-close-edit-record" title="Programas">Volver atrás</a>
                         </div>
                     </form>
                 </div>

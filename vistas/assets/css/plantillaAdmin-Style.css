@@ -57,7 +57,7 @@ body.dark{
     width: 9px;
 }
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background-color: #b5b5b5;
 }
 ::-webkit-scrollbar-thumb {
     background: var(--text-color);
@@ -71,8 +71,10 @@ body.dark{
 
 body.dark::-webkit-scrollbar-thumb:hover,
 body.dark .activity-data::-webkit-scrollbar-thumb:hover{
-    background: #3A3B3C;
+    background: var(--main-color);
 }
+
+
 /*?ESTILOS SIDEBAR*/
 .lateralNavBar{
     padding: 10px 14px!important;

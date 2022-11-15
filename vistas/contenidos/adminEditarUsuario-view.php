@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.0/css/line.css">
     <title>Repositorio Institucional</title>
 </head>
 <body>
@@ -32,10 +32,10 @@ if($datos_usuario->rowCount()>0){
                         <div class="input-field">
                             <div class="select-option arrow-blocked">
                                 <div class="icon-locked">
-                                    <i class="uil uil-lock icon-no-edit-allowed"></i>    
+                                    <i class="uil uil-lock icon-no-edit-allowed"></i>
                                 </div>
                                 <select disabled name="tipoUsuario" class="combobox-titulo" title="No se permite editar el tipo de usuario">
-                                    <option disabled value="" class="combobox-opciones">Tipo de usuario</option>
+                                    <option disabled value="" class="combobox-opciones" class="input-blocked">Tipo de usuario</option>
                                     <option <?php if($campos['descripcion'] == 'Administrador'){echo "selected";} ?> value="Administrador">Administrador</option>
                                     <option <?php if($campos['descripcion'] == 'Docente'){echo "selected";} ?> value="Docente">Docente</option>
                                     <option <?php if($campos['descripcion'] == 'Estudiante'){echo "selected";} ?> value="Estudiante">Estudiante</option>
@@ -62,10 +62,10 @@ if($datos_usuario->rowCount()>0){
                         <div class="input-field">
                             <input name="documento" value="<?php echo $campos['documento']; ?>" type="number" placeholder="Número de documento" min="1000" max="100000000000"  pattern="[0-9]+" title="Número de documento"/>
                         </div>
-                        <div class="input-field">
+                        <div class="input-field input-blocked">
                                 <div class="icon-locked">
                                     <i class="uil uil-lock icon-no-edit-allowed"></i>    
-                                </div>                            
+                                </div>
                                 <input disabled name="correo" value="<?php echo $campos['correo']; ?>" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60"  title="No se permite editar el correo electrónico"/>
                         </div>
                         <!--Select tag-->
@@ -85,8 +85,8 @@ if($datos_usuario->rowCount()>0){
                             <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Confirmar contraseña"/>
                         </div>
                         <div class="botones-accion-modal">
-                            <button type="submit" class="btn-admin-edit-record">Guardar cambios</button>
-                            <a href="<?php echo SERVER_URL ?>adminUsuarios/" class="btn-close-edit-record" title="Volver atrás">Volver atrás</a>
+                            <button type="submit" class="btn-admin-edit-record" title="Actualizar">Guardar cambios</button>
+                            <a href="<?php echo SERVER_URL ?>adminUsuarios/" class="btn-close-edit-record" title="Usuarios">Volver atrás</a>
                         </div>
                     </form>
                 </div>

@@ -15,7 +15,7 @@
         <section class="menu-options-section">
             <!--Opciones principales-->
             <ul class="nav-links">
-                <li class="li-plantilla">
+                <li class="li-plantilla" title="Dashboard">
                     <a href="<?php echo SERVER_URL ?>adminDashboard/">
                         <i class="uil uil-dashboard"></i>
                         <span class="option-name">Dashboard</span>
@@ -27,32 +27,32 @@
                         <span class="option-name">Inicio</span>
                     </a>
                 </li> -->
-                <li class="li-plantilla">
+                <li class="li-plantilla" title="Usuarios">
                 <a href="<?php echo SERVER_URL ?>adminUsuarios/">
                         <i class="uil uil-users-alt"></i>
                         <span class="option-name">Usuarios</span>
                     </a>
                 </li>
-                <li class="li-plantilla">
+                <li class="li-plantilla" title="Programas">
                 <a href="<?php echo SERVER_URL ?>adminProgramas/">
                         <i class="uil uil-graduation-cap"></i>
                         <span class="option-name">Programas</span>
                     </a>
                 </li>
-                <li class="li-plantilla">
-                    <a href="#">
+                <li class="li-plantilla" title="Cursos">
+                <a href="<?php echo SERVER_URL ?>adminCursos/">
                         <i class="uil uil-book-open"></i>
                         <span class="option-name">Cursos</span>
                     </a>
                 </li>
-                <li class="li-plantilla">
+                <li class="li-plantilla" title="Recursos">
                     <a href="#">
                         <!-- <i class="uil uil-shield-exclamation"></i> -->
                         <i class="uil uil-file-blank"></i>
                         <span class="option-name">Recursos</span>
                     </a>
                 </li>
-                <li class="li-plantilla">
+                <li class="li-plantilla" title="Reportes">
                     <a href="#">
                         <!-- <i class="uil uil-shield-exclamation"></i> -->
                         <i class="uil uil-analytics"></i>
