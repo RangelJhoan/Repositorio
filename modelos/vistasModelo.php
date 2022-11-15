@@ -6,9 +6,16 @@ class vistasModelo{
         $listaBlancaAdmin = ["adminDashboard","adminUsuarios","adminEditarUsuario","editarPerfil","adminProgramas","adminEditarPrograma"];
         $listaBlancaDocente = [];
         $listaBlancaEstudiante = [];
+        $listaBlancaHome = ["preguntasFreq"];
 
         if(isset($_SESSION['tipo_usuario'])){
             if(in_array($vistas, $listaBlancaAdmin) && $_SESSION['tipo_usuario'] == "Administrador"){
+                if(is_file("./vistas/contenidos/".$vistas."-view.php")){
+                    $contenido = "./vistas/contenidos/".$vistas."-view.php";
+                }else{
+                    $contenido = "404";
+                }
+            }elseif(in_array($vistas, $listaBlancaHome)){
                 if(is_file("./vistas/contenidos/".$vistas."-view.php")){
                     $contenido = "./vistas/contenidos/".$vistas."-view.php";
                 }else{

@@ -23,11 +23,37 @@
                 <a  class="a-HomeNav homeHideListMin" href="#">Perfil</a>
                 <ul class="ul-Home ul-SubMenu">
                     <li class="li-Home">
-                        <a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>login/">Acceder</a>
+                        <?php
+                        if(isset($_SESSION['tipo_usuario'])){
+                            if($_SESSION['tipo_usuario'] == "Administrador"){
+                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'adminDashboard/">Cuenta</a>';
+                            }elseif($_SESSION['tipo_usuario'] == "Docente"){
+                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'docenteDashboard/">Cuenta</a>';
+                            }elseif($_SESSION['tipo_usuario'] == "Estudiante"){
+                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'estudianteDashboard/">Cuenta</a>';
+                            }
+                        }else{
+                            echo '<a  class="a-HomeNav" href="'.SERVER_URL.'login/">Acceder</a>';
+                        }
+                        ?>
                     </li>
                 </ul>
             </li>
-            <li class="li-Home homeHideListFull"><a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>login/">Acceder</a></li>
+            <li class="li-Home homeHideListFull">
+                <?php
+                if(isset($_SESSION['tipo_usuario'])){
+                    if($_SESSION['tipo_usuario'] == "Administrador"){
+                        echo '<a  class="a-HomeNav" href="'.SERVER_URL.'adminDashboard/">Cuenta</a>';
+                    }elseif($_SESSION['tipo_usuario'] == "Docente"){
+                        echo '<a  class="a-HomeNav" href="'.SERVER_URL.'docenteDashboard/">Cuenta</a>';
+                    }elseif($_SESSION['tipo_usuario'] == "Estudiante"){
+                        echo '<a  class="a-HomeNav" href="'.SERVER_URL.'estudianteDashboard/">Cuenta</a>';
+                    }
+                }else{
+                    echo '<a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>login/">Acceder</a>';
+                }
+                ?>
+            </li>
         </ul>
     </nav>
 
