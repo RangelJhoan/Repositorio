@@ -50,7 +50,7 @@
                         echo '<a  class="a-HomeNav" href="'.SERVER_URL.'estudianteDashboard/">Cuenta</a>';
                     }
                 }else{
-                    echo '<a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>login/">Acceder</a>';
+                    echo '<a  class="a-HomeNav" href="'.SERVER_URL.'login/">Acceder</a>';
                 }
                 ?>
             </li>

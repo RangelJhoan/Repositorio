@@ -10,50 +10,61 @@
 <body>
 <?php
 
-require_once "./controladores/usuarioControlador.php";
-$ins_usuario = new usuarioControlador();
+require_once "./controladores/cursoControlador.php";
+require_once "./controladores/programaControlador.php";
 
-$datos_usuario = $ins_usuario->datos_usuario_controlador("Unico", $pagina[1]);
+$ins_curso = new cursoControlador();
+$ins_programa = new programaControlador();
 
-if($datos_usuario->rowCount()>0){
-    $campos = $datos_usuario->fetch();
+$datos_curso = $ins_curso->datos_curso_controlador("Unico", $pagina[1]);
+$datos_programas = $ins_programa->listar_programas_controlador();
+
+if($datos_curso->rowCount()>0){
+    $campos_curso = $datos_curso->fetch();
+    $programas_curso = $ins_curso->programas_curso_controlador($campos_curso['id']);
     ?>
 <section class="general-admin-container">
-        <div class="overview-general-admin">
-            <!--TÍTULO-->
-            <div class="title">
+    <div class="overview-general-admin">
+        <!--TÍTULO-->
+        <div class="title">
             <i class="uil uil-book-open"></i>
-                <h1 class="panel-title-name">Editar Curso</h1>
+            <h1 class="panel-title-name">Editar Curso</h1>
+        </div>
+        <div class="container-modal-edit-record" id="modal-container-edit-user">
+            <div class="content-modal-edit-record">
+                <form action="<?php echo SERVER_URL ?>ajax/cursoAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
+                    <input type="hidden" name="id_curso_edit" value="<?php echo $pagina[1] ?>">
+                    <div class="input-field">
+                        <input name="nombre_edit" type="text" placeholder="Nombre" value="<?php echo $campos_curso['nombre'] ?>"  title="Nombre" required/>
+                    </div>
+                    <div class="input-field">
+                        <input name="descripcion_edit" type="text" placeholder="Descripción" value="<?php echo $campos_curso['descripcion'] ?>" title="Descripción" required/>
+                    </div>
+                    <label for="programaSeleccion" class="titleComboMultiple">Programa(s)</label>
+                        <select name="programas_edit[]" id="programaSeleccionarCur" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
+                            <?php
+                            foreach($datos_programas as $campos){
+                                $selected = false;
+                                foreach($programas_curso as $campos_pc){
+                                    if($campos['id'] == $campos_pc['programa_id']){
+                                        $selected = true;
+                                    }
+                                }
+                                ?>
+                            <option <?php if($selected) echo "selected" ?> value="<?php echo $campos['id'] ?>"><?php echo $campos['nombre'] ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    <div class="botones-accion-modal">
+                        <button type="submit" class="btn-admin-edit-record" title="Actualizar">Guardar cambios</button>
+                        <a href="<?php echo SERVER_URL ?>adminCursos/" class="btn-close-edit-record" title="Cursos">Volver atrás</a>
+                    </div>
+                </form>
             </div>
-            <div class="container-modal-edit-record" id="modal-container-edit-user">
-                <div class="content-modal-edit-record">
-                    <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
-                            <div class="input-field">
-                                <input name="nombre" type="text" placeholder="Nombre" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}"  title="Nombre" required/>
-                            </div>
-                            <div class="input-field">
-                                <input name="descripcion" type="text" placeholder="Descripción" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,300}" title="Descripción" required/>
-                            </div>
-
-                            <label for="programaSeleccion" class="titleComboMultiple">Programa(s)</label>
-                                <select name="seleccionProg" id="programaSeleccionarCur" multiple title="Programas asociados al curso">
-                                    <option value="1">Ingeniería de Sistemas</option>
-                                    <option value="2">Diseño gráfico</option>
-                                    <option value="3">Ingeniería industrial</option>
-                                    <option value="4">Ingeniería electrónica</option>
-                                    <option value="5">Ingeniería eléctrica</option>
-                                    <option value="6">Diseño industrial</option>
-                                    <option value="7">Derecho</option>
-                                </select>
-                            <div class="botones-accion-modal">
-                                <button type="submit" class="btn-admin-edit-record" title="Actualizar">Guardar cambios</button>
-                                <a href="<?php echo SERVER_URL ?>adminCursos/" class="btn-close-edit-record" title="Cursos">Volver atrás</a>
-                            </div>
-                        </form>
-                </div>
-            </div>
-        <div>
-    </section>
+        </div>
+    <div>
+</section>
 <?php }else{ ?>
     <div class="errorEditContainer">
         <section class="errorTextSection">

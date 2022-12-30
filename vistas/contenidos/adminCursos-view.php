@@ -90,20 +90,27 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                         $contador = $inicio+1;
                         if($datos != 0){
                             foreach($datos as $rows){
+                                $programas_curso =  $ins_curso->programas_curso_controlador($rows['id']);
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
-                            <td data-titulo="NOMBRE"><?php echo $rows['nombre_curso'] ?></td>
-                            <td data-titulo="DESCRIPCIÓN"><?php echo $rows['descripcion_curso'] ?></td>
-                            <td data-titulo="PROGRAMA"><?php echo $rows['nombre_programa'] ?></td>
+                            <td data-titulo="NOMBRE"><?php echo $rows['nombre'] ?></td>
+                            <td data-titulo="DESCRIPCIÓN"><?php echo $rows['descripcion'] ?></td>
+                            <td data-titulo="PROGRAMA"><?php
+                                foreach($programas_curso as $campos){
+                                    ?>
+                                    <li><?php echo $campos['programa_nombre'] ?></li>
+                                    <?php
+                                }
+                            ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <a href="<?php echo SERVER_URL ?>adminEditarCurso/<?php echo $ins_curso->encryption($rows['id_curso'])?>/" class="btn-admin-edit-record" title="Editar curso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
+                                        <a href="<?php echo SERVER_URL ?>adminEditarCurso/<?php echo $ins_curso->encryption($rows['id'])?>/" class="btn-admin-edit-record" title="Editar curso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/cursoAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
-                                            <input type="hidden" name="id_curso_del" value="<?php echo $ins_curso->encryption($rows['id_curso']) ?>">
+                                            <input type="hidden" name="id_curso_del" value="<?php echo $ins_curso->encryption($rows['id']) ?>">
                                             <button type="submit" class="btn-delete-record" title="Eliminar curso"><i class="uil uil-trash-alt"></i></button>
                                         </div>
                                     </form>

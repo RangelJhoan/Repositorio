@@ -56,6 +56,20 @@ class cursoControlador extends cursoModelo{
         }
     }
 
+    /*---------- Controlador para editar curso ----------*/
+    public function editar_curso_controlador(){
+        $idCurso = mainModel::decryption($_POST['id_curso_edit']);
+
+        $alerta=[
+            "Alerta"=>"simple",
+            "Titulo"=> $idCurso,
+            "Texto"=>"No se pudo eliminar el curso. Intente nuevamente",
+            "Tipo"=>"error"
+        ];
+        echo json_encode($alerta);
+        exit();
+    }
+
     /*---------- Controlador para eliminar curso ----------*/
     public function eliminar_curso_controlador(){
         $idCurso = mainModel::decryption($_POST['id_curso_del']);
@@ -105,9 +119,9 @@ class cursoControlador extends cursoModelo{
             WHERE id != '$id' AND (nombre LIKE '%$busqueda%' OR descripcion LIKE '%$busqueda%') 
             ORDER BY c.nombre ASC LIMIT $inicio,$registros";
         }else{
-            $consulta = "SELECT SQL_CALC_FOUND_ROWS cp.id_curso, cp.id_programa, c.nombre nombre_curso, c.descripcion descripcion_curso, p.nombre nombre_programa 
-            FROM curso c JOIN curso_programa cp ON cp.id_curso = c.id JOIN programa p ON p.id = cp.id_programa 
-            ORDER BY c.nombre ASC LIMIT $inicio,$registros";
+            $consulta = "SELECT SQL_CALC_FOUND_ROWS * 
+            FROM curso
+            ORDER BY nombre ASC LIMIT $inicio,$registros";
         }
 
         $conexion = mainModel::conectar();
@@ -132,6 +146,11 @@ class cursoControlador extends cursoModelo{
         $id = mainModel::decryption($id);
 
         return cursoModelo::datos_curso_modelo($tipo, $id);
+    }
+
+    /*---------- Controlador datos curso ----------*/
+    public function programas_curso_controlador($id){
+        return cursoModelo::programas_curso_modelo($id)->fetchAll();
     }
 
 }

@@ -14,6 +14,11 @@ if(isset($_POST['nombre_ins']) || isset($_POST['id_curso_del'])){
         echo $ins_curso->agregar_curso_controlador();
     }
 
+    /*--- Editar un curso ---*/
+    if(isset($_POST['id_curso_edit'])){
+        echo $ins_curso->editar_curso_controlador();
+    }
+
     /*--- Eliminar un curso ---*/
     if(isset($_POST['id_curso_del'])){
         echo $ins_curso->eliminar_curso_controlador();

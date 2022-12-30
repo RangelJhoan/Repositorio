@@ -148,7 +148,7 @@ class programaControlador extends programaModelo{
                 $alerta=[
                     "Alerta"=>"redireccionar",
                     "Titulo"=>"Datos actualizados",
-                    "URL"=>"http://localhost/Repositorio/adminProgramas/",
+                    "URL"=>SERVER_URL."/adminProgramas/",
                     "Texto"=>"Los datos han sido actualizados con éxito",
                     "Tipo"=>"success"
                 ];
