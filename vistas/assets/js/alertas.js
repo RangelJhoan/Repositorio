@@ -1,14 +1,14 @@
 const formularios_ajax = document.querySelectorAll(".FormularioAjax");
 
 function enviar_formulario_ajax(e){
-    e.preventDefault();
+    e.preventDefault()
 
-    let data = new FormData(this);
-    let method = this.getAttribute("method");
-    let action = this.getAttribute("action");
-    let tipo = this.getAttribute("data-form");
+    let data = new FormData(this)
+    let method = this.getAttribute("method")
+    let action = this.getAttribute("action")
+    let tipo = this.getAttribute("data-form")
 
-    let encabezados = new Headers();
+    let encabezados = new Headers()
 
     let config = {
         method: method,
@@ -18,20 +18,20 @@ function enviar_formulario_ajax(e){
         body: data
     }
 
-    let texto_alerta;
+    let texto_alerta
 
     if(tipo === "save"){
-        texto_alerta = "Los datos quedarán guardados en el repositorio";
+        texto_alerta = "Los datos quedarán guardados en el repositorio"
     }else if(tipo === "delete"){
-        texto_alerta = "Los datos serán eliminados completamente del repositorio";
+        texto_alerta = "Los datos serán eliminados completamente del repositorio"
     }else if(tipo === "update"){
         texto_alerta = "Los datos del repositorio serán actualizados"
     }else if(tipo === "search"){
-        texto_alerta = "Se eliminará el término de búsqueda y tendrá que escribir uno nuevo";
+        texto_alerta = "Se eliminará el término de búsqueda y tendrá que escribir uno nuevo"
     }else if(tipo === "loans"){
-        texto_alerta = "Desea remover los datos seleccionados para préstamos o reservaciones";
+        texto_alerta = "Desea remover los datos seleccionados para préstamos o reservaciones"
     }else{
-        texto_alerta = "¿Quiere realizar la operacion solicitada?";
+        texto_alerta = "¿Quiere realizar la operacion solicitada?"
     }
 
     Swal.fire({
@@ -47,7 +47,7 @@ function enviar_formulario_ajax(e){
         if (result.isConfirmed) {
             fetch(action, config)
             .then(respuesta =>{
-                return respuesta.json();
+                return respuesta.json()
             })
             .catch(e =>{
                 console.log("error " + e)
@@ -56,7 +56,7 @@ function enviar_formulario_ajax(e){
                 if(respuesta != undefined){
                     return alertas_ajax(respuesta);
                 }else{
-                    console.log("Error respuesta indefinida");
+                    console.log("Error respuesta indefinida")
                 }
             })
         }
@@ -65,7 +65,7 @@ function enviar_formulario_ajax(e){
 }
 
 formularios_ajax.forEach(formularios => {
-    formularios.addEventListener("submit", enviar_formulario_ajax);
+    formularios.addEventListener("submit", enviar_formulario_ajax)
 });
 
 function alertas_ajax(alerta){
@@ -84,7 +84,7 @@ function alertas_ajax(alerta){
             confirmButtonText: 'Aceptar'
         }).then((result) => {
             if (result.isConfirmed) {
-                location.reload();
+                location.reload()
             }
         });
     }else if(alerta.Alerta === "limpiar"){
@@ -95,19 +95,23 @@ function alertas_ajax(alerta){
             confirmButtonText: 'Aceptar'
         }).then((result) => {
             if (result.isConfirmed) {
-                document.querySelector(".FormularioAjax").reset();
+                document.querySelector(".FormularioAjax").reset()
             }
         });
     }else if(alerta.Alerta === "redireccionar"){
-        Swal.fire({
-            title: alerta.Titulo,
-            text: alerta.Texto,
-            icon: alerta.Tipo,
-            confirmButtonText: 'Aceptar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = alerta.URL;
-            }
-        });
+        if(alerta.Titulo != undefined){
+            Swal.fire({
+                title: alerta.Titulo,
+                text: alerta.Texto,
+                icon: alerta.Tipo,
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = alerta.URL
+                }
+            });
+        }else{
+            window.location.href = alerta.URL
+        }
     }
 }

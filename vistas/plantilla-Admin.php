@@ -19,6 +19,15 @@
     if($vistas == "login" || $vistas == "404" || $vistas == "home"){
         require_once "./vistas/contenidos/".$vistas."-view.php";
     }else{
+        session_start(['name' => 'REPO']);
+        require_once "./controladores/usuarioControlador.php";
+        $uc = new usuarioControlador();
+
+        if(!isset($_SESSION['id_persona']) || !isset($_SESSION['correo_usuario']) || !isset($_SESSION['estado_usuario'])){
+            echo $uc->forzar_cierre_sesion_controlador();
+            exit();
+        }
+
         $pagina = explode("/", $_GET['views']);
         ?>
         <!---NAVLATERAL-->
@@ -31,6 +40,7 @@
         ?>
         </section>
         <!--SCRIPTS NECESARIOS-->
+        <?php include "./vistas/incAdmin/LogOut.php" ?>
         <?php include "incAdmin/scripts.php";
     }
     ?>

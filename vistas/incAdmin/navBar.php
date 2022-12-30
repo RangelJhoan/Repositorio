@@ -28,7 +28,7 @@
                     </a>
                     </li>
                     <li class="li-plantilla">
-                    <a href="#" class="submenu-link">
+                    <a href="#" class="submenu-link" id="cerrar_sesion">
                         <i class="uil uil-sign-out-alt"></i>
                         <p class="option-profile">Cerrar sesión</p>
                     </a>

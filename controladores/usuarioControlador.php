@@ -147,6 +147,31 @@ class usuarioControlador extends usuarioModelo{
         echo "<script>window.location.href='".SERVER_URL."login/';</script>";
     }
 
+    /*---------- Controlador para cerrar sesión usuario ----------*/
+    public function cerrar_sesion_controlador(){
+        session_start(['name' => 'REPO']);
+        $id_persona = mainModel::decryption($_POST['id_persona']);
+        $correo = mainModel::decryption($_POST['correo_usuario']);
+
+        if($id_persona == $_SESSION['id_persona'] && $correo == $_SESSION['correo_usuario']){
+            session_unset();
+            session_destroy();
+
+            $alerta=[
+                "Alerta"=>"redireccionar",
+                "URL"=>SERVER_URL
+            ];
+        }else{
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrió un error inesperado",
+                "Texto"=>"No se pudo cerrar la sesión en el sistema",
+                "Tipo"=>"error"
+            ];
+        }
+        echo json_encode($alerta);
+    }
+
     /*---------- Controlador para eliminar usuario ----------*/
     public function eliminar_usuario_controlador(){
         $idPersona = mainModel::decryption($_POST['idPersona']);
@@ -259,7 +284,7 @@ class usuarioControlador extends usuarioModelo{
             $alerta=[
                 "Alerta"=>"redireccionar",
                 "Titulo"=>"Datos actualizados",
-                "URL"=>"http://localhost/Repositorio/adminUsuarios/",
+                "URL"=>SERVER_URL."adminUsuarios/",
                 "Texto"=>"Los datos han sido actualizados con éxito",
                 "Tipo"=>"success"
             ];
