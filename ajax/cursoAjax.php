@@ -4,7 +4,7 @@ $peticionAjax = true;
 
 require_once "../config/APP.php";
 
-if(isset($_POST['nombre_ins']) || isset($_POST['id_curso_del'])){
+if(isset($_POST['nombre_ins']) || isset($_POST['id_curso_del']) || isset($_POST['id_curso_edit'])){
     /*--- Instancia al controlador ---*/
     require_once "../controladores/cursoControlador.php";
     $ins_curso = new cursoControlador();

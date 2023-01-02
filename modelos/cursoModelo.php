@@ -45,6 +45,21 @@
             }
         }
 
+        /*---------- Modelo para editar información de curso ----------*/
+        protected static function editar_curso_modelo($idCurso, $programasAgregados, $programasEliminados){
+            $sqlEliminarFkCurso = mainModel::conectar()->prepare("DELETE FROM curso_programa WHERE id_curso = ?");
+            $sqlEliminarFkCurso->execute([$idCurso]);
+
+            if($sqlEliminarFkCurso->rowCount() > 0){
+                $sqlEliminarUsuario = mainModel::conectar()->prepare("DELETE FROM curso WHERE id = ?");
+                $sqlEliminarUsuario->execute([$idCurso]);
+
+                return $sqlEliminarUsuario;
+            }else{
+                return $sqlEliminarFkCurso;
+            }
+        }
+
         /*---------- Modelo datos curso ----------*/
         protected static function datos_curso_modelo($tipo, $id){
             if($tipo == "Unico"){
@@ -63,6 +78,16 @@
         /*---------- Modelo programas por curso ----------*/
         protected static function programas_curso_modelo($id){
             $sql = mainModel::conectar()->prepare("SELECT c.id curso_id, c.nombre curso_nombre, c.descripcion curso_desc, cp.id curpro_id, p.id programa_id, p.nombre programa_nombre, p.descripcion programa_desc 
+            FROM curso c JOIN curso_programa cp ON c.id = cp.id_curso JOIN programa p ON p.id = cp.id_programa 
+            WHERE c.id = :ID;");
+            $sql->bindParam(":ID", $id);
+            $sql->execute();
+            return $sql;
+        }
+
+        /*---------- Modelo id de programas por curso ----------*/
+        protected static function id_programas_curso_modelo($id){
+            $sql = mainModel::conectar()->prepare("SELECT p.id programa_id 
             FROM curso c JOIN curso_programa cp ON c.id = cp.id_curso JOIN programa p ON p.id = cp.id_programa 
             WHERE c.id = :ID;");
             $sql->bindParam(":ID", $id);

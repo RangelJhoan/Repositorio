@@ -59,15 +59,44 @@ class cursoControlador extends cursoModelo{
     /*---------- Controlador para editar curso ----------*/
     public function editar_curso_controlador(){
         $idCurso = mainModel::decryption($_POST['id_curso_edit']);
+        $programasNuevos = $_POST['programas_edit'];
+        $programasActuales = call_user_func_array('array_merge', cursoModelo::id_programas_curso_modelo($idCurso)->fetchAll());
 
-        $alerta=[
-            "Alerta"=>"simple",
-            "Titulo"=> $idCurso,
-            "Texto"=>"No se pudo eliminar el curso. Intente nuevamente",
-            "Tipo"=>"error"
-        ];
-        echo json_encode($alerta);
-        exit();
+        $programasAgregados = array_diff($programasNuevos, $programasActuales);
+        $programasEliminados = array_diff($programasActuales, $programasNuevos);
+
+        if(count($programasAgregados)<1 && count($programasEliminados)<1){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=> "No hay cambios",
+                "Texto"=>"No hay programas nuevos",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+//        $editarCurso = cursoModelo::editar_curso_modelo($idCurso, $programasAgregados, $programasEliminados);
+
+        if(true){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Exito",
+                "Texto"=>"Bien",
+                "Tipo"=>"success"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }else{
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrió un error",
+                "Texto"=>"No se pudo editar el curso. Intente nuevamente",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
     }
 
     /*---------- Controlador para eliminar curso ----------*/
