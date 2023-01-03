@@ -1,3 +1,4 @@
 RewriteEngine On
 Options All -Indexes
 RewriteRule ^([a-zA-Z0-9á-ú/ñÑ-]+)$ index.php?views=$1
+php_flag output_buffering on

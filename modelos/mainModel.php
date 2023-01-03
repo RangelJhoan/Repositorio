@@ -10,16 +10,37 @@
 
         /*------- Función para conectar a la base de datos ------*/
         protected static function conectar(){
-            $conexion = new PDO(SGBD, USER, PASS);
-            $conexion->exec("SET CHARACTER SET utf8");
+            try {
+                $conexion = new PDO(SGBD, USER, PASS);
+                $conexion->exec("SET CHARACTER SET utf8");
+            } catch (Exception $e) {
+                echo '<script>
+                    Swal.fire({
+                        title: "Error",
+                        text: "Error al conectarse con el servidor",
+                        icon: "error",
+                        confirmButtonText: "Aceptar"
+                    });
+                </script>';
+            }
             return $conexion;
         }
 
         /*------- Función para ejecutar consultas simples ------*/
         protected static function ejecutar_consulta_simple($consulta){
-            $sql = self::conectar()->prepare($consulta);
-            $sql->execute();
-            return $sql;
+            try {
+                $sql = self::conectar()->prepare($consulta);
+                $sql->execute();
+                return $sql;
+            } catch (Exception $e) {
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Ocurrió un error",
+                    "Texto"=>"Error al conectarse con el servidor",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+            }
         }
 
         /*------- Función para encriptar cadenas ------*/

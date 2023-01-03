@@ -46,18 +46,21 @@
         }
 
         /*---------- Modelo para editar información de curso ----------*/
-        protected static function editar_curso_modelo($idCurso, $programasAgregados, $programasEliminados){
-            $sqlEliminarFkCurso = mainModel::conectar()->prepare("DELETE FROM curso_programa WHERE id_curso = ?");
-            $sqlEliminarFkCurso->execute([$idCurso]);
+        protected static function editar_curso_modelo($curso, $programasAgregados, $programasEliminados){
+            $sql = mainModel::conectar()->prepare("UPDATE curso SET nombre=?, descripcion=? WHERE id=?");
+            $sql->execute([$curso->getNombre(), $curso->getDescripcion(), $curso->getIdCurso()]);
 
-            if($sqlEliminarFkCurso->rowCount() > 0){
-                $sqlEliminarUsuario = mainModel::conectar()->prepare("DELETE FROM curso WHERE id = ?");
-                $sqlEliminarUsuario->execute([$idCurso]);
-
-                return $sqlEliminarUsuario;
-            }else{
-                return $sqlEliminarFkCurso;
+            foreach ($programasAgregados as $programaNuevo) {
+                $sql = mainModel::conectar()->prepare("INSERT INTO curso_programa(id_curso, id_programa) VALUES(?, ?);");
+                $sql->execute([$curso->getIdCurso(), $programaNuevo]);
             }
+
+            foreach ($programasEliminados as $programaEliminar) {
+                $sql = mainModel::conectar()->prepare("DELETE FROM curso_programa WHERE id_curso = ? and id_programa = ?");
+                $sql->execute([$curso->getIdCurso(), $programaEliminar]);
+            }
+
+            return $sql;
         }
 
         /*---------- Modelo datos curso ----------*/

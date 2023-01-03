@@ -58,45 +58,46 @@ class cursoControlador extends cursoModelo{
 
     /*---------- Controlador para editar curso ----------*/
     public function editar_curso_controlador(){
-        $idCurso = mainModel::decryption($_POST['id_curso_edit']);
-        $programasNuevos = $_POST['programas_edit'];
-        $programasActuales = call_user_func_array('array_merge', cursoModelo::id_programas_curso_modelo($idCurso)->fetchAll());
-
-        $programasAgregados = array_diff($programasNuevos, $programasActuales);
-        $programasEliminados = array_diff($programasActuales, $programasNuevos);
-
-        if(count($programasAgregados)<1 && count($programasEliminados)<1){
+        if(!isset($_POST['programas_edit'])){
             $alerta=[
                 "Alerta"=>"simple",
-                "Titulo"=> "No hay cambios",
-                "Texto"=>"No hay programas nuevos",
+                "Titulo"=>"Error",
+                "Texto"=>"Por favor llene todos los campos",
                 "Tipo"=>"error"
             ];
             echo json_encode($alerta);
             exit();
         }
 
-//        $editarCurso = cursoModelo::editar_curso_modelo($idCurso, $programasAgregados, $programasEliminados);
+        $curso = new Curso();
+        $curso->setIdCurso(mainModel::decryption($_POST['id_curso_edit']));
+        $curso->setNombre($_POST['nombre_edit']);
+        $curso->setDescripcion($_POST['descripcion_edit']);
+        $curso->setListaProgramas($_POST['programas_edit']);
 
-        if(true){
+        $programasActuales = cursoModelo::id_programas_curso_modelo($curso->getIdCurso())->fetchAll(PDO::FETCH_COLUMN, 0);
+        $programasAgregados = array_diff($curso->getListaProgramas(), $programasActuales);
+        $programasEliminados = array_diff($programasActuales, $curso->getListaProgramas());
+
+        $editarCurso = cursoModelo::editar_curso_modelo($curso, $programasAgregados, $programasEliminados);
+
+        if($editarCurso->rowCount()>0){
             $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Exito",
-                "Texto"=>"Bien",
+                "Alerta"=>"redireccionar",
+                "Titulo"=>"Datos actualizados",
+                "URL"=>SERVER_URL."/adminCursos/",
+                "Texto"=>"Los datos han sido actualizados con éxito",
                 "Tipo"=>"success"
             ];
-            echo json_encode($alerta);
-            exit();
         }else{
             $alerta=[
                 "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>"No se pudo editar el curso. Intente nuevamente",
+                "Titulo"=>"Error",
+                "Texto"=>"No se pudo actualizar la información",
                 "Tipo"=>"error"
             ];
-            echo json_encode($alerta);
-            exit();
         }
+        echo json_encode($alerta);
     }
 
     /*---------- Controlador para eliminar curso ----------*/
