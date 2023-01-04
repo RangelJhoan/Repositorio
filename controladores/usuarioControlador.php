@@ -106,10 +106,22 @@ class usuarioControlador extends usuarioModelo{
         $clave = mainModel::encryption($clave);
         $check_account = mainModel::ejecutar_consulta_simple("SELECT p.id, p.nombre, p.apellido, p.documento, p.id_usuario, u.correo, u.estado, tu.descripcion 
         FROM persona p JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
-        WHERE correo = '$correo' AND clave = '$clave' AND estado = '1';");
+        WHERE correo = '$correo' AND clave = '$clave';");
 
         if($check_account->rowCount() > 0){
             $row = $check_account->fetch();
+            if($row['estado'] != 1){
+                echo '<script>
+                    Swal.fire({
+                        title:"Error",
+                        text:"Cuenta inactiva. Por favor contacte a un administrador",
+                        icon:"error",
+                        confirmButtonText: "Aceptar"
+                    });
+                </script>';
+                exit();
+            }
+
 
             session_start(['name'=>'REPO']);
             $_SESSION['id_persona'] = $row['id'];
