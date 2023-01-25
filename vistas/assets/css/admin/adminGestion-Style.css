@@ -181,6 +181,7 @@
     font-size: var(--normal-font-size);
     color:var(--text-color);
     transition: all .5s;
+    text-decoration: none;
 }
 .btn-add-record:hover{
     background-color:  var(--create-button-hover);
@@ -381,6 +382,7 @@ label{
 #btn-modal-admin-add-record:checked ~ .container-modal-add-record{
     display: flex;
 }
+
 .container-modal-edit-record{
     display: flex;
     justify-content: center;
@@ -394,7 +396,6 @@ label{
     padding:20px;
     background-color: var(--modal-container-color);
     border-radius: 4px;
-
 }
 .content-modal-titulo{
     margin-bottom: 15px;
@@ -492,6 +493,7 @@ input[type=number]{
     font-weight: 400;
     font-size: var(--normal-font-size);
     color:var(--text-color);
+    padding-left: 5px;
 }
 /**Íconos bloqueados*/
 .icon-locked{
@@ -532,8 +534,8 @@ select{
     font-size: var(--normal-font-size);
     text-align: start;
     font-weight: 400;
-    font-family: "Poppins", sans-serif;
     border-radius: 55px;
+    margin-left: 5px;
 }
 select::-ms-expand{
     display: none;
@@ -568,6 +570,119 @@ select::-ms-expand{
 .select-option.arrow-blocked::after{
     display: none;
 }
+
+/**Botón añadir archivo del recurso*/
+/* .container-fileBtn input[type="file"]{
+    appearance: none;
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+} */
+.container-fileBtn{
+    display: inline-block;
+    position: relative;
+    background-color: var(--main-color);
+    color: var(--text-color);
+    border: 0;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .15);
+    overflow: hidden;
+    transition: ease-out 120ms background-color;
+}
+.container-fileBtn > i{
+    margin-right: 15px;
+}
+.container-fileBtn:hover {
+    background-color: #d69e36;
+}
+.container-fileBtn:active {
+    background-color: #d89e33;
+}
+.container-fileBtn label{
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+
+
+
+/*Contenedor gereal del input*/
+.fileUploadContainer {
+    position: relative;
+    height: auto;
+    color: var(--text-color);
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    border-radius: 25px;    
+    font-size: var(--normal-font-size);
+    background-color:var(--input-modify-info);
+    padding: 0;
+}
+/*Desaparece la selección y mensaje genérico*/
+.inputUploadFile[type="file"] {
+    display: none;
+}
+/*Nuevo campo para seleccionar archivo. Contenedor general*/
+.labelFileUpload {
+    display: block;
+    position: relative;
+    background-color: var(--main-color);
+    font-size: var(--normal-font-size);
+    text-align: center;
+    width: 100%;
+    padding: 1.12em 0;
+    margin: auto;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.labelFileUpload:hover {
+    background-color: #d69e36;
+}
+.labelFileUpload:active {
+    background-color: #d89e33;
+}
+/*Campo opcional para los archivos seleccionados...*/
+#num-of-files {
+    font-weight: 400;
+    text-align: center;
+    margin: 1.25em 0 1.87em 0;
+}
+#files-list {
+    list-style-type: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+/*Estilo del archivo cuando es seleccionado*/
+.fileUploadContainer li {
+    background-color:var(--input-modify-info);
+    color: var(--main-color);
+    font-size:var(--normal-font-size);
+    padding: 1.1em 1em;
+    -webkit-border-radius: 0 0 25px 25px;   
+    -moz-border-radius: 0 0 25px 25px;  
+    -ms-border-radius:0 0 25px 25px;  
+    -o-border-radius: 0 0 25px 25px;  
+    border-radius: 0 0 25px 25px;  
+    max-width: 380px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    line-height: 2;
+    padding-right: 250px;
+    font-size: medium;
+}
+
+
 
 /*?------------------ERROR EDITAR REGISTRO----------------*/
 /*Contenedor general*/
@@ -660,7 +775,7 @@ select::-ms-expand{
     padding: 0 0.4rem;
     position: relative;
     outline: none;
-    line-height: 1;
+    line-height: 1.2;
     font-weight: 400;
     resize: none;
     -webkit-border-radius:25px;
@@ -668,6 +783,7 @@ select::-ms-expand{
     -ms-border-radius:25px;
     -o-border-radius:25px;
     border-radius:25px;
+    padding-top:5px;
 }
 
 
@@ -859,20 +975,6 @@ select::-ms-expand{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*?--------------------- RESPONSIVE DESIGN-----------------------*/
     @media (max-width:1000px) {
         .general-admin-container .title .panel-title-name {
@@ -950,6 +1052,14 @@ select::-ms-expand{
             display: none !important;;
             border-color: transparent !important;;
         }
+        .labelFileUpload{
+            font-size: var(--normal-font-size);
+        }
+        .container-modal-add-record{
+            padding-top: 10rem;
+            padding-bottom: 5%;
+            overflow-y: scroll;
+        }
     }
 
     @media (max-width:500px) {
@@ -963,7 +1073,7 @@ select::-ms-expand{
             display: flex;
             margin-left: 10px;
         }
-        .input-field {
+        .input-field,.labelFileUpload {
             margin: 5px 0;
             height: 40px;
         }
@@ -1017,5 +1127,18 @@ select::-ms-expand{
         }
         .textAreaStl{
             font-size: var(--pequeña-font-size);
+        }
+        .labelFileUpload,.fileUploadContainer li{
+            font-size: var(--pequeña-font-size);
+        }
+        .container-modal-add-record{
+            padding-top: 10rem;
+            padding-bottom: 10%;
+        }
+    }
+
+    @media (max-width:400px) {
+    .container-modal-add-record{
+        padding-top: 20rem;
         }
     }

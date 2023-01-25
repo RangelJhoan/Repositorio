@@ -5,6 +5,7 @@
     --main-color:#DBA034;
     --text-color:#464646;
     --background-color: #e9e9e9;
+    --active-bgr-color: #e2e2e2;
     --white-color:#fff;
     --gray-color:#c9c9c9;
     --border-color:#a0a0a08a;
@@ -50,6 +51,7 @@ body.dark{
     --white-color:#121212;
     --normal-font-size: 1.1rem;
     --gray-color:#c9c9c9;
+    --active-bgr-color: #292929;
 }
 
 /*?ESTILO BARRA HORIZONTAL*/
@@ -376,6 +378,12 @@ body.dark .switch:before{
 .submenu-link:hover{
     color:var(--main-color);
 }
+
+/*Mantener activo al momento de estar sobre una sección del navlateral*/
+.li-plantilla:is(:link,:active,:visited).activeLi{
+    background: var(--active-bgr-color);
+}
+
 
 /*?RESPONSIVE*/
 @media (max-width:1000px){

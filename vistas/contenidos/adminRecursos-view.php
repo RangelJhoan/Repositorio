@@ -7,38 +7,38 @@
     <title>Repositorio Institucional</title>
 </head>
 <body>
-<?php
-
-require_once "./controladores/programaControlador.php";
-$ins_programa = new programaControlador();
-
-$datos_programas = $ins_programa->listar_programas_controlador();
-    ?>
     <section class="general-admin-container">
         <div class="overview-general-admin">
             <!--TÍTULO-->
             <div class="title">
-                <i class="uil uil-book-open"></i>
-                <h1 class="panel-title-name">Cursos</h1>
+                <i class="uil uil-file-blank"></i>
+                <h1 class="panel-title-name">Recursos</h1>
             </div>
             <!--BOTÓN CREAR-->
             <div class="new-record-container">
-                <label for="btn-modal-admin-add-record" class="btn-add-record" title="Crear curso">
+                <label for="btn-modal-admin-add-record" class="btn-add-record" title="Crear recurso">
                     <i class="uil uil-plus-circle"></i>Nuevo
                 </label>
+
+                <a class="btn-add-record" title="Crear autor" href="<?php echo SERVER_URL ?>adminAutores/">
+                    <i class="uil uil-plus-circle"></i>Autor
+                </a>
             </div>
-            <!--MODAL CREAR-->
+            <!--MODAL CREAR RECURSO-->
             <input type="checkbox" id="btn-modal-admin-add-record">
                 <div class="container-modal-add-record">
                 <div class="content-modal-add-record">
-                    <h3 class="content-modal-titulo">Nuevo curso</h3>
-                    <form action="<?php echo SERVER_URL ?>ajax/cursoAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
+                    <h3 class="content-modal-titulo">Nuevo recurso</h3>
+
+                    <!--enctype="multipart/form-data" Es para poder enviar archivos en el form-->
+                    <form action="<?php echo SERVER_URL ?>ajax/recursoAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
+                        <!--Título recurso-->
                         <div class="input-field">
-                            <input name="nombre_ins" type="text" placeholder="Nombre" title="Por favor, complete el campo" required/>
+                            <input name="titulo_ins" type="text" placeholder="Título" title="Por favor, complete el campo" required/>
                         </div>
-                        <textarea class="textAreaStl" name="descripcion_ins" type="text" placeholder="Descripción" title="Por favor, complete el campo" required></textarea>
-                        <label for="programaSeleccion" class="titleComboMultiple">Programa(s)</label>
-                            <select name="programas_ins[]" id="programaSeleccionarCur" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
+                        <!--Lista de autores-->
+                        <label for="programaSeleccion" class="titleComboMultiple">Autor(es)</label>
+                            <select name="programas_ins[]" id="programaSeleccionarCur" multiple="multiple" title="Por favor, selecciona el o los autores del recurso">
                                 <?php
                                 foreach($datos_programas as $campos){
                                 ?>
@@ -47,6 +47,48 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                                 }
                                 ?>
                             </select>
+                        <!--Resumen-->
+                        <textarea class="textAreaStl" name="resumen_ins" type="text" placeholder="Resumen" title="Por favor, complete el campo" required></textarea>
+                        <!--Fecha recurso-->
+                        <label for="programaSeleccion" class="titleComboMultiple">Fecha del recurso</label>
+                        <div class="input-field">
+                            <input name="fecha_ins" type="date" placeholder="Fecha del recurso" title="Por favor, complete el campo" required/>
+                        </div>
+                        <!--Editorial-->
+                        <div class="input-field">
+                            <input name="editorial_ins" type="text" placeholder="Editorial" title="Por favor, complete el campo"/>
+                        </div>
+                        <!--ISBN-->
+                        <div class="input-field">
+                            <input name="ISBN_ins" type="number" placeholder="ISBN" title="Por favor, complete el campo"/>
+                        </div>
+                        <!--Archivo-->
+                        <!-- <button class="input-field container-fileBtn" title="Seleccionar archivo">
+                        <i class="uil uil-upload"></i>
+                            Adjuntar archivo
+                        <label for="btn-file"></label>
+                        <input type="file" id="btn-file">
+                        </button> -->
+
+
+
+
+
+                        <div class="fileUploadContainer">
+                            <input class="inputUploadFile" type="file" id="file-input"/>
+                        <label class="labelFileUpload" for="file-input">
+                        <i class="uil uil-upload"></i>
+                        &nbsp; Seleccionar archivo del recurso
+                        </label>
+                        <ul id="files-list"></ul>
+                        </div>
+
+
+
+
+
+
+                        <!--Botones de acción-->
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-submit-add-record" value="Crear" />
                             <label for="btn-modal-admin-add-record" class="btn-close-add-record">Cerrar</label>
@@ -54,7 +96,7 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                     </form>
                 </div>
             </div>
-            </div>
+
 
             <!--TABLA-->
             <?php
@@ -75,9 +117,9 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Programa</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Archivo</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -90,18 +132,18 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
-                            <td data-titulo="NOMBRE"><?php echo $rows['nombre_curso'] ?></td>
-                            <td data-titulo="DESCRIPCIÓN"><?php echo $rows['descripcion_curso'] ?></td>
-                            <td data-titulo="PROGRAMA"><?php echo $rows['nombre_programa'] ?></td>
+                            <td data-titulo="TÍTULO"><?php echo $rows['nombre_curso'] ?></td>
+                            <td data-titulo="AUTOR"><?php echo $rows['descripcion_curso'] ?></td>
+                            <td data-titulo="ARCHIVO"><?php echo $rows['nombre_programa'] ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <a href="<?php echo SERVER_URL ?>adminEditarCurso/<?php echo $ins_curso->encryption($rows['id_curso'])?>/" class="btn-admin-edit-record" title="Editar curso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
+                                        <a href="<?php echo SERVER_URL ?>adminEditarCurso/<?php echo $ins_curso->encryption($rows['id_curso'])?>/" class="btn-admin-edit-record" title="Editar recurso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/cursoAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
                                             <input type="hidden" name="id_curso_del" value="<?php echo $ins_curso->encryption($rows['id_curso']) ?>">
-                                            <button type="submit" class="btn-delete-record" title="Eliminar curso"><i class="uil uil-trash-alt"></i></button>
+                                            <button type="submit" class="btn-delete-record" title="Eliminar recurso"><i class="uil uil-trash-alt"></i></button>
                                         </div>
                                     </form>
                                 </div>
@@ -127,6 +169,7 @@ $datos_programas = $ins_programa->listar_programas_controlador();
 
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/datatables.js"></script> 
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/multipleCombo.js"></script> 
+    <script src="<?php echo SERVER_URL ?>vistas/assets/js/uploadFile.js"></script> 
 
 
 </body>

@@ -36,3 +36,11 @@ sidebarToggle.addEventListener("click", () => {
         localStorage.setItem("status", "open");
     }
 })
+/*Active Link Dashboard*/
+const activePage = window.location.pathname;
+const navLateralLinks = document.querySelectorAll('nav a').forEach(link =>{
+    if(link.href.includes(`${activePage}`)){
+        link.classList.add('activeLi');
+        console.log(`${activePage}`);
+    }
+})

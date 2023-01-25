@@ -3,7 +3,7 @@
 class vistasModelo{
     /*----- Modelo para obtener vistas -----*/
     protected static function obtener_vistas_modelo($vistas){
-        $listaBlancaAdmin = ["adminDashboard","adminUsuarios","adminEditarUsuario","editarPerfil","adminProgramas","adminEditarPrograma","adminCursos","adminEditarCurso"];
+        $listaBlancaAdmin = ["adminDashboard","adminUsuarios","adminEditarUsuario","editarPerfil","adminProgramas","adminEditarPrograma","adminCursos","adminEditarCurso","adminRecursos","adminAutores","adminEditarAutor","adminReportes"];
         $listaBlancaDocente = [];
         $listaBlancaEstudiante = [];
         $listaBlancaHome = ["preguntasFreq"];
