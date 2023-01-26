@@ -80,7 +80,7 @@
             <div class="panel left-panel">
                 <div class="content">
                     <h3>¿No está registrado?</h3>
-                    <p>Cree su cuenta para que pueda tener una experiencia más personalizada a la hora de usar el repositorio institucional. Recuerde que si se registra su tipo de usuario será estudiante.</p>
+                    <p>Cree su cuenta para que pueda tener una experiencia más personalizada a la hora de usar el repositorio institucional. </p>
                     <button class="btn transparent" id="sign-up-btn">Registrarse</button>
                 </div>
                 <img src="<?php echo SERVER_URL; ?>vistas/assets/img/login.svg" class="image" alt="" />
@@ -89,7 +89,7 @@
             <div class="panel right-panel">
                 <div class="content">
                     <h3>¿Ya tiene cuenta?</h3>
-                    <p>Ingrese a su perfil facilmente utilizando su correo electrónico y su contraseña.</p>
+                    <p>Ingrese a su perfil fácilmente utilizando su correo electrónico y su contraseña.</p>
                 <button class="btn transparent" id="sign-in-btn">Iniciar sesión</button>
                 </div>
                 <img src="<?php echo SERVER_URL; ?>vistas/assets/img/signup.svg" class="image" alt="" />

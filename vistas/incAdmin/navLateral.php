@@ -51,12 +51,12 @@
                         <span class="option-name">Recursos</span>
                     </a>
                 </li>
-                <li class="li-plantilla" title="Reportes">
+                <!-- <li class="li-plantilla" title="Reportes">
                 <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminReportes/">
                         <i class="uil uil-analytics"></i>
                         <span class="option-name">Reportes</span>
                     </a>
-                </li>
+                </li> -->
             </ul>
 
             <!--Demás opciones-->

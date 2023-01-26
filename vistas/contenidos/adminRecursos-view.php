@@ -26,18 +26,19 @@
             </div>
             <!--MODAL CREAR RECURSO-->
             <input type="checkbox" id="btn-modal-admin-add-record">
-                <div class="container-modal-add-record">
+                <div class="container-modal-add-record-resource">
                 <div class="content-modal-add-record">
                     <h3 class="content-modal-titulo">Nuevo recurso</h3>
+                    <p class="content-modal-recordatorio">Recuerde que * indica que el campo es obligatorio.</p>
 
                     <!--enctype="multipart/form-data" Es para poder enviar archivos en el form-->
                     <form action="<?php echo SERVER_URL ?>ajax/recursoAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
                         <!--Título recurso-->
                         <div class="input-field">
-                            <input name="titulo_ins" type="text" placeholder="Título" title="Por favor, complete el campo" required/>
+                            <input name="titulo_ins" type="text" placeholder="Título *" title="Por favor, complete el campo" required/>
                         </div>
                         <!--Lista de autores-->
-                        <label for="programaSeleccion" class="titleComboMultiple">Autor(es)</label>
+                        <label for="programaSeleccion" class="titleComboMultiple">Autor *</label>
                             <select name="programas_ins[]" id="programaSeleccionarCur" multiple="multiple" title="Por favor, selecciona el o los autores del recurso">
                                 <?php
                                 foreach($datos_programas as $campos){
@@ -48,46 +49,29 @@
                                 ?>
                             </select>
                         <!--Resumen-->
-                        <textarea class="textAreaStl" name="resumen_ins" type="text" placeholder="Resumen" title="Por favor, complete el campo" required></textarea>
+                        <textarea class="textAreaStl" name="resumen_ins" type="text" placeholder="Resumen *" title="Por favor, complete el campo" required></textarea>
                         <!--Fecha recurso-->
-                        <label for="programaSeleccion" class="titleComboMultiple">Fecha del recurso</label>
+                        <label for="programaSeleccion" class="titleComboMultiple">Fecha del recurso *</label>
                         <div class="input-field">
                             <input name="fecha_ins" type="date" placeholder="Fecha del recurso" title="Por favor, complete el campo" required/>
                         </div>
                         <!--Editorial-->
                         <div class="input-field">
-                            <input name="editorial_ins" type="text" placeholder="Editorial" title="Por favor, complete el campo"/>
+                            <input name="editorial_ins" type="text" placeholder="Editorial " title="Por favor, complete el campo"/>
                         </div>
                         <!--ISBN-->
                         <div class="input-field">
                             <input name="ISBN_ins" type="number" placeholder="ISBN" title="Por favor, complete el campo"/>
                         </div>
-                        <!--Archivo-->
-                        <!-- <button class="input-field container-fileBtn" title="Seleccionar archivo">
-                        <i class="uil uil-upload"></i>
-                            Adjuntar archivo
-                        <label for="btn-file"></label>
-                        <input type="file" id="btn-file">
-                        </button> -->
-
-
-
-
-
+                        <!--Cargue del archivo-->
                         <div class="fileUploadContainer">
                             <input class="inputUploadFile" type="file" id="file-input"/>
                         <label class="labelFileUpload" for="file-input">
                         <i class="uil uil-upload"></i>
                         &nbsp; Seleccionar archivo del recurso
                         </label>
-                        <ul id="files-list"></ul>
+                            <ul id="files-list"></ul>
                         </div>
-
-
-
-
-
-
                         <!--Botones de acción-->
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-submit-add-record" value="Crear" />
@@ -96,7 +80,6 @@
                     </form>
                 </div>
             </div>
-
 
             <!--TABLA-->
             <?php
@@ -120,6 +103,7 @@
                             <th>Título</th>
                             <th>Autor</th>
                             <th>Archivo</th>
+                            <th>Útil (Si/No)</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -135,6 +119,7 @@
                             <td data-titulo="TÍTULO"><?php echo $rows['nombre_curso'] ?></td>
                             <td data-titulo="AUTOR"><?php echo $rows['descripcion_curso'] ?></td>
                             <td data-titulo="ARCHIVO"><?php echo $rows['nombre_programa'] ?></td>
+                            <td data-titulo="ÚTIL (SI/NO)"><?php echo "6/10" ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">

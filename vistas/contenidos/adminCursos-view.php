@@ -32,12 +32,13 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                 <div class="container-modal-add-record">
                 <div class="content-modal-add-record">
                     <h3 class="content-modal-titulo">Nuevo curso</h3>
+                    <p class="content-modal-recordatorio">Recuerde que * indica que el campo es obligatorio.</p>
                     <form action="<?php echo SERVER_URL ?>ajax/cursoAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                         <div class="input-field">
-                            <input name="nombre_ins" type="text" placeholder="Nombre" title="Por favor, complete el campo" required/>
+                            <input name="nombre_ins" type="text" placeholder="Nombre *" title="Por favor, complete el campo" required/>
                         </div>
-                        <textarea class="textAreaStl" name="descripcion_ins" type="text" placeholder="Descripción" title="Por favor, complete el campo" required></textarea>
-                        <label for="programaSeleccion" class="titleComboMultiple">Programa(s)</label>
+                        <textarea class="textAreaStl" name="descripcion_ins" type="text" placeholder="Descripción *" title="Por favor, complete el campo" required></textarea>
+                        <label for="programaSeleccion" class="titleComboMultiple">Programa *</label>
                             <select name="programas_ins[]" id="programaSeleccionarCur" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
                                 <?php
                                 foreach($datos_programas as $campos){

@@ -25,9 +25,10 @@
                 <div class="container-modal-add-record">
                 <div class="content-modal-add-record">
                     <h3 class="content-modal-titulo">Nuevo autor</h3>
+                    <p class="content-modal-recordatorio">Recuerde que * indica que el campo es obligatorio.</p>
                     <form action="<?php echo SERVER_URL ?>ajax/recursoAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                         <div class="input-field">
-                            <input name="nombre_ins" type="text" placeholder="Nombres" title="Por favor, complete el campo" required/>
+                            <input name="nombre_ins" type="text" placeholder="Nombres *" title="Por favor, complete el campo" required/>
                         </div>
                         <div class="input-field">
                             <input name="nombre_ins" type="text" placeholder="Apellidos" title="Por favor, complete el campo" required/>
@@ -39,7 +40,6 @@
                     </form>
                 </div>
             </div>
- 
 
             <!--TABLA-->
             <?php

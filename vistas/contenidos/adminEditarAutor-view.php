@@ -35,8 +35,8 @@ if($datos_usuario->rowCount()>0){
                             <input name="nombre_ins" type="text" placeholder="Apellidos" title="Por favor, complete el campo" required/>
                         </div>
                         <div class="botones-accion-modal">
-                            <input type="submit" class="btn-submit-add-record" value="Crear" />
-                            <label for="btn-modal-admin-add-record" class="btn-close-add-record">Cerrar</label>
+                            <button type="submit" class="btn-admin-edit-record" title="Actualizar">Guardar cambios</button>
+                            <a href="<?php echo SERVER_URL ?>adminAutores/" class="btn-close-edit-record" title="Autores">Volver atrás</a>
                         </div>
                 </div>
             </div>

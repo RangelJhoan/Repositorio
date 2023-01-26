@@ -379,7 +379,21 @@ label{
     align-items: center;
     z-index: 1000;
 }
+.container-modal-add-record-resource{
+    width: 100%;
+    height: 100vh;
+    position:fixed;
+    top:0;left:0;
+    background-color: var(--modal-open-background-color);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
 #btn-modal-admin-add-record:checked ~ .container-modal-add-record{
+    display: flex;
+}
+#btn-modal-admin-add-record:checked ~ .container-modal-add-record-resource{
     display: flex;
 }
 
@@ -403,6 +417,14 @@ label{
     font-size: 1.875em;
     font-weight: 600;
     color:var(--text-color);
+}
+/*Párrafo recordatorio*/
+.content-modal-recordatorio{
+    color:var(--text-color);
+    font-size: 0.7rem;
+    text-align: center;
+    margin-top: -15px;
+    
 }
 /*Contenedor botones*/
 .botones-accion-modal{
@@ -1055,9 +1077,12 @@ select::-ms-expand{
         .labelFileUpload{
             font-size: var(--normal-font-size);
         }
-        .container-modal-add-record{
-            padding-top: 10rem;
+        .container-modal-add-record-resource{
+            padding-top: 8rem;
             padding-bottom: 5%;
+            overflow-y: scroll;
+        }
+        .container-modal-add-record{
             overflow-y: scroll;
         }
     }
@@ -1131,14 +1156,28 @@ select::-ms-expand{
         .labelFileUpload,.fileUploadContainer li{
             font-size: var(--pequeña-font-size);
         }
-        .container-modal-add-record{
-            padding-top: 10rem;
+        .container-modal-add-record-resource{
+            padding-top: 5rem;
             padding-bottom: 10%;
         }
     }
 
     @media (max-width:400px) {
+    .container-modal-add-record-resource{
+            padding-top: 9rem;
+        }
+        .container-modal-add-record{
+            padding-top: 2.5rem;
+            margin-bottom: 3rem;
+        }
+    }
+
+    @media (max-width:350px) {
+    .container-modal-add-record-resource{
+            padding-top: 20rem;
+        }
     .container-modal-add-record{
-        padding-top: 20rem;
+            padding-top: 10rem;
+            padding-bottom: 4rem;
         }
     }
