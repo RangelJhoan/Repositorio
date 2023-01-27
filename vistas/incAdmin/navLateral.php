@@ -16,7 +16,7 @@
             <!--Opciones principales-->
             <ul class="nav-links">
                 <li class="li-plantilla" title="Dashboard">
-                    <a href="<?php echo SERVER_URL ?>adminDashboard/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminDashboard/">
                         <i class="uil uil-dashboard"></i>
                         <span class="option-name">Dashboard</span>
                     </a>
@@ -28,37 +28,35 @@
                     </a>
                 </li> -->
                 <li class="li-plantilla" title="Usuarios">
-                <a href="<?php echo SERVER_URL ?>adminUsuarios/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminUsuarios/">
                         <i class="uil uil-users-alt"></i>
                         <span class="option-name">Usuarios</span>
                     </a>
                 </li>
                 <li class="li-plantilla" title="Programas">
-                <a href="<?php echo SERVER_URL ?>adminProgramas/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminProgramas/">
                         <i class="uil uil-graduation-cap"></i>
                         <span class="option-name">Programas</span>
                     </a>
                 </li>
                 <li class="li-plantilla" title="Cursos">
-                <a href="<?php echo SERVER_URL ?>adminCursos/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminCursos/">
                         <i class="uil uil-book-open"></i>
                         <span class="option-name">Cursos</span>
                     </a>
                 </li>
                 <li class="li-plantilla" title="Recursos">
-                    <a href="#">
-                        <!-- <i class="uil uil-shield-exclamation"></i> -->
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminRecursos/">
                         <i class="uil uil-file-blank"></i>
                         <span class="option-name">Recursos</span>
                     </a>
                 </li>
-                <li class="li-plantilla" title="Reportes">
-                    <a href="#">
-                        <!-- <i class="uil uil-shield-exclamation"></i> -->
+                <!-- <li class="li-plantilla" title="Reportes">
+                <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminReportes/">
                         <i class="uil uil-analytics"></i>
                         <span class="option-name">Reportes</span>
                     </a>
-                </li>
+                </li> -->
             </ul>
 
             <!--Demás opciones-->

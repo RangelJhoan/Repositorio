@@ -20,6 +20,6 @@
         </div>
         <div class="copyright-Box-Footer">
             <hr class="line-divide-footer">
-            <p class="rights-p-Footer">Todos los derechos reservados &copy; 2022 - <b>PG</b></p>
+            <p class="rights-p-Footer">Todos los derechos reservados &copy; 2023 - <b>PG</b></p>
         </div>
     </footer>

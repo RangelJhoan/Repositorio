@@ -24,11 +24,12 @@
                 <div class="container-modal-add-record">
                 <div class="content-modal-add-record">
                     <h3 class="content-modal-titulo">Nuevo usuario</h3>
+                    <p class="content-modal-recordatorio">Recuerde que * indica que el campo es obligatorio.</p>
                     <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                         <div class="input-field ">
                             <div class="select-option">
                                 <select name="tipoUsuario" class="combobox-titulo" title="Por favor, seleccione un tipo de usuario" required>
-                                    <option selected value="" class="combobox-opciones">Tipo de usuario</option>
+                                    <option selected disabled value="" class="combobox-opciones">Tipo de usuario *</option>
                                     <option value="1">Administrador</option>
                                     <option value="2">Docente</option>
                                     <option value="3">Estudiante</option>
@@ -37,16 +38,16 @@
                         </div>
                         <input name="estado" type="hidden" value="1">
                         <div class="input-field">
-                            <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}"  title="Por favor, complete el campo" required/>
+                            <input name="nombre" type="text" placeholder="Nombres *" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}"  title="Por favor, complete el campo" required/>
                         </div>
                         <div class="input-field">
-                            <input name="apellido" type="text" placeholder="Apellidos" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Por favor, complete el campo" required/>
+                            <input name="apellido" type="text" placeholder="Apellidos *" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Por favor, complete el campo" required/>
                         </div>
                         <!--Select tag-->
                         <div class="input-field ">
                             <div class="select-option">
                                 <select name="tipoDocumento" class="combobox-titulo" title="Por favor, seleccione un tipo de documento" required>
-                                    <option selected value="" class="combobox-opciones">Tipo de documento</option>
+                                    <option selected disabled value="" class="combobox-opciones">Tipo de documento *</option>
                                     <option value="TI">Tarjeta de Identidad (TI)</option>
                                     <option value="CC">Cédula de Ciudadanía (CC)</option>
                                     <option value="CE">Tarjeta de Extranjería (CE)</option>
@@ -54,16 +55,16 @@
                             </div>
                         </div>
                         <div class="input-field">
-                            <input name="documento" type="number" placeholder="Número de documento" pattern="[0-9]+" min="1000" max="100000000000" title="Por favor, complete el campo" required  />
+                            <input name="documento" type="number" placeholder="Número de documento *" pattern="[0-9]+" min="1000" max="100000000000" title="Por favor, complete el campo" required  />
                         </div>
                         <div class="input-field">
-                            <input name="correo" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60" title="Por favor, ingrese el correo electrónico" required  />
+                            <input name="correo" type="email" placeholder="Correo electrónico *" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60" title="Por favor, ingrese el correo electrónico" required  />
                         </div>
                         <div class="input-field">
-                            <input name="clave" type="password" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="La contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres." required/>
+                            <input name="clave" type="password" placeholder="Contraseña *" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="La contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres." required/>
                         </div>
                         <div class="input-field">
-                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}"  title="Por favor, complete el campo" required />
+                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña *" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}"  title="Por favor, complete el campo" required />
                         </div>
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-submit-add-record" value="Crear" />
