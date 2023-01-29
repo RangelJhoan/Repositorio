@@ -103,7 +103,8 @@
                             <th>Título</th>
                             <th>Autor</th>
                             <th>Archivo</th>
-                            <th>Útil (Si/No)</th>
+                            <th>Positivos</th>
+                            <th>Negativos</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -119,9 +120,13 @@
                             <td data-titulo="TÍTULO"><?php echo $rows['nombre_curso'] ?></td>
                             <td data-titulo="AUTOR"><?php echo $rows['descripcion_curso'] ?></td>
                             <td data-titulo="ARCHIVO"><?php echo $rows['nombre_programa'] ?></td>
-                            <td data-titulo="ÚTIL (SI/NO)"><?php echo "6/10" ?></td>
+                            <td data-titulo="POSITIVOS"><?php echo "12" ?></td>
+                            <td data-titulo="NEGATIVOS"><?php echo "4" ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
+                                    <div class="btn-group-action">
+                                        <a href="" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>
+                                    </div>
                                     <div class="btn-group-action">
                                         <a href="<?php echo SERVER_URL ?>adminEditarCurso/<?php echo $ins_curso->encryption($rows['id_curso'])?>/" class="btn-admin-edit-record" title="Editar recurso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
                                     </div>
