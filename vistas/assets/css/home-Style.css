@@ -321,112 +321,100 @@ body{
     color:var(--main-home-color);
     padding: 5px;
 }
-
+/*Mensaje contador de recursos en Home*/
+.msg-total-resources{
+    color:var(--home-text-color);
+    font-size: var(--phrgp-home-normal-font-size);
+    text-align: center;
+    margin-bottom: 0.6rem;
+}
+.resources-total-count{
+    font-weight: 700;
+    color:var(--main-home-color);
+}
 
 /*?--------------SECCIÓN FILTROS---------------*/
+/*Contenedor principal*/
 .filters-main-container{
     max-width: 100%;
 }
-
+/*Título "Filtrar búsqueda por"*/
 .filters-main-container .filter-main-Title{
     color:var(--main-home-color);
     text-align: center;
     font-size: var(--normal-font-size-mainSectionHome);
 }
-
-.filters-main-container .containerFor-Filters{
-    background: var(--home-background-color);
-    display: grid;
-    /*Espacio entre tarjetas*/
-    gap: 1rem;
-    /*Alto de la tarjeta*/
-    grid-auto-rows:20rem;
-    /*Tarjetas ajustadas*/
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-    padding: 2rem 8rem 2rem 8rem;   
-    overflow: hidden;
-}
-
-.filters-main-container .containerFor-Filters .listaFiltro {
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
+/*Contenedor de hexágonos*/
+.filterHomeContainer{
     background: var(--white-home-color);
-    overflow: hidden;
-    outline: none;
-    border-bottom: 30px solid var(--white-home-color);
-}
-.list-group-item{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+/*Filtro uno por uno*/
+.filterHomeContainer .hexagonFilters:hover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*Forma hexagonal*/
+.filterHomeContainer .hexagonFilters .hexagonShape{
+    position: relative;
+    width: 200px;
+    height: 250px;
+    margin:0 10px;
+    clip-path: polygon(0 25%, 50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%);
+    background:var(--footer-bgr-color);
+    display:flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    justify-content: flex-start;
-    padding: .5rem 1rem;
+    cursor:pointer;
+    transition: .5s;
+    text-decoration: none;
 }
-.list-Title-Table{
-    text-align: center;
+/*Animación hover*/
+.filterHomeContainer .hexagonFilters .hexagonShape:hover,
+.filterHomeContainer .hexagonFilters .hexagonShape:active{
+    transform: scale(0.9)
+}
+/*Color hexagono 1*/
+.filterHomeContainer .hexagonFilters .hexShp1:hover,
+.filterHomeContainer .hexagonFilters .hexShp1:active{
+    background:rgb(231, 99, 99);
+}
+/*Color hexagono 2*/
+.filterHomeContainer .hexagonFilters .hexShp2:hover,
+.filterHomeContainer .hexagonFilters .hexShp2:active{
+    background:rgb(104, 104, 255);
+}
+/*Color hexagono 3*/
+.filterHomeContainer .hexagonFilters .hexShp3:hover,
+.filterHomeContainer .hexagonFilters .hexShp3:active{
+    background:rgb(79, 170, 114);
+}
+/*Color hexagono 4*/
+.filterHomeContainer .hexagonFilters .hexShp4:hover,
+.filterHomeContainer .hexagonFilters .hexShp4:active{
+    background:rgb(90, 11, 77);
+}
+/*Tamaño del SVG*/
+.filterHomeContainer .hexagonFilters .imageFilterHome{
+    width: 40%;
+}
+/*Título del filtro*/
+.titleFilterHome{
     text-transform: uppercase;
+    color:var(--white-home-color);
     font-size: var(--titleFilterHome-normal-fz);
-    text-decoration: none;
-    font-weight: 500;
-    color:var(--white-home-color);
-    background: linear-gradient(294deg,#6f89c1,#82b0b3d6,#799dd1);
-    background-size: 180% 180%;
-    animation: gradient-animation 5s ease infinite;
-    -webkit-transition: all .4s;
-    -moz-transition: all .4s;
-    -ms-transition: all .4s;
-    -o-transition: all .4s;
-    transition: all .4s;
-    -webkit-animation: gradient-animation 5s ease infinite;
+    font-weight: 600;
+    margin-top: 10px;
+    letter-spacing: 1px;
 }
-.list-Title-Table2{
-    background: linear-gradient(100deg,#82b0b3d6,#6f89c1,#82b0b3d6);
-    background-size: 180% 180%;
-    animation: gradient-animation 10s ease infinite;
-    -webkit-transition: all .4s;
-    -moz-transition: all .4s;
-    -ms-transition: all .4s;
-    -o-transition: all .4s;
-    transition: all .4s;
-    -webkit-animation: gradient-animation 12s ease infinite;
-}
-
-@keyframes gradient-animation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-.list-Title-Table:hover{
-    background-color: var(--main-home-color);
-    opacity: 0.8;
-}
-.list-group-item .a-list-filter{
-    color:var(--home-text-color);
-    text-decoration: none;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border-bottom: 1px solid var(--border-home-color);
-    transition: all .2s;
-    -webkit-transition: all .2s;
-    -moz-transition: all .2s;
-    -ms-transition: all .2s;
-    -o-transition: all .2s;
-    font-size: var(--phrgp-home-normal-font-size);
-}
-.list-group-item .a-list-filter:hover,
-.list-group-item .a-list-filter:active{
-    background-color:var(--home-text-color);
-    color:var(--white-home-color);
-}
-
-
 
 
 /*?--------------SECCIÓN PREGUNTAS FRECUENTES---------------*/
@@ -767,6 +755,21 @@ body{
         height: 1.9rem;
         width: 1.9rem;
     }
+    .msg-total-resources{
+        font-size: var(--phrgp-home-medium-font-size);
+        margin-left: 35px;
+        margin-right: 35px;
+    }
+    .titleFilterHome{
+        font-size: var(--titleFilterHome-medium-fz);
+    }
+    /*Forma hexagonal*/
+    .filterHomeContainer .hexagonFilters .hexagonShape{
+    position: relative;
+    width: 170px;
+    height: 210px;
+    margin:0 5px;
+    }
 }
 
 @media all and (max-width:600px){
@@ -874,4 +877,16 @@ body{
     .wrapperFAQ .parentTabFAQ .contentFAQ{
         padding: 0px 1px;
     }
+    .msg-total-resources{
+        font-size: var(--phrgp-home-supertiny-font-size);
+    }
+    .titleFilterHome{
+        font-size: var(--titleFilterHome-tiny-fz);
+    }
+    .filterHomeContainer .hexagonFilters .hexagonShape{
+        position: relative;
+        width: 160px;
+        height: 200px;
+        margin:5px;
+        }
 }

@@ -114,6 +114,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     /* width: calc(100% / 4 - 15px); */
     /* padding: 15px 20px; */
     -webkit-user-select:none;
@@ -315,14 +316,24 @@ label{
     transition: all .5s;
     text-decoration: none;
 }
+.btn-admin-view-record{
+    background-color: var(--create-button-hover) ;
+    border-radius: 5px;
+    border-style: none;
+    transition: all .5s;
+    text-decoration: none;
+}
+.btn-admin-view-record:hover{
+    background-color: var(--create-button-hover) ;
+}
 .btn-delete-record{
     background-color:  var(--delete-button);
     border-radius: 5px;
     border-style: none;
     transition: all .5s;
 }
-.btn-admin-edit-record:hover{
-    background-color:  var(--edit-button-hover);
+.btn-admin-view-record:hover{
+    background-color:  rgb(23, 128, 49);
 }
 .btn-delete-record:hover{
     background-color:  var(--delete-button-hover);

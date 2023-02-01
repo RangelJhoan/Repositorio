@@ -6,59 +6,33 @@
 </head>
 <body>
 <section class="filters-main-container">
+    <p class="msg-total-resources">Este repositorio institucional cuenta con un total de <span class="resources-total-count">1000</span> recursos disponibles para toda la comunidad. </p>
         <h2 class="filter-main-Title">Filtrar búsqueda por</h2>
-        <div class="containerFor-Filters">
-            <div class="listaFiltro">
-                <a class="list-Title-Table" href="" title="Filtrar todo por autor">Autor</a>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <a class="a-list-filter" href="">Autor 1 Autor2 Autor3 Autor4 Autor5 Autor6 Autor 7</a>
-                        <a class="a-list-filter" href="">Autor 2</a>
-                        <a class="a-list-filter" href="">Autor 3</a>
-                        <a class="a-list-filter" href="">Autor 4</a>
-                    </li>
-                </ul>
-            </div>  
-            <div class="listaFiltro">
-                <a class="list-Title-Table list-Title-Table2" href="" title="Filtrar todo por título">Título</a>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <a class="a-list-filter" href="">Título 1</a>
-                        <a class="a-list-filter" href="">Título 2</a>
-                        <a class="a-list-filter" href="">Título 3</a>
-                        <a class="a-list-filter" href="">Título 4</a>
-                    </li>
-                </ul>
-            </div>                  
-            <div class="listaFiltro">
-                <a class="list-Title-Table" href="" title="Filtrar todo por curso">Curso</a>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <a class="a-list-filter" href="">Curso 1</a>
-                        <a class="a-list-filter" href="">Curso 2</a>
-                        <a class="a-list-filter" href="">Curso 3</a>
-                        <a class="a-list-filter" href="">Curso 3</a>
-                        <a class="a-list-filter" href="">Curso 3</a>
-                        <a class="a-list-filter" href="">Curso 3</a>
-                        <a class="a-list-filter" href="">Curso 3</a>
-                        <a class="a-list-filter" href="">Curso 4</a>
-                        <a class="a-list-filter" href="">Curso 4</a>
-                        <a class="a-list-filter" href="">Curso 4</a>
-                        <a class="a-list-filter" href="">Curso 4</a>
-                    </li>
-                </ul>
-            </div>                  
-            <div class="listaFiltro">
-                <a class="list-Title-Table list-Title-Table2" href="" title="Filtrar todo por fecha de publicación">Fecha de publicación</a>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <a class="a-list-filter" href="">Fecha 1</a>
-                        <a class="a-list-filter" href="">Fecha 2</a>
-                        <a class="a-list-filter" href="">Fecha 3</a>
-                        <a class="a-list-filter" href="">Fecha 4</a>
-                    </li>
-                </ul>
+        <div class="filterHomeContainer">
+            <div class="hexagonFilters">
+                <a href="#" class="hexagonShape hexShp1">
+                    <img src="<?php echo SERVER_URL; ?>vistas/assets/img/autorHome.svg" class="imageFilterHome" alt="Autor Img" />
+                    <h3 class="titleFilterHome">Autor</h3>
+                </a>
             </div>              
+            <div class="hexagonFilters">
+                <a href="#" class="hexagonShape hexShp2">
+                    <img src="<?php echo SERVER_URL; ?>vistas/assets/img/tituloHome.svg" class="imageFilterHome" alt="Autor Img" />
+                    <h3 class="titleFilterHome">Título</h3>
+                </a>
+            </div>              
+            <div class="hexagonFilters">
+                <a href="#" class="hexagonShape hexShp3">
+                    <img src="<?php echo SERVER_URL; ?>vistas/assets/img/fechaHome.svg" class="imageFilterHome" alt="Autor Img" />
+                    <h3 class="titleFilterHome">Fecha</h3>
+                </a>
+            </div>        
+            <div class="hexagonFilters">
+                <a href="#" class="hexagonShape hexShp4">
+                    <img src="<?php echo SERVER_URL; ?>vistas/assets/img/materiaHome.svg" class="imageFilterHome" alt="Autor Img" />
+                    <h3 class="titleFilterHome">Área</h3>
+                </a>
+            </div>             
         </div>
     </section>
 </body>
