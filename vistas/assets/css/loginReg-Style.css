@@ -201,7 +201,7 @@ select::-ms-expand{
   color:var(--main-color);
 }
 
-/**Olvidó su contraseña?*/
+/*?-----OLVIDÓ SU CONTRASEÑA?----*/
 .password-forget-text {
   padding: 0.7rem 0;
   font-size: 0.85rem;
@@ -213,6 +213,133 @@ select::-ms-expand{
   text-decoration:underline;
 }
 
+
+/*Contenedor principal del modal (externo)*/
+.modal-container{
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: #0e0e0e7c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*Campos de texto: titulo, párrafo, campo de correo*/
+.textosmodal{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1.5rem;
+}
+/*Contenedor del modal (interno)*/
+.modal-pswd{
+  width: 0 auto;
+  height: fit-content;
+  background-color: var(--background-color);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: relative;
+  transition: all .5s;
+  transform: translateY(0%);
+  border-radius: 10px;
+}
+/*Animación al momento de cerrar modal*/
+.modal-close-pswd{
+  transform: translateY(-200%);
+}
+/*Ajusta del tamaño de la imagen*/
+.recover-password-pic{
+  /* width: 70%; */
+  max-width: 40%;
+  margin-right: 0;
+  padding-top: 20px;
+  display: flex;
+  align-self: center;
+}
+/*Estilización para la X de cerrar */
+.close{
+  position: absolute;
+  top:5px;
+  right: 5px;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: #c44a4a;
+  color:#fff;
+  cursor: pointer;
+  line-height: 25px;
+  border-radius: 50%;
+}
+/*Estilo del párrafo*/
+.phrp-recover-password{
+  color:var(--paragraph-color);
+  font-size: var(--normal-font-size);
+}
+
+/*Estilo del título*/
+.title-recover-password{
+  color:var(--title-color);
+  font-weight: 600;
+  line-height: 1;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  text-decoration:underline;
+}
+
+.botones-accion-modal{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  overflow:hidden ;
+}
+
+/*Botón cerrar*/
+.btn-close-add-record,
+.btn-close-edit-record{
+    background-color: #c44a4a;;
+    cursor: pointer;
+    padding: 7px 10px;
+    border-radius: 4px;
+    transition: all 300ms ease;
+    color:#fff;
+    font-size: var(--normal-font-size);
+    border-style: none;
+    margin-left: 10px;
+    text-decoration: none;;
+    text-align: center;
+    display: flex;
+    align-items: center;
+} 
+.btn-close-add-record:hover,
+.btn-close-edit-record:hover{
+    background-color: #7c3232;
+}
+/*Botón crear*/
+.btn-submit-add-record,
+.btn-admin-edit-record{
+    background-color: var(--main-color);
+    cursor: pointer;
+    padding: 7px 10px;
+    border-radius: 4px;
+    transition: all 300ms ease;
+    color:#fff;
+    border-style: none;
+    font-size: var(--normal-font-size);
+}
+.btn-submit-add-record:hover{
+    background-color: var(--altern-main-color);
+}
+
+/**-----
 /**Botón acceder y crear cuenta*/
 .btn {
   width: 150px;
@@ -231,7 +358,6 @@ select::-ms-expand{
 .btn:hover {
   background-color: var(--altern-main-color);
 }
-
 
 /*? PANELES - CAMBIO DE ACCIÖN*/
 /**Sección para el cambio de acción. Información que se muestra en los paneles */
@@ -392,15 +518,21 @@ select::-ms-expand{
     transition-delay: 0.8s;
   }
 
-  .panel h3 {
+  .panel h3,
+  .title-recover-password {
     font-size: 1.2rem;
   }
 
-  .panel p {
+  .panel p,
+  .phrp-recover-password{
     font-size: 0.7rem;
     padding: 0.5rem 0;
   }
 
+
+.btn-submit-add-record{
+  font-size: 0.9rem;
+}
   .btn.transparent {
     width: 110px;
     height: 35px;

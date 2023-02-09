@@ -6,8 +6,30 @@
     <title>Repositorio Institucional</title>
 </head>
 <body>
+    <!--MODAL CONTRASEÑA-->
+    <div class="modal-container">
+                    <div class="modal-pswd modal-close-pswd">
+                        <p class="close">X</p>
+                        <img src="<?php echo SERVER_URL; ?>vistas/assets/img/forgot-password.svg" class="recover-password-pic" alt="Ilustración recuperar contraseña" />
+                        <div class="textosmodal">
+                            <h3 class="title-recover-password">Recuperación de la cuenta</h3>
+                            <p class="phrp-recover-password"> A continuación, por favor ingrese el correo electrónico con el cual se encuentra registrado en el repositorio institucional.</p>
+                            <form action="#" class="" method="POST" data-form="save" autocomplete="off">
+                            <div class="input-field">
+                                <i class="fas fa-envelope"></i>
+                                <input name="correo" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60" title="Por favor, ingrese el correo electrónico" required />
+                            </div>
+                            <div class="botones-accion-modal">
+                                <input type="submit" class="btn-submit-add-record" value="Recuperar" title="Enviar"/>
+                                <!-- <label for="btn-modal-admin-add-record" class="btn-close-add-record">Cancelar</label> -->
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
     <!--CONTAINER GENERAL-->
     <div class="container">
+        
         <!--SECCIÓN PARA LOS FORMULARIOS-->
         <section class="forms-container">
             <div class="signin-signup">
@@ -24,8 +46,17 @@
                     </div>
 
                     <input type="submit" value="Acceder" class="btn solid" />
-                    <a href="" class="password-forget-text">¿Olvidó su contraseña?</a>
+                    <a href="#" class="password-forget-text">¿Olvidó su contraseña?</a>
                 </form>
+
+
+
+
+
+
+
+
+
 
 
                 <!--Formulario 2: Crear cuenta-->
@@ -99,6 +130,8 @@
 
 
     <!--APARTADO PARA LOS SCRIPTS-->
+    <script src="<?php echo SERVER_URL ?>vistas/assets/js/recoveryPsswd.js"></script>
+
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/alertas.js"></script>
     <!--Script necesario para poder cambiar de manera dinámica los formularios-->
     <script src="<?php echo SERVER_URL; ?>vistas/assets/js/loginReg.js"></script>
