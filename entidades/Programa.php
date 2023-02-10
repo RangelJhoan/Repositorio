@@ -4,6 +4,7 @@ class Programa {
     private $idPrograma;
     private $nombre;
     private $descripcion;
+    private $estado;
 
     public function __construct(){}
 
@@ -20,6 +21,10 @@ class Programa {
         return $this->descripcion;
     }
 
+    public function getEstado(){
+        return $this->estado;
+    }
+
     //Setters
     public function setIdPrograma($idPrograma){
         $this->idPrograma = $idPrograma;
@@ -31,6 +36,10 @@ class Programa {
 
     public function setDescripcion($descripcion){
         $this->descripcion = $descripcion;
+    }
+
+    public function setEstado($estado){
+        $this->estado = $estado;
     }
 }
 

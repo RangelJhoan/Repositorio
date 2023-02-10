@@ -6,6 +6,12 @@
     <title>Repositorio Institucional</title>
 </head>
 <body>
+<?php
+require_once "./controladores/tipoDocumentoControlador.php";
+$ins_tipo_documento = new tipoDocumentoControlador();
+
+$datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador();
+?>
     <!--MODAL CONTRASEÑA-->
     <div class="modal-container">
                     <div class="modal-pswd modal-close-pswd">
@@ -48,17 +54,6 @@
                     <input type="submit" value="Acceder" class="btn solid" />
                     <a href="#" class="password-forget-text">¿Olvidó su contraseña?</a>
                 </form>
-
-
-
-
-
-
-
-
-
-
-
                 <!--Formulario 2: Crear cuenta-->
                 <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                     <h2 class="title">Registrarse</h2>
@@ -82,9 +77,13 @@
                         <div class="select-option">
                             <select name="tipoDocumento" class="combobox-titulo" title="Por favor, seleccione el tipo de documento" required>
                                 <option selected value="" class="combobox-opciones">Tipo de documento</option>
-                                <option value="TI">Tarjeta de Identidad (TI)</option>
-                                <option value="CC">Cédula de Ciudadanía (CC)</option>
-                                <option value="CE">Tarjeta de Extranjería (CE)</option>
+                                <?php
+                                foreach($datos_tipo_documento as $campo){
+                                ?>
+                                <option value="<?php echo $campo['id'] ?>"><?php echo $campo['descripcion'] ?></option>
+                                <?php
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>

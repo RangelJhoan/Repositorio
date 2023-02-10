@@ -4,6 +4,7 @@ class Curso {
     private $idCurso;
     private $nombre;
     private $descripcion;
+    private $estado;
     private $listaProgramas;
 
     public function __construct(){}
@@ -21,6 +22,10 @@ class Curso {
         return $this->descripcion;
     }
 
+    public function getEstado(){
+        return $this->estado;
+    }
+
     public function getListaProgramas(){
         return $this->listaProgramas;
     }
@@ -36,6 +41,10 @@ class Curso {
 
     public function setDescripcion($descripcion){
         $this->descripcion = $descripcion;
+    }
+
+    public function setEstado($estado){
+        $this->estado = $estado;
     }
 
     public function setListaProgramas($listaProgramas){

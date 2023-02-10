@@ -4,10 +4,12 @@ if($peticionAjax){
     //Modelo llamado desde el archivo Ajax
     require_once "../modelos/usuarioModelo.php";
     require_once "../entidades/Persona.php";
+    require_once "../entidades/TipoDocumento.php";
 }else{
     //Modelo llamado desde la vista Index
     require_once "./modelos/usuarioModelo.php";
     require_once "./entidades/Persona.php";
+    require_once "./entidades/TipoDocumento.php";
 }
 
 class usuarioControlador extends usuarioModelo{
@@ -18,13 +20,18 @@ class usuarioControlador extends usuarioModelo{
         $persona->setNombre($_POST['nombre']);
         $persona->setApellido($_POST['apellido']);
         $persona->setCorreo($_POST['correo']);
-        $persona->setTipoDocumento($_POST['tipoDocumento']);
         $persona->setDocumento($_POST['documento']);
         $persona->setClave($_POST['clave']);
         $persona->setIdTipoUsuario($_POST['tipoUsuario']);
         $persona->setEstado($_POST['estado']);
         $confirmarClave = $_POST['confirmarClave'];
 
+        $persona->setEstadoPersona(1);
+
+        $tipoDocumento = new TipoDocumento();
+        $tipoDocumento->setIdTipoDocumento($_POST['tipoDocumento']);
+
+        $persona->setTipoDocumento($tipoDocumento);
 
         if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getCorreo() == "" || $persona->getTipoDocumento() == "" ||
             $persona->getDocumento() == "" || $persona->getClave() == "" || $persona->getIdTipoUsuario() == "" || $persona->getEstado() == ""){

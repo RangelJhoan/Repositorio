@@ -21,8 +21,8 @@
             $idUsuario = $row['id'];
 
             if($sql->rowCount() == 1){
-                $sql = mainModel::conectar()->prepare("INSERT INTO persona(tipo_documento, documento, nombre, apellido, id_usuario) VALUES(?, ?, ?, ?, ?)");
-                $sql->execute([$persona->getTipoDocumento(), $persona->getDocumento(), $persona->getNombre(), $persona->getApellido(), $idUsuario]);
+                $sql = mainModel::conectar()->prepare("INSERT INTO persona(documento, nombre, apellido, estado, id_tipo_documento, id_usuario) VALUES(?, ?, ?, ?, ?, ?)");
+                $sql->execute([$persona->getDocumento(), $persona->getNombre(), $persona->getApellido(), $persona->getEstadoPersona(), $persona->getTipoDocumento()->getIdTipoDocumento(), $idUsuario]);
 
                 return $sql;
             }else{

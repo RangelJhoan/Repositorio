@@ -13,8 +13,8 @@
 
         /*---------- Modelo para agregar curso ----------*/
         protected static function agregar_curso_modelo(Curso $curso){
-            $sql = mainModel::conectar()->prepare("INSERT INTO curso(nombre, descripcion) VALUES(?, ?);");
-            $sql->execute([$curso->getNombre(), $curso->getDescripcion()]);
+            $sql = mainModel::conectar()->prepare("INSERT INTO curso(nombre, descripcion, estado) VALUES(?, ?, ?);");
+            $sql->execute([$curso->getNombre(), $curso->getDescripcion(), $curso->getEstado()]);
             $sqlQuery = mainModel::conectar()->prepare("SELECT id FROM curso WHERE nombre = ?;");
             $sqlQuery->execute([$curso->getNombre()]);
             $row = $sqlQuery->fetch();

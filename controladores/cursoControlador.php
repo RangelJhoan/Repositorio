@@ -18,6 +18,7 @@ class cursoControlador extends cursoModelo{
         $curso->setNombre($_POST['nombre_ins']);
         $curso->setDescripcion($_POST['descripcion_ins']);
         $curso->setListaProgramas([]);
+        $curso->setEstado(1);
         if(isset($_POST['programas_ins'])){
             $curso->setListaProgramas($_POST['programas_ins']);
         }
