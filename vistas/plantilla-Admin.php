@@ -40,7 +40,7 @@
         ?>
         </section>
         <!--SCRIPTS NECESARIOS-->
-        <?php include "./vistas/incAdmin/LogOut.php" ?>
+        <?php include "./vistas/LogOut.php" ?>
         <?php include "incAdmin/scripts.php";
     }
     ?>

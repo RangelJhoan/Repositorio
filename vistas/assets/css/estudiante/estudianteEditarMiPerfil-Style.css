@@ -1,0 +1,4 @@
+.users-container .title i {
+    background-color: var(--main-color);
+    color:var(--background-color);
+}

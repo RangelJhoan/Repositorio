@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--ESTILOS CSS Y DEMÁS ESTILOS-->
-    <?php include "incAdmin/link.php";?>
+    <?php include "incEstudiante/link.php";?>
     <title>Repositorio Institucional</title>
 </head>
 <body class="mode">
@@ -31,17 +31,17 @@
         $pagina = explode("/", $_GET['views']);
         ?>
         <!---NAVLATERAL-->
-        <?php include "incAdmin/navLateral.php";?>
+        <?php include "incEstudiante/navLateral.php";?>
         <!--TOPBAR-->
         <section class="top-navbar">
         <?php
-        include "incAdmin/navBar.php";
+        include "incEstudiante/navBar.php";
         include $vistas;
         ?>
         </section>
         <!--SCRIPTS NECESARIOS-->
-        <?php include "./vistas/incAdmin/LogOut.php" ?>
-        <?php include "incAdmin/scripts.php";
+        <?php include "./vistas/LogOut.php" ?>
+        <?php include "incEstudiante/scripts.php";
     }
     ?>
 </body>

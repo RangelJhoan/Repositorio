@@ -5,7 +5,7 @@ class vistasModelo{
     protected static function obtener_vistas_modelo($vistas){
         $listaBlancaAdmin = ["adminDashboard","adminUsuarios","adminEditarUsuario","editarPerfil","adminProgramas","adminEditarPrograma","adminCursos","adminEditarCurso","adminRecursos","adminAutores","adminEditarAutor","adminReportes"];
         $listaBlancaDocente = ["docenteDashboard"];
-        $listaBlancaEstudiante = ["estudianteDashboard"];
+        $listaBlancaEstudiante = ["estudianteDashboard","estudianteFavoritos","editarPerfil"];
         $listaBlancaHome = ["preguntasFreq"];
 
         if(isset($_SESSION['tipo_usuario'])){

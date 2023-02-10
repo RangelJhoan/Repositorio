@@ -4,8 +4,8 @@
     btn_salir.addEventListener('click', function(e){
         e.preventDefault()
         Swal.fire({
-            title: '¿Está seguro de cerrar la sesión?',
-            text: "Está a punto de cerrar sesión",
+            title: 'Cerrar sesión',
+            text: "¿Está seguro de cerrar la sesión?",
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
