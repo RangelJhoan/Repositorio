@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
     <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminEditarMiPerfil-Style.css">
-    <title>Repositorio Institucional</title>
+    <title>Perfil</title>
 </head>
 <body>
 <section class="general-admin-container">
@@ -52,7 +52,7 @@
                         <div class="botones-accion-modal">
                             <button type="submit" class="btn-admin-edit-record">Guardar cambios</button>
                             <!-- <a href="<?php echo SERVER_URL ?>adminUsuarios/" class="btn-classcerrar-editar-usuario" title="Volver atrás">Volver atrás</a> -->
-                            <a href="#" class="btn-close-edit-record" title="Volver atrás">Volver atrás</a>
+                            <a href="javascript:history.back()" class="btn-close-edit-record" title="Volver atrás">Volver atrás</a>
                         </div>
                     </form>
                 </div>

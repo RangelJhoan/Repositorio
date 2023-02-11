@@ -93,8 +93,8 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
                             <td data-titulo="NOMBRE"><?php echo $rows['nombre'] ?></td>
-                            <td data-titulo="DESCRIPCIÓN"><?php echo $rows['descripcion'] ?></td>
-                            <td data-titulo="PROGRAMA"><?php
+                            <td data-titulo="DESCRIPCIÓN" class="responsive-file"><?php echo $rows['descripcion'] ?></td>
+                            <td data-titulo="PROGRAMA" class="responsive-file"><?php
                                 foreach($programas_curso as $campos){
                                     ?>
                                     <li><?php echo $campos['programa_nombre'] ?></li>

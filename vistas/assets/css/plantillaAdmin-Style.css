@@ -475,3 +475,9 @@ body.dark .switch:before{
         display: none;
     }
 }
+@media (max-width:850px){
+    .responsive-file{
+        display: flex;
+        flex-direction: column;
+    }
+}

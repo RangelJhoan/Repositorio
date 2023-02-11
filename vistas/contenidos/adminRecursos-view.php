@@ -16,71 +16,13 @@
             </div>
             <!--BOTÓN CREAR-->
             <div class="new-record-container">
-                <label for="btn-modal-admin-add-record" class="btn-add-record" title="Crear recurso">
-                    <i class="uil uil-plus-circle"></i>Nuevo
-                </label>
-
+                <a class="btn-add-record" title="Crear recurso" href="<?php echo SERVER_URL ?>crearRecurso/">
+                <i class="uil uil-plus-circle"></i></i></i>Nuevo
+                </a>
                 <a class="btn-add-record" title="Crear autor" href="<?php echo SERVER_URL ?>adminAutores/">
-                    <i class="uil uil-plus-circle"></i>Autor
+                <i class="uil uil-pen"></i></i></i>Autor
                 </a>
             </div>
-            <!--MODAL CREAR RECURSO-->
-            <input type="checkbox" id="btn-modal-admin-add-record">
-                <div class="container-modal-add-record-resource">
-                <div class="content-modal-add-record">
-                    <h3 class="content-modal-titulo">Nuevo recurso</h3>
-                    <p class="content-modal-recordatorio">Recuerde que * indica que el campo es obligatorio.</p>
-
-                    <!--enctype="multipart/form-data" Es para poder enviar archivos en el form-->
-                    <form action="<?php echo SERVER_URL ?>ajax/recursoAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
-                        <!--Título recurso-->
-                        <div class="input-field">
-                            <input name="titulo_ins" type="text" placeholder="Título *" title="Por favor, complete el campo" required/>
-                        </div>
-                        <!--Lista de autores-->
-                        <label for="programaSeleccion" class="titleComboMultiple">Autor *</label>
-                            <select name="programas_ins[]" id="programaSeleccionarCur" multiple="multiple" title="Por favor, selecciona el o los autores del recurso">
-                                <?php
-                                foreach($datos_programas as $campos){
-                                ?>
-                                <option value="<?php echo $campos['id'] ?>"><?php echo $campos['nombre'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        <!--Resumen-->
-                        <textarea class="textAreaStl" name="resumen_ins" type="text" placeholder="Resumen *" title="Por favor, complete el campo" required></textarea>
-                        <!--Fecha recurso-->
-                        <label for="programaSeleccion" class="titleComboMultiple">Fecha del recurso *</label>
-                        <div class="input-field">
-                            <input name="fecha_ins" type="date" placeholder="Fecha del recurso" title="Por favor, complete el campo" required/>
-                        </div>
-                        <!--Editorial-->
-                        <div class="input-field">
-                            <input name="editorial_ins" type="text" placeholder="Editorial " title="Por favor, complete el campo"/>
-                        </div>
-                        <!--ISBN-->
-                        <div class="input-field">
-                            <input name="ISBN_ins" type="number" placeholder="ISBN" title="Por favor, complete el campo"/>
-                        </div>
-                        <!--Cargue del archivo-->
-                        <div class="fileUploadContainer">
-                            <input class="inputUploadFile" type="file" id="file-input"/>
-                        <label class="labelFileUpload" for="file-input">
-                        <i class="uil uil-upload"></i>
-                        &nbsp; Seleccionar archivo del recurso
-                        </label>
-                            <ul id="files-list"></ul>
-                        </div>
-                        <!--Botones de acción-->
-                        <div class="botones-accion-modal">
-                            <input type="submit" class="btn-submit-add-record" value="Crear" />
-                            <label for="btn-modal-admin-add-record" class="btn-close-add-record">Cerrar</label>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
             <!--TABLA-->
             <?php
                 require_once "./controladores/cursoControlador.php";

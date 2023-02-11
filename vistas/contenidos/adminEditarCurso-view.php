@@ -37,9 +37,10 @@ if($datos_curso->rowCount()>0){
                     <div class="input-field">
                         <input name="nombre_edit" type="text" placeholder="Nombre" value="<?php echo $campos_curso['nombre'] ?>"  title="Nombre" required/>
                     </div>
-                    <div class="input-field">
-                        <input name="descripcion_edit" type="text" placeholder="Descripción" value="<?php echo $campos_curso['descripcion'] ?>" title="Descripción" required/>
+                    <div class="">
+                            <textarea class="textAreaStl" name="descripcion_edit" type="text" required><?php echo $campos_curso['descripcion'] ?></textarea>
                     </div>
+
                     <label for="programaSeleccion" class="titleComboMultiple">Programa(s)</label>
                         <select name="programas_edit[]" id="programaSeleccionarCur" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
                             <?php
