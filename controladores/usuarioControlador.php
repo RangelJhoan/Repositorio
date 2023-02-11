@@ -229,6 +229,7 @@ class usuarioControlador extends usuarioModelo{
     /*---------- Controlador editar usuario ----------*/
     public function editar_usuario_controlador(){
         $persona = new Persona();
+        $tipoDocumento = new TipoDocumento();
         //Recibiendo el ID del usuario a editar
         $persona->setIdPersona(mainModel::decryption($_POST['id_usuario_editar']));
 
@@ -249,9 +250,11 @@ class usuarioControlador extends usuarioModelo{
         $persona->setIdUsuario($datos_person['id_usuario']);
         $persona->setNombre($_POST['nombre']);
         $persona->setApellido($_POST['apellido']);
-        $persona->setTipoDocumento($_POST['tipoDocumento']);
         $persona->setDocumento($_POST['documento']);
         $persona->setEstado($_POST['estado']);
+
+        $tipoDocumento->setIdTipoDocumento($_POST['tipoDocumento']);
+        $persona->setTipoDocumento($tipoDocumento);
 
         $check_user = mainModel::ejecutar_consulta_simple("SELECT * FROM usuario WHERE id = '". $persona->getIdUsuario() ."'");
 
@@ -298,23 +301,36 @@ class usuarioControlador extends usuarioModelo{
         }
 
         $editarPersona = usuarioModelo::editar_persona_modelo($persona);
-        $editarUsuario = usuarioModelo::editar_usuario_modelo($persona);
-        if($editarPersona->rowCount() > 0 || $editarUsuario->rowCount() > 0){
-            $alerta=[
-                "Alerta"=>"redireccionar",
-                "Titulo"=>"Datos actualizados",
-                "URL"=>SERVER_URL."adminUsuarios/",
-                "Texto"=>"Los datos han sido actualizados con éxito",
-                "Tipo"=>"success"
-            ];
-        }else{
+
+        if(is_string($editarPersona) || $editarPersona < 0){
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
-                "Texto"=>"No se pudo actualizar la información",
+                "Texto"=>"No se pudo actualizar la información de la persona",
                 "Tipo"=>"error"
             ];
+            echo json_encode($alerta);
+            exit();
         }
+        $editarUsuario = usuarioModelo::editar_usuario_modelo($persona);
+        if(is_string($editarUsuario) || $editarUsuario < 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"No se pudo actualizar la información del usuario",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $alerta=[
+            "Alerta"=>"redireccionar",
+            "Titulo"=>"Datos actualizados",
+            "URL"=>SERVER_URL."adminUsuarios/",
+            "Texto"=>"Los datos han sido actualizados con éxito",
+            "Tipo"=>"success"
+        ];
         echo json_encode($alerta);
     }
 
@@ -335,13 +351,13 @@ class usuarioControlador extends usuarioModelo{
         $inicio = ($pagina>0) ? (($pagina*$registros)-$registros) : 0;
 
         if(isset($busqueda) && $busqueda != ""){
-            $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, p.documento, p.tipo_documento, p.id_usuario, u.estado, tu.descripcion 
-            FROM persona p JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
+            $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, td.descripcion as documento, p.id_usuario, u.estado, tu.descripcion 
+            FROM persona p JOIN tipo_documento td ON td.id = p.id_tipo_documento JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
             WHERE p.id != '$id' AND (p.documento LIKE '%$busqueda%' OR p.nombre LIKE '%$busqueda%' OR p.apellido LIKE '%$busqueda%') 
             ORDER BY p.nombre ASC LIMIT $inicio,$registros";
         }else{
-            $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, p.documento, p.tipo_documento, p.id_usuario, u.estado, tu.descripcion 
-            FROM persona p JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
+            $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, td.descripcion as documento, p.id_usuario, u.estado, tu.descripcion 
+            FROM persona p JOIN tipo_documento td ON td.id = p.id_tipo_documento JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
             WHERE p.id != '$id' 
             ORDER BY p.nombre ASC LIMIT $inicio,$registros";
         }

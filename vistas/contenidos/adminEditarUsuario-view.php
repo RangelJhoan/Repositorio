@@ -11,9 +11,13 @@
 <?php
 
 require_once "./controladores/usuarioControlador.php";
+require_once "./controladores/tipoDocumentoControlador.php";
+
 $ins_usuario = new usuarioControlador();
+$ins_tipo_documento = new tipoDocumentoControlador();
 
 $datos_usuario = $ins_usuario->datos_usuario_controlador("Unico", $pagina[1]);
+$datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador();
 
 if($datos_usuario->rowCount()>0){
     $campos = $datos_usuario->fetch();
@@ -52,10 +56,14 @@ if($datos_usuario->rowCount()>0){
                         <div class="input-field ">
                             <div class="select-option">
                                 <select name="tipoDocumento" class="combobox-titulo" title="Tipo de documento">
-                                    <option disabled value="" class="combobox-opciones">Tipo de documento</option>
-                                    <option <?php if($campos['tipo_documento'] == 'TI'){echo "selected";} ?> value="TI">Tarjeta de Identidad (TI)</option>
-                                    <option <?php if($campos['tipo_documento'] == 'CC'){echo "selected";} ?> value="CC">Cédula de Ciudadanía (CC)</option>
-                                    <option <?php if($campos['tipo_documento'] == 'CE'){echo "selected";} ?> value="CE">Tarjeta de Extranjería (CE)</option>
+                                    <option selected disabled value="" class="combobox-opciones">Tipo de documento</option>
+                                    <?php
+                                    foreach($datos_tipo_documento as $campoTD){
+                                    ?>
+                                    <option <?php if($campoTD['descripcion'] == $campos['descripcionTipoDocumento']){echo "selected";}  ?> value="<?php echo $campoTD['id'] ?>"><?php echo $campoTD['descripcion'] ?></option>
+                                    <?php
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>

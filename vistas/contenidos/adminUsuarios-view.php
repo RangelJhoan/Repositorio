@@ -6,6 +6,22 @@
     <title>Repositorio Institucional</title>
 </head>
 <body>
+<?php
+require_once "./controladores/usuarioControlador.php";
+require_once "./controladores/tipoDocumentoControlador.php";
+$ins_usuario = new usuarioControlador();
+$ins_tipo_documento = new tipoDocumentoControlador();
+$datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador();
+
+$cantidadRegistros = 1000;
+if(count($pagina) == 0){
+    $paginaActual = $pagina[1];
+    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
+}else{
+    $paginaActual = -1;
+    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
+}
+?>
     <section class="general-admin-container">
         <div class="overview-general-admin">
             <!--TÍTULO-->
@@ -48,9 +64,13 @@
                             <div class="select-option">
                                 <select name="tipoDocumento" class="combobox-titulo" title="Por favor, seleccione un tipo de documento" required>
                                     <option selected disabled value="" class="combobox-opciones">Tipo de documento *</option>
-                                    <option value="TI">Tarjeta de Identidad (TI)</option>
-                                    <option value="CC">Cédula de Ciudadanía (CC)</option>
-                                    <option value="CE">Tarjeta de Extranjería (CE)</option>
+                                    <?php
+                                    foreach($datos_tipo_documento as $campoTD){
+                                    ?>
+                                    <option value="<?php echo $campoTD['id'] ?>"><?php echo $campoTD['descripcion'] ?></option>
+                                    <?php
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -75,19 +95,6 @@
             </div>
             </div>
             <!--TABLA-->
-            <?php
-                require_once "./controladores/usuarioControlador.php";
-                $ins_usuario = new usuarioControlador();
-
-                $cantidadRegistros = 1000;
-                if(count($pagina) == 0){
-                    $paginaActual = $pagina[1];
-                    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
-                }else{
-                    $paginaActual = -1;
-                    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
-                }
-            ?>
             <div class="table-admin-container">
                 <table id="tablaUsuarios" class="tb-admin-records">
                     <thead>

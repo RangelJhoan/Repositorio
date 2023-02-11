@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-02-2023 a las 02:41:52
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.1.10
+-- Tiempo de generación: 11-02-2023 a las 16:51:00
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bd_repositorio`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `autor`
+--
+
+CREATE TABLE `autor` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(30) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `apellido` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `estado` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -128,6 +141,12 @@ CREATE TABLE `usuario` (
 --
 
 --
+-- Indices de la tabla `autor`
+--
+ALTER TABLE `autor`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `curso`
 --
 ALTER TABLE `curso`
@@ -191,6 +210,12 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `autor`
+--
+ALTER TABLE `autor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `curso`

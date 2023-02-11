@@ -10,13 +10,13 @@
 <body>
 <?php
 
-require_once "./controladores/usuarioControlador.php";
-$ins_usuario = new usuarioControlador();
+require_once "./controladores/autorControlador.php";
+$ins_autor = new autorControlador();
 
-$datos_usuario = $ins_usuario->datos_usuario_controlador("Unico", $pagina[1]);
+$datos_autor = $ins_autor->datos_autor_controlador("Unico", $pagina[1]);
 
-if($datos_usuario->rowCount()>0){
-    $campos = $datos_usuario->fetch();
+if($datos_autor->rowCount()>0){
+    $campos = $datos_autor->fetch();
     ?>
 <section class="general-admin-container">
         <div class="overview-general-admin">
@@ -27,12 +27,13 @@ if($datos_usuario->rowCount()>0){
             </div>
             <div class="container-modal-edit-record" id="modal-container-edit-user">
                 <div class="content-modal-edit-record">
-                    <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="FormularioAjax" method="POST" data-form="update" autocomplete="off">
+                    <form action="<?php echo SERVER_URL ?>ajax/autorAjax.php" class="FormularioAjax" method="POST" data-form="update" autocomplete="off">
+                    <input type="hidden" name="id_autor_edit" value="<?php echo $pagina[1] ?>">
                     <div class="input-field">
-                            <input name="nombre_ins" type="text" placeholder="Nombres" title="Por favor, complete el campo" required/>
+                            <input name="nombre_edit" type="text" value="<?php echo $campos['nombre'] ?>" placeholder="Nombres" title="Por favor, complete el campo"/>
                         </div>
                         <div class="input-field">
-                            <input name="nombre_ins" type="text" placeholder="Apellidos" title="Por favor, complete el campo" required/>
+                            <input name="apellido_edit" type="text" value="<?php echo $campos['apellido'] ?>" placeholder="Apellidos *" title="Por favor, complete el campo" required/>
                         </div>
                         <div class="botones-accion-modal">
                             <button type="submit" class="btn-admin-edit-record" title="Actualizar">Guardar cambios</button>
