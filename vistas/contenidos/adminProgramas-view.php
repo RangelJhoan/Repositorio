@@ -60,6 +60,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Nombre</th>
+                            <th>Estado</th>
                             <!-- <th>Descripción</th> -->
                             <th>Acción</th>
                         </tr>
@@ -74,6 +75,7 @@
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
                             <td data-titulo="NOMBRE"><?php echo $rows['nombre']?></td>
+                            <td data-titulo="ESTADO"><span class="<?php echo $estado ?>"></span></td>
                             <!-- <td data-titulo="DESCRIPCIÓN"><?php echo $rows['descripcion'] ?></td> -->
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">

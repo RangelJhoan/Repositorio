@@ -79,6 +79,7 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                             <th>Nombre</th>
                             <th>Descripción</th>
                             <th>Programa</th>
+                            <th>Estado</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -101,6 +102,7 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                                     <?php
                                 }
                             ?></td>
+                            <td data-titulo="ESTADO"><span class="<?php echo $estado ?>"></span></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">

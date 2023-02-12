@@ -57,6 +57,16 @@ if($datos_curso->rowCount()>0){
                             }
                             ?>
                         </select>
+                    <!--Select tag-->
+                    <div class="input-field ">
+                        <div class="select-option">
+                            <select name="estado" class="combobox-titulo" title="Estado del curso">
+                                <option disabled value="" class="combobox-opciones">Estado</option>
+                                <option <?php if($campos['estado'] == '0'){echo "selected";} ?> value="0">Inactivo</option>
+                                <option <?php if($campos['estado'] == '1'){echo "selected";} ?> value="1">Activo</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="botones-accion-modal">
                         <button type="submit" class="btn-admin-edit-record" title="Actualizar">Guardar cambios</button>
                         <a href="<?php echo SERVER_URL ?>adminCursos/" class="btn-close-edit-record" title="Cursos">Volver atrás</a>
