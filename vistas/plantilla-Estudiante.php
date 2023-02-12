@@ -20,7 +20,9 @@
     if($vistas == "login" || $vistas == "404" || $vistas == "home"){
         require_once "./vistas/contenidos/".$vistas."-view.php";
     }else{
-        session_start(['name' => 'REPO']);
+        if(!isset($_SESSION)){
+            session_start(['name' => 'REPO']);
+        }
         require_once "./controladores/usuarioControlador.php";
         $uc = new usuarioControlador();
 

@@ -71,16 +71,7 @@ class usuarioControlador extends usuarioModelo{
             $persona->setClave(mainModel::encryption($persona->getClave()));
             $agregar_usuario = usuarioModelo::agregar_usuario_modelo($persona);
 
-            if($agregar_usuario->rowCount() == 1){
-                $alerta=[
-                    "Alerta"=>"recargar",
-                    "Titulo"=>"Exitoso",
-                    "Texto"=>"Usuario creado correctamente",
-                    "Tipo"=>"success"
-                ];
-                echo json_encode($alerta);
-                exit();
-            }else{
+            if($agregar_usuario != 1){
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"Error",
@@ -90,6 +81,14 @@ class usuarioControlador extends usuarioModelo{
                 echo json_encode($alerta);
                 exit();
             }
+
+            $alerta=[
+                "Alerta"=>"recargar",
+                "Titulo"=>"Exitoso",
+                "Texto"=>"Usuario creado correctamente",
+                "Tipo"=>"success"
+            ];
+            echo json_encode($alerta);
         }
     }
 
@@ -345,38 +344,19 @@ class usuarioControlador extends usuarioModelo{
      *
      * @return Object código HTML con la lista de usuarios en una tabla
      */
-    public function paginador_usuario_controlador($pagina, $registros, $id, $url, $busqueda){
-        $url = SERVER_URL.$url."/";
-        $pagina = (isset($pagina) && $pagina > 0) ? (int) $pagina : 1;
-        $inicio = ($pagina>0) ? (($pagina*$registros)-$registros) : 0;
+    public function paginador_usuario_controlador(){
 
-        if(isset($busqueda) && $busqueda != ""){
-            $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, td.descripcion as documento, p.id_usuario, u.estado, tu.descripcion 
-            FROM persona p JOIN tipo_documento td ON td.id = p.id_tipo_documento JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
-            WHERE p.id != '$id' AND (p.documento LIKE '%$busqueda%' OR p.nombre LIKE '%$busqueda%' OR p.apellido LIKE '%$busqueda%') 
-            ORDER BY p.nombre ASC LIMIT $inicio,$registros";
-        }else{
-            $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, td.descripcion as documento, p.id_usuario, u.estado, tu.descripcion 
-            FROM persona p JOIN tipo_documento td ON td.id = p.id_tipo_documento JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
-            WHERE p.id != '$id' 
-            ORDER BY p.nombre ASC LIMIT $inicio,$registros";
-        }
+        $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, td.descripcion as documento, p.id_usuario, u.estado, tu.descripcion 
+        FROM persona p JOIN tipo_documento td ON td.id = p.id_tipo_documento JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
+        WHERE u.correo != 'admin.repositorioinstitucional@gmail.com' 
+        ORDER BY p.nombre ASC";
 
         $conexion = mainModel::conectar();
 
         $datos = $conexion->query($consulta);
         $datos = $datos->fetchAll();
 
-        $total = $conexion->query("SELECT FOUND_ROWS()");
-        $total = (int) $total->fetchColumn();
-
-        $Npaginas = ceil($total/$registros);
-
-        if($total >= 1 && $pagina <= $Npaginas){
-            return $datos;
-        }else{
-            return 0;
-        }
+        return $datos;
     }
 
 }

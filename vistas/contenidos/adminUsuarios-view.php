@@ -13,14 +13,7 @@ $ins_usuario = new usuarioControlador();
 $ins_tipo_documento = new tipoDocumentoControlador();
 $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador();
 
-$cantidadRegistros = 1000;
-if(count($pagina) == 0){
-    $paginaActual = $pagina[1];
-    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
-}else{
-    $paginaActual = -1;
-    $datos = $ins_usuario->paginador_usuario_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
-}
+$datos = $ins_usuario->paginador_usuario_controlador();
 ?>
     <section class="general-admin-container">
         <div class="overview-general-admin">
@@ -109,9 +102,6 @@ if(count($pagina) == 0){
                     </thead>
                     <tbody>
                         <?php
-                        $inicio = ($paginaActual>0) ? (($paginaActual*$cantidadRegistros)-$cantidadRegistros) : 0;
-                        $contador = $inicio+1;
-                        if($datos != 0){
                             foreach($datos as $rows){
                                 $estado = "";
                                 if($rows['estado'] == "0"){
@@ -121,7 +111,7 @@ if(count($pagina) == 0){
                                 }
                         ?>
                         <tr>
-                            <td data-titulo="#"><?php echo $contador ?></td>
+                            <td data-titulo="#"><?php echo $rows['id'] ?></td>
                             <td data-titulo="NOMBRE"><?php echo $rows['nombre'].' '.$rows['apellido'] ?></td>
                             <td data-titulo="DOCUMENTO"><?php echo $rows['documento'] ?></td>
                             <td data-titulo="TIPO"><?php echo $rows['descripcion'] ?></td>
@@ -142,9 +132,7 @@ if(count($pagina) == 0){
                             </td>
                         </tr>
                         <?php
-                            $contador++;
                             }
-                        }
                         ?>
                     </tbody>
                 </table>

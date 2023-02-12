@@ -35,7 +35,7 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                 </div>
     <!--CONTAINER GENERAL-->
     <div class="container">
-        
+
         <!--SECCIÓN PARA LOS FORMULARIOS-->
         <section class="forms-container">
             <div class="signin-signup">

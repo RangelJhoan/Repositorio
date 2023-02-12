@@ -25,9 +25,9 @@
                     $sql = mainModel::conectar()->prepare("INSERT INTO persona(documento, nombre, apellido, estado, id_tipo_documento, id_usuario) VALUES(?, ?, ?, ?, ?, ?)");
                     $sql->execute([$persona->getDocumento(), $persona->getNombre(), $persona->getApellido(), $persona->getEstadoPersona(), $persona->getTipoDocumento()->getIdTipoDocumento(), $idUsuario]);
 
-                    return $sql;
+                    return $sql->rowCount();
                 }else{
-                    return $sql;
+                    return $sql->rowCount();
                 }
             } catch (Exception $e) {
                 return $e->getMessage();
