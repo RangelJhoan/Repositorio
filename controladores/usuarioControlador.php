@@ -110,8 +110,8 @@ class usuarioControlador extends usuarioModelo{
         }
 
         $clave = mainModel::encryption($clave);
-        $check_account = mainModel::ejecutar_consulta_simple("SELECT p.id, p.nombre, p.apellido, p.documento, p.id_usuario, u.correo, u.estado, tu.descripcion 
-        FROM persona p JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
+        $check_account = mainModel::ejecutar_consulta_simple("SELECT p.id, p.nombre, p.apellido, p.documento, p.id_usuario, td.descripcion as tipoDocumento, u.correo, u.estado, tu.descripcion 
+        FROM persona p JOIN tipo_documento td ON td.id = p.id_tipo_documento JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
         WHERE correo = '$correo' AND clave = '$clave';");
 
         if($check_account->rowCount() > 0){
@@ -133,6 +133,7 @@ class usuarioControlador extends usuarioModelo{
             $_SESSION['id_persona'] = $row['id'];
             $_SESSION['nombre_usuario'] = $row['nombre'];
             $_SESSION['apellido_usuario'] = $row['apellido'];
+            $_SESSION['tipo_documento'] = $row['tipoDocumento'];
             $_SESSION['documento_usuario'] = $row['documento'];
             $_SESSION['id_usuario'] = $row['id_usuario'];
             $_SESSION['correo_usuario'] = $row['correo'];
@@ -333,16 +334,122 @@ class usuarioControlador extends usuarioModelo{
         echo json_encode($alerta);
     }
 
+    /*---------- Controlador editar usuario ----------*/
+    public function editar_perfil_controlador(){
+        $persona = new Persona();
+        //Recibiendo el ID del usuario a editar
+        $persona->setIdPersona(mainModel::decryption($_POST['id_usuario_edit_perfil']));
+
+        //Comprobar que el usuario exista en la BD
+        $check_person = mainModel::ejecutar_consulta_simple("SELECT id_usuario FROM persona WHERE id = '". $persona->getIdPersona() ."'");
+        if($check_person->rowCount() <= 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrió un error",
+                "Texto"=>"No se encontró el perfil a editar",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $datos_person = $check_person->fetch();
+
+        $persona->setIdUsuario($datos_person['id_usuario']);
+        $persona->setNombre($_POST['nombre_edit_perfil']);
+        $persona->setApellido($_POST['apellido_edit_perfil']);
+
+        $check_user = mainModel::ejecutar_consulta_simple("SELECT clave FROM usuario WHERE id = '". $persona->getIdUsuario() ."'");
+
+        if($check_user->rowCount() <= 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrió un error",
+                "Texto"=>"No se encontró el usuario a editar",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $datos_user = $check_user->fetch();
+
+        if($persona->getNombre() == "" || $persona->getApellido() == "" ){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"Por favor llene todos los campos requeridos",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        if($_POST['clave_edit_perfil'] != "" && $_POST['confirmarClave_edit_perfil'] != ""){
+            $persona->setClave($_POST['clave_edit_perfil']);
+            $confirmarClave = $_POST['confirmarClave_edit_perfil'];
+            if($persona->getClave() != $confirmarClave){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Error",
+                    "Texto"=>"Las claves ingresadas no coinciden",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+            $persona->setClave(mainModel::encryption($persona->getClave()));
+        }else{
+            $persona->setClave($datos_user['clave']);
+        }
+
+        $editarPersona = usuarioModelo::editar_persona_perfil_modelo($persona);
+
+        if(is_string($editarPersona) || $editarPersona < 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"No se pudo actualizar la información de perfil",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+        $editarUsuario = usuarioModelo::editar_usuario_perfil_modelo($persona);
+        if(is_string($editarUsuario) || $editarUsuario < 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"No se pudo actualizar la contraseña",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $check_account = mainModel::ejecutar_consulta_simple("SELECT p.nombre, p.apellido 
+        FROM persona p JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
+        WHERE p.id = '{$persona->getIdPersona()}';");
+
+        $row = $check_account->fetch();
+
+        session_start(['name'=>'REPO']);
+        $_SESSION['nombre_usuario'] = $row['nombre'];
+        $_SESSION['apellido_usuario'] = $row['apellido'];
+
+        $alerta=[
+            "Alerta"=>"recargar",
+            "Titulo"=>"Datos actualizados",
+            "Texto"=>"Los datos han sido actualizados con éxito",
+            "Tipo"=>"success"
+        ];
+        echo json_encode($alerta);
+    }
+
     /**
      * Paginador de usuarios, vista principal Admin
      *
-     * @param String $pagina Numero pagina actual
-     * @param String $registros Cantidad de registros a buscar
-     * @param String $id ID del administrador logueado
-     * @param String $url Direccion URL actual
-     * @param String $busqueda Parametro de busqueda
-     *
-     * @return Object código HTML con la lista de usuarios en una tabla
+     * @return array Lista de usuarios de la base de datos
      */
     public function paginador_usuario_controlador(){
 

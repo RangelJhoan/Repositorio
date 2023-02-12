@@ -7,6 +7,13 @@
     <title>Perfil</title>
 </head>
 <body>
+<?php
+require_once "./controladores/tipoDocumentoControlador.php";
+
+$ins_tipo_documento = new tipoDocumentoControlador();
+
+$datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador();
+?>
 <section class="general-admin-container">
         <div class="overview-general-admin">
             <!--TÍTULO-->
@@ -16,38 +23,43 @@
             </div>
             <div class="container-modal-edit-record" id="modal-container-edit-user">
                 <div class="content-modal-edit-record">
-                    <form action="" class="editar-usuario">
+                    <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="editar-usuario FormularioAjax" method="POST" data-form="update" autocomplete="off">
+                    <input type="hidden" name="id_usuario_edit_perfil" value="<?php echo $ins_tipo_documento->encryption($_SESSION['id_persona']) ?>">
                         <div class="input-field">
-                            <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Nombres"/>
+                            <input name="nombre_edit_perfil" value="<?php echo $_SESSION['nombre_usuario'] ?>" type="text" placeholder="Nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Nombres"/>
                         </div>
                         <div class="input-field">
-                            <input name="apellido" type="text" placeholder="Apellidos" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Apellidos" />
+                            <input name="apellido_edit_perfil" value="<?php echo $_SESSION['apellido_usuario'] ?>" type="text" placeholder="Apellidos" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Apellidos" />
                         </div>
                         <!--Select tag-->
                         <div class="input-field ">
                             <div class="select-option">
-                                <select name="tipoDocumento" class="combobox-titulo" title="Tipo de documento">
+                                <select name="tipoDocumento_edit_perfil" class="combobox-titulo" disabled title="Tipo de documento">
                                     <option selected disabled value="" class="combobox-opciones">Tipo de documento</option>
-                                    <option value="TI">Tarjeta de Identidad (TI)</option>
-                                    <option value="CC">Cédula de Ciudadanía (CC)</option>
-                                    <option value="CE">Tarjeta de Extranjería (CE)</option>
+                                    <?php
+                                    foreach($datos_tipo_documento as $campoTD){
+                                    ?>
+                                    <option <?php if($campoTD['descripcion'] == $_SESSION['tipo_documento']){echo "selected";}  ?> value="<?php echo $campoTD['id'] ?>"><?php echo $campoTD['descripcion'] ?></option>
+                                    <?php
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
                         <div class="input-field">
-                            <input name="documento" type="number" placeholder="Número de documento" min="1000" max="100000000000"  pattern="[0-9]+" title="Número de documento"/>
+                            <input name="documento_edit_perfil" value="<?php echo $_SESSION['documento_usuario'] ?>" disabled type="number" placeholder="Número de documento" min="1000" max="100000000000"  pattern="[0-9]+" title="Número de documento"/>
                         </div>
                         <div class="input-field">
                             <div class="icon-locked">
-                                <i class="uil uil-lock icon-no-edit-allowed"></i>    
-                            </div>    
-                            <input name="correo" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60"  title="No se permite editar el correo electrónico"/>
+                                <i class="uil uil-lock icon-no-edit-allowed"></i>
+                            </div>
+                            <input name="correo_edit_perfil" value="<?php echo $_SESSION['correo_usuario'] ?>" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60"  title="No se permite editar el correo electrónico"/>
                         </div>
                         <div class="input-field">
-                            <input name="clave" type="password" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Recuerde que la contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres."/>
+                            <input name="clave_edit_perfil" type="password" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Recuerde que la contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres."/>
                         </div>
                         <div class="input-field">
-                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Confirmar contraseña"/>
+                            <input name="confirmarClave_edit_perfil" type="password" placeholder="Confirmar contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Confirmar contraseña"/>
                         </div>
                         <div class="botones-accion-modal">
                             <button type="submit" class="btn-admin-edit-record">Guardar cambios</button>

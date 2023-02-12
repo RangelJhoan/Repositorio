@@ -90,6 +90,31 @@
             }
         }
 
+        /*---------- Modelo editar persona perfil ----------*/
+        protected static function editar_persona_perfil_modelo(Persona $persona){
+            try {
+                $sql = mainModel::conectar()->prepare("UPDATE persona SET nombre=?, apellido=? WHERE id=?");
+
+                $sql->execute([$persona->getNombre(), $persona->getApellido(), $persona->getIdPersona()]);
+
+                return $sql->rowCount();
+            } catch (\Throwable $th) {
+                return $th->getMessage();
+            }
+        }
+
+        /*---------- Modelo editar usuario perfil ----------*/
+        protected static function editar_usuario_perfil_modelo(Persona $persona){
+            try {
+                $sql_usuario = mainModel::conectar()->prepare("UPDATE usuario SET clave=? WHERE id=?");
+                $sql_usuario->execute([$persona->getClave(), $persona->getIdUsuario()]);
+
+                return $sql_usuario->rowCount();
+            } catch (\Throwable $th) {
+                return $th->getMessage();
+            }
+        }
+
     }
 
 ?>
