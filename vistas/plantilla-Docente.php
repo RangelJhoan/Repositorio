@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="<?php echo SERVER_URL; ?>vistas/assets/img/dashboard-ri-logo.png">
     <!--ESTILOS CSS Y DEMÁS ESTILOS-->
-    <?php include "incAdmin/link.php";?>
+    <?php include "incDocente/link.php";?>
     <title>Repositorio Institucional</title>
 </head>
 <body class="mode">
@@ -32,17 +32,17 @@
         $pagina = explode("/", $_GET['views']);
         ?>
         <!---NAVLATERAL-->
-        <?php include "incAdmin/navLateral.php";?>
+        <?php include "incDocente/navLateral.php";?>
         <!--TOPBAR-->
         <section class="top-navbar">
         <?php
-        include "incAdmin/navBar.php";
+        include "incDocente/navBar.php";
         include $vistas;
         ?>
         </section>
         <!--SCRIPTS NECESARIOS-->
         <?php include "./vistas/LogOut.php" ?>
-        <?php include "incAdmin/scripts.php";
+        <?php include "incDocente/scripts.php";
     }
     ?>
 </body>

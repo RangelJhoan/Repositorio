@@ -11,7 +11,7 @@
             <span class="logo-name">Estudiante</span>
         </section>
 
-        <!--Sección de las funcionalidades para el administrador-->
+        <!--Sección de las funcionalidades para el estudiante-->
         <section class="menu-options-section">
             <!--Opciones principales-->
             <ul class="nav-links">

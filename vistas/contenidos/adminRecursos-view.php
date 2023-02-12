@@ -19,7 +19,7 @@
                 <a class="btn-add-record" title="Crear recurso" href="<?php echo SERVER_URL ?>crearRecurso/">
                 <i class="uil uil-plus-circle"></i></i></i>Nuevo
                 </a>
-                <a class="btn-add-record" title="Crear autor" href="<?php echo SERVER_URL ?>adminAutores/">
+                <a class="btn-add-record" title="Ir a autores" href="<?php echo SERVER_URL ?>adminAutores/">
                 <i class="uil uil-pen"></i></i></i>Autor
                 </a>
             </div>
