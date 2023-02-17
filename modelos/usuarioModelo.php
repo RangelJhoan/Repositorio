@@ -78,6 +78,32 @@
             }
         }
 
+        /*---------- Modelo editar estado persona ----------*/
+        protected static function editar_estado_persona_modelo(Persona $persona){
+            try {
+                $sql = mainModel::conectar()->prepare("UPDATE persona SET estado = ? WHERE id = ?");
+
+                $sql->execute([$persona->getEstadoPersona(), $persona->getIdPersona()]);
+
+                return $sql->rowCount();
+            } catch (\Throwable $th) {
+                return $th->getMessage();
+            }
+        }
+
+        /*---------- Modelo editar estado usuario ----------*/
+        protected static function editar_estado_usuario_modelo(Persona $persona){
+            try {
+                $sql = mainModel::conectar()->prepare("UPDATE usuario SET estado = ? WHERE id = ?");
+
+                $sql->execute([$persona->getEstado(), $persona->getIdUsuario()]);
+
+                return $sql->rowCount();
+            } catch (\Throwable $th) {
+                return $th->getMessage();
+            }
+        }
+
         /*---------- Modelo editar usuario ----------*/
         protected static function editar_usuario_modelo(Persona $persona){
             try {

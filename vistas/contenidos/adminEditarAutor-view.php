@@ -40,8 +40,13 @@ if($datos_autor->rowCount()>0){
                             <div class="select-option">
                                 <select name="estado" class="combobox-titulo" title="Estado del curso">
                                     <option disabled value="" class="combobox-opciones">Estado</option>
-                                    <option <?php if($campos['estado'] == '0'){echo "selected";} ?> value="0">Inactivo</option>
-                                    <option <?php if($campos['estado'] == '1'){echo "selected";} ?> value="1">Activo</option>
+                                    <?php
+                                    foreach (EstadosEnum::cases() as $cases) {
+                                    ?>
+                                    <option <?php if($campos['estado'] == $cases->value){echo "selected";} ?> value="<?php echo $cases->value; ?>"><?php echo $cases->getNameTextByValue($cases->value); ?></option>
+                                    <?php
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>

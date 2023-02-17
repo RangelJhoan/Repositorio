@@ -38,18 +38,25 @@
             try {
                 $sql = mainModel::conectar()->prepare("UPDATE autor SET estado=? WHERE id=?");
                 $sql->execute([$autor->getEstado(), $autor->getIdAutor()]);
+                return $sql->rowCount();
+            } catch (\Throwable $th) {
+                return $th->getMessage();
+            }
+           /*try {
+                $sql = mainModel::conectar()->prepare("UPDATE autor SET estado=? WHERE id=?");
+                $sql->execute([$autor->getEstado(), $autor->getIdAutor()]);
 
                 return $sql->rowCount();
             } catch (Exception $e) {
                 return $e->getMessage();
-            }
+            }*/
         }
 
         /*---------- Modelo para editar información de autor ----------*/
         protected static function editar_autor_modelo(Autor $autor){
             try {
-                $sql = mainModel::conectar()->prepare("UPDATE autor SET nombre=?, apellido=? WHERE id=?");
-                $sql->execute([$autor->getNombre(), $autor->getApellido(), $autor->getIdAutor()]);
+                $sql = mainModel::conectar()->prepare("UPDATE autor SET nombre=?, apellido=?, estado=? WHERE id=?");
+                $sql->execute([$autor->getNombre(), $autor->getApellido(), $autor->getEstado(), $autor->getIdAutor()]);
 
                 return $sql->rowCount();
             } catch (Exception $e) {

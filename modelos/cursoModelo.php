@@ -45,6 +45,17 @@
             }
         }
 
+        /*---------- Modelo para editar estado del curso ----------*/
+        protected static function editar_estado_curso_modelo(Curso $curso){
+            try {
+                $sql = mainModel::conectar()->prepare("UPDATE curso SET estado=? WHERE id=?");
+                $sql->execute([$curso->getEstado(), $curso->getIdCurso()]);
+                return $sql->rowCount();
+            } catch (\Throwable $th) {
+                return $th->getMessage();
+            }
+        }
+
         /*---------- Modelo para editar información de curso ----------*/
         protected static function editar_curso_modelo($curso, $programasAgregados, $programasEliminados){
             $sql = mainModel::conectar()->prepare("UPDATE curso SET nombre=?, descripcion=? WHERE id=?");

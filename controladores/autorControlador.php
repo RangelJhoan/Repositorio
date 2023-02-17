@@ -4,10 +4,12 @@ if($peticionAjax){
     //Modelo llamado desde el archivo Ajax
     require_once "../modelos/autorModelo.php";
     require_once "../entidades/Autor.php";
+    require_once "../utilidades/EstadosEnum.php";
 }else{
     //Modelo llamado desde la vista Index
     require_once "./modelos/autorModelo.php";
     require_once "./entidades/Autor.php";
+    require_once "./utilidades/EstadosEnum.php";
 }
 
 class autorControlador extends autorModelo{
@@ -17,7 +19,7 @@ class autorControlador extends autorModelo{
         $autor = new Autor();
         $autor->setNombre($_POST['nombre_ins']);
         $autor->setApellido($_POST['apellido_ins']);
-        $autor->setEstado(1);
+        $autor->setEstado(EstadosEnum::ACTIVO->value);
 
         if($autor->getApellido() == ""){
             $alerta=[
@@ -57,25 +59,25 @@ class autorControlador extends autorModelo{
         try {
             $autor = new Autor();
             $autor->setIdAutor(mainModel::decryption($_POST['id_autor_del']));
-            $autor->setEstado(0);
+            $autor->setEstado(EstadosEnum::ELIMINADO->value);
 
             $eliminarAutor = autorModelo::eliminar_autor_modelo($autor);
 
-            if($eliminarAutor == 1){
-                $alerta=[
-                    "Alerta"=>"recargar",
-                    "Titulo"=>"Exitoso",
-                    "Texto"=>"Autor eliminado exitosamente",
-                    "Tipo"=>"success"
-                ];
-                echo json_encode($alerta);
-                exit();
-            }else{
+            if(is_string($eliminarAutor) || $eliminarAutor < 0){
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"Ocurrió un error",
                     "Texto"=>$eliminarAutor,
                     "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }else{
+                $alerta=[
+                    "Alerta"=>"recargar",
+                    "Titulo"=>"Exitoso",
+                    "Texto"=>"Autor eliminado exitosamente",
+                    "Tipo"=>"success"
                 ];
                 echo json_encode($alerta);
                 exit();
@@ -119,6 +121,7 @@ class autorControlador extends autorModelo{
 
         $autor->setNombre($_POST['nombre_edit']);
         $autor->setApellido($_POST['apellido_edit']);
+        $autor->setEstado($_POST['estado']);
 
         if($autor->getApellido() == ""){
             $alerta=[

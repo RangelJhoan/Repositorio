@@ -5,11 +5,13 @@ if($peticionAjax){
     require_once "../modelos/usuarioModelo.php";
     require_once "../entidades/Persona.php";
     require_once "../entidades/TipoDocumento.php";
+    require_once "../utilidades/EstadosEnum.php";
 }else{
     //Modelo llamado desde la vista Index
     require_once "./modelos/usuarioModelo.php";
     require_once "./entidades/Persona.php";
     require_once "./entidades/TipoDocumento.php";
+    require_once "./utilidades/EstadosEnum.php";
 }
 
 class usuarioControlador extends usuarioModelo{
@@ -26,7 +28,8 @@ class usuarioControlador extends usuarioModelo{
         $persona->setEstado($_POST['estado']);
         $confirmarClave = $_POST['confirmarClave'];
 
-        $persona->setEstadoPersona(1);
+        $persona->setEstado(EstadosEnum::ACTIVO->value);
+        $persona->setEstadoPersona(EstadosEnum::ACTIVO->value);
 
         $tipoDocumento = new TipoDocumento();
         $tipoDocumento->setIdTipoDocumento($_POST['tipoDocumento']);
@@ -193,7 +196,47 @@ class usuarioControlador extends usuarioModelo{
 
     /*---------- Controlador para eliminar usuario ----------*/
     public function eliminar_usuario_controlador(){
-        $idPersona = mainModel::decryption($_POST['idPersona']);
+        $persona = new Persona();
+        $persona->setIdPersona(mainModel::decryption($_POST['idPersona']));
+        $persona->setIdUsuario(mainModel::decryption($_POST['idUsuario']));
+        $persona->setEstadoPersona(EstadosEnum::ELIMINADO->value);
+        $persona->setEstado(EstadosEnum::ELIMINADO->value);
+
+        $editarPersona = usuarioModelo::editar_estado_persona_modelo($persona);
+
+        if(is_string($editarPersona) || $editarPersona < 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"No se pudo eliminar la persona",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $editarUsuario = usuarioModelo::editar_estado_usuario_modelo($persona);
+
+        if(is_string($editarUsuario) || $editarUsuario < 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"No se pudo eliminar el usuario",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $alerta=[
+            "Alerta"=>"recargar",
+            "Titulo"=>"Exitoso",
+            "Texto"=>"Usuario eliminado exitosamente",
+            "Tipo"=>"success"
+        ];
+        echo json_encode($alerta);
+
+        /*$idPersona = mainModel::decryption($_POST['idPersona']);
         $idUsuario = mainModel::decryption($_POST['idUsuario']);
 
         $eliminarUsuario = usuarioModelo::eliminar_usuario_modelo($idPersona, $idUsuario);
@@ -216,7 +259,7 @@ class usuarioControlador extends usuarioModelo{
             ];
             echo json_encode($alerta);
             exit();
-        }
+        }*/
     }
 
     /*---------- Controlador datos usuario ----------*/

@@ -13,8 +13,8 @@
 
         /*---------- Modelo para agregar programa ----------*/
         protected static function agregar_programa_modelo(Programa $programa){
-            $sql = mainModel::conectar()->prepare("INSERT INTO programa(nombre, descripcion) VALUES(?, ?);");
-            $sql->execute([$programa->getNombre(), $programa->getDescripcion()]);
+            $sql = mainModel::conectar()->prepare("INSERT INTO programa(nombre, descripcion, estado) VALUES(?, ?, ?);");
+            $sql->execute([$programa->getNombre(), $programa->getDescripcion(), $programa->getEstado()]);
 
             return $sql;
         }
@@ -25,6 +25,18 @@
             $sqlEliminarPrograma->execute([$idPrograma]);
 
             return $sqlEliminarPrograma;
+        }
+
+        /*---------- Modelo editar programa usuario ----------*/
+        protected static function editar_estado_programa_modelo(Programa $programa){
+            try {
+                $sql = mainModel::conectar()->prepare("UPDATE programa SET estado = ? WHERE id = ?");
+                $sql->execute([$programa->getEstado(), $programa->getIdPrograma()]);
+
+                return $sql->rowCount();
+            } catch (\Throwable $th) {
+                return $th->getMessage();
+            }
         }
 
         /*---------- Modelo datos programa ----------*/

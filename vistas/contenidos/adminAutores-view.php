@@ -67,7 +67,7 @@
                             <td data-titulo="#"><?php echo $rows['id'] ?></td>
                             <td data-titulo="NOMBRE"><?php echo $rows['nombre'] ?></td>
                             <td data-titulo="APELLIDO"><?php echo $rows['apellido'] ?></td>
-                            <td data-titulo="ESTADO"><span class="<?php echo $estado ?>"></span></td>
+                            <td data-titulo="ESTADO"><?php echo EstadosEnum::getNameTextByValue($rows['estado']); ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">

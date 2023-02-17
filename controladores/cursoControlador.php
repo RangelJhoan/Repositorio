@@ -4,10 +4,12 @@ if($peticionAjax){
     //Modelo llamado desde el archivo Ajax
     require_once "../modelos/cursoModelo.php";
     require_once "../entidades/Curso.php";
+    require_once "../utilidades/EstadosEnum.php";
 }else{
     //Modelo llamado desde la vista Index
     require_once "./modelos/cursoModelo.php";
     require_once "./entidades/Curso.php";
+    require_once "./utilidades/EstadosEnum.php";
 }
 
 class cursoControlador extends cursoModelo{
@@ -18,7 +20,7 @@ class cursoControlador extends cursoModelo{
         $curso->setNombre($_POST['nombre_ins']);
         $curso->setDescripcion($_POST['descripcion_ins']);
         $curso->setListaProgramas([]);
-        $curso->setEstado(1);
+        $curso->setEstado(EstadosEnum::ACTIVO->value);
         if(isset($_POST['programas_ins'])){
             $curso->setListaProgramas($_POST['programas_ins']);
         }
@@ -103,7 +105,32 @@ class cursoControlador extends cursoModelo{
 
     /*---------- Controlador para eliminar curso ----------*/
     public function eliminar_curso_controlador(){
-        $idCurso = mainModel::decryption($_POST['id_curso_del']);
+        $curso = new Curso();
+        $curso->setIdCurso(mainModel::decryption($_POST['id_curso_del']));
+        $curso->setEstado(EstadosEnum::ELIMINADO->value);
+
+        $eliminarCurso = cursoModelo::editar_estado_curso_modelo($curso);
+
+        if(is_string($eliminarCurso) || $eliminarCurso < 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"No se pudo eliminar el curso",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $alerta=[
+            "Alerta"=>"recargar",
+            "Titulo"=>"Exitoso",
+            "Texto"=>"Curso eliminado exitosamente",
+            "Tipo"=>"success"
+        ];
+        echo json_encode($alerta);
+
+        /*$idCurso = mainModel::decryption($_POST['id_curso_del']);
 
         $eliminarCurso = cursoModelo::eliminar_curso_modelo($idCurso);
 
@@ -125,7 +152,7 @@ class cursoControlador extends cursoModelo{
             ];
             echo json_encode($alerta);
             exit();
-        }
+        }*/
     }
 
     /**

@@ -4,10 +4,12 @@ if($peticionAjax){
     //Modelo llamado desde el archivo Ajax
     require_once "../modelos/programaModelo.php";
     require_once "../entidades/Programa.php";
+    require_once "../utilidades/EstadosEnum.php";
 }else{
     //Modelo llamado desde la vista Index
     require_once "./modelos/programaModelo.php";
     require_once "./entidades/Programa.php";
+    require_once "./utilidades/EstadosEnum.php";
 }
 
 class programaControlador extends programaModelo{
@@ -17,6 +19,7 @@ class programaControlador extends programaModelo{
         $programa = new Programa();
         $programa->setNombre($_POST['nombre_ins']);
         $programa->setDescripcion($_POST['descripcion_ins']);
+        $programa->setEstado(EstadosEnum::ACTIVO->value);
 
         if($programa->getNombre() == "" || $programa->getDescripcion() == ""){
             $alerta=[
@@ -66,7 +69,32 @@ class programaControlador extends programaModelo{
     }
 
     public function eliminar_programa_controlador(){
-        $idPrograma = mainModel::decryption($_POST['id_programa_del']);
+        $programa = new Programa();
+        $programa->setIdPrograma(mainModel::decryption($_POST['id_programa_del']));
+        $programa->setEstado(EstadosEnum::ELIMINADO->value);
+
+        $editarPrograma = programaModelo::editar_estado_programa_modelo($programa);
+
+        if(is_string($editarPrograma) || $editarPrograma < 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"No se pudo eliminar el programa",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $alerta=[
+            "Alerta"=>"recargar",
+            "Titulo"=>"Exitoso",
+            "Texto"=>"Programa eliminado exitosamente",
+            "Tipo"=>"success"
+        ];
+        echo json_encode($alerta);
+
+        /*$idPrograma = mainModel::decryption($_POST['id_programa_del']);
 
         $eliminarPrograma = programaModelo::eliminar_programa_modelo($idPrograma);
 
@@ -88,7 +116,7 @@ class programaControlador extends programaModelo{
             ];
             echo json_encode($alerta);
             exit();
-        }
+        }*/
     }
 
     /*---------- Controlador datos programa ----------*/
