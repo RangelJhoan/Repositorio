@@ -13,6 +13,7 @@
     require_once "./controladores/programaControlador.php";
     require_once "./controladores/cursoControlador.php";
     require_once "./controladores/autorControlador.php";
+    require_once "./controladores/etiquetaControlador.php";
 
     $ins_usuario = new usuarioControlador();
     $total_usuarios = $ins_usuario->datos_usuario_controlador("Conteo", 0);
@@ -25,6 +26,9 @@
 
     $ins_autor = new autorControlador();
     $total_autores = $ins_autor->datos_autor_controlador("Conteo", 0);
+
+    $ins_etiqueta = new etiquetaControlador();
+    $total_etiquetas = $ins_etiqueta->datos_etiqueta_controlador("Conteo", 0);
 
 
     ?>
@@ -63,7 +67,7 @@
                 <a href="<?php echo SERVER_URL ?>panelEtiquetas/" class="card">
                     <span class="cards-title-name">Etiquetas</span>
                     <i class="uil uil-tag"></i>
-                    <span class="cards-total-count">50</span>
+                    <span class="cards-total-count"><?php echo $total_etiquetas->rowCount(); ?></span>
                 </a>
             </div>
         </div>

@@ -139,7 +139,7 @@ class autorControlador extends autorModelo{
             $alerta=[
                 "Alerta"=>"redireccionar",
                 "Titulo"=>"Datos actualizados",
-                "URL"=>SERVER_URL."/adminAutores/",
+                "URL"=>SERVER_URL."adminAutores/",
                 "Texto"=>"Los datos han sido actualizados con éxito",
                 "Tipo"=>"success"
             ];

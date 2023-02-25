@@ -10,13 +10,13 @@
 <body>
 <?php
 
-require_once "./controladores/autorControlador.php";
-$ins_autor = new autorControlador();
+require_once "./controladores/etiquetaControlador.php";
+$ins_etiqueta = new etiquetaControlador();
 
-$datos_autor = $ins_autor->datos_autor_controlador("Unico", $pagina[1]);
+$datos = $ins_etiqueta->datos_etiqueta_controlador("Unico", $pagina[1]);
 
-if($datos_autor->rowCount()>0){
-    $campos = $datos_autor->fetch();
+if($datos->rowCount()>0){
+    $campos = $datos->fetch();
     ?>
 <section class="general-admin-container">
         <div class="overview-general-admin">
@@ -27,10 +27,10 @@ if($datos_autor->rowCount()>0){
             </div>
             <div class="container-modal-edit-record" id="modal-container-edit-user">
                 <div class="content-modal-edit-record">
-                    <form action="<?php echo SERVER_URL ?>ajax/autorAjax.php" class="FormularioAjax" method="POST" data-form="update" autocomplete="off">
-                    <input type="hidden" name="id_autor_edit" value="<?php echo $pagina[1] ?>">
+                    <form action="<?php echo SERVER_URL ?>ajax/etiquetaAjax.php" class="FormularioAjax" method="POST" data-form="update" autocomplete="off">
+                    <input type="hidden" name="id_etiqueta_edit" value="<?php echo $pagina[1] ?>">
                         <div class="input-field">
-                            <input name="nombre_edit" type="text" value="<?php echo $campos['apellido'] ?>" placeholder="Nombre *" title="Por favor, complete el campo" required/>
+                            <input name="descripcion_edit" type="text" value="<?php echo $campos['descripcion'] ?>" placeholder="Descripcion *" title="Por favor, complete el campo" required/>
                         </div>
                         <!--Select tag-->
                         <div class="input-field ">
