@@ -17,3 +17,7 @@ fileInput.addEventListener("change", () => {
     fileList.appendChild(listItem);
     }
 });
+
+// CAMPO DEL AÑO DEL RECURSO
+let maximo = new Date().getFullYear(); // Obtener el año actual
+document.querySelector('input[name="anioRecurso"]').setAttribute('max', maximo);

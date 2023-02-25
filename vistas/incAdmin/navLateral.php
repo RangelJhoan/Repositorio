@@ -10,7 +10,6 @@
 
             <span class="logo-name">Administrador</span>
         </section>
-
         <!--Sección de las funcionalidades para el administrador-->
         <section class="menu-options-section">
             <!--Opciones principales-->
@@ -21,12 +20,6 @@
                         <span class="option-name">Dashboard</span>
                     </a>
                 </li>
-                <!-- <li>
-                    <a href="#">
-                        <i class="uil uil-home"></i>
-                        <span class="option-name">Inicio</span>
-                    </a>
-                </li> -->
                 <li class="li-plantilla" title="Usuarios">
                     <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminUsuarios/">
                         <i class="uil uil-users-alt"></i>
@@ -58,7 +51,6 @@
                     </a>
                 </li> -->
             </ul>
-
             <!--Demás opciones-->
             <ul class="nav-other-options">
                 <li class="li-plantilla mode">

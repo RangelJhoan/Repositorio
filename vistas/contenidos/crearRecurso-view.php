@@ -24,10 +24,10 @@
                             <input name="titulo_ins" type="text" placeholder="Título *" title="Por favor, complete el campo" required/>
                         </div>
                         <!--Lista de autores-->
-                        <label for="programaSeleccion" class="titleComboMultiple">Autor(es) *</label>
-                            <select name="programas_ins[]" id="programaSeleccionarCur" multiple="multiple" title="Por favor, selecciona el o los autores del recurso">
+                        <label for="autorSeleccion" class="titleComboMultiple">Autor(es) *</label>
+                            <select name="autores_ins[]" id="autorSeleccionarCbx" multiple="multiple" title="Por favor, selecciona el o los autores del recurso">
                                 <?php
-                                foreach($datos_programas as $campos){
+                                foreach($datos_autores as $campos){
                                 ?>
                                 <option value="<?php echo $campos['id'] ?>"><?php echo $campos['nombre'] ?></option>
                                 <?php
@@ -36,11 +36,33 @@
                             </select>
                         <!--Resumen-->
                         <textarea class="textAreaStl" name="resumen_ins" type="text" placeholder="Resumen *" title="Por favor, complete el campo" required></textarea>
-                        <!--Fecha recurso-->
-                        <label for="programaSeleccion" class="titleComboMultiple">Fecha del recurso *</label>
+                        <!--Año recurso-->
                         <div class="input-field">
-                            <input name="fecha_ins" type="date" placeholder="Fecha del recurso" title="Por favor, complete el campo" required/>
+                            <i class="fas fa-solid fa-address-card"></i>
+                            <input name="anioRecurso" type="number" placeholder="Año de creación" min="1700" pattern="[0-9]+" title="Por favor, complete el campo"/>
                         </div>
+                        <!--Lista de cursos-->
+                        <label for="cursoSeleccion" class="titleComboMultiple">Curso (s) *</label>
+                            <select name="cursos_ins[]" id="cursoSeleccionarCbx" multiple="multiple" title="Por favor, selecciona el o los programas asociados al recurso">
+                                <?php
+                                foreach($datos_programas as $campos){
+                                ?>
+                                <option value="<?php echo $campos['id'] ?>"><?php echo $campos['nombre'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        <!--Lista de etiquetas-->
+                        <label for="etiquetaSeleccion" class="titleComboMultiple">Etiqueta (s) *</label>
+                            <select name="etiqueta_ins[]" id="etiquetaSeleccionarCbx" multiple="multiple" title="Por favor, selecciona la o las etiquetas para el recurso">
+                                <?php
+                                foreach($datos_programas as $campos){
+                                ?>
+                                <option value="<?php echo $campos['id'] ?>"><?php echo $campos['nombre'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
                         <!--Editorial-->
                         <div class="input-field">
                             <input name="editorial_ins" type="text" placeholder="Editorial " title="Por favor, complete el campo"/>
@@ -68,8 +90,8 @@
             </div>
         <div>
     </section>
-
-    <script src="<?php echo SERVER_URL ?>vistas/assets/js/multipleCombo.js"></script> 
+    
+    <script src="<?php echo SERVER_URL ?>vistas/assets/js/multipleComboRecurso.js"></script> 
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/uploadFile.js"></script> 
 </body>
 </html>

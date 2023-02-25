@@ -38,8 +38,20 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                             <input name="nombre_ins" type="text" placeholder="Nombre *" title="Por favor, complete el campo" required/>
                         </div>
                         <textarea class="textAreaStl" name="descripcion_ins" type="text" placeholder="Descripción *" title="Por favor, complete el campo" required></textarea>
-                        <label for="programaSeleccion" class="titleComboMultiple">Programa *</label>
-                            <select name="programas_ins[]" id="programaSeleccionarCur" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
+                        <!-- Lista de programas -->
+                        <label for="programaSeleccion" class="titleComboMultiple">Programa (s)*</label>
+                            <select name="programas_ins[]" id="programaSeleccionarCbxCurso" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
+                                <?php
+                                foreach($datos_programas as $campos){
+                                ?>
+                                <option value="<?php echo $campos['id'] ?>"><?php echo $campos['nombre'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        <!-- Lista de docentes -->
+                        <label for="docenteSeleccion" class="titleComboMultiple">Docente (s)*</label>
+                            <select name="docentes_ins[]" id="docenteSeleccionarCbxCurso" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
                                 <?php
                                 foreach($datos_programas as $campos){
                                 ?>
@@ -136,7 +148,7 @@ $datos_programas = $ins_programa->listar_programas_controlador();
     <!-- <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script> -->
 
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/datatables.js"></script> 
-    <script src="<?php echo SERVER_URL ?>vistas/assets/js/multipleCombo.js"></script> 
+    <script src="<?php echo SERVER_URL ?>vistas/assets/js/multipleComboCurso.js"></script> 
 
 
 </body>

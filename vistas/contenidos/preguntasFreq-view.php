@@ -80,7 +80,7 @@
                 </div>
             </label>
             <div class="contentFAQ">
-                <p class="answerFAQ">Para poder publicar un recurso académico, se debe poder en contacto con algún docente de la Institución de Educación Superior, o en su defecto, debe enviar un correo electrónico a correo@admin.com.</p>
+                <p class="answerFAQ">Las únicas personas autorizadas para poder publicar recursos en el repositorio institucional son los docentes y administradores. Si usted es un usuario particular, por favor póngase en contacto al correo <a href = "mailto: admin.repositorioinstitucional@gmail.com">admin.repositorioinstitucional@gmail.com</a></p>
             </div>
         </div>
         <!-- Pregunta #6 -->

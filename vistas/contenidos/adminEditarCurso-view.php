@@ -41,8 +41,8 @@ if($datos_curso->rowCount()>0){
                             <textarea class="textAreaStl" name="descripcion_edit" type="text" required><?php echo $campos_curso['descripcion'] ?></textarea>
                     </div>
 
-                    <label for="programaSeleccion" class="titleComboMultiple">Programa(s)</label>
-                        <select name="programas_edit[]" id="programaSeleccionarCur" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
+                    <label for="programaSeleccion" class="titleComboMultiple">Programa (s)</label>
+                        <select name="programas_edit[]" id="programaSeleccionarCbxCurso" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
                             <?php
                             foreach($datos_programas as $campos){
                                 $selected = false;
@@ -57,6 +57,24 @@ if($datos_curso->rowCount()>0){
                             }
                             ?>
                         </select>
+
+                    <label for="docenteSeleccion" class="titleComboMultiple">Docente (s)</label>
+                        <select name="programas_edit[]" id="docenteSeleccionarCbxCurso" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
+                            <?php
+                            foreach($datos_programas as $campos){
+                                $selected = false;
+                                foreach($programas_curso as $campos_pc){
+                                    if($campos['id'] == $campos_pc['programa_id']){
+                                        $selected = true;
+                                    }
+                                }
+                                ?>
+                            <option <?php if($selected) echo "selected" ?> value="<?php echo $campos['id'] ?>"><?php echo $campos['nombre'] ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    
                     <!--Select tag-->
                     <div class="input-field ">
                         <div class="select-option">
@@ -88,7 +106,7 @@ if($datos_curso->rowCount()>0){
         </section>
     </div>
 <?php } ?>
-<script src="<?php echo SERVER_URL ?>vistas/assets/js/multipleCombo.js"></script> 
+<script src="<?php echo SERVER_URL ?>vistas/assets/js/multipleComboCurso.js"></script> 
 
 </body>
 </html>

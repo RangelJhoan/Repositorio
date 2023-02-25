@@ -99,7 +99,9 @@
     margin-left: 10px;
     text-transform: uppercase;
 }
-/**Tarjetas panel*/
+
+
+/*?--------------TARJETAS PANEL-------------------*/
 .dashboard-container .cards-container {
     display: grid;
     /*Espacio entre tarjetas*/
@@ -111,60 +113,135 @@
 }
 .dashboard-container .cards-container .card {
     border-radius: 12px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* width: calc(100% / 4 - 15px); */
-    /* padding: 15px 20px; */
     -webkit-user-select:none;
     user-select: none;
     text-transform: capitalize;
+    text-decoration: none;
+    background-color: var(--white-color);
+    outline: 0.1rem dashed var(--text-color);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 /*Icono de la tarjeta*/
 .cards-container .card i {
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 500;
-    color: var(--cards-text-color);
+    color: var(--text-color);
+    z-index: 100;
+    overflow: hidden;
 }
 /*Titulo de la tarjeta*/
 .cards-container .card .cards-title-name {
     white-space: nowrap;
     font-size: var(--titlecards-font-size);
     font-weight: 400;
-    color: var(--cards-text-color);
+    color: var(--text-color);
+    z-index: 100;
+    overflow: hidden;
+
 }
 /*Número total de registros*/
 .cards-container .card .cards-total-count {
     white-space: nowrap;
     font-size: var(--numbercards-font-size);
     font-weight: 600;
-    color: var(--cards-text-color);
+    color: var(--text-color);
+    z-index: 100;
+    overflow: hidden;
+
 }
-/*Colores especiales tarjetas*/
-.cards-container .card.card1,
-.cards-container .card.card3 {
-    background: linear-gradient(-45deg, #faac1d, #DBA034, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+
+/**---EFECTO AL PASAR EL MOUSE*/
+#cards:hover > .card::after {
+    opacity: 1;
 }
-.cards-container .card.card2,
-.cards-container .card.card4 {
-    background: linear-gradient(-95deg, #23a6d5, #DBA034, #faac1d, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 30s ease infinite;
+.card:hover::before {
+    opacity: 1;
 }
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
+.dashboard-container .cards-container .card:hover::before {
+    outline: 2px solid var(--main-color);
+}
+.card::before,
+.card::after {
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0px;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    transition: opacity 200ms;
+    width: 100%;
+}
+.card::before {
+    background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y), rgba(250, 221, 59, 0.514),transparent 40%);
+    z-index: 3;
+}
+.card::after {  
+    background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y), rgba(250, 221, 59, 0.164),transparent 30%);
+    z-index: 1;
+}
+
+/*?--------------CHARTS: GRÁFICAS -------------------*/
+.graphBox{
+    position: relative;
+    padding: 20px;
+    display: grid;
+    gap: 1rem;
+    /*Contenedor ajustado a la pantalla*/
+    grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
+}
+.graphBox .box{
+    position: relative;
+    background-color: var(--background-color);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.466);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Media queries para ajustar tamaños en diferentes tamaños de pantalla */
+
+@media (max-width: 600px) {
+    .graphBox {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .graphBox {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     }
 }
+
+@media (min-width: 901px) and (max-width: 1200px) {
+    .graphBox {
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    }
+}
+
+@media (min-width: 1201px) {
+    .graphBox {
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    }
+}
+
+  /* Estilos para la gráfica */
+
+canvas {
+    max-height: 400px; /* Altura máxima de la gráfica */
+    min-height: 200px; /* Altura mínima de la gráfica */
+    width: 100%; /* Ancho de la gráfica */
+}
+
 
 /*?-------------------------BOTÓN NUEVO------------------*/
 .btn-add-record{
@@ -388,7 +465,7 @@ label{
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 99999999;
 }
 .container-modal-add-record-resource{
     width: 100%;
@@ -776,11 +853,11 @@ select::-ms-expand{
     -ms-border-radius: .3rem;
     -o-border-radius: .3rem;
     border-radius: .3rem;
-    transition: opacity .5s all;
-    -webkit-transition: opacity .5s all;
-    -moz-transition: opacity .5s all;
-    -ms-transition: opacity .5s all;
-    -o-transition: opacity .5s all;
+    transition: all opacity .5s;
+    -webkit-transition: all opacity .5s;
+    -moz-transition: all opacity .5s;
+    -ms-transition: all opacity .5s;
+    -o-transition: all opacity .5s;
     text-align: center;
     transition: 0.5s;
 
@@ -788,11 +865,11 @@ select::-ms-expand{
 /*Botón volver atrás con hover*/
 .btn-UserNotFound:hover{
     background-color: #ffc965;
-    -webkit-transition: opacity .5s all;
-    -moz-transition: opacity .5s all;
-    -ms-transition: opacity .5s all;
-    -o-transition: opacity .5s all;  
-    transition: opacity .5s all;
+    -webkit-transition: all opacity .5s ;
+    -moz-transition: all opacity .5s ;
+    -ms-transition: all opacity .5s ;
+    -o-transition: all opacity .5s ;  
+    transition: all opacity .5s ;
 }
 /*Campo de texto grande con scroll*/
 .textAreaStl{

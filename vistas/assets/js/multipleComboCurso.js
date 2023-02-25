@@ -67,4 +67,5 @@ function MultiSelectTag(e,t={shadow:!1,rounded:!0}){
                             r.addEventListener("keydown",(e=>{if("Backspace"===e.key&&!e.target.value&&o.childElementCount>1){const e=i.children[o.childElementCount-2].firstChild;d.find((t=>t.value==e.dataset.value)).selected=!1,g(e.dataset.value),E()}})),window.addEventListener("click",(e=>{l.contains(e.target)||p.classList.add("hidden")}))}
 
 //Pedazo de script para poder hacer uso del combo
-new MultiSelectTag('programaSeleccionarCur');  // id
+new MultiSelectTag('programaSeleccionarCbxCurso');  // id lista programas en vista Nuevo Curso
+new MultiSelectTag('docenteSeleccionarCbxCurso');  // id lista docentes en vista Nuevo Curso

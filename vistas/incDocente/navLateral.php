@@ -7,7 +7,6 @@
                 <img src="<?php echo SERVER_URL ?>vistas/assets/img/dashboard-ri-logo.png" alt="Logo Repositorio Institucional">
                 </a>
             </div>
-
             <span class="logo-name">Docente</span>
         </section>
 
@@ -21,12 +20,6 @@
                         <span class="option-name">Dashboard</span>
                     </a>
                 </li>
-                <!-- <li>
-                    <a href="#">
-                        <i class="uil uil-home"></i>
-                        <span class="option-name">Inicio</span>
-                    </a>
-                </li> -->
                 <li class="li-plantilla" title="Usuarios">
                     <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminUsuarios/">
                         <i class="uil uil-users-alt"></i>

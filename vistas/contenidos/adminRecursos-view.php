@@ -20,7 +20,10 @@
                 <i class="uil uil-plus-circle"></i></i></i>Nuevo
                 </a>
                 <a class="btn-add-record" title="Ir a autores" href="<?php echo SERVER_URL ?>adminAutores/">
-                <i class="uil uil-pen"></i></i></i>Autor
+                <i class="uil uil-pen"></i></i></i>Autores
+                </a>
+                <a class="btn-add-record" title="Ir a etiquetas" href="<?php echo SERVER_URL ?>panelEtiquetas/">
+                <i class="uil uil-tag"></i></i></i>Etiquetas
                 </a>
             </div>
             <!--TABLA-->
