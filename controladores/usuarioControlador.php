@@ -119,7 +119,7 @@ class usuarioControlador extends usuarioModelo{
 
         if($check_account->rowCount() > 0){
             $row = $check_account->fetch();
-            if($row['estado'] != 1){
+            if($row['estado'] != EstadosEnum::ACTIVO->value){
                 echo '<script>
                     Swal.fire({
                         title:"Error",
