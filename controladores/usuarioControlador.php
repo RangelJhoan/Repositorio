@@ -196,6 +196,18 @@ class usuarioControlador extends usuarioModelo{
 
     /*---------- Controlador para eliminar usuario ----------*/
     public function eliminar_usuario_controlador(){
+        session_start(['name'=>'REPO']);
+        if($_SESSION['correo_usuario'] != "admin.repositorioinstitucional@gmail.com"){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"No tienes los permisos necesarios para esta acción",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
         $persona = new Persona();
         $persona->setIdPersona(mainModel::decryption($_POST['idPersona']));
         $persona->setIdUsuario(mainModel::decryption($_POST['idUsuario']));
@@ -235,31 +247,6 @@ class usuarioControlador extends usuarioModelo{
             "Tipo"=>"success"
         ];
         echo json_encode($alerta);
-
-        /*$idPersona = mainModel::decryption($_POST['idPersona']);
-        $idUsuario = mainModel::decryption($_POST['idUsuario']);
-
-        $eliminarUsuario = usuarioModelo::eliminar_usuario_modelo($idPersona, $idUsuario);
-
-        if($eliminarUsuario->rowCount() == 1){
-            $alerta=[
-                "Alerta"=>"recargar",
-                "Titulo"=>"Exitoso",
-                "Texto"=>"Usuario eliminado exitosamente",
-                "Tipo"=>"success"
-            ];
-            echo json_encode($alerta);
-            exit();
-        }else{
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>"No se pudo eliminar el usuario. Intente nuevamente",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
-            exit();
-        }*/
     }
 
     /*---------- Controlador datos usuario ----------*/
@@ -271,6 +258,18 @@ class usuarioControlador extends usuarioModelo{
 
     /*---------- Controlador editar usuario ----------*/
     public function editar_usuario_controlador(){
+        session_start(['name'=>'REPO']);
+        if($_SESSION['correo_usuario'] != "admin.repositorioinstitucional@gmail.com" && $_POST['estado'] == EstadosEnum::ELIMINADO->value){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"No tienes los permisos necesarios para esta acción",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
         $persona = new Persona();
         $tipoDocumento = new TipoDocumento();
         //Recibiendo el ID del usuario a editar
@@ -498,7 +497,7 @@ class usuarioControlador extends usuarioModelo{
 
         $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, td.descripcion as documento, p.id_usuario, u.estado, tu.descripcion 
         FROM persona p JOIN tipo_documento td ON td.id = p.id_tipo_documento JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
-        WHERE u.correo != 'admin.repositorioinstitucional@gmail.com' 
+        WHERE u.correo != 'admin.repositorioinstitucional@gmail.com' and u.correo != '". $_SESSION['correo_usuario'] ."' and u.estado != ". EstadosEnum::ELIMINADO->value ." 
         ORDER BY p.nombre ASC";
 
         $conexion = mainModel::conectar();

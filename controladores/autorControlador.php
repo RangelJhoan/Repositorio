@@ -162,6 +162,7 @@ class autorControlador extends autorModelo{
     public function paginador_autor_controlador(){
         $consulta = "SELECT * 
         FROM autor 
+        WHERE estado != ". EstadosEnum::ELIMINADO->value ." 
         ORDER BY nombre ASC";
 
         $conexion = mainModel::conectar();

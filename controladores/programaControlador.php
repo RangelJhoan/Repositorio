@@ -93,30 +93,6 @@ class programaControlador extends programaModelo{
             "Tipo"=>"success"
         ];
         echo json_encode($alerta);
-
-        /*$idPrograma = mainModel::decryption($_POST['id_programa_del']);
-
-        $eliminarPrograma = programaModelo::eliminar_programa_modelo($idPrograma);
-
-        if($eliminarPrograma->rowCount() == 1){
-            $alerta=[
-                "Alerta"=>"recargar",
-                "Titulo"=>"Exitoso",
-                "Texto"=>"Programa eliminado exitosamente",
-                "Tipo"=>"success"
-            ];
-            echo json_encode($alerta);
-            exit();
-        }else{
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>"No se pudo eliminar el programa. Intente nuevamente",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
-            exit();
-        }*/
     }
 
     /*---------- Controlador datos programa ----------*/
@@ -216,6 +192,7 @@ class programaControlador extends programaModelo{
         }else{
             $consulta = "SELECT SQL_CALC_FOUND_ROWS * 
             FROM programa 
+            WHERE estado != ". EstadosEnum::ELIMINADO->value ." 
             ORDER BY nombre ASC LIMIT $inicio,$registros";
         }
 

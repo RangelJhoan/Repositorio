@@ -179,6 +179,7 @@ class cursoControlador extends cursoModelo{
         }else{
             $consulta = "SELECT SQL_CALC_FOUND_ROWS * 
             FROM curso
+            WHERE estado != ". EstadosEnum::ELIMINADO->value ." 
             ORDER BY nombre ASC LIMIT $inicio,$registros";
         }
 

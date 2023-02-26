@@ -158,6 +158,7 @@ class etiquetaControlador extends etiquetaModelo{
     public function paginador_etiqueta_controlador(){
         $consulta = "SELECT * 
         FROM etiqueta 
+        WHERE estado != ". EstadosEnum::ELIMINADO->value ." 
         ORDER BY descripcion ASC";
 
         $conexion = mainModel::conectar();

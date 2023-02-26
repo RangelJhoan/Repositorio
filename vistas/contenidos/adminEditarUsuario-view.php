@@ -72,17 +72,22 @@ if($datos_usuario->rowCount()>0){
                         </div>
                         <div class="input-field input-blocked">
                                 <div class="icon-locked">
-                                    <i class="uil uil-lock icon-no-edit-allowed"></i>    
+                                    <i class="uil uil-lock icon-no-edit-allowed"></i>
                                 </div>
                                 <input disabled name="correo" value="<?php echo $campos['correo']; ?>" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60"  title="No se permite editar el correo electrónico"/>
                         </div>
                         <!--Select tag-->
                         <div class="input-field ">
                             <div class="select-option">
-                                <select name="estado" class="combobox-titulo" title="Estado del usuario">
+                            <select name="estado" class="combobox-titulo" title="Estado del curso">
                                     <option disabled value="" class="combobox-opciones">Estado</option>
-                                    <option <?php if($campos['estado'] == '0'){echo "selected";} ?> value="0">Inactivo</option>
-                                    <option <?php if($campos['estado'] == '1'){echo "selected";} ?> value="1">Activo</option>
+                                    <?php
+                                    foreach (EstadosEnum::cases() as $cases) {
+                                    ?>
+                                    <option <?php if($campos['estado'] == $cases->value){echo "selected";} ?> value="<?php echo $cases->value; ?>"><?php echo $cases->getNameTextByValue($cases->value); ?></option>
+                                    <?php
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
