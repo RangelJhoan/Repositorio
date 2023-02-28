@@ -131,7 +131,7 @@
     font-size: 4rem;
     font-weight: 500;
     color: var(--text-color);
-    z-index: 100;
+    z-index: 2;
     overflow: hidden;
 }
 /*Titulo de la tarjeta*/
@@ -140,7 +140,7 @@
     font-size: var(--titlecards-font-size);
     font-weight: 400;
     color: var(--text-color);
-    z-index: 100;
+    z-index: 2;
     overflow: hidden;
 
 }
@@ -150,7 +150,7 @@
     font-size: var(--numbercards-font-size);
     font-weight: 600;
     color: var(--text-color);
-    z-index: 100;
+    z-index: 2;
     overflow: hidden;
 
 }
@@ -180,12 +180,12 @@
 .card::before {
     background: radial-gradient(
     800px circle at var(--mouse-x) var(--mouse-y), rgba(250, 221, 59, 0.514),transparent 40%);
-    z-index: 3;
+    z-index: 2;
 }
 .card::after {  
     background: radial-gradient(
     600px circle at var(--mouse-x) var(--mouse-y), rgba(250, 221, 59, 0.164),transparent 30%);
-    z-index: 1;
+    z-index: 2;
 }
 
 /*?--------------CHARTS: GRÁFICAS -------------------*/
@@ -465,7 +465,7 @@ label{
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 99999999;
+    z-index: 100;
 }
 .container-modal-add-record-resource{
     width: 100%;
@@ -476,7 +476,7 @@ label{
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 100;
 }
 #btn-modal-admin-add-record:checked ~ .container-modal-add-record{
     display: flex;

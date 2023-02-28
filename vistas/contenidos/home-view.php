@@ -24,13 +24,13 @@
             <div class="hexagonFilters">
                 <a href="#" class="hexagonShape hexShp3">
                     <img src="<?php echo SERVER_URL; ?>vistas/assets/img/fechaHome.svg" class="imageFilterHome" alt="Autor Img" />
-                    <h3 class="titleFilterHome">Fecha</h3>
+                    <h3 class="titleFilterHome">Fecha creación</h3>
                 </a>
             </div>        
             <div class="hexagonFilters">
                 <a href="#" class="hexagonShape hexShp4">
                     <img src="<?php echo SERVER_URL; ?>vistas/assets/img/materiaHome.svg" class="imageFilterHome" alt="Autor Img" />
-                    <h3 class="titleFilterHome">Área</h3>
+                    <h3 class="titleFilterHome">Curso</h3>
                 </a>
             </div>             
         </div>

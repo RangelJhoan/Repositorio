@@ -255,7 +255,7 @@ body.dark .switch:before{
     width: calc(100% - 250px);
     background-color: var(--white-color);
     transition:var(--trans-05);
-    z-index: 999999;
+    z-index: 99;
 }
 
 .lateralNavBar.close ~.top-navbar .top-container{
