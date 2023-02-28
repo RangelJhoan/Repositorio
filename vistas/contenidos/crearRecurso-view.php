@@ -90,7 +90,7 @@
             </div>
         <div>
     </section>
-    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/multipleComboRecurso.js"></script> 
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/uploadFile.js"></script> 
 </body>

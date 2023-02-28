@@ -5,17 +5,17 @@ function enviar_formulario_ajax(e){
 
     let data = new FormData(this)
     try {
-        var files = $('#archivo')[0].files[0]
+        var files = $('#file-input')[0].files[0]
         data.append("archivo", files)
     } catch (error) {
         console.log(error)
-    }    
-    
+    }
+
     let method = this.getAttribute("method")
     let action = this.getAttribute("action")
     let tipo = this.getAttribute("data-form")
     let tipoEnc = this.getAttribute("enctype")
-    
+
     let encabezados = new Headers()
 
     let config = {

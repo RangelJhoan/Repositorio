@@ -1,0 +1,84 @@
+<?php
+
+class Recurso {
+    private $idRecurso;
+    private $titulo;
+    private $autor;
+    private $resumen;
+    private $fecha;
+    private $editorial;
+    private $isbn;
+    private $archivo;
+
+
+    public function __construct(){}
+
+    //Getters
+
+    public function getIdRecurso(){
+        return $this->idRecurso;
+    }
+
+    public function getTitulo(){
+        return $this->titulo;
+    }
+
+    public function getAutor(){
+        return $this->autor;
+    }
+
+    public function getResumen(){
+        return $this->resumen;
+    }
+
+    public function getFecha(){
+        return $this->fecha;
+    }
+
+    public function getEditorial(){
+        return $this->editorial;
+    }
+
+    public function getIsbn(){
+        return $this->isbn;
+    }
+
+    public function getArchivo(){
+        return $this->archivo;
+    }
+
+    //Setters
+    public function setIdRecurso($idRecurso){
+        $this->idRecurso = $idRecurso;
+    }
+
+    public function setTitulo($titulo){
+        $this->titulo = $titulo;
+    }
+
+    public function setAutor($autor){
+        $this->autor = $autor;
+    }
+
+    public function setResumen($resumen){
+        $this->resumen = $resumen;
+    }
+
+    public function setFecha($fecha){
+        $this->fecha = $fecha;
+    }
+
+    public function setEditorial($editorial){
+        $this->editorial = $editorial;
+    }
+
+    public function setIsbn($isbn){
+        $this->isbn = $isbn;
+    }
+
+    public function setArchivo($archivo){
+        $this->archivo = $archivo;
+    }
+}
+
+?>
