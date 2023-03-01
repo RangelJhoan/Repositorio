@@ -4,11 +4,21 @@
     class homeModelo extends mainModel{
 
         protected static function filtrar_recursos($pTipo, $pBuscar){
-            $pBuscar = str_replace("-"," ",$pBuscar);
+            
+            
             if($pTipo == "Busqueda"){
+                $arrayParametro = explode("¡", $pBuscar);
+                $search = "";
+                foreach($arrayParametro AS $dato){
+                    if($search!=""){
+                        $search .= " ";
+                    }
+                    $search .= mainModel::decryption($dato);
+                }
+                
                 $sql = mainModel::conectar()->prepare("SELECT r.titulo,r.fecha_publicacion_recurso,a.nombre,a.apellido FROM recurso r JOIN autor_recurso ar 
                 ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor 
-                WHERE r.titulo LIKE '%".$pBuscar."%' OR a.nombre LIKE '%".$pBuscar."%' OR a.apellido LIKE '%".$pBuscar."%';");    
+                WHERE r.titulo LIKE '%".$search."%' OR a.nombre LIKE '%".$search."%' OR a.apellido LIKE '%".$search."%';");    
             }else if($pTipo=="Autor"){
                 $sql = mainModel::conectar()->prepare("SELECT r.titulo,r.fecha_publicacion_recurso,a.nombre,a.apellido FROM recurso r JOIN autor_recurso ar 
                 ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor ORDER BY a.nombre");
