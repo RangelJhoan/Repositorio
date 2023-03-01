@@ -7,6 +7,12 @@
     <title>Repositorio Institucional</title>
 </head>
 <body>
+<?php
+require_once "./controladores/recursoControlador.php";
+$ins_recurso = new recursoControlador();
+
+$datos = $ins_recurso->paginador_recurso_controlador();
+?>
     <section class="general-admin-container">
         <div class="overview-general-admin">
             <!--TÍTULO-->
@@ -27,19 +33,6 @@
                 </a>
             </div>
             <!--TABLA-->
-            <?php
-                require_once "./controladores/cursoControlador.php";
-                $ins_curso = new cursoControlador();
-
-                $cantidadRegistros = 1000;
-                if(count($pagina) == 0){
-                    $paginaActual = $pagina[1];
-                    $datos = $ins_curso->paginador_curso_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
-                }else{
-                    $paginaActual = -1;
-                    $datos = $ins_curso->paginador_curso_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
-                }
-            ?>
             <div class="table-admin-container">
                 <table id="tablaUsuarios" class="tb-admin-records">
                     <thead>
@@ -55,29 +48,27 @@
                     </thead>
                     <tbody>
                         <?php
-                        $inicio = ($paginaActual>0) ? (($paginaActual*$cantidadRegistros)-$cantidadRegistros) : 0;
-                        $contador = $inicio+1;
                         if($datos != 0){
                             foreach($datos as $rows){
                         ?>
                         <tr>
-                            <td data-titulo="#"><?php echo $contador ?></td>
-                            <td data-titulo="TÍTULO"><?php echo $rows['nombre_curso'] ?></td>
-                            <td data-titulo="AUTOR"><?php echo $rows['descripcion_curso'] ?></td>
-                            <td data-titulo="ARCHIVO"><?php echo $rows['nombre_programa'] ?></td>
-                            <td data-titulo="POSITIVOS"><?php echo "12" ?></td>
-                            <td data-titulo="NEGATIVOS"><?php echo "4" ?></td>
+                            <td data-titulo="#"><?php echo $rows['idRecurso'] ?></td>
+                            <td data-titulo="TÍTULO"><?php echo $rows['titulo'] ?></td>
+                            <td data-titulo="AUTOR"><?php echo $rows['nombre'] ?></td>
+                            <td data-titulo="ARCHIVO"><?php echo $rows['nombre'] ?></td>
+                            <td data-titulo="POSITIVOS"><?php echo $rows['puntos_positivos'] ?></td>
+                            <td data-titulo="NEGATIVOS"><?php echo $rows['puntos_negativos'] ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
                                         <a href="" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>
                                     </div>
                                     <div class="btn-group-action">
-                                        <a href="<?php echo SERVER_URL ?>adminEditarCurso/<?php echo $ins_curso->encryption($rows['id_curso'])?>/" class="btn-admin-edit-record" title="Editar recurso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
+                                        <a href="<?php echo SERVER_URL ?>adminEditarRecurso/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" class="btn-admin-edit-record" title="Editar recurso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/cursoAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
-                                            <input type="hidden" name="id_curso_del" value="<?php echo $ins_curso->encryption($rows['id_curso']) ?>">
+                                            <input type="hidden" name="id_curso_del" value="<?php echo $ins_recurso->encryption($rows['idRecurso']) ?>">
                                             <button type="submit" class="btn-delete-record" title="Eliminar recurso"><i class="uil uil-trash-alt"></i></button>
                                         </div>
                                     </form>
@@ -85,7 +76,6 @@
                             </td>
                         </tr>
                         <?php
-                            $contador++;
                             }
                         }
                         ?>

@@ -18,6 +18,15 @@ class recursoControlador extends recursoModelo{
         $recurso->setTitulo($_POST['titulo_ins']);
         $recurso->setResumen($_POST['resumen_ins']);
 
+        if(isset($_POST['autores_ins']))
+            $recurso->setAutor($_POST['autores_ins']);
+
+        if(isset($_POST['cursos_ins']))
+            $recurso->setCurso($_POST['cursos_ins']);
+
+        if(isset($_POST['etiquetas_ins']))
+            $recurso->setEtiqueta($_POST['etiquetas_ins']);
+
         $recurso->setFecha($_POST['anioRecurso']);
 
         if(isset($_POST['editorial_ins'])){
@@ -51,6 +60,24 @@ class recursoControlador extends recursoModelo{
             exit();
         }
 
+    }
+
+    /**
+     * Paginador de recursos, vista en panel de Admin
+     *
+     * @return Object Lista de los recursos consultados
+     */
+    public function paginador_recurso_controlador(){
+        $consulta = "SELECT r.id as idRecurso, r.titulo, a.nombre, r.puntos_positivos, r.puntos_negativos 
+        FROM recurso r 
+        JOIN archivo a ON a.id_recurso = r.id 
+        ORDER BY r.id;";
+
+        $conexion = mainModel::conectar();
+
+        $datos = $conexion->query($consulta);
+        $datos = $datos->fetchAll();
+        return $datos;
     }
 
 }

@@ -4,6 +4,8 @@ class Recurso {
     private $idRecurso;
     private $titulo;
     private $autor;
+    private $etiqueta;
+    private $curso;
     private $resumen;
     private $fecha;
     private $editorial;
@@ -25,6 +27,14 @@ class Recurso {
 
     public function getAutor(){
         return $this->autor;
+    }
+
+    public function getEtiqueta(){
+        return $this->etiqueta;
+    }
+
+    public function getCurso(){
+        return $this->curso;
     }
 
     public function getResumen(){
@@ -58,6 +68,14 @@ class Recurso {
 
     public function setAutor($autor){
         $this->autor = $autor;
+    }
+
+    public function setEtiqueta($etiqueta){
+        $this->etiqueta = $etiqueta;
+    }
+
+    public function setCurso($curso){
+        $this->curso = $curso;
     }
 
     public function setResumen($resumen){

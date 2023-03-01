@@ -75,14 +75,7 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                 require_once "./controladores/cursoControlador.php";
                 $ins_curso = new cursoControlador();
 
-                $cantidadRegistros = 1000;
-                if(count($pagina) == 0){
-                    $paginaActual = $pagina[1];
-                    $datos = $ins_curso->paginador_curso_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
-                }else{
-                    $paginaActual = -1;
-                    $datos = $ins_curso->paginador_curso_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
-                }
+                $datos = $ins_curso->paginador_curso_controlador();
             ?>
             <div class="table-admin-container">
                 <table id="tablaUsuarios" class="tb-admin-records">
@@ -98,14 +91,12 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                     </thead>
                     <tbody>
                         <?php
-                        $inicio = ($paginaActual>0) ? (($paginaActual*$cantidadRegistros)-$cantidadRegistros) : 0;
-                        $contador = $inicio+1;
                         if($datos != 0){
                             foreach($datos as $rows){
                                 $programas_curso =  $ins_curso->programas_curso_controlador($rows['id']);
                         ?>
                         <tr>
-                            <td data-titulo="#"><?php echo $contador ?></td>
+                            <td data-titulo="#"><?php echo $rows['id'] ?></td>
                             <td data-titulo="NOMBRE"><?php echo $rows['nombre'] ?></td>
                             <td data-titulo="DESCRIPCIÓN" class="responsive-file"><?php echo $rows['descripcion'] ?></td>
                             <td data-titulo="PROGRAMA" class="responsive-file"><?php
@@ -131,7 +122,6 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                             </td>
                         </tr>
                         <?php
-                            $contador++;
                             }
                         }
                         ?>
