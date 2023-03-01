@@ -44,16 +44,20 @@
 
         /*---------- Modelo para agregar Recurso ----------*/
         protected static function agregar_archivo_modelo(Recurso $recurso){
-            $sqlQuery = mainModel::conectar()->prepare("SELECT MAX(id) AS id FROM recurso");
-            $sqlQuery->execute();
+            try {
+                $sqlQuery = mainModel::conectar()->prepare("SELECT MAX(id) AS id FROM recurso");
+                $sqlQuery->execute();
 
-            $codrecurso = $sqlQuery->fetch();
-            $id_recurso = $codrecurso['id'];
+                $codrecurso = $sqlQuery->fetch();
+                $id_recurso = $codrecurso['id'];
 
-            $sql = mainModel::conectar()->prepare("INSERT INTO archivo(ruta, tamano, nombre, isbn, editorial, estado, id_recurso, id_formato) VALUES(?, ?, ?, ?, ?, ?, ?, ?);");
-            $sql->execute([$recurso->getArchivo(),'','',$recurso->getIsbn(),$recurso->getEditorial(),'1',$id_recurso,'1']);
+                $sql = mainModel::conectar()->prepare("INSERT INTO archivo(ruta, tamano, nombre, isbn, editorial, estado, id_recurso, id_formato) VALUES(?, ?, ?, ?, ?, ?, ?, ?);");
+                $sql->execute([$recurso->getArchivo(),'','',$recurso->getIsbn(),$recurso->getEditorial(),'1',$id_recurso,'1']);
 
-            return $sql;
+                return $sql->rowCount();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
         }
 
     }

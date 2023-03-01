@@ -30,7 +30,7 @@
             <div class="hexagonFilters">
                 <a href="<?php echo SERVER_URL ?>recursosBusqueda/Curso/" class="hexagonShape hexShp4">
                     <img src="<?php echo SERVER_URL; ?>vistas/assets/img/materiaHome.svg" class="imageFilterHome" alt="Autor Img" />
-                    <h3 class="titleFilterHome">Área</h3>
+                    <h3 class="titleFilterHome">Curso</h3>
                 </a>
             </div>             
         </div>

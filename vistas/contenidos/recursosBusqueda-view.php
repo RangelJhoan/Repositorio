@@ -18,11 +18,6 @@
                     <h1 class="panel-title-name">Filtro por autor</h1>
                 </div>
 
-
-
-
-
-                
                 <!--TABLA-->
                 <div class="table-admin-container">
                     <table id="tablaUsuarios" class="tb-admin-records">
@@ -76,5 +71,7 @@
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo SERVER_URL ?>vistas/assets/js/datatables.js"></script>
+
 </body>
 </html>

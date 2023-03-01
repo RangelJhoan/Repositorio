@@ -50,6 +50,18 @@ class recursoControlador extends recursoModelo{
         }else{
             $agregar_programa = recursoModelo::agregar_recurso_modelo($recurso);
             $agregar_archivo = recursoModelo::agregar_archivo_modelo($recurso);
+
+            if(is_string($agregar_archivo) || $agregar_archivo < 0){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Error",
+                    "Texto"=>"Error " . $agregar_archivo,
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+
             $alerta=[
                 "Alerta"=>"recargar",
                 "Titulo"=>"Exitoso",
