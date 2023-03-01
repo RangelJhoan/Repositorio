@@ -333,7 +333,7 @@ body{
     color:var(--main-home-color);
 }
 
-/*?--------------SECCIÓN FILTROS---------------*/
+/*?--------------SECCIÓN FILTROS PÁGINA PRINCIPAL---------------*/
 /*Contenedor principal*/
 .filters-main-container{
     max-width: 100%;
@@ -554,9 +554,22 @@ body{
 }
 
 
-
-
-
+/*?--------------SECCIÓN FILTROS ASIDE---------------*/
+.mainContarinerFilters{
+    display: flex;
+	flex-wrap: wrap;
+}
+.tableWithContent{
+    flex:1;
+    padding: 20px;
+    margin-left: 5rem;
+}
+.asideFilters{
+    flex-basis: 200px;
+	background-color: #f5f5f5;
+	padding: 20px;
+    margin-right: 5rem;
+}
 
 /*?--------------FOOTER---------------*/
 .footer-Home{

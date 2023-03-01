@@ -66,6 +66,7 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                         </div>
                     </form>
                 </div>
+                <label for="btn-modal-admin-add-record" class="cerrar-modal"></label>
             </div>
             </div>
 

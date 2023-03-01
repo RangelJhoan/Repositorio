@@ -38,6 +38,7 @@
                         </div>
                     </form>
                 </div>
+                <label for="btn-modal-admin-add-record" class="cerrar-modal"></label>
             </div>
             </div>
             <!--TABLA-->

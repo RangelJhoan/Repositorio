@@ -6,10 +6,13 @@ class vistasModelo{
         $listaBlancaAdmin = ["adminDashboard","adminUsuarios","adminEditarUsuario","editarPerfil","adminProgramas","adminEditarPrograma","adminCursos","adminEditarCurso","adminRecursos","adminAutores","adminEditarAutor","adminReportes","crearRecurso","panelEtiquetas","editarEtiqueta"];
         $listaBlancaDocente = ["docenteDashboard"];
         $listaBlancaEstudiante = ["estudianteDashboard","estudianteFavoritos","editarPerfil"];
-        $listaBlancaHome = ["preguntasFreq"];
+        $listaBlancaHome = ["preguntasFreq","filtrosAside","recursosBusqueda"];
 
+        //?VERIFICACIÓN TIPO DE USUARIO
         if(isset($_SESSION['tipo_usuario'])){
+            //!SI ES ADMINISTRADOR ENTONCES
             if(in_array($vistas, $listaBlancaAdmin) && $_SESSION['tipo_usuario'] == "Administrador"){
+                //*Puede acceder a las siguientes rutas: contenidos, etiquetas
                 if(is_file("./vistas/contenidos/".$vistas."-view.php")){
                     $contenido = "./vistas/contenidos/".$vistas."-view.php";
                 }else if(is_file("./vistas/contenidos/etiquetas/".$vistas."-view.php")){
@@ -17,31 +20,42 @@ class vistasModelo{
                 }else{
                     $contenido = "404";
                 }
+            //! SI ES ESTUDIANTE ENTONCES
             }elseif(in_array($vistas, $listaBlancaEstudiante) && $_SESSION['tipo_usuario'] == "Estudiante"){
+                //*Puede acceder a las siguientes rutas: contenidos
                 if(is_file("./vistas/contenidos/".$vistas."-view.php")){
                     $contenido = "./vistas/contenidos/".$vistas."-view.php";
                 }else{
                     $contenido = "404";
                 }
+            //! SI ES DOCENTE ENTONCES
             }elseif(in_array($vistas, $listaBlancaDocente) && $_SESSION['tipo_usuario'] == "Docente"){
+                //*Puede acceder a las siguientes rutas: contenidos
                 if(is_file("./vistas/contenidos/".$vistas."-view.php")){
                     $contenido = "./vistas/contenidos/".$vistas."-view.php";
                 }else{
                     $contenido = "404";
                 }
+            //! SI ES LISTA BLANCA (NO ES)
             }elseif(in_array($vistas, $listaBlancaHome)){
+                //*Puede acceder a las siguientes rutas: contenidos, home
                 if(is_file("./vistas/contenidos/".$vistas."-view.php")){
                     $contenido = "./vistas/contenidos/".$vistas."-view.php";
                 }else{
                     $contenido = "404";
                 }
+            //! SI NO ES NINGUNO 
             }elseif($vistas == "home"){
+                //* Estará en home
                 $contenido = "home";
+                //* Estará en login
             }elseif($vistas == "login"){
                 $contenido = "login";
+                //* Sino, muestra error 404
             }else{
                 $contenido = "404";
             }
+            //! SI ES LISTA BLANCA (NO ES)
         }elseif(in_array($vistas, $listaBlancaHome)){
             if(is_file("./vistas/contenidos/".$vistas."-view.php")){
                 $contenido = "./vistas/contenidos/".$vistas."-view.php";

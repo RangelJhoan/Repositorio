@@ -543,6 +543,14 @@ label{
 .content-modal-edit-record .btn-close-edit-record:hover{
     background-color: var(--delete-button-hover);
 }
+.cerrar-modal{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top:0; left:0;
+    z-index: -1;
+
+}
 /*Botón crear*/
 .content-modal-add-record .btn-submit-add-record,
 .content-modal-edit-record .btn-admin-edit-record{

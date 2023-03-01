@@ -26,7 +26,7 @@
                         <?php
                         if(isset($_SESSION['tipo_usuario'])){
                             if($_SESSION['tipo_usuario'] == "Administrador"){
-                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'adminDashboard/">Cuenta</a>';
+                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'adminDashboard/">Cuenta</a>'; 
                             }elseif($_SESSION['tipo_usuario'] == "Docente"){
                                 echo '<a  class="a-HomeNav" href="'.SERVER_URL.'docenteDashboard/">Cuenta</a>';
                             }elseif($_SESSION['tipo_usuario'] == "Estudiante"){
@@ -62,9 +62,9 @@
         <!-- Banner -->
         <img class="bannerImg" src="<?php echo SERVER_URL ?>vistas/assets/img/bannerHome.png" alt="Banner Repositorio Institucional">
         <!-- Barra búsqueda -->
-        <form class="form-BarraBusquedaHome" action="#" method="POST" data-form="save" autocomplete="off">
+        <form class="form-BarraBusquedaHome" action="<?php echo SERVER_URL ?>ajax/homeAjax.php" method="POST" data-form="save" autocomplete="off">
             <div class="searchBar-Container">
-                <input class="input-SearchBar" type="text" placeholder="Buscar recurso...">
+                <input class="input-SearchBar" type="text" name="barraBusqueda" placeholder="Buscar recurso...">
                 <button type="submit" title="Buscar" class="searchBar-IconContainer">
                     <i class="uil uil-search search-iconHome"></i>
                     <!-- <i class="uil uil-search search-iconHome"></i> -->
@@ -72,3 +72,4 @@
             </div>
         </form>
     </section>
+
