@@ -83,94 +83,9 @@
         </section>
     </section>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.umd.js"></script>
+<script src="<?php echo SERVER_URL ?>vistas/assets/js/dashboard.js"></script> 
 
-<?php
-// $sql = "SELECT COUNT(*) AS count FROM usuario WHERE id_tipo_usuario=1";
-// $result = $conn->query($sql);
-// $admin_count = $result->fetch_assoc()["count"];
-
-// $sql = "SELECT COUNT(*) AS count FROM usuario WHERE id_tipo_usuario=2";
-// $result = $conn->query($sql);
-// $docente_count = $result->fetch_assoc()["count"];
-
-// $sql = "SELECT COUNT(*) AS count FROM usuario WHERE id_tipo_usuario=3";
-// $result = $conn->query($sql);
-// $estudiante_count = $result->fetch_assoc()["count"];
-
-// $data = array(
-//     $admin_count,
-//     $docente_count,
-//     $estudiante_count
-// );
-?>
-
-
-
-<script>
-const ctx = document.getElementById('myChart');
-const earn = document.getElementById('earnings');
-new Chart(ctx, {
-    type: 'polarArea',
-    data: {
-    labels: ['Administradores', 'Docentes', 'Estudiantes'],
-    datasets: [{
-        label: 'Número de usuarios',
-        data: [1, 2, 3],
-        // data: <?//php echo json_encode($data); ?>
-
-        borderWidth: 1
-    }]
-    },
-    options: {
-        scales: {
-            y: {
-            beginAtZero: true,
-            responsive:false
-            }
-        },
-        plugins:{
-            title:{
-                display:true,
-                text: 'Cantidad específica de usuarios',
-                font:{
-                    size:18,
-                    weight:'bold'
-                    }
-                }
-            }
-        }
-    });
-
-new Chart(earn, {
-    type: 'bar',
-    data: {
-    labels: ['Administradores', 'Docentes', 'Estudiantes'],
-    datasets: [{
-        label: 'Archivos de recursos:',
-        data: [1, 2, 3],
-        borderWidth: 1
-    }]
-    },
-    options: {
-    scales: {
-        y: {
-        beginAtZero: true,
-        responsive:false
-    }
-        },
-        plugins:{
-            title:{
-                display:true,
-                text: 'Cantidad específica de los tipos de archivos',
-                font:{
-                    size:18,
-                    weight:'bold'
-                    }
-                }
-            }
-        }
-    });
-</script>
 </html>

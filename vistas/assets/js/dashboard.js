@@ -1,49 +1,3 @@
-const body = document.querySelector("body"),
-    modeToggle = body.querySelector(".mode-toggle");
-    sidebar = body.querySelector("nav");
-    sidebarToggle = body.querySelector(".sidebar-toggle");
-
-/*Submenú wrap*/
-let subMenu = document.getElementById("subMenu");
-function toggleMenu(){
-    subMenu.classList.toggle("open-submenu");
-}
-/*DarkMode*/
-let getMode = localStorage.getItem("mode");
-if(getMode && getMode ==="dark"){
-    body.classList.toggle("dark");
-}
-
-let getStatus = localStorage.getItem("status");
-if(getStatus && getStatus ==="close"){
-    sidebar.classList.toggle("close");
-}
-/*Mantener el cambio de color al recargar página*/
-modeToggle.addEventListener("click", () =>{
-    body.classList.toggle("dark");
-    if(body.classList.contains("dark")){
-        localStorage.setItem("mode", "dark");
-    }else{
-        localStorage.setItem("mode", "light");
-    }
-});
-/*Hamburguesa*/
-sidebarToggle.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-    if(sidebar.classList.contains("close")){
-        localStorage.setItem("status", "close");
-    }else{
-        localStorage.setItem("status", "open");
-    }
-})
-/*Active Link Dashboard*/
-const activePage = window.location.pathname;
-const navLateralLinks = document.querySelectorAll('nav a').forEach(link =>{
-    if(link.href.includes(`${activePage}`)){
-        link.classList.add('activeLi');
-        console.log(`${activePage}`);
-    }
-})
 /** SCRIPT PARA LAS CARDS DEL DASHBOARD*/
 document.getElementById("cards").onmousemove = e => {
     for(const card of document.getElementsByClassName("card")) {
@@ -54,3 +8,88 @@ document.getElementById("cards").onmousemove = e => {
         card.style.setProperty("--mouse-y", `${y}px`);
     };
 }
+
+/*Script para gráficas*/
+
+//<?php
+// $sql = "SELECT COUNT(*) AS count FROM usuario WHERE id_tipo_usuario=1";
+// $result = $conn->query($sql);
+// $admin_count = $result->fetch_assoc()["count"];
+
+// $sql = "SELECT COUNT(*) AS count FROM usuario WHERE id_tipo_usuario=2";
+// $result = $conn->query($sql);
+// $docente_count = $result->fetch_assoc()["count"];
+
+// $sql = "SELECT COUNT(*) AS count FROM usuario WHERE id_tipo_usuario=3";
+// $result = $conn->query($sql);
+// $estudiante_count = $result->fetch_assoc()["count"];
+
+// $data = array(
+//     $admin_count,
+//     $docente_count,
+//     $estudiante_count
+// );
+//?>
+const ctx = document.getElementById('myChart');
+const earn = document.getElementById('earnings');
+new Chart(ctx, {
+    type: 'polarArea',
+    data: {
+    labels: ['Administradores', 'Docentes', 'Estudiantes'],
+    datasets: [{
+        label: 'Número de usuarios',
+        data: [1, 2, 3],
+        // data: <?//php echo json_encode($data); ?>
+
+        borderWidth: 1
+    }]
+    },
+    options: {
+        scales: {
+            y: {
+            beginAtZero: true,
+            responsive:false
+            }
+        },
+        plugins:{
+            title:{
+                display:true,
+                text: 'Cantidad específica de usuarios',
+                font:{
+                    size:18,
+                    weight:'bold'
+                    }
+                }
+            }
+        }
+    });
+
+new Chart(earn, {
+    type: 'bar',
+    data: {
+    labels: ['Administradores', 'Docentes', 'Estudiantes'],
+    datasets: [{
+        label: 'Archivos de recursos:',
+        data: [1, 2, 3],
+        borderWidth: 1
+    }]
+    },
+    options: {
+    scales: {
+        y: {
+        beginAtZero: true,
+        responsive:false
+    }
+        },
+        plugins:{
+            title:{
+                display:true,
+                text: 'Cantidad específica de los tipos de archivos',
+                font:{
+                    size:18,
+                    weight:'bold'
+                    }
+                }
+            }
+        }
+    });

@@ -91,11 +91,7 @@ $datos = $ins_recurso->paginador_recurso_controlador();
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
 
     <!-- <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script> -->
-
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/datatables.js"></script> 
-    <script src="<?php echo SERVER_URL ?>vistas/assets/js/multipleCombo.js"></script> 
-    <script src="<?php echo SERVER_URL ?>vistas/assets/js/uploadFile.js"></script> 
-
 
 </body>
 </html>

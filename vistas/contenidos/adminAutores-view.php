@@ -101,8 +101,5 @@
     <!-- <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script> -->
 
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/datatables.js"></script>
-    <script src="<?php echo SERVER_URL ?>vistas/assets/js/multipleCombo.js"></script>
-
-
 </body>
 </html>
