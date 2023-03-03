@@ -264,7 +264,7 @@ canvas {
 .btn-add-record:hover{
     background-color:  var(--create-button-hover);
 }
-
+/*?-------------------DATA TABLE JQUERY----------------------*/
 /*?-------------------MOSTRAR X REGISTROS----------------------*/
 .dataTables_length{
     color:var(--text-color);
@@ -418,38 +418,50 @@ label{
 
 /*?---------------------MOSTRANDO DE X 1 X DE X ENTRADAS----------------------*/
 .dataTables_info{
+    text-align: center;
     color:var(--text-color);
-    border-top: 1px solid var(--text-color);
-    padding-top: 20px;
     font-size: var(--normal-font-size);
-    display: inline-flex;
-    justify-content: flex-start;
-    position: absolute;
-    line-height: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--text-color);
 }
-
 /*?--------------------PAGINACIÓN--------------------*/
 .dataTables_paginate{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    padding-top: 20px;
+}
+.dataTables_info{
+    text-align: center;
+    color:var(--text-color);
+    font-size: var(--normal-font-size);
     padding-top: 20px;
     border-top: 1px solid var(--text-color);
 }
 .pagination{
     display: flex;
-    justify-content: space-around;
-    width: 250px;
+    justify-content: center;
+    align-items: center;
     list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    text-align: center;
 }
-.pagination a{
-    text-decoration: none;
-    color:var(--text-color);
-    transition: all .5s;
+.pagination li {
+    margin: 0 5px;
     font-size: var(--normal-font-size);
 }
-.pagination a:hover{
+.pagination li a {
+    color:var(--input-text-for-write);
+    text-decoration: none;
+    transition: all .5s;
+    font-weight: 400;
+    padding: 5px;
+    font-size: var(--normal-font-size);
+}
+.pagination li a:hover {
     font-weight: 500;
-    color:var(--main-color);
+    color: var(--main-color);
 }
 
 /*?------------------------MODAL NUEVO/CREAR--------------------------*/
@@ -1147,16 +1159,18 @@ select::-ms-expand{
         .table-admin-container .tb-admin-records thead{
             display:none!important;
         }
-        .dataTables_paginate{
-            display: inline-flex!important;
-        }
         .pagination{
             display: flex!important;
             justify-content: space-around;
-            margin-top: 40px!important;
         }
         .dataTables_info,
         .pagination a{
+            font-size: var(--pequeña-font-size);
+        }
+        .pagination li {
+            font-size: var(--pequeña-font-size);
+        }
+        .pagination li a {
             font-size: var(--pequeña-font-size);
         }
         .content-modal-add-record{

@@ -23,3 +23,5 @@
             <p class="rights-p-Footer">Todos los derechos reservados &copy; 2023 - <b>PG</b></p>
         </div>
     </footer>
+    </body>
+</html>

@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repositorio Institucional</title>
-</head>
-<body>
 <section class="filters-main-container">
     <p class="msg-total-resources">Este repositorio institucional cuenta con un total de <span class="resources-total-count">1000</span> recursos disponibles para toda la comunidad. </p>
         <h2 class="filter-main-Title">Filtrar búsqueda por</h2>
@@ -35,5 +28,3 @@
             </div>             
         </div>
     </section>
-</body>
-</html>
