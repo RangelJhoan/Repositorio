@@ -178,7 +178,7 @@ $(document).ready(function(){
                     "noMulti": "Este registro puede ser editado individualmente, pero no como parte de un grupo."
                 }
             },
-            "info": "Mostrando de _START_ a _END_ de _TOTAL_ entradas"
+            "info": "Mostrando de _START_ a _END_ de _TOTAL_ resultados"
         } 	
     });
     

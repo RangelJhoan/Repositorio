@@ -1,6 +1,6 @@
 /*Se importa la tipografía desde google*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
-/*?VARIABLES GLOBALES*/
+/*?----------------------VARIABLES GLOBALES---------------------------*/
 :root{
     /* Colores */
     --main-home-color:#506591;
@@ -13,6 +13,14 @@
     --hover-navBarHome1: #33508f;
     --hover-navBarHome2: #415fa0;
     --secondary-main-homeColor:#678c8f;
+    --hexagonN1:rgb(231, 99, 99);
+    --hexagonN2:rgb(104, 104, 255);
+    --hexagonN3:rgb(79, 170, 114);
+    --hexagonN4:rgb(90, 11, 77);
+    --colorTableN1: rgb(80, 121, 104);
+    --colorTableN2: rgb(46, 68, 57);
+    --colorTableN3: rgba(160, 211, 190, 0.692);
+    --colorTableN4: rgb(73, 148, 117);
 
     /* Párrafos generales del repositorio*/
     --phrgp-home-normal-font-size: 1rem;
@@ -35,8 +43,13 @@
     --medium-font-size-mainSectionHome:1.2rem;
     --tiny-font-size-mainSectionHome:1.1rem;
     --supertiny-font-size-mainSectionHome:0.9rem;
+
+    /* Título páginas búsquedas*/
+    --title-font-size: 2.2rem;
+    --title-tablet-font-size: 2rem;
+    --title-mobile-font-size: 1.8rem;
 }
-/*?SETEO DE ESTILOS POR DEFAULT DEL NAVEGADOR*/
+/*?---------------SETEO DE ESTILOS POR DEFAULT DEL NAVEGADOR----------------*/
 * {
     margin: 0;
     padding: 0;
@@ -49,7 +62,8 @@ body{
     background-color: var(--home-background-color);
 }
 
-/*?ESTILO BARRA HORIZONTAL*/
+
+/*?-------------------------ESTILO BARRA HORIZONTAL------------------------*/
 ::-webkit-scrollbar {
     width: 9px;
 }
@@ -67,7 +81,10 @@ body{
 }
 
 
-/*?--------------BARRA DE NAVEGACIÓN HOME---------------*/
+
+
+/*! ************************** HOME PRINCIPAL INDEX ***********************/
+/*?----------------BARRA DE NAVEGACIÓN HOME----------------*/
 /*Contenedor principal barra nav*/
 .nav-Home-Main{
     background-color: var(--white-home-color);
@@ -163,24 +180,19 @@ body{
 .nav-Home-Main .ul-Home .ul-SubMenu .li-Home .a-HomeNav{
     line-height: 50px;
 }
-
 .show-Perfil, .hamburguer-Menu, .input-HamburguerHome{
     display: none;
 }
-
 #checkHamburguesaHome{
     display: none;
 }
-
 .homeHideListFull{
     display: none;
 }
-
 /**LOGO Y NOMBRE*/
 .nav-Home-Main .logo-section-Home{
     display: inline-flex;
     padding-left: 14px;
-
 }
 /*Contenedor del logo*/
 .nav-Home-Main .logo-image-Home{
@@ -230,6 +242,7 @@ body{
     margin-bottom: 20px;
 }
 
+
 /*?--------------SECCIÓN BARRA BÚSQUEDA ---------------*/
 /*Contenedor de la barra de búsqueda*/
 .form-BarraBusquedaHome{
@@ -237,7 +250,6 @@ body{
     justify-content: center;
     max-width: 100%;
     overflow-x: hidden;
-    padding-bottom: 20px;
 }
 .searchBar-Container{
     position: relative;
@@ -333,7 +345,8 @@ body{
     color:var(--main-home-color);
 }
 
-/*?--------------SECCIÓN FILTROS PÁGINA PRINCIPAL---------------*/
+
+/*?--------------SECCIÓN FILTROS PÁGINA PRINCIPAL (HEXAGONOS PANEL ABEJA) ---------------*/
 /*Contenedor principal*/
 .filters-main-container{
     max-width: 100%;
@@ -385,22 +398,22 @@ body{
 /*Color hexagono 1*/
 .filterHomeContainer .hexagonFilters .hexShp1:hover,
 .filterHomeContainer .hexagonFilters .hexShp1:active{
-    background:rgb(231, 99, 99);
+    background:var(--hexagonN1);
 }
 /*Color hexagono 2*/
 .filterHomeContainer .hexagonFilters .hexShp2:hover,
 .filterHomeContainer .hexagonFilters .hexShp2:active{
-    background:rgb(104, 104, 255);
+    background:var(--hexagonN2);
 }
 /*Color hexagono 3*/
 .filterHomeContainer .hexagonFilters .hexShp3:hover,
 .filterHomeContainer .hexagonFilters .hexShp3:active{
-    background:rgb(79, 170, 114);
+    background:var(--hexagonN3);
 }
 /*Color hexagono 4*/
 .filterHomeContainer .hexagonFilters .hexShp4:hover,
 .filterHomeContainer .hexagonFilters .hexShp4:active{
-    background:rgb(90, 11, 77);
+    background:var(--hexagonN4);
 }
 /*Tamaño del SVG*/
 .filterHomeContainer .hexagonFilters .imageFilterHome{
@@ -417,166 +430,13 @@ body{
 }
 
 
-/*?--------------SECCIÓN PREGUNTAS FRECUENTES---------------*/
-.bodyFQ{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
-.bodyFQ .fq-main-Title {
-    color: var(--main-home-color);
-    text-align: center;
-    font-size: var(--normal-font-size-mainSectionHome);
-}
-.wrapperFAQ{
-    max-width:60%;
-    padding: 20px 0 40px 0;
-}
-
-.wrapperFAQ .parentTabFAQ{
-    margin-bottom: 10px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px;
-    -webkit-box-shadow:0px 0px 10px rgba(0,0,0,0.126);
-    -moz-box-shadow:0px 0px 10px rgba(0,0,0,0.126);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.126);
-    -webkit-transition: all .2s;
-    -moz-transition: all .2s;
-    -ms-transition: all .2s;
-    -o-transition: all .2s;
-    transition: all .2s;
-}
-.wrapperFAQ .parentTabFAQ:hover{
-    -webkit-box-shadow:0px 0px 15px 1px var(--secondary-main-homeColor);
-    -moz-box-shadow: 0px 0px 15px 1px var(--secondary-main-homeColor);
-    box-shadow: 0px 0px 15px 1px var(--secondary-main-homeColor);
-
-}
-
-.wrapperFAQ .parentTabFAQ .labelFAQ,
-.wrapperFAQ .answerFAQ .labelFAQ{
-    background-color: transparent;
-    padding: 10px  20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px;
-    position: relative;
-    z-index: 99;
-    -webkit-transition: all .3s;
-    -moz-transition: all .3s;
-    -ms-transition: all .3s;
-    -o-transition: all .3s;
-    transition: all .3s;
-}
-.wrapperFAQ .parentTabFAQ .labelFAQ:hover{
-    background-color: var(--white-home-color);
-}
-
-.wrapperFAQ .labelFAQ .questionFAQ{
-    color:var(--secondary-main-homeColor);
-    font-size: var(--question-homepq-normal-font-size);
-}
-.wrapperFAQ .labelFAQ .iconFAQ{
-    position: relative;
-    height: 2.5rem;
-    width: 2.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--white-home-color);
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
-}
-.parentTabFAQ input:checked ~ .labelFAQ .iconFAQ i::before{
-    transform: translate(0,-2px) rotate(180deg);
-    -webkit-transform: translate(0,-2px) rotate(180deg);
-    -moz-transform: translate(0,-2px) rotate(180deg);
-    -ms-transform: translate(0,-2px) rotate(180deg);
-    -o-transform: translate(0,-2px) rotate(180deg);
-}
-
-.wrapperFAQ .labelFAQ .iconFAQ i{
-    position: absolute;
-    top:50%;
-    left: 50%;
-    -webkit-transform: translate(-50%,-50%);
-    -moz-transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-    -o-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
-    color:var(--secondary-main-homeColor);
-    font-size: var(--normal-font-size-mainSectionHome);
-}
-
-.wrapperFAQ .parentTabFAQ .contentFAQ{
-    max-height: 0px;
-    overflow: hidden;
-    padding: 0px 20px;
-    -webkit-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    -ms-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-    border-top: 1px solid var(--gray-home-color);
-}
-
-.parentTabFAQ .inputFAQ:checked ~ .contentFAQ{
-    max-height: 100vh;
-}
-.parentTabFAQ .inputFAQ:not(:checked) ~ .contentFAQ{
-    max-height: 0vh;
-}
-
-
-.wrapperFAQ .parentTabFAQ .contentFAQ .answerFAQ{
-    font-size: var(--phrgp-home-normal-font-size);
-    padding: 15px 20px;
-    background: transparent;
-    color:var(--home-text-color);
-}
-
-.wrapperFAQ .inputFAQ{
-    display: none;
-}
-
-
-/*?--------------SECCIÓN FILTROS ASIDE---------------*/
-.mainContarinerFilters{
-    display: flex;
-	flex-wrap: wrap;
-}
-.tableWithContent{
-    flex:1;
-    padding: 20px;
-    margin-left: 5rem;
-}
-.asideFilters{
-    flex-basis: 200px;
-	background-color: #f5f5f5;
-	padding: 20px;
-    margin-right: 5rem;
-}
-
 /*?--------------FOOTER---------------*/
 .footer-Home{
     width: 100%;
     background-color:var(--footer-bgr-color);
     overflow-x: hidden;
     box-shadow: 0px -10px 10px 0px var(--border-home-color);
+    margin-top: 30px;
 }
 
 .footer-Container{
@@ -647,7 +507,444 @@ body{
 }
 
 
-/*?--------------RESPONSIVE DESIGN---------------*/
+
+
+
+
+/*! ************ SECCIÓN PREGUNTAS FRECUENTES************/
+.bodyFQ{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.bodyFQ .fq-main-Title {
+    color: var(--main-home-color);
+    text-align: center;
+    font-size: var(--normal-font-size-mainSectionHome);
+}
+.wrapperFAQ{
+    max-width:60%;
+    padding: 20px 0 40px 0;
+}
+.wrapperFAQ .parentTabFAQ{
+    margin-bottom: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow:0px 0px 10px rgba(0,0,0,0.126);
+    -moz-box-shadow:0px 0px 10px rgba(0,0,0,0.126);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.126);
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -ms-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+}
+.wrapperFAQ .parentTabFAQ:hover{
+    -webkit-box-shadow:0px 0px 15px 1px var(--secondary-main-homeColor);
+    -moz-box-shadow: 0px 0px 15px 1px var(--secondary-main-homeColor);
+    box-shadow: 0px 0px 15px 1px var(--secondary-main-homeColor);
+}
+.wrapperFAQ .parentTabFAQ .labelFAQ,
+.wrapperFAQ .answerFAQ .labelFAQ{
+    background-color: transparent;
+    padding: 10px  20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    position: relative;
+    z-index: 99;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+.wrapperFAQ .parentTabFAQ .labelFAQ:hover{
+    background-color: var(--white-home-color);
+}
+.wrapperFAQ .labelFAQ .questionFAQ{
+    color:var(--secondary-main-homeColor);
+    font-size: var(--question-homepq-normal-font-size);
+}
+.wrapperFAQ .labelFAQ .iconFAQ{
+    position: relative;
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white-home-color);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+.parentTabFAQ input:checked ~ .labelFAQ .iconFAQ i::before{
+    transform: translate(0,-2px) rotate(180deg);
+    -webkit-transform: translate(0,-2px) rotate(180deg);
+    -moz-transform: translate(0,-2px) rotate(180deg);
+    -ms-transform: translate(0,-2px) rotate(180deg);
+    -o-transform: translate(0,-2px) rotate(180deg);
+}
+.wrapperFAQ .labelFAQ .iconFAQ i{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    color:var(--secondary-main-homeColor);
+    font-size: var(--normal-font-size-mainSectionHome);
+}
+.wrapperFAQ .parentTabFAQ .contentFAQ{
+    max-height: 0px;
+    overflow: hidden;
+    padding: 0px 20px;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    border-top: 1px solid var(--gray-home-color);
+}
+.parentTabFAQ .inputFAQ:checked ~ .contentFAQ{
+    max-height: 100vh;
+}
+.parentTabFAQ .inputFAQ:not(:checked) ~ .contentFAQ{
+    max-height: 0vh;
+}
+.wrapperFAQ .parentTabFAQ .contentFAQ .answerFAQ{
+    font-size: var(--phrgp-home-normal-font-size);
+    padding: 15px 20px;
+    background: transparent;
+    color:var(--home-text-color);
+}
+.wrapperFAQ .inputFAQ{
+    display: none;
+}
+
+
+
+
+/*! ******************** SECCIÓN FILTROS ASIDE ******************/
+/**Contenedor principal dividir tabla y filtrado*/
+.mainContarinerFilters{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* padding: 0 25rem; */
+    gap: 10px;
+    /* margin-left: 10rem;
+    margin-right: 10rem; */
+    max-width: 70vw;
+    margin:0 auto;
+    padding-top: 1rem;
+}
+/**Necesaria para el espacio entre tabla de datos y tabla filtrado*/
+.tableWithContent{
+    flex:1;
+}
+/**Tabla contenedora "Listar"*/
+.asideFilters{
+    flex-basis: 200px;
+	background-color: var(--white-home-color);
+    height: fit-content;
+    padding-top: 7px;
+    border-radius: 5%;
+    border: 1px solid rgb(51,143,142);
+}
+/**Títuloi de tabla "Listar"*/
+.asideFiltersTitle{
+    text-align: center;
+    font-weight: 500;
+    padding-bottom: 10px;
+    font-size: 0.9rem;
+    color: rgb(34, 66, 95);
+    user-select: none;
+}
+/** Cada uno de los ítems listados*/
+.liAsideFilters{
+    list-style:none;
+    padding: 10px;
+    border-top: 1px solid var(--gray-home-color);
+    font-size: 0.9rem;
+}
+/**Estilo para la etiqueta <a> que enlaza la búsqueda*/
+.aAsideFilters{
+    color:var(--hover-navBarHome1);
+    transition: all .1s ease;
+    display: flex;
+    justify-content: space-between;
+}
+.aAsideFilters:hover{
+    text-decoration:underline;
+    color:var(--hover-navBarHome1);
+    font-weight: 600;
+}
+/**Evitar link <a> como "visitado"*/
+.aAsideFilters:link{
+    text-decoration: none;
+}
+.aAsideFilters:visited{
+    text-decoration: none;
+}
+.asideFilters > .asideFiltersTitle{
+    background: rgb(51,143,142);
+    background: linear-gradient(360deg, rgba(51,143,142,1) 3%, var(--white-home-color) 100%);
+}
+/**Estilo número contador de cada uno de los filtros. Total Counter */
+.asideFilterCounter{
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: var(--main-home-color);
+    color: var(--home-background-color);
+}
+
+
+
+
+
+
+/*! ***************** DATATABLE JQUERY *************/
+    .general-tableJQ-container .title {
+        display: flex;
+        align-items: center;
+        margin: 0 0 30px 0;
+    }
+    .general-tableJQ-container .title i{
+        position: relative;
+        height: 40px;
+        width: 40px;
+        background-color: var(--main-home-color);
+        border-radius: 50%;
+        color: var(--white-home-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--title-font-size);
+    }
+    .general-tableJQ-container .title .panel-title-name{        
+        font-size: var(--title-font-size);
+        font-weight: 600;
+        color: var(--home-text-color);
+        margin-left: 10px;
+        text-transform: uppercase;
+    }
+/** Título de columnas del datatable*/
+.titleTableFilterSearch{
+    cursor: pointer;
+    font-weight: 800;
+    font-size: var(--question-homepq-normal-font-size);
+    font-weight: 600;
+    color: var(--white-home-color);
+    background-color: var(--colorTableN4);
+    margin-left: 10px;
+    text-transform: uppercase;
+    transition: .2s all ease-in;
+}
+.titleTableFilterSearch:hover{
+    color: var(--colorTableN2);
+}
+/**TABLA GENERAL*/
+/*Tabla general*/
+.table-dataJQ-container .tb-admin-records{
+    width: 100%!important;
+    border-collapse: collapse;
+    padding-left: 200px;
+    padding-right: 200px;
+    font-size: var(--phrgp-home-medium-font-size);
+}
+/*Espaciado de la tabla*/
+.table-dataJQ-container .tb-admin-records,
+.table-dataJQ-container .tb-admin-records th,
+.table-dataJQ-container .tb-admin-records td{
+    padding:5px 10px;
+    border: 1px solid var(--colorTableN3);
+}
+/*Título de columna*/
+.table-dataJQ-container .tb-admin-records th{
+    font-weight: bolder;
+    text-align: left;
+    text-transform: uppercase;
+    color:var(--home-text-color);
+    cursor:pointer;
+    font-size: var(--title-font-size);
+}
+/*Color de texto de cada fila*/
+.table-dataJQ-container .tb-admin-records tbody tr{
+    color:var(--home-text-color);
+}
+/*?--------------Estilos Mostrar X registros (combobox)-------------*/
+.dataTables_length{
+    color: var(--home-text-color);
+    line-height: 22.5px;
+    font-size: var(--phrgp-home-normal-font-size);
+    display: inline-block;
+}
+.form-select.form-select-sm {
+    align-items: center;
+    background-color: var(--white-home-color);
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    color: var(--home-text-color-color);
+    display: inline-block;
+    font-size: var(--phrgp-home-normal-font-size);
+    padding: 3.75px 15px 3.75px 7.5px;
+    line-height: 22.5px;
+}
+select {
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0;
+    background-image: none;
+    flex: 1;
+    cursor: pointer;
+    text-align: start;
+    font-weight: 400;
+    border-radius: 55px;
+    margin-left: 5px;
+}
+/*?------------------Barra de búsqueda---------------*/
+.dataTables_filter {
+    color: var(--home-text-color);
+    line-height: 22.5px;
+    display: inline-block;
+    margin-top: 5px;
+    font-size: var(--phrgp-home-normal-font-size);
+    margin-bottom: 20px;
+}
+.form-control.form-control-sm {
+    background-color: var(--white-home-color);
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    color: var(--home-text-color);
+    display: inline-block;
+    font-size: var(--phrgp-home-normal-font-size);
+    line-height: 22.5px;
+    margin: 0px 0px 0px 6.5625px;
+    padding: 3.75px 7.5px;
+}
+/*? ------------------Paginación y muestra de registros---------------*/
+.dataTables_paginate {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+.dataTables_info{
+    text-align: center;
+    color:var(--home-text-color);
+    font-size: var(--phrgp-home-normal-font-size);
+    padding-top: 20px;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    text-align: center;
+}
+.pagination li {
+    margin: 0 5px;
+    font-size: var(--phrgp-home-normal-font-size);
+}
+.pagination li a {
+    color:var(--colorTableN2);
+    text-decoration: none;
+    transition: all .5s;
+    font-weight: 400;
+    padding: 5px;
+    font-size: var(--phrgp-home-normal-font-size);
+}
+.pagination li a:hover {
+    font-weight: 500;
+    color: var(--colorTableN4);
+}
+
+/*? -----------------ESTILOS ESPECIALES DE LA TABLA*/
+/** Estilo para eliminar redirección de etiquetas*/
+.deleteRedireccionTable{
+    pointer-events: none;
+    cursor: default;
+}
+.deleteRedireccionTable:visited,
+.deleteRedireccionTable:link{
+    text-decoration: none;
+    color:var(--home-text-color);
+}
+/*Texto italico*/
+.italicTableStyle{
+    font-style: italic;
+}
+/*Estilo para la redirección*/
+.redireccionTable{
+    font-weight: 500;
+    text-decoration: none;
+    color:var(--colorTableN4);
+    transition: .5s all ease;
+    display: flex;
+    justify-content: space-between;
+    gap:5px;
+}
+.redireccionTable:hover{
+    color:var(--colorTableN2);
+}
+.tableFilterCounter{
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: var(--colorTableN1);
+    color: var(--home-background-color);
+    height: fit-content;
+}
+
+
+
+/*! ************************** RESPONSIVE DESIGN *************/
+@media all and (max-width:1070px){
+    .mainContarinerFilters{
+        padding: 0 1rem;
+        display: inline;
+    }
+    .tableWithContent{
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    .asideFilters {
+        /* margin:0 auto; */
+        margin-top: 30px;
+        display: block;
+        margin-left: 100px;
+        margin-right: 100px;
+        border-radius: 10px;
+    }
+    .general-tableJQ-container .title .panel-title-name {
+        font-size: var(--title-tablet-font-size);
+    }
+}
+
 @media all and (max-width:850px){
     .nav-Home-Main .ul-Home{
         margin-right: 0px;
@@ -825,6 +1122,51 @@ body{
     .wrapperFAQ .labelFAQ .iconFAQ{
         height: 1.7rem;
         width: 1.7rem;
+    }
+    .asideFilters {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+    .general-tableJQ-container .title .panel-title-name {
+        font-size: var(--title-mobile-font-size);
+    }
+    
+    
+    /**DATATABLE RESPONSIVE*/
+    .table-dataJQ-container .tb-admin-records{
+        width: 100%!important;
+    }
+    .table-dataJQ-container .tb-admin-records tr{
+        display: flex !important;
+        flex-direction:column !important;
+        border:1px solid rgba(160, 211, 190, 0.692)!important;
+        padding:1em !important;
+        margin-bottom: 1em !important;
+        font-size: var(--phrgp-home-tiny-font-size)!important;
+        /* pointer-events: none!important; */
+    }
+    .table-dataJQ-container .tb-admin-records td[data-titulo]{
+        display: flex!important;
+        justify-content: space-between!important;
+        font-size: var(--phrgp-home-tiny-font-size)!important;
+        gap: 50px;
+        text-align: right;
+    }
+    .table-dataJQ-container .tb-admin-records td[data-titulo]::before{
+        content: attr(data-titulo)!important;
+        color:rgb(57, 109, 87)!important;
+        font-weight: bolder!important;
+    }
+    .table-dataJQ-container .tb-admin-records thead{
+        display:none!important;
+    }
+    .table-dataJQ-container .tb-admin-records,
+    .table-dataJQ-container .tb-admin-records th,
+    .table-dataJQ-container .tb-admin-records td{
+    border: none;
+    }
+    .dataTables_length, .form-select.form-select-sm,.dataTables_filter, .form-control.form-control-sm,.dataTables_info,.pagination, .pagination li,.pagination li a{
+        font-size: var(--phrgp-home-medium-font-size);
     }
 }
 
