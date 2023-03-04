@@ -9,7 +9,7 @@
         --row-altern-color: #dbdbdb;
         --row-selected-color: #c5c5c5;
         --white-color: #fff;
-        --modal-container-color:rgb(227, 227, 227);
+        --modal-container-color:rgb(204, 204, 204);
         --input-modify-info:#d9d9d9;
         --input-text-for-write:#464646d3;
         --modal-open-background-color:#0e0e0e7c;
@@ -21,8 +21,6 @@
         --delete-button:rgb(241, 95, 95);
         --delete-button-hover:rgb(187, 42, 42);
 
-        --active-status-color: rgb(40, 158, 40);
-        --inactive-status-color: rgb(255, 57, 57);
     
         --title-font-size: 2.2rem;
         --title-tablet-font-size: 2rem;
@@ -48,32 +46,6 @@
     }
 
 /*?--------------------TITULO DE LAS SECCIONES GENERALES---------------------*/
-    .general-admin-container .title {
-        display: flex;
-        align-items: center;
-        margin: 25px 0 30px 0;
-    }
-    .general-admin-container .title i{
-        position: relative;
-        height: 40px;
-        width: 40px;
-        background-color: var(--main-color);
-        border-radius: 50%;
-        color: var(--white-color);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: var(--title-font-size);
-    }
-    .general-admin-container .title .panel-title-name{        
-        font-size: var(--title-font-size);
-        font-weight: 600;
-        color: var(--text-color);
-        margin-left: 10px;
-        text-transform: uppercase;
-    }
-
-/*?-------------------PANEL DASHBOARD----------------------*/
 /**Título*/
 .dashboard-container .title {
     display: flex;
@@ -99,7 +71,9 @@
     margin-left: 10px;
     text-transform: uppercase;
 }
-/**Tarjetas panel*/
+
+
+/*?--------------TARJETAS PANEL-------------------*/
 .dashboard-container .cards-container {
     display: grid;
     /*Espacio entre tarjetas*/
@@ -111,81 +85,79 @@
 }
 .dashboard-container .cards-container .card {
     border-radius: 12px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* width: calc(100% / 4 - 15px); */
-    /* padding: 15px 20px; */
     -webkit-user-select:none;
     user-select: none;
     text-transform: capitalize;
+    text-decoration: none;
+    background-color: var(--white-color);
+    outline: 0.1rem dashed var(--text-color);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 /*Icono de la tarjeta*/
 .cards-container .card i {
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 500;
-    color: var(--cards-text-color);
+    color: var(--text-color);
+    z-index: 2;
+    overflow: hidden;
 }
 /*Titulo de la tarjeta*/
 .cards-container .card .cards-title-name {
     white-space: nowrap;
     font-size: var(--titlecards-font-size);
     font-weight: 400;
-    color: var(--cards-text-color);
+    color: var(--text-color);
+    z-index: 2;
+    overflow: hidden;
+
 }
 /*Número total de registros*/
 .cards-container .card .cards-total-count {
     white-space: nowrap;
     font-size: var(--numbercards-font-size);
     font-weight: 600;
-    color: var(--cards-text-color);
-}
-/*Colores especiales tarjetas*/
-.cards-container .card.card1,
-.cards-container .card.card3 {
-    background: linear-gradient(-45deg, #faac1d, #DBA034, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-}
-.cards-container .card.card2,
-.cards-container .card.card4 {
-    background: linear-gradient(-95deg, #23a6d5, #DBA034, #faac1d, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 30s ease infinite;
-}
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    color: var(--text-color);
+    z-index: 2;
+    overflow: hidden;
+
 }
 
-/*?-------------------------BOTÓN NUEVO------------------*/
-.btn-add-record{
-    align-items: flex-start;
-    background-color:  var(--create-button);
-    border-radius: 5px;
-    border-style: none;
-    display:inline-block;
-    line-height: 20px;
-    font-size: 10px;
-    margin: 0 0 22.5px;
-    padding:8px 8px;
-    text-align: center;
-    cursor: pointer;
-    font-size: var(--normal-font-size);
-    color:var(--text-color);
-    transition: all .5s;
-    text-decoration: none;
+/**---EFECTO AL PASAR EL MOUSE*/
+#cards:hover > .card::after {
+    opacity: 1;
 }
-.btn-add-record:hover{
-    background-color:  var(--create-button-hover);
+.card:hover::before {
+    opacity: 1;
+}
+.dashboard-container .cards-container .card:hover::before {
+    outline: 2px solid var(--main-color);
+}
+.card::before,
+.card::after {
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0px;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    transition: opacity 200ms;
+    width: 100%;
+}
+.card::before {
+    background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y), rgba(91, 250, 59, 0.514),transparent 40%);
+    z-index: 2;
+}
+.card::after {  
+    background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y), rgba(91, 250, 59, 0.164),transparent 30%);
+    z-index: 2;
 }
 
 /*?-------------------MOSTRAR X REGISTROS----------------------*/
@@ -341,38 +313,52 @@ label{
 
 /*?---------------------MOSTRANDO DE X 1 X DE X ENTRADAS----------------------*/
 .dataTables_info{
+    text-align: center;
     color:var(--text-color);
-    border-top: 1px solid var(--text-color);
-    padding-top: 20px;
     font-size: var(--normal-font-size);
-    display: inline-flex;
-    justify-content: flex-start;
-    position: absolute;
-    line-height: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--text-color);
 }
 
 /*?--------------------PAGINACIÓN--------------------*/
 .dataTables_paginate{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+.dataTables_info{
+    text-align: center;
+    color:var(--text-color);
+    font-size: var(--normal-font-size);
     padding-top: 20px;
     border-top: 1px solid var(--text-color);
 }
 .pagination{
     display: flex;
-    justify-content: space-around;
-    width: 250px;
+    justify-content: center;
+    align-items: center;
     list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    text-align: center;
 }
-.pagination a{
-    text-decoration: none;
-    color:var(--text-color);
-    transition: all .5s;
+.pagination li {
+    margin: 0 5px;
     font-size: var(--normal-font-size);
 }
-.pagination a:hover{
+.pagination li a {
+    color:var(--input-text-for-write);
+    text-decoration: none;
+    transition: all .5s;
+    font-weight: 400;
+    padding: 5px;
+    font-size: var(--normal-font-size);
+}
+.pagination li a:hover {
     font-weight: 500;
-    color:var(--main-color);
+    color: var(--main-color);
 }
 
 /*?------------------------MODAL NUEVO/CREAR--------------------------*/
@@ -603,15 +589,6 @@ select::-ms-expand{
 .select-option.arrow-blocked::after{
     display: none;
 }
-
-/**Botón añadir archivo del recurso*/
-/* .container-fileBtn input[type="file"]{
-    appearance: none;
-    display: none;
-    visibility: hidden;
-    opacity: 0;
-    z-index: -1;
-} */
 .container-fileBtn{
     display: inline-block;
     position: relative;
@@ -641,9 +618,6 @@ select::-ms-expand{
     left: 0;
     cursor: pointer;
 }
-
-
-
 
 /*Contenedor gereal del input*/
 .fileUploadContainer {
@@ -714,111 +688,6 @@ select::-ms-expand{
     padding-right: 250px;
     font-size: medium;
 }
-
-
-
-/*?------------------ERROR EDITAR REGISTRO----------------*/
-/*Contenedor general*/
-.errorEditContainer{
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    height: 70vh;
-}
-/*Sección 1: Título y párrafo*/
-.errorTextSection
-{
-    text-align: center;
-}
-/*Título*/
-.title-errorTextSection{
-    color:var(--text-color);
-    font-size: var(--title-font-size);
-}
-/*Mensaje registro no se encuentra, no existe*/
-.message-record-not-found{
-    text-align: center;
-    color:var(--text-color);
-    font-size: var(--normal-font-size);
-    padding-bottom: 20px;
-}
-/*Sección 2: Imagen*/
-.img-section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-/*Imagen*/
-.image-errorEditRecord{
-    max-width: 40vw;
-    object-fit: cover;
-}
-/*Botón volver atrás*/
-.btn-UserNotFound{
-    font-size: 1.1rem;
-    background-color:  var(--main-color);
-    border:none;
-    cursor:pointer;
-    width: 150px;
-    outline: none;
-    border-radius: 49px;
-    color: #1a1a1a;
-    text-transform:capitalize;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 20px;
-    padding:5px;
-    text-decoration: none;
-    -webkit-border-radius: .3rem;
-    -moz-border-radius: .3rem;
-    -ms-border-radius: .3rem;
-    -o-border-radius: .3rem;
-    border-radius: .3rem;
-    transition: opacity .5s all;
-    -webkit-transition: opacity .5s all;
-    -moz-transition: opacity .5s all;
-    -ms-transition: opacity .5s all;
-    -o-transition: opacity .5s all;
-    text-align: center;
-    transition: 0.5s;
-
-}
-/*Botón volver atrás con hover*/
-.btn-UserNotFound:hover{
-    background-color: #ffc965;
-    -webkit-transition: opacity .5s all;
-    -moz-transition: opacity .5s all;
-    -ms-transition: opacity .5s all;
-    -o-transition: opacity .5s all;  
-    transition: opacity .5s all;
-}
-/*Campo de texto grande con scroll*/
-.textAreaStl{
-    border: 0.4rem solid transparent;
-    font-size: var(--normal-font-size);
-    max-width: 380px;
-    width: 100%;
-    background-color: var(--input-modify-info);
-    color: var(--text-color);
-    margin: 7px 0;
-    height: 200px;
-    display: grid;
-    padding: 0 0.4rem;
-    position: relative;
-    outline: none;
-    line-height: 1.2;
-    font-weight: 400;
-    resize: none;
-    -webkit-border-radius:25px;
-    -moz-border-radius:25px;
-    -ms-border-radius:25px;
-    -o-border-radius:25px;
-    border-radius:25px;
-    padding-top:5px;
-}
-
 
 /*?-------------------COMBOBOX MULTIPLE SELECCIÓN------------------------*/
 /*Lista de opciones de selección*/
@@ -1001,12 +870,10 @@ select::-ms-expand{
     color:var(--input-text-for-write);
 }
 
-
-
-
-
-
-
+/**MODAL GENERADO AUTOMÁTICO CERRAR*/
+.swal2-container.swal2-backdrop-show, .swal2-container.swal2-noanimation {
+    z-index: 99999999!important;
+}
 
 /*?--------------------- RESPONSIVE DESIGN-----------------------*/
     @media (max-width:1000px) {
@@ -1062,16 +929,18 @@ select::-ms-expand{
         .table-admin-container .tb-admin-records thead{
             display:none!important;
         }
-        .dataTables_paginate{
-            display: inline-flex!important;
-        }
         .pagination{
             display: flex!important;
             justify-content: space-around;
-            margin-top: 40px!important;
         }
         .dataTables_info,
         .pagination a{
+            font-size: var(--pequeña-font-size);
+        }
+        .pagination li {
+            font-size: var(--pequeña-font-size);
+        }
+        .pagination li a {
             font-size: var(--pequeña-font-size);
         }
         .content-modal-add-record{
@@ -1180,15 +1049,5 @@ select::-ms-expand{
         .container-modal-add-record{
             padding-top: 2.5rem;
             margin-bottom: 3rem;
-        }
-    }
-
-    @media (max-width:350px) {
-    .container-modal-add-record-resource{
-            padding-top: 20rem;
-        }
-    .container-modal-add-record{
-            padding-top: 10rem;
-            padding-bottom: 4rem;
         }
     }

@@ -26,29 +26,22 @@
                 <i class="uil uil-dashboard"></i>
                 <h1 class="panel-title-name">Dashboard</h1>
             </div>
-            <div class="cards-container">
-                <div class="card card1">
-                    <span class="cards-title-name">Usuarios</span>
+            <div class="cards-container" id="cards">
+                <a href="<?php echo SERVER_URL ?>estudianteFavoritos/" class="card">
+                    <span class="cards-title-name">Favoritos</span>
                     <i class="uil uil-users-alt"></i>
                     <span class="cards-total-count"><?php echo $total_usuarios->rowCount(); ?></span>
-                </div>
                 <div class="card card2">
                     <span class="cards-title-name">Programas</span>
-                    <i class="uil uil-graduation-cap"></i>
+                </a>
+                <a href="<?php echo SERVER_URL ?>estudianteFeedbacks/" class="card">
+                    <span class="cards-title-name">Feedbacks</span>
+                    <i class="uil uil-feedback"></i>
                     <span class="cards-total-count"><?php echo $total_programas->rowCount(); ?></span>
-                </div>
-                <div class="card card3">
-                    <span class="cards-title-name">Cursos</span>
-                    <i class="uil uil-book-open"></i>
-                    <span class="cards-total-count"><?php echo $total_cursos->rowCount(); ?></span>
-                </div>
-                <div class="card card4">
-                    <span class="cards-title-name">Recursos</span>
-                    <i class="uil uil-file-blank"></i>
-                    <span class="cards-total-count">50</span>
-                </div>
+                </a>
             </div>
         </div>
     </section>
 </body>
+<script src="<?php echo SERVER_URL ?>vistas/assets/js/dashboard.js"></script> 
 </html>

@@ -9,7 +9,7 @@
         --row-altern-color: #dbdbdb;
         --row-selected-color: #c5c5c5;
         --white-color: #fff;
-        --modal-container-color:rgb(227, 227, 227);
+        --modal-container-color:rgb(204, 204, 204);
         --input-modify-info:#d9d9d9;
         --input-text-for-write:#464646d3;
         --modal-open-background-color:#0e0e0e7c;
@@ -429,6 +429,7 @@ label{
     display: flex;
     justify-content: center;
     padding-top: 20px;
+    margin-bottom: 20px;
 }
 .dataTables_info{
     text-align: center;
@@ -1099,7 +1100,9 @@ select::-ms-expand{
 }
 
 
-
+.container-modal-add-record{
+    overflow-y: scroll;
+}
 
 
 

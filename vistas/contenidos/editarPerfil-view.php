@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
-    <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminEditarMiPerfil-Style.css">
-    <title>Perfil</title>
-</head>
-<body>
 <?php
 require_once "./controladores/tipoDocumentoControlador.php";
 
@@ -14,8 +5,8 @@ $ins_tipo_documento = new tipoDocumentoControlador();
 
 $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador();
 ?>
-<section class="general-admin-container">
-        <div class="overview-general-admin">
+<section class="general-admin-container dashboard-container">
+        <div class="overview-general-admin overview">
             <!--TÍTULO-->
             <div class="title">
             <i class="uil uil-user"></i>
@@ -71,5 +62,3 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
             </div>
         <div>
     </section>
-</body>
-</html>

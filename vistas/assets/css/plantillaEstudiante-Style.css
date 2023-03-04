@@ -328,6 +328,7 @@ body.dark .switch:before{
     background-color: var(--white-color);
     border-radius: 0px 0 0 10px;
     transition: var(--trans-03);
+    padding-right: 20px;
 }
 .submenu-wrap.open-submenu{
     max-height: 400px;

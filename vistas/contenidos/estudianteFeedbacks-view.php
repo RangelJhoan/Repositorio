@@ -1,8 +1,8 @@
 <section class="dashboard-container">
         <div class="overview">
             <div class="title">
-                <i class="uil uil-heart-alt"></i>
-                <h1 class="panel-title-name">Favoritos</h1>
+                <i class="uil uil-feedback"></i>
+                <h1 class="panel-title-name">Feedbacks</h1>
             </div>
             <!--TABLA-->
             <?php
@@ -24,8 +24,8 @@
                         <tr>
                             <th>Id</th>
                             <th>Título</th>
-                            <th>Autor(es)</th>
-                            <!-- <th>Archivo</th> -->
+                            <th>Autor</th>
+                            <th>Útil</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -39,8 +39,8 @@
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
                             <td data-titulo="TÍTULO"><?php echo $rows['nombre_curso'] ?></td>
-                            <td data-titulo="AUTOR(ES)"><?php echo $rows['descripcion_curso'] ?></td>
-                            <!-- <td data-titulo="ARCHIVO"><?php echo $rows['nombre_programa'] ?></td> -->
+                            <td data-titulo="AUTOR"><?php echo $rows['descripcion_curso'] ?></td>
+                            <td data-titulo="ÚTIL"><?php echo $rows['nombre_programa'] ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
@@ -49,7 +49,7 @@
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/cursoAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
                                             <input type="hidden" name="id_curso_del" value="<?php echo $ins_curso->encryption($rows['id_curso']) ?>">
-                                            <button type="submit" class="btn-delete-record" title="Eliminar de favoritos"><i class="uil uil-heart-alt"></i></button>
+                                            <button type="submit" class="btn-delete-record" title="Eliminar calificación"><i class="uil uil-feedback"></i></button>
                                         </div>
                                     </form>
                                 </div>
