@@ -27,6 +27,9 @@ class recursoControlador extends recursoModelo{
         if(isset($_POST['etiquetas_ins']))
             $recurso->setEtiqueta($_POST['etiquetas_ins']);
 
+        if(isset($_POST['link_ins']))
+            $recurso->setEnlace($_POST['link_ins']);
+
         $recurso->setFecha($_POST['anioRecurso']);
 
         if(isset($_POST['editorial_ins'])){
@@ -35,8 +38,6 @@ class recursoControlador extends recursoModelo{
         if(isset($_POST['ISBN_ins'])){
             $recurso->setIsbn($_POST['ISBN_ins']);
         }
-
-        $recurso->setArchivo($pArchivo);
 
         if($recurso->getTitulo() == "" || $recurso->getResumen() == "" || $recurso->getFecha() == ""){
             $alerta=[
@@ -48,18 +49,33 @@ class recursoControlador extends recursoModelo{
             echo json_encode($alerta);
             exit();
         }else{
-            $agregar_programa = recursoModelo::agregar_recurso_modelo($recurso);
-            $agregar_archivo = recursoModelo::agregar_archivo_modelo($recurso);
+            $agregar_recurso = recursoModelo::agregar_recurso_modelo($recurso);
 
-            if(is_string($agregar_archivo) || $agregar_archivo < 0){
+            if(is_string($agregar_recurso) || $agregar_recurso < 0){
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"Error",
-                    "Texto"=>"Error " . $agregar_archivo,
+                    "Texto"=>"Error al crear el recurso",
                     "Tipo"=>"error"
                 ];
                 echo json_encode($alerta);
                 exit();
+            }
+
+            if($pArchivo != "null"){
+                $recurso->setArchivo($pArchivo);
+                $agregar_archivo = recursoModelo::agregar_archivo_modelo($recurso);
+
+                if(is_string($agregar_archivo)){
+                    $alerta=[
+                        "Alerta"=>"simple",
+                        "Titulo"=>"Error",
+                        "Texto"=>"Error al crear el archivo",
+                        "Tipo"=>"error"
+                    ];
+                    echo json_encode($alerta);
+                    exit();
+                }
             }
 
             $alerta=[
@@ -69,7 +85,6 @@ class recursoControlador extends recursoModelo{
                 "Tipo"=>"success"
             ];
             echo json_encode($alerta);
-            exit();
         }
 
     }

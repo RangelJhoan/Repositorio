@@ -61,6 +61,12 @@
 			return $output;
 		}
 
+        // Método para limpiar cadena y evitar inyección SQL o campos vacíos
+        protected static function limpiar_cadena($cadena){
+            $cadena = trim($cadena);
+            return $cadena;
+        }
+
     }
 
 ?>

@@ -83,6 +83,10 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
                         <div class="input-field">
                             <input name="ISBN_ins" type="number" placeholder="ISBN" title="Por favor, complete el campo"/>
                         </div>
+                        <!--Link del recurso-->
+                        <div class="input-field">
+                            <input name="link_ins" type="text" placeholder="Enlace" title="Por favor, complete el campo" required/>
+                        </div>
                         <!--Cargue del archivo-->
                         <div class="fileUploadContainer">
                             <input class="inputUploadFile" type="file" id="file-input"/>

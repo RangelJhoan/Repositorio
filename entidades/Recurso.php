@@ -10,6 +10,7 @@ class Recurso {
     private $fecha;
     private $editorial;
     private $isbn;
+    private $enlace;
     private $archivo;
 
 
@@ -57,6 +58,10 @@ class Recurso {
         return $this->archivo;
     }
 
+    public function getEnlace(){
+        return $this->enlace;
+    }
+
     //Setters
     public function setIdRecurso($idRecurso){
         $this->idRecurso = $idRecurso;
@@ -96,6 +101,10 @@ class Recurso {
 
     public function setArchivo($archivo){
         $this->archivo = $archivo;
+    }
+
+    public function setEnlace($enlace){
+        $this->enlace = $enlace;
     }
 }
 

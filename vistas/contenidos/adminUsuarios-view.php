@@ -97,7 +97,7 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                             <th>Id</th>
                             <th>Nombre</th>
                             <th>Documento</th>
-                            <th>Tipo</th>
+                            <th>Tipo Documento</th>
                             <th>Estado</th>
                             <th>Acción</th>
                         </tr>
@@ -105,18 +105,12 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                     <tbody>
                         <?php
                             foreach($datos as $rows){
-                                $estado = "";
-                                if($rows['estado'] == "0"){
-                                    $estado = "inactive";
-                                }else{
-                                    $estado = "active";
-                                }
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $rows['id'] ?></td>
                             <td data-titulo="NOMBRE"><?php echo $rows['nombre'].' '.$rows['apellido'] ?></td>
-                            <td data-titulo="DOCUMENTO"><?php echo $rows['documento'] ?></td>
-                            <td data-titulo="TIPO"><?php echo $rows['descripcion'] ?></td>
+                            <td data-titulo="DOCUMENTO"><?php echo $rows['numeroDocumento'] ?></td>
+                            <td data-titulo="TIPO"><?php echo $rows['documento'] ?></td>
                             <td data-titulo="ESTADO"><?php echo EstadosEnum::getNameTextByValue($rows['estado']);  ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
