@@ -25,6 +25,11 @@
                     $sql = mainModel::conectar()->prepare("INSERT INTO curso_programa(id_curso, id_programa) VALUES(?, ?)");
                     $sql->execute([$idCurso, $programaID]);
                 }
+
+                foreach($curso->getListaDocente() as $docenteID){
+                    $sql = mainModel::conectar()->prepare("INSERT INTO docente_curso(id_curso, id_docente) VALUES(?, ?)");
+                    $sql->execute([$idCurso, $docenteID]);
+                }
                 return $sql;
             }
             return $sql;

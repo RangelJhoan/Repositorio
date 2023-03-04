@@ -10,10 +10,11 @@
 require_once "./controladores/usuarioControlador.php";
 require_once "./controladores/tipoDocumentoControlador.php";
 require_once "./utilidades/EstadosEnum.php";
+
 $ins_usuario = new usuarioControlador();
 $ins_tipo_documento = new tipoDocumentoControlador();
-$datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador();
 
+$datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador();
 $datos = $ins_usuario->paginador_usuario_controlador();
 ?>
     <section class="general-admin-container">
@@ -97,7 +98,7 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                             <th>Id</th>
                             <th>Nombre</th>
                             <th>Documento</th>
-                            <th>Tipo Documento</th>
+                            <th>Tipo Usuario</th>
                             <th>Estado</th>
                             <th>Acción</th>
                         </tr>
@@ -110,7 +111,7 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                             <td data-titulo="#"><?php echo $rows['id'] ?></td>
                             <td data-titulo="NOMBRE"><?php echo $rows['nombre'].' '.$rows['apellido'] ?></td>
                             <td data-titulo="DOCUMENTO"><?php echo $rows['numeroDocumento'] ?></td>
-                            <td data-titulo="TIPO"><?php echo $rows['documento'] ?></td>
+                            <td data-titulo="TIPO USUARIO"><?php echo $rows['tipoUsuario'] ?></td>
                             <td data-titulo="ESTADO"><?php echo EstadosEnum::getNameTextByValue($rows['estado']);  ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">

@@ -25,6 +25,10 @@ class cursoControlador extends cursoModelo{
             $curso->setListaProgramas($_POST['programas_ins']);
         }
 
+        if(isset($_POST['docentes_ins'])){
+            $curso->setListaDocentes($_POST['docentes_ins']);
+        }
+
         if($curso->getNombre() == "" || $curso->getDescripcion() == "" || count($curso->getListaProgramas())<=0){
             $alerta=[
                 "Alerta"=>"simple",

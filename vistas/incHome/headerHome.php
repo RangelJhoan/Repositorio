@@ -67,7 +67,7 @@
         <!-- Barra búsqueda -->
         <form class="form-BarraBusquedaHome" action="<?php echo SERVER_URL ?>ajax/homeAjax.php" method="POST" data-form="save" autocomplete="off">
             <div class="searchBar-Container">
-                <input class="input-SearchBar" type="text" name="barraBusqueda" placeholder="Buscar recurso..." value="<?php echo $ins_homec->cargar_busqueda($pagina[2]); ?>">
+                <input class="input-SearchBar" type="text" name="barraBusqueda" placeholder="Buscar recurso..." value="<?php if(isset($pagina[2]))echo $ins_homec->cargar_busqueda($pagina[2]); ?>">
                 <button type="submit" title="Buscar" class="searchBar-IconContainer">
                     <i class="uil uil-search search-iconHome"></i>
                     <!-- <i class="uil uil-search search-iconHome"></i> -->

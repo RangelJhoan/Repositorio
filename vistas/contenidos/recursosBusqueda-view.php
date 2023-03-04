@@ -38,11 +38,11 @@
                                     ?>
                                         <tr>
                                             <td data-titulo="FECHA"><a href="#" class="redireccionTable"><?php echo $vRecurso['fecha_publicacion_recurso'];?> <span class="tableFilterCounter">100000</span></a></td>
-                                                <td data-titulo="TITULO"><a href="#" class="deleteRedireccionTable"><?php echo $vRecurso['titulo']; ?> </a></td>
-                                                <td data-titulo="AUTOR(ES)"><a href="#" class="deleteRedireccionTable italicTableStyle"><?php echo $autores; ?></a></td>
-                                                <td data-titulo="CURSO(S)"><a href="#" class="deleteRedireccionTable"><?php echo $autores; ?></a></td>
-                                            </tr>
-                                        <?php } ?>   
+                                            <td data-titulo="TITULO"><a href="#" class="deleteRedireccionTable"><?php echo $vRecurso['titulo']; ?> </a></td>
+                                            <td data-titulo="AUTOR(ES)"><a href="#" class="deleteRedireccionTable italicTableStyle"><?php echo $autores; ?></a></td>
+                                            <td data-titulo="CURSO(S)"><a href="#" class="deleteRedireccionTable"><?php echo $autores; ?></a></td>
+                                        </tr>
+                                    <?php } ?>   
                                 </tbody>
                                 </table>
                             </div>

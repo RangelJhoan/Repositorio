@@ -8,11 +8,14 @@
 </head>
 <body>
 <?php
-
 require_once "./controladores/programaControlador.php";
+require_once "./controladores/usuarioControlador.php";
+
 $ins_programa = new programaControlador();
+$insUsuario = new usuarioControlador();
 
 $datos_programas = $ins_programa->listar_programas_controlador();
+$datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
     ?>
     <section class="general-admin-container">
         <div class="overview-general-admin">
@@ -53,9 +56,9 @@ $datos_programas = $ins_programa->listar_programas_controlador();
                         <label for="docenteSeleccion" class="titleComboMultiple">Docente (s)*</label>
                             <select name="docentes_ins[]" id="docenteSeleccionarCbxCurso" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
                                 <?php
-                                foreach($datos_programas as $campos){
+                                foreach($datosUsuario as $campos){
                                 ?>
-                                <option value="<?php echo $campos['id'] ?>"><?php echo $campos['nombre'] ?></option>
+                                <option value="<?php echo $campos['id'] ?>"><?php echo $campos['nombre'] . " " . $campos['apellido'] ?></option>
                                 <?php
                                 }
                                 ?>

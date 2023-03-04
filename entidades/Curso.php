@@ -6,6 +6,7 @@ class Curso {
     private $descripcion;
     private $estado;
     private $listaProgramas;
+    private $listaDocentes;
 
     public function __construct(){}
 
@@ -30,6 +31,10 @@ class Curso {
         return $this->listaProgramas;
     }
 
+    public function getListaDocente(){
+        return $this->listaDocentes;
+    }
+
     //Setters
     public function setIdCurso($idCurso){
         $this->idCurso = $idCurso;
@@ -49,6 +54,10 @@ class Curso {
 
     public function setListaProgramas($listaProgramas){
         $this->listaProgramas = $listaProgramas;
+    }
+
+    public function setListaDocentes($listaDocentes){
+        $this->listaDocentes = $listaDocentes;
     }
 }
 

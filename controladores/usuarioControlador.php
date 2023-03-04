@@ -495,9 +495,31 @@ class usuarioControlador extends usuarioModelo{
      */
     public function paginador_usuario_controlador(){
 
-        $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, p.documento as numeroDocumento, td.descripcion as documento, p.id_usuario, u.estado, tu.descripcion 
+        $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, p.documento as numeroDocumento, td.descripcion as documento, tu.descripcion as tipoUsuario, p.id_usuario, u.estado, tu.descripcion 
         FROM persona p JOIN tipo_documento td ON td.id = p.id_tipo_documento JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
         WHERE u.correo != 'admin.repositorioinstitucional@gmail.com' and u.correo != '". $_SESSION['correo_usuario'] ."' and u.estado != ". EstadosEnum::ELIMINADO->value ." 
+        ORDER BY p.nombre ASC";
+
+        $conexion = mainModel::conectar();
+
+        $datos = $conexion->query($consulta);
+        $datos = $datos->fetchAll();
+
+        return $datos;
+    }
+
+    /**
+     * Retorna la lista de personas de un tipo de usuario
+     *
+     * @return array Lista de usuarios de la base de datos
+     */
+    public function obtenerPersonasXTipoUsuario($tipoUsuario){
+
+        $consulta = "SELECT p.* 
+        FROM persona p 
+        JOIN usuario u ON u.id = p.id_usuario 
+        JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
+        WHERE u.correo != 'admin.repositorioinstitucional@gmail.com' and u.estado != ". EstadosEnum::ELIMINADO->value ." and UPPER(tu.descripcion) = UPPER('". $tipoUsuario ."') 
         ORDER BY p.nombre ASC";
 
         $conexion = mainModel::conectar();
