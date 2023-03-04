@@ -31,8 +31,6 @@
                     <span class="cards-title-name">Favoritos</span>
                     <i class="uil uil-users-alt"></i>
                     <span class="cards-total-count"><?php echo $total_usuarios->rowCount(); ?></span>
-                <div class="card card2">
-                    <span class="cards-title-name">Programas</span>
                 </a>
                 <a href="<?php echo SERVER_URL ?>estudianteFeedbacks/" class="card">
                     <span class="cards-title-name">Feedbacks</span>
