@@ -50,11 +50,12 @@ class etiquetaModelo extends mainModel{
         if($tipo == "Unico"){
             $sql = mainModel::conectar()->prepare("SELECT * 
             FROM etiqueta 
-            WHERE id = :ID;");
+            WHERE estado != ".EstadosEnum::ELIMINADO->value." AND id = :ID;");
             $sql->bindParam(":ID", $id);
         }elseif($tipo == "Conteo"){
             $sql = mainModel::conectar()->prepare("SELECT id 
-            FROM etiqueta;");
+            FROM etiqueta
+            WHERE estado != ".EstadosEnum::ELIMINADO->value.";");
         }
         $sql->execute();
         return $sql;

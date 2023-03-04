@@ -95,11 +95,12 @@ $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
                     <tbody>
                         <?php
                         if($datos != 0){
+                            $contador = 1;
                             foreach($datos as $rows){
                                 $programas_curso =  $ins_curso->programas_curso_controlador($rows['id']);
                         ?>
                         <tr>
-                            <td data-titulo="#"><?php echo $rows['id'] ?></td>
+                            <td data-titulo="#"><?php echo $contador; ?></td>
                             <td data-titulo="NOMBRE"><?php echo $rows['nombre'] ?></td>
                             <td data-titulo="DESCRIPCIÓN" class="responsive-file"><?php echo $rows['descripcion'] ?></td>
                             <td data-titulo="PROGRAMA" class="responsive-file"><?php
@@ -125,6 +126,7 @@ $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
                             </td>
                         </tr>
                         <?php
+                            $contador++;
                             }
                         }
                         ?>

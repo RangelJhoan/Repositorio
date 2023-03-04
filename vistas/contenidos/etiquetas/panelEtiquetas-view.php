@@ -58,10 +58,11 @@
                     <tbody>
                         <?php
                         if($datos != 0){
+                            $contador = 1;
                             foreach($datos as $rows){
                         ?>
                         <tr>
-                            <td data-titulo="#"><?php echo $rows['id'] ?></td>
+                            <td data-titulo="#"><?php echo $contador ?></td>
                             <td data-titulo="NOMBRE"><?php echo $rows['descripcion'] ?></td>
                             <td data-titulo="ESTADO"><?php echo EstadosEnum::getNameTextByValue($rows['estado']) ?></td>
                             <td data-titulo="ACCIÓN">
@@ -79,6 +80,7 @@
                             </td>
                         </tr>
                         <?php
+                            $contador++;
                             }
                         }
                         ?>

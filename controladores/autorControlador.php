@@ -172,6 +172,11 @@ class autorControlador extends autorModelo{
         return $datos;
     }
 
+    /*---------- Controlador datos autor ----------*/
+    public function autoresXRecursoControlador($id){
+        return autorModelo::autoresXRecursoModelo($id)->fetchAll();
+    }
+
 }
 
 ?>

@@ -171,46 +171,19 @@ class programaControlador extends programaModelo{
     /**
      * Paginador de programas, vista principal Admin
      *
-     * @param String $pagina Numero pagina actual
-     * @param String $registros Cantidad de registros a buscar
-     * @param String $id ID del administrador logueado
-     * @param String $url Direccion URL actual
-     * @param String $busqueda Parametro de busqueda
-     *
-     * @return Object código HTML con la lista de programas en una tabla
      */
-    public function paginador_programa_controlador($pagina, $registros, $id, $url, $busqueda){
-        $url = SERVER_URL.$url."/";
-        $pagina = (isset($pagina) && $pagina > 0) ? (int) $pagina : 1;
-        $inicio = ($pagina>0) ? (($pagina*$registros)-$registros) : 0;
-
-        if(isset($busqueda) && $busqueda != ""){
-            $consulta = "SELECT SQL_CALC_FOUND_ROWS * 
-            FROM programa 
-            WHERE id != '$id' AND (nombre LIKE '%$busqueda%' OR descripcion LIKE '%$busqueda%') 
-            ORDER BY nombre ASC LIMIT $inicio,$registros";
-        }else{
-            $consulta = "SELECT SQL_CALC_FOUND_ROWS * 
-            FROM programa 
-            WHERE estado != ". EstadosEnum::ELIMINADO->value ." 
-            ORDER BY nombre ASC LIMIT $inicio,$registros";
-        }
+    public function paginador_programa_controlador(){
+        $consulta = "SELECT * 
+        FROM programa 
+        WHERE estado != ". EstadosEnum::ELIMINADO->value ." 
+        ORDER BY nombre ASC";
 
         $conexion = mainModel::conectar();
 
         $datos = $conexion->query($consulta);
         $datos = $datos->fetchAll();
 
-        $total = $conexion->query("SELECT FOUND_ROWS()");
-        $total = (int) $total->fetchColumn();
-
-        $Npaginas = ceil($total/$registros);
-
-        if($total >= 1 && $pagina <= $Npaginas){
-            return $datos;
-        }else{
-            return 0;
-        }
+        return $datos;
     }
 
     public function listar_programas_controlador(){

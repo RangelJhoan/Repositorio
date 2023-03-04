@@ -14,22 +14,25 @@
     require_once "./controladores/cursoControlador.php";
     require_once "./controladores/autorControlador.php";
     require_once "./controladores/etiquetaControlador.php";
+    require_once "./controladores/recursoControlador.php";
 
     $ins_usuario = new usuarioControlador();
     $total_usuarios = $ins_usuario->datos_usuario_controlador("Conteo", 0);
-    
+
     $ins_programa = new programaControlador();
     $total_programas = $ins_programa->datos_programa_controlador("Conteo", 0);
-    
+
     $ins_curso = new cursoControlador();
     $total_cursos = $ins_curso->datos_curso_controlador("Conteo", 0);
+
+    $insRecurso = new recursoControlador();
+    $totalRecursos = $insRecurso->datos_recurso_controlador("Conteo", 0);
 
     $ins_autor = new autorControlador();
     $total_autores = $ins_autor->datos_autor_controlador("Conteo", 0);
 
     $ins_etiqueta = new etiquetaControlador();
     $total_etiquetas = $ins_etiqueta->datos_etiqueta_controlador("Conteo", 0);
-
 
     ?>
     <section class="dashboard-container">
@@ -57,7 +60,7 @@
                 <a href="<?php echo SERVER_URL ?>adminRecursos/" class="card">
                     <span class="cards-title-name">Recursos</span>
                     <i class="uil uil-file-blank"></i>
-                    <span class="cards-total-count">50</span>
+                    <span class="cards-total-count"><?php echo $totalRecursos->rowCount(); ?></span>
                 </a>
                 <a href="<?php echo SERVER_URL ?>adminAutores/" class="card">
                     <span class="cards-title-name">Autores</span>

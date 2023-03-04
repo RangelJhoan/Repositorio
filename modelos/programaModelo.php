@@ -44,11 +44,12 @@
             if($tipo == "Unico"){
                 $sql = mainModel::conectar()->prepare("SELECT * 
                 FROM programa 
-                WHERE id = :ID;");
+                WHERE estado != ".EstadosEnum::ELIMINADO->value." AND id = :ID;");
                 $sql->bindParam(":ID", $id);
             }elseif($tipo == "Conteo"){
                 $sql = mainModel::conectar()->prepare("SELECT id
-                FROM programa;");
+                FROM programa
+                WHERE estado != ".EstadosEnum::ELIMINADO->value.";");
             }
             $sql->execute();
             return $sql;

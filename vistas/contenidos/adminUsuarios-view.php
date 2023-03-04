@@ -105,10 +105,11 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                     </thead>
                     <tbody>
                         <?php
-                            foreach($datos as $rows){
+                        $contador = 1;
+                        foreach($datos as $rows){
                         ?>
                         <tr>
-                            <td data-titulo="#"><?php echo $rows['id'] ?></td>
+                            <td data-titulo="#"><?php echo$contador ?></td>
                             <td data-titulo="NOMBRE"><?php echo $rows['nombre'].' '.$rows['apellido'] ?></td>
                             <td data-titulo="DOCUMENTO"><?php echo $rows['numeroDocumento'] ?></td>
                             <td data-titulo="TIPO USUARIO"><?php echo $rows['tipoUsuario'] ?></td>
@@ -129,7 +130,8 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                             </td>
                         </tr>
                         <?php
-                            }
+                        $contador++;
+                        }
                         ?>
                     </tbody>
                 </table>

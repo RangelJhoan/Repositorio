@@ -95,9 +95,8 @@ class recursoControlador extends recursoModelo{
      * @return Object Lista de los recursos consultados
      */
     public function paginador_recurso_controlador(){
-        $consulta = "SELECT r.id as idRecurso, r.titulo, a.nombre, r.puntos_positivos, r.puntos_negativos 
+        $consulta = "SELECT r.id as idRecurso, r.titulo, r.puntos_positivos, r.puntos_negativos 
         FROM recurso r 
-        JOIN archivo a ON a.id_recurso = r.id 
         ORDER BY r.id;";
 
         $conexion = mainModel::conectar();
@@ -105,6 +104,18 @@ class recursoControlador extends recursoModelo{
         $datos = $conexion->query($consulta);
         $datos = $datos->fetchAll();
         return $datos;
+    }
+
+    /*---------- Controlador datos recurso ----------*/
+    public function datos_recurso_controlador($tipo, $id){
+        $id = mainModel::decryption($id);
+
+        return recursoModelo::datos_recurso_modelo($tipo, $id);
+    }
+
+    /*---------- Controlador archivo por recurso ----------*/
+    public function archivoXRecursoControlador($id){
+        return recursoModelo::archivoXRecursoModelo($id)->fetch();
     }
 
 }

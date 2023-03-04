@@ -66,6 +66,33 @@
             }
         }
 
+        /*---------- Modelo datos recurso ----------*/
+        protected static function datos_recurso_modelo($tipo, $id){
+            if($tipo == "Unico"){
+                $sql = mainModel::conectar()->prepare("SELECT * 
+                FROM recurso 
+                WHERE estado != ".EstadosEnum::ELIMINADO->value." AND id = :ID;");
+                $sql->bindParam(":ID", $id);
+            }elseif($tipo == "Conteo"){
+                $sql = mainModel::conectar()->prepare("SELECT id 
+                FROM recurso
+                WHERE estado != ".EstadosEnum::ELIMINADO->value.";");
+            }
+            $sql->execute();
+            return $sql;
+        }
+
+        /*---------- Modelo archivo por recurso ----------*/
+        protected static function archivoXRecursoModelo($id){
+            $sql = mainModel::conectar()->prepare("SELECT a.nombre 
+            FROM archivo a 
+            JOIN recurso r ON r.id = a.id_recurso 
+            WHERE r.id = :ID;");
+            $sql->bindParam(":ID", $id);
+            $sql->execute();
+            return $sql;
+        }
+
     }
 
 ?>

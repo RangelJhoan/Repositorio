@@ -42,14 +42,6 @@
             } catch (\Throwable $th) {
                 return $th->getMessage();
             }
-           /*try {
-                $sql = mainModel::conectar()->prepare("UPDATE autor SET estado=? WHERE id=?");
-                $sql->execute([$autor->getEstado(), $autor->getIdAutor()]);
-
-                return $sql->rowCount();
-            } catch (Exception $e) {
-                return $e->getMessage();
-            }*/
         }
 
         /*---------- Modelo para editar información de autor ----------*/
@@ -64,17 +56,30 @@
             }
         }
 
-        /*---------- Modelo datos curso ----------*/
+        /*---------- Modelo datos autor ----------*/
         protected static function datos_autor_modelo($tipo, $id){
             if($tipo == "Unico"){
                 $sql = mainModel::conectar()->prepare("SELECT * 
                 FROM autor 
-                WHERE id = :ID;");
+                WHERE estado != ".EstadosEnum::ELIMINADO->value." AND id = :ID;");
                 $sql->bindParam(":ID", $id);
             }elseif($tipo == "Conteo"){
                 $sql = mainModel::conectar()->prepare("SELECT id 
-                FROM autor;");
+                FROM autor
+                WHERE estado != ".EstadosEnum::ELIMINADO->value.";");
             }
+            $sql->execute();
+            return $sql;
+        }
+
+        /*---------- Modelo autores por recurso ----------*/
+        protected static function autoresXRecursoModelo($id){
+            $sql = mainModel::conectar()->prepare("SELECT a.nombre, a.apellido 
+            FROM autor a 
+            JOIN autor_recurso ar ON a.id = ar.id_autor 
+            JOIN recurso r ON r.id = ar.id_recurso 
+            WHERE r.id = :ID;");
+            $sql->bindParam(":ID", $id);
             $sql->execute();
             return $sql;
         }

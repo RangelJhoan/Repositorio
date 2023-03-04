@@ -9,7 +9,10 @@
 <body>
 <?php
 require_once "./controladores/recursoControlador.php";
+require_once "./controladores/autorControlador.php";
+
 $ins_recurso = new recursoControlador();
+$insAutor = new autorControlador();
 
 $datos = $ins_recurso->paginador_recurso_controlador();
 ?>
@@ -39,7 +42,7 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                         <tr>
                             <th>Id</th>
                             <th>Título</th>
-                            <th>Autor</th>
+                            <th>Autor(es)</th>
                             <th>Archivo</th>
                             <th>Positivos</th>
                             <th>Negativos</th>
@@ -49,13 +52,24 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                     <tbody>
                         <?php
                         if($datos != 0){
+                            $contador = 1;
                             foreach($datos as $rows){
+                                $autoresRecurso = $insAutor->autoresXRecursoControlador($rows['idRecurso']);
+                                $archivo = $ins_recurso->archivoXRecursoControlador($rows['idRecurso']);
                         ?>
                         <tr>
-                            <td data-titulo="#"><?php echo $rows['idRecurso'] ?></td>
+                            <td data-titulo="#"><?php echo $contador ?></td>
                             <td data-titulo="TÍTULO"><?php echo $rows['titulo'] ?></td>
-                            <td data-titulo="AUTOR"><?php echo $rows['nombre'] ?></td>
-                            <td data-titulo="ARCHIVO"><?php echo $rows['nombre'] ?></td>
+                            <td data-titulo="AUTOR">
+                            <?php
+                                foreach($autoresRecurso as $campo){
+                                    ?>
+                                    <li><?php echo $campo['nombre'] . " " . $campo['apellido'] ?></li>
+                                    <?php
+                                }
+                            ?>
+                            </td>
+                            <td data-titulo="ARCHIVO"><?php if($archivo != false) echo $archivo['nombre'] ?></td>
                             <td data-titulo="POSITIVOS"><?php echo $rows['puntos_positivos'] ?></td>
                             <td data-titulo="NEGATIVOS"><?php echo $rows['puntos_negativos'] ?></td>
                             <td data-titulo="ACCIÓN">
@@ -76,6 +90,7 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                             </td>
                         </tr>
                         <?php
+                            $contador++;
                             }
                         }
                         ?>

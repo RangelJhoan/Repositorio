@@ -46,14 +46,7 @@
                 require_once "./controladores/programaControlador.php";
                 $ins_programa = new programaControlador();
 
-                $cantidadRegistros = 1000;
-                if(count($pagina) == 0){
-                    $paginaActual = $pagina[1];
-                    $datos = $ins_programa->paginador_programa_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
-                }else{
-                    $paginaActual = -1;
-                    $datos = $ins_programa->paginador_programa_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
-                }
+                $datos = $ins_programa->paginador_programa_controlador();
             ?>
             <div class="table-admin-container">
                 <table id="tablaUsuarios" class="tb-admin-records">
@@ -62,15 +55,13 @@
                             <th>Id</th>
                             <th>Nombre</th>
                             <th>Estado</th>
-                            <!-- <th>Descripción</th> -->
                             <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $inicio = ($paginaActual>0) ? (($paginaActual*$cantidadRegistros)-$cantidadRegistros) : 0;
-                        $contador = $inicio+1;
                         if($datos != 0){
+                            $contador = 1;
                             foreach($datos as $rows){
                         ?>
                         <tr>
