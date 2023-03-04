@@ -1,3 +1,7 @@
+
+
+
+
 <?php
 
 if($peticionAjax){
@@ -23,8 +27,26 @@ class homeControlador extends homeModelo{
         }
         return $autores;
     }
+
+    public function cargar_busqueda($pBusqueda){
+        $search = "";
+        $arrayParametro = explode("¡", $pBusqueda);
+        foreach($arrayParametro AS $dato){
+            if($search!=""){
+                $search .= " ";
+            }
+            $search .= mainModel::decryption($dato);
+        }
+
+        return $search;
+
+    }
+
+    
 }
 
 
 
+
 ?>
+

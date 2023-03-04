@@ -26,7 +26,7 @@
                         <?php
                         if(isset($_SESSION['tipo_usuario'])){
                             if($_SESSION['tipo_usuario'] == "Administrador"){
-                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'adminDashboard/">Cuenta</a>'; 
+                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'adminDashboard/">Cuenta</a>';
                             }elseif($_SESSION['tipo_usuario'] == "Docente"){
                                 echo '<a  class="a-HomeNav" href="'.SERVER_URL.'docenteDashboard/">Cuenta</a>';
                             }elseif($_SESSION['tipo_usuario'] == "Estudiante"){
@@ -41,6 +41,9 @@
             </li>
             <li class="li-Home homeHideListFull">
                 <?php
+                require_once("./controladores/homeControlador.php");
+                $ins_homec = new homeControlador();
+                    
                 if(isset($_SESSION['tipo_usuario'])){
                     if($_SESSION['tipo_usuario'] == "Administrador"){
                         echo '<a  class="a-HomeNav" href="'.SERVER_URL.'adminDashboard/">Cuenta</a>';
@@ -64,7 +67,7 @@
         <!-- Barra búsqueda -->
         <form class="form-BarraBusquedaHome" action="<?php echo SERVER_URL ?>ajax/homeAjax.php" method="POST" data-form="save" autocomplete="off">
             <div class="searchBar-Container">
-                <input class="input-SearchBar" type="text" name="barraBusqueda" placeholder="Buscar recurso..."> 
+                <input class="input-SearchBar" type="text" name="barraBusqueda" placeholder="Buscar recurso..." value="<?php echo $ins_homec->cargar_busqueda($pagina[2]); ?>">
                 <button type="submit" title="Buscar" class="searchBar-IconContainer">
                     <i class="uil uil-search search-iconHome"></i>
                     <!-- <i class="uil uil-search search-iconHome"></i> -->
@@ -72,4 +75,3 @@
             </div>
         </form>
     </section>
-

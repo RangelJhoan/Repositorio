@@ -11,14 +11,14 @@
                 $search = "";
                 foreach($arrayParametro AS $dato){
                     if($search!=""){
-                        $search .= " ";
+                        $search .= "%";
                     }
                     $search .= mainModel::decryption($dato);
                 }
 
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
                 ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor 
-                WHERE r.titulo LIKE '%".$search."%' OR a.nombre LIKE '%".$search."%' OR a.apellido LIKE '%".$search."%';");    
+                WHERE r.titulo LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellido) LIKE '%".$search."%' OR CONCAT(a.apellido,' ',a.nombre) LIKE '%".$search."%';");    
             }else if($pTipo=="Autor"){
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
                 ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor ORDER BY a.nombre");
@@ -43,5 +43,6 @@
 
             return $sql->fetchAll();
         }
+        
     }
 ?>
