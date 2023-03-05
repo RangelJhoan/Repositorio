@@ -12,16 +12,20 @@
 
 require_once "./controladores/cursoControlador.php";
 require_once "./controladores/programaControlador.php";
+require_once "./controladores/usuarioControlador.php";
 
 $ins_curso = new cursoControlador();
 $ins_programa = new programaControlador();
+$insUsuario = new usuarioControlador();
 
 $datos_curso = $ins_curso->datos_curso_controlador("Unico", $pagina[1]);
 $datos_programas = $ins_programa->listar_programas_controlador();
+$datosUsuarios = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
 
 if($datos_curso->rowCount()>0){
     $campos_curso = $datos_curso->fetch();
     $programas_curso = $ins_curso->programas_curso_controlador($campos_curso['id']);
+    $docentesCurso = $ins_curso->docentes_curso_controlador($campos_curso['id']);
     ?>
 <section class="general-admin-container">
     <div class="overview-general-admin">
@@ -59,17 +63,17 @@ if($datos_curso->rowCount()>0){
                         </select>
 
                     <label for="docenteSeleccion" class="titleComboMultiple">Docente (s)</label>
-                        <select name="programas_edit[]" id="docenteSeleccionarCbxCurso" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
+                        <select name="docentes_edit[]" id="docenteSeleccionarCbxCurso" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
                             <?php
-                            foreach($datos_programas as $campos){
+                            foreach($datosUsuarios as $campos){
                                 $selected = false;
-                                foreach($programas_curso as $campos_pc){
-                                    if($campos['id'] == $campos_pc['programa_id']){
+                                foreach($docentesCurso as $campos_dc){
+                                    if($campos['id'] == $campos_dc['idPersona']){
                                         $selected = true;
                                     }
                                 }
                                 ?>
-                            <option <?php if($selected) echo "selected" ?> value="<?php echo $campos['id'] ?>"><?php echo $campos['nombre'] ?></option>
+                            <option <?php if($selected) echo "selected" ?> value="<?php echo $campos['id'] ?>"><?php echo $campos['nombre'] . " " . $campos['apellido']?></option>
                                 <?php
                             }
                             ?>
@@ -82,7 +86,7 @@ if($datos_curso->rowCount()>0){
                                 <?php
                                     foreach (EstadosEnum::cases() as $cases) {
                                     ?>
-                                    <option <?php if($campos['estado'] == $cases->value){echo "selected";} ?> value="<?php echo $cases->value; ?>"><?php echo $cases->getNameTextByValue($cases->value); ?></option>
+                                    <option <?php if($campos_curso['estado'] == $cases->value){echo "selected";} ?> value="<?php echo $cases->value; ?>"><?php echo $cases->getNameTextByValue($cases->value); ?></option>
                                     <?php
                                 }
                                 ?>

@@ -76,17 +76,36 @@ class cursoControlador extends cursoModelo{
             exit();
         }
 
+        if(!isset($_POST['docentes_edit'])){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"Por favor llene todos los campos",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
         $curso = new Curso();
         $curso->setIdCurso(mainModel::decryption($_POST['id_curso_edit']));
         $curso->setNombre($_POST['nombre_edit']);
         $curso->setDescripcion($_POST['descripcion_edit']);
+        $curso->setEstado($_POST['estado']);
         $curso->setListaProgramas($_POST['programas_edit']);
+        $curso->setListaDocentes($_POST['docentes_edit']);
 
+        //Obtener los programas seleccionados (agregar nuevos y eliminar no seleccionados)
         $programasActuales = cursoModelo::id_programas_curso_modelo($curso->getIdCurso())->fetchAll(PDO::FETCH_COLUMN, 0);
         $programasAgregados = array_diff($curso->getListaProgramas(), $programasActuales);
         $programasEliminados = array_diff($programasActuales, $curso->getListaProgramas());
 
-        $editarCurso = cursoModelo::editar_curso_modelo($curso, $programasAgregados, $programasEliminados);
+        //Obtener los docentes seleccionados (agregar nuevos y eliminar no seleccionados)
+        $docentesActuales = cursoModelo::id_docentes_curso_modelo($curso->getIdCurso())->fetchAll(PDO::FETCH_COLUMN, 0);
+        $docentesAgregados = array_diff($curso->getListaDocente(), $docentesActuales);
+        $docentesEliminados = array_diff($docentesActuales, $curso->getListaDocente());
+
+        $editarCurso = cursoModelo::editar_curso_modelo($curso, $programasAgregados, $programasEliminados, $docentesAgregados, $docentesEliminados);
 
         if($editarCurso->rowCount()>0){
             $alerta=[
@@ -164,6 +183,11 @@ class cursoControlador extends cursoModelo{
     /*---------- Controlador datos curso ----------*/
     public function programas_curso_controlador($id){
         return cursoModelo::programas_curso_modelo($id)->fetchAll();
+    }
+
+    /*---------- Controlador docentes por curso ----------*/
+    public function docentes_curso_controlador($id){
+        return cursoModelo::docentes_curso_modelo($id)->fetchAll();
     }
 
 }
