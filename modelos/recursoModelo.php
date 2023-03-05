@@ -58,7 +58,7 @@
                 $id_recurso = $codrecurso['id'];
 
                 $sql = mainModel::conectar()->prepare("INSERT INTO archivo(ruta, tamano, nombre, isbn, editorial, estado, id_recurso, id_formato) VALUES(?, ?, ?, ?, ?, ?, ?, ?);");
-                $sql->execute([$recurso->getArchivo(),'','',$recurso->getIsbn(),$recurso->getEditorial(),'1',$id_recurso,'1']);
+                $sql->execute([$recurso->getArchivo()->getRuta(), $recurso->getArchivo()->getTamano(), $recurso->getArchivo()->getNombre() ,$recurso->getArchivo()->getISBN(),$recurso->getArchivo()->getEditorial(),$recurso->getArchivo()->getEstado(), $id_recurso, '1']);
 
                 return $sql->rowCount();
             } catch (Exception $e) {

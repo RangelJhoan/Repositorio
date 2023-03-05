@@ -4,16 +4,18 @@ if($peticionAjax){
     //Modelo llamado desde el archivo Ajax
     require_once "../modelos/recursoModelo.php";
     require_once "../entidades/Recurso.php";
+    require_once "../entidades/Archivo.php";
 }else{
     //Modelo llamado desde la vista Index
     require_once "./modelos/recursoModelo.php";
     require_once "./entidades/Recurso.php";
+    require_once "./entidades/Archivo.php";
 }
 
 class recursoControlador extends recursoModelo{
 
     /*---------- Controlador para agregar programa ----------*/
-    public function agregar_recurso_controlador($pArchivo){
+    public function agregar_recurso_controlador(){
         $recurso = new Recurso();
         $recurso->setTitulo($_POST['titulo_ins']);
         $recurso->setResumen($_POST['resumen_ins']);
@@ -31,13 +33,6 @@ class recursoControlador extends recursoModelo{
             $recurso->setEnlace($_POST['link_ins']);
 
         $recurso->setFecha($_POST['anioRecurso']);
-
-        if(isset($_POST['editorial_ins'])){
-            $recurso->setEditorial($_POST['editorial_ins']);
-        }
-        if(isset($_POST['ISBN_ins'])){
-            $recurso->setIsbn($_POST['ISBN_ins']);
-        }
 
         if($recurso->getTitulo() == "" || $recurso->getResumen() == "" || $recurso->getFecha() == ""){
             $alerta=[
@@ -62,8 +57,32 @@ class recursoControlador extends recursoModelo{
                 exit();
             }
 
-            if($pArchivo != "null"){
-                $recurso->setArchivo($pArchivo);
+            if(isset($_FILES["archivo"]["name"])){
+                $ruta = "../recursos/".$_FILES["archivo"]["name"];
+                move_uploaded_file($_FILES["archivo"]["tmp_name"], $ruta);
+            }else{
+                $ruta = "null";
+            }
+
+            if($ruta != "null"){
+                $archivo = new Archivo();
+
+                $archivo->setRuta($ruta);
+                $archivo->setTamano($_FILES["archivo"]["size"]);
+                $archivo->setNombre($_FILES["archivo"]["name"]);
+
+                if(isset($_POST['editorial_ins'])){
+                    $archivo->setEditorial($_POST['editorial_ins']);
+                }
+
+                if(isset($_POST['ISBN_ins'])){
+                    $archivo->setISBN($_POST['ISBN_ins']);
+                }
+
+                $archivo->setEstado(EstadosEnum::ACTIVO->value);
+
+                $recurso->setArchivo($archivo);
+
                 $agregar_archivo = recursoModelo::agregar_archivo_modelo($recurso);
 
                 if(is_string($agregar_archivo)){
@@ -79,8 +98,9 @@ class recursoControlador extends recursoModelo{
             }
 
             $alerta=[
-                "Alerta"=>"recargar",
+                "Alerta"=>"redireccionar",
                 "Titulo"=>"Exitoso",
+                "URL"=>SERVER_URL."adminRecursos/",
                 "Texto"=>"Recurso creado correctamente",
                 "Tipo"=>"success"
             ];

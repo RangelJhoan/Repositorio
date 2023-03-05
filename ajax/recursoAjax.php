@@ -10,14 +10,7 @@ if(isset($_POST['titulo_ins'])){
     $ins_recurso = new recursoControlador();
 
     if(isset($_POST['titulo_ins'])){
-        if(isset($_FILES["archivo"]["name"])){
-            $ruta = "../recursos/".$_FILES["archivo"]["name"];
-            move_uploaded_file($_FILES["archivo"]["tmp_name"], $ruta);
-        }else{
-            $ruta = "null";
-        }
-
-        echo $ins_recurso->agregar_recurso_controlador($ruta);
+        echo $ins_recurso->agregar_recurso_controlador();
     }
 
 }

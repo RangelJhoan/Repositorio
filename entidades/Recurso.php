@@ -8,11 +8,8 @@ class Recurso {
     private $curso;
     private $resumen;
     private $fecha;
-    private $editorial;
-    private $isbn;
     private $enlace;
     private $archivo;
-
 
     public function __construct(){}
 
@@ -46,20 +43,12 @@ class Recurso {
         return $this->fecha;
     }
 
-    public function getEditorial(){
-        return $this->editorial;
-    }
-
-    public function getIsbn(){
-        return $this->isbn;
+    public function getEnlace(){
+        return $this->enlace;
     }
 
     public function getArchivo(){
         return $this->archivo;
-    }
-
-    public function getEnlace(){
-        return $this->enlace;
     }
 
     //Setters
@@ -91,20 +80,12 @@ class Recurso {
         $this->fecha = $fecha;
     }
 
-    public function setEditorial($editorial){
-        $this->editorial = $editorial;
-    }
-
-    public function setIsbn($isbn){
-        $this->isbn = $isbn;
+    public function setEnlace($enlace){
+        $this->enlace = $enlace;
     }
 
     public function setArchivo($archivo){
         $this->archivo = $archivo;
-    }
-
-    public function setEnlace($enlace){
-        $this->enlace = $enlace;
     }
 }
 
