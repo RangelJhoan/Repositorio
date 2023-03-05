@@ -84,7 +84,7 @@
             if($tipo == "Unico"){
                 $sql = mainModel::conectar()->prepare("SELECT * 
                 FROM curso 
-                WHERE estado != ".EstadosEnum::ELIMINADO->value." id = :ID;");
+                WHERE estado != ".EstadosEnum::ELIMINADO->value." AND id = :ID;");
                 $sql->bindParam(":ID", $id);
             }elseif($tipo == "Conteo"){
                 $sql = mainModel::conectar()->prepare("SELECT id 
