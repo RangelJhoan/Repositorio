@@ -50,7 +50,7 @@ class recursoControlador extends recursoModelo{
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"Error",
-                    "Texto"=>"Error al crear el recurso",
+                    "Texto"=>"Ups! Ups! Hubo un problema al cargar el recurso. Por favor intente nuevamente.",
                     "Tipo"=>"error"
                 ];
                 echo json_encode($alerta);
@@ -89,7 +89,7 @@ class recursoControlador extends recursoModelo{
                     $alerta=[
                         "Alerta"=>"simple",
                         "Titulo"=>"Error",
-                        "Texto"=>"Error al crear el archivo",
+                        "Texto"=>"Ups! Hubo un problema al cargar el archivo. Por favor intente nuevamente.",
                         "Tipo"=>"error"
                     ];
                     echo json_encode($alerta);

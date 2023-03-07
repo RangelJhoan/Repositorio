@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 
 if($peticionAjax){
@@ -41,12 +37,24 @@ class homeControlador extends homeModelo{
         return $search;
 
     }
+    public function cargar_recursos_autor($pId){
+        $recursos = homeModelo::cargar_recursos($pId);
+        return $recursos;
+    }
 
-    
+    public function cargar_recursos_curso($pId){
+        $recursos = homeModelo::cargar_curso($pId);
+        
+        return $recursos;
+    }
+
+    public function capturar_fecha_recurso(){
+        $fechas = homeModelo::fechas_recurso();
+
+        return $fechas;
+    }
 }
 
 
 
-
 ?>
-

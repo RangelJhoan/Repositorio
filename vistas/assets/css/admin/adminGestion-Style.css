@@ -64,6 +64,7 @@
         align-items: center;
         justify-content: center;
         font-size: var(--title-font-size);
+        aspect-ratio: 1/1;
     }
     .general-admin-container .title .panel-title-name{        
         font-size: var(--title-font-size);

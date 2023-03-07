@@ -60,7 +60,7 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
                             <td data-titulo="TÍTULO"><?php echo $rows['titulo'] ?></td>
-                            <td data-titulo="AUTOR">
+                            <td data-titulo="AUTOR" class="responsive-file">
                             <?php
                                 foreach($autoresRecurso as $campo){
                                     ?>

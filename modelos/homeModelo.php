@@ -20,8 +20,7 @@
                 ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor 
                 WHERE r.titulo LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellido) LIKE '%".$search."%' OR CONCAT(a.apellido,' ',a.nombre) LIKE '%".$search."%';");    
             }else if($pTipo=="Autor"){
-                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
-                ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor ORDER BY a.nombre");
+                $sql = mainModel::conectar()->prepare("SELECT nombre,apellido,id FROM autor ORDER BY apellido");
             }else if($pTipo=="Titulo"){
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
                 ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor ORDER BY r.titulo");
@@ -29,8 +28,20 @@
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
                 ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor ORDER BY r.fecha_publicacion_recurso");
             }else if($pTipo=="Curso"){
+                $sql = mainModel::conectar()->prepare("SELECT nombre,id FROM curso ORDER BY nombre");
+            }else if($pTipo=="Cursofiltrar"){
+                $sql = mainModel::conectar()->prepare("SELECT nombre,id FROM curso WHERE nombre LIKE '".$pBuscar."%' ORDER BY nombre");
+            }else if($pTipo=="Titulofiltrar"){
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
-                ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor ORDER BY a.nombre");
+                ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor WHERE r.titulo LIKE '".$pBuscar."%' ORDER BY r.titulo");            
+            }else if($pTipo=="Autorfiltrar"){
+                $sql = mainModel::conectar()->prepare("SELECT nombre,apellido,id FROM autor WHERE apellido LIKE '".$pBuscar."%' ORDER BY apellido");
+            }else if($pTipo=="Fechafiltrar"){
+                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
+                ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor WHERE r.fecha_publicacion_recurso LIKE '".$pBuscar."%' ORDER BY r.fecha_publicacion_recurso");
+            }else if($pTipo == "Titulonumero"){
+                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id), r.titulo, r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar ON r.id = ar.id_recurso JOIN autor a ON a.id = ar.id_autor 
+                WHERE r.titulo REGEXP '^[0-9]' ORDER BY r.titulo;");
             }
             $sql->execute();
 
@@ -39,6 +50,27 @@
 
         protected static function cargar_autores($pId){
             $sql = mainModel::conectar()->prepare("SELECT a.nombre,a.apellido FROM autor a JOIN autor_recurso ar ON a.id = ar.id_autor WHERE ar.id_recurso = '".$pId."'");
+            $sql->execute();
+
+            return $sql->fetchAll();
+        }
+
+        protected static function cargar_recursos($pId){
+            $sql = mainModel::conectar()->prepare("SELECT COUNT(*) AS recursos FROM autor_recurso WHERE id_autor = '".$pId."'");
+            $sql->execute();
+
+            return $sql->fetchColumn();
+        }
+
+        protected static function cargar_curso($pId){
+            $sql = mainModel::conectar()->prepare("SELECT COUNT(*) AS recursos FROM curso_recurso WHERE id_curso = '".$pId."'");
+            $sql->execute();
+
+            return $sql->fetchColumn();
+        }
+
+        protected static function fechas_recurso(){
+            $sql = mainModel::conectar()->prepare("SELECT DISTINCT(fecha_publicacion_recurso) AS fecha FROM recurso");
             $sql->execute();
 
             return $sql->fetchAll();

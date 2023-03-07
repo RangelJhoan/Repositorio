@@ -19,6 +19,8 @@ if(isset($_POST['barraBusqueda'])){
     }
 
     header("Location:".SERVER_URL."recursosBusqueda/Busqueda/".$parametro);
+}else if(isset($_POST['codano'])){
+    header("Location:".SERVER_URL."recursosBusqueda/Fechafiltrar/".$_POST['codano']);
 }
 
 ?>

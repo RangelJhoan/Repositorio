@@ -46,8 +46,8 @@
 
     /* Título páginas búsquedas*/
     --title-font-size: 2.2rem;
-    --title-tablet-font-size: 2rem;
-    --title-mobile-font-size: 1.8rem;
+    --title-tablet-font-size: 1.9rem;
+    --title-mobile-font-size: 1.7rem;
 }
 /*?---------------SETEO DE ESTILOS POR DEFAULT DEL NAVEGADOR----------------*/
 * {
@@ -339,6 +339,7 @@ body{
     font-size: var(--phrgp-home-normal-font-size);
     text-align: center;
     margin-bottom: 0.6rem;
+    margin-top: 0.8rem;
 }
 .resources-total-count{
     font-weight: 700;
@@ -436,7 +437,7 @@ body{
     background-color:var(--footer-bgr-color);
     overflow-x: hidden;
     box-shadow: 0px -10px 10px 0px var(--border-home-color);
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .footer-Container{
@@ -739,6 +740,7 @@ body{
         align-items: center;
         justify-content: center;
         font-size: var(--title-font-size);
+        aspect-ratio: 1/1;
     }
     .general-tableJQ-container .title .panel-title-name{        
         font-size: var(--title-font-size);
@@ -747,6 +749,7 @@ body{
         margin-left: 10px;
         text-transform: uppercase;
     }
+
 /** Título de columnas del datatable*/
 .titleTableFilterSearch{
     cursor: pointer;
@@ -849,6 +852,7 @@ select {
     display: flex;
     justify-content: center;
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 .dataTables_info{
     text-align: center;
@@ -920,7 +924,68 @@ select {
     height: fit-content;
 }
 
+/*IMAGEN USADA COMO ÍCONO PARA EL FILTRADO*/
+.titleImgIcon{
+    max-width: 60%;
+    user-select: none;
+    }
 
+/*Tótulos que empiecen por la letra:*/
+.aLetraFiltro{
+    display: inline-flex;
+    flex-direction: row;
+    margin-bottom: 7px;
+    text-decoration: none;
+    padding:0 4px;
+    transition: .4s all;
+    color:var(--text-home-color);
+    border:1px solid var(--colorTableN3);
+    border-radius: 2px;
+}
+.aLetraFiltro:hover{
+    background-color: var(--colorTableN1);
+    font-weight: 600;
+    color:var(--white-home-color);
+}
+.liLetraFilto{
+    list-style: none;
+}
+
+/*Estilo combo de seleccionar el año*/
+#codano {
+    align-items: center;
+    background-color: var(--white-home-color);
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    color: var(--home-text-color-color);
+    display: inline-block;
+    font-size: var(--phrgp-home-normal-font-size);
+    padding: 3.75px 15px 3.75px 7.5px;
+    line-height: 22.5px;
+}
+
+/*Estilo botón buscar año*/
+.buttonSearchYear{
+    align-items: flex-start;
+    border-radius: 5px;
+    border-style: none;
+    display: inline-block;
+    line-height: 22.5px;
+    margin: 0 0 22.5px;
+    padding: 3.75px 15px 3.75px 7.5px;
+    text-align: center;
+    cursor: pointer;
+    font-size: var(--phrgp-home-normal-font-size);
+    color: var(--text-color);
+    transition: all .5s;
+    text-decoration: none;
+    border:1px solid var(--colorTableN1);
+}
+.buttonSearchYear:hover{
+    background-color: var(--colorTableN1);
+    color:var(--white-home-color);
+}
 
 /*! ************************** RESPONSIVE DESIGN *************/
 @media all and (max-width:1070px){
@@ -929,12 +994,10 @@ select {
         display: inline;
     }
     .tableWithContent{
-        padding-left: 40px;
-        padding-right: 40px;
+        padding-left: 30px;
+        padding-right: 30px;
     }
     .asideFilters {
-        /* margin:0 auto; */
-        margin-top: 30px;
         display: block;
         margin-left: 100px;
         margin-right: 100px;
@@ -1080,6 +1143,9 @@ select {
     height: 210px;
     margin:0 5px;
     }
+    #codano {
+        font-size: var(--phrgp-home-medium-font-size);
+    }
 }
 
 @media all and (max-width:600px){
@@ -1129,6 +1195,9 @@ select {
     }
     .general-tableJQ-container .title .panel-title-name {
         font-size: var(--title-mobile-font-size);
+    }
+    .buttonSearchYear{
+        font-size: var(--phrgp-home-medium-font-size);
     }
     
     
