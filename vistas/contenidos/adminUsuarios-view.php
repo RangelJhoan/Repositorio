@@ -9,7 +9,7 @@
 <?php
 require_once "./controladores/usuarioControlador.php";
 require_once "./controladores/tipoDocumentoControlador.php";
-require_once "./utilidades/EstadosEnum.php";
+require_once "./utilidades/Utilidades.php";
 
 $ins_usuario = new usuarioControlador();
 $ins_tipo_documento = new tipoDocumentoControlador();
@@ -113,7 +113,7 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                             <td data-titulo="NOMBRE"><?php echo $rows['nombre'].' '.$rows['apellido'] ?></td>
                             <td data-titulo="DOCUMENTO"><?php echo $rows['numeroDocumento'] ?></td>
                             <td data-titulo="TIPO USUARIO"><?php echo $rows['tipoUsuario'] ?></td>
-                            <td data-titulo="ESTADO"><?php echo EstadosEnum::getNameTextByValue($rows['estado']);  ?></td>
+                            <td data-titulo="ESTADO"><?php echo $estados[$rows['estado']] ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">

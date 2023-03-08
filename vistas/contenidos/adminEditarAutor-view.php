@@ -11,6 +11,7 @@
 <?php
 
 require_once "./controladores/autorControlador.php";
+require_once "./utilidades/Utilidades.php";
 $ins_autor = new autorControlador();
 
 $datos_autor = $ins_autor->datos_autor_controlador("Unico", $pagina[1]);
@@ -41,9 +42,9 @@ if($datos_autor->rowCount()>0){
                                 <select name="estado" class="combobox-titulo" title="Estado del curso">
                                     <option disabled value="" class="combobox-opciones">Estado</option>
                                     <?php
-                                    foreach (EstadosEnum::cases() as $cases) {
+                                    for ($i = 0; $i<count($estados); $i++) {
                                     ?>
-                                    <option <?php if($campos['estado'] == $cases->value){echo "selected";} ?> value="<?php echo $cases->value; ?>"><?php echo $cases->getNameTextByValue($cases->value); ?></option>
+                                    <option <?php if($campos['estado'] == $i){echo "selected";} ?> value="<?php echo $i; ?>"><?php echo $estados[$i]; ?></option>
                                     <?php
                                     }
                                     ?>

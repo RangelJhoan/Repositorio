@@ -11,6 +11,7 @@
 <?php
 
 require_once "./controladores/etiquetaControlador.php";
+require_once "./utilidades/Utilidades.php";
 $ins_etiqueta = new etiquetaControlador();
 
 $datos = $ins_etiqueta->datos_etiqueta_controlador("Unico", $pagina[1]);
@@ -38,9 +39,9 @@ if($datos->rowCount()>0){
                                 <select name="estado" class="combobox-titulo" title="Estado de la etiqueta">
                                     <option disabled value="" class="combobox-opciones">Estado</option>
                                     <?php
-                                    foreach (EstadosEnum::cases() as $cases) {
+                                    for ($i = 0; $i<count($estados); $i++) {
                                     ?>
-                                    <option <?php if($campos['estado'] == $cases->value){echo "selected";} ?> value="<?php echo $cases->value; ?>"><?php echo $cases->getNameTextByValue($cases->value); ?></option>
+                                    <option <?php if($campos['estado'] == $i){echo "selected";} ?> value="<?php echo $i; ?>"><?php echo $estados[$i]; ?></option>
                                     <?php
                                     }
                                     ?>

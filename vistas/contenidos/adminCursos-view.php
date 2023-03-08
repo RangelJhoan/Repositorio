@@ -76,6 +76,7 @@ $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
             <!--TABLA-->
             <?php
                 require_once "./controladores/cursoControlador.php";
+                require_once "./utilidades/Utilidades.php";
                 $ins_curso = new cursoControlador();
 
                 $datos = $ins_curso->paginador_curso_controlador();
@@ -110,7 +111,7 @@ $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
                                     <?php
                                 }
                             ?></td>
-                            <td data-titulo="ESTADO"><?php echo EstadosEnum::getNameTextByValue($rows['estado']) ?></td>
+                            <td data-titulo="ESTADO"><?php echo $estados[$rows['estado']] ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">

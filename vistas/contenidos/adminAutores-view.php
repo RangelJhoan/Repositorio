@@ -45,6 +45,7 @@
             <!--TABLA-->
             <?php
                 require_once "./controladores/autorControlador.php";
+                require_once "./utilidades/Utilidades.php";
                 $ins_autor = new autorControlador();
                 $datos = $ins_autor->paginador_autor_controlador();
             ?>
@@ -69,7 +70,7 @@
                             <td data-titulo="#"><?php echo $contador; ?></td>
                             <td data-titulo="NOMBRE"><?php echo $rows['nombre'] ?></td>
                             <td data-titulo="APELLIDO"><?php echo $rows['apellido'] ?></td>
-                            <td data-titulo="ESTADO"><?php echo EstadosEnum::getNameTextByValue($rows['estado']); ?></td>
+                            <td data-titulo="ESTADO"><?php echo $estados[$rows['estado']] ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">

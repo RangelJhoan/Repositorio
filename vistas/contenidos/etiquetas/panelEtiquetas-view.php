@@ -9,6 +9,7 @@
 <body>
 <?php
     require_once "./controladores/etiquetaControlador.php";
+    require_once "./utilidades/Utilidades.php";
     $ins_etiqueta = new etiquetaControlador();
     $datos = $ins_etiqueta->paginador_etiqueta_controlador();
 ?>
@@ -64,7 +65,7 @@
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
                             <td data-titulo="NOMBRE"><?php echo $rows['descripcion'] ?></td>
-                            <td data-titulo="ESTADO"><?php echo EstadosEnum::getNameTextByValue($rows['estado']) ?></td>
+                            <td data-titulo="ESTADO"><?php echo $estados[$rows['estado']] ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">

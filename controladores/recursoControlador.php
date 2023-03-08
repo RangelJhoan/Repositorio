@@ -79,7 +79,7 @@ class recursoControlador extends recursoModelo{
                     $archivo->setISBN($_POST['ISBN_ins']);
                 }
 
-                $archivo->setEstado(EstadosEnum::ACTIVO->value);
+                $archivo->setEstado(1);
 
                 $recurso->setArchivo($archivo);
 

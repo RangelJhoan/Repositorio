@@ -9,7 +9,7 @@ class Persona extends Usuario{
     private $nombre;
     private $apellido;
     private $estadoPersona;
-    private TipoDocumento $tipoDocumento;
+    private $tipoDocumento;
 
     public function __construct(){}
 

@@ -12,6 +12,7 @@
 
 require_once "./controladores/usuarioControlador.php";
 require_once "./controladores/tipoDocumentoControlador.php";
+require_once "./utilidades/Utilidades.php";
 
 $ins_usuario = new usuarioControlador();
 $ins_tipo_documento = new tipoDocumentoControlador();
@@ -82,9 +83,9 @@ if($datos_usuario->rowCount()>0){
                             <select name="estado" class="combobox-titulo" title="Estado del curso">
                                     <option disabled value="" class="combobox-opciones">Estado</option>
                                     <?php
-                                    foreach (EstadosEnum::cases() as $cases) {
+                                    for ($i = 0; $i<count($estados); $i++) {
                                     ?>
-                                    <option <?php if($campos['estado'] == $cases->value){echo "selected";} ?> value="<?php echo $cases->value; ?>"><?php echo $cases->getNameTextByValue($cases->value); ?></option>
+                                    <option <?php if($campos['estado'] == $i){echo "selected";} ?> value="<?php echo $i; ?>"><?php echo $estados[$i]; ?></option>
                                     <?php
                                     }
                                     ?>

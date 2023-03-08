@@ -2,11 +2,9 @@
 
 if($peticionAjax){
     //Modelo llamado desde el archivo Ajax
-    require_once "../utilidades/EstadosEnum.php";
     require_once "../modelos/etiquetaModelo.php";
 }else{
     //Modelo llamado desde la vista Index
-    require_once "./utilidades/EstadosEnum.php";
     require_once "./modelos/etiquetaModelo.php";
 }
 
@@ -15,7 +13,7 @@ class etiquetaControlador extends etiquetaModelo{
     public function agregar_etiqueta_controlador(){
         $etiqueta = new Etiqueta();
         $etiqueta->setDescripcion($_POST['descripcion_ins']);
-        $etiqueta->setEstado(EstadosEnum::ACTIVO->value);
+        $etiqueta->setEstado(1);
 
         if($etiqueta->getDescripcion() == ""){
             $alerta=[
@@ -108,7 +106,7 @@ class etiquetaControlador extends etiquetaModelo{
         try {
             $autor = new Etiqueta();
             $autor->setIdEtiqueta(mainModel::decryption($_POST['id_etiqueta_del']));
-            $autor->setEstado(EstadosEnum::ELIMINADO->value);
+            $autor->setEstado(3);
 
             $eliminarEtiqueta = etiquetaModelo::eliminar_etiqueta_modelo($autor);
 
@@ -158,7 +156,7 @@ class etiquetaControlador extends etiquetaModelo{
     public function paginador_etiqueta_controlador(){
         $consulta = "SELECT * 
         FROM etiqueta 
-        WHERE estado != ". EstadosEnum::ELIMINADO->value ." 
+        WHERE estado != ". 3 ." 
         ORDER BY descripcion ASC";
 
         $conexion = mainModel::conectar();

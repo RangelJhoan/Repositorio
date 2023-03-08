@@ -4,12 +4,10 @@ if($peticionAjax){
     //Modelo llamado desde el archivo Ajax
     require_once "../modelos/programaModelo.php";
     require_once "../entidades/Programa.php";
-    require_once "../utilidades/EstadosEnum.php";
 }else{
     //Modelo llamado desde la vista Index
     require_once "./modelos/programaModelo.php";
     require_once "./entidades/Programa.php";
-    require_once "./utilidades/EstadosEnum.php";
 }
 
 class programaControlador extends programaModelo{
@@ -19,7 +17,7 @@ class programaControlador extends programaModelo{
         $programa = new Programa();
         $programa->setNombre($_POST['nombre_ins']);
         $programa->setDescripcion($_POST['descripcion_ins']);
-        $programa->setEstado(EstadosEnum::ACTIVO->value);
+        $programa->setEstado(1);
 
         if($programa->getNombre() == "" || $programa->getDescripcion() == ""){
             $alerta=[
@@ -71,7 +69,7 @@ class programaControlador extends programaModelo{
     public function eliminar_programa_controlador(){
         $programa = new Programa();
         $programa->setIdPrograma(mainModel::decryption($_POST['id_programa_del']));
-        $programa->setEstado(EstadosEnum::ELIMINADO->value);
+        $programa->setEstado(3);
 
         $editarPrograma = programaModelo::editar_estado_programa_modelo($programa);
 
@@ -175,7 +173,7 @@ class programaControlador extends programaModelo{
     public function paginador_programa_controlador(){
         $consulta = "SELECT * 
         FROM programa 
-        WHERE estado != ". EstadosEnum::ELIMINADO->value ." 
+        WHERE estado != ". 3 ." 
         ORDER BY nombre ASC";
 
         $conexion = mainModel::conectar();

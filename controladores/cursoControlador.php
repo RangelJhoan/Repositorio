@@ -4,12 +4,10 @@ if($peticionAjax){
     //Modelo llamado desde el archivo Ajax
     require_once "../modelos/cursoModelo.php";
     require_once "../entidades/Curso.php";
-    require_once "../utilidades/EstadosEnum.php";
 }else{
     //Modelo llamado desde la vista Index
     require_once "./modelos/cursoModelo.php";
     require_once "./entidades/Curso.php";
-    require_once "./utilidades/EstadosEnum.php";
 }
 
 class cursoControlador extends cursoModelo{
@@ -20,7 +18,7 @@ class cursoControlador extends cursoModelo{
         $curso->setNombre($_POST['nombre_ins']);
         $curso->setDescripcion($_POST['descripcion_ins']);
         $curso->setListaProgramas([]);
-        $curso->setEstado(EstadosEnum::ACTIVO->value);
+        $curso->setEstado(1);
         if(isset($_POST['programas_ins'])){
             $curso->setListaProgramas($_POST['programas_ins']);
         }
@@ -130,7 +128,7 @@ class cursoControlador extends cursoModelo{
     public function eliminar_curso_controlador(){
         $curso = new Curso();
         $curso->setIdCurso(mainModel::decryption($_POST['id_curso_del']));
-        $curso->setEstado(EstadosEnum::ELIMINADO->value);
+        $curso->setEstado(3);
 
         $eliminarCurso = cursoModelo::editar_estado_curso_modelo($curso);
 
@@ -162,7 +160,7 @@ class cursoControlador extends cursoModelo{
     public function paginador_curso_controlador(){
         $consulta = "SELECT SQL_CALC_FOUND_ROWS * 
         FROM curso
-        WHERE estado != ". EstadosEnum::ELIMINADO->value ." 
+        WHERE estado != ". 3 ." 
         ORDER BY nombre ASC";
 
         $conexion = mainModel::conectar();

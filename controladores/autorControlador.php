@@ -4,12 +4,10 @@ if($peticionAjax){
     //Modelo llamado desde el archivo Ajax
     require_once "../modelos/autorModelo.php";
     require_once "../entidades/Autor.php";
-    require_once "../utilidades/EstadosEnum.php";
 }else{
     //Modelo llamado desde la vista Index
     require_once "./modelos/autorModelo.php";
     require_once "./entidades/Autor.php";
-    require_once "./utilidades/EstadosEnum.php";
 }
 
 class autorControlador extends autorModelo{
@@ -19,7 +17,7 @@ class autorControlador extends autorModelo{
         $autor = new Autor();
         $autor->setNombre($_POST['nombre_ins']);
         $autor->setApellido($_POST['apellido_ins']);
-        $autor->setEstado(EstadosEnum::ACTIVO->value);
+        $autor->setEstado(1);
 
         if($autor->getApellido() == ""){
             $alerta=[
@@ -59,7 +57,7 @@ class autorControlador extends autorModelo{
         try {
             $autor = new Autor();
             $autor->setIdAutor(mainModel::decryption($_POST['id_autor_del']));
-            $autor->setEstado(EstadosEnum::ELIMINADO->value);
+            $autor->setEstado(3);
 
             $eliminarAutor = autorModelo::eliminar_autor_modelo($autor);
 
@@ -162,7 +160,7 @@ class autorControlador extends autorModelo{
     public function paginador_autor_controlador(){
         $consulta = "SELECT * 
         FROM autor 
-        WHERE estado != ". EstadosEnum::ELIMINADO->value ." 
+        WHERE estado != ". 3 ." 
         ORDER BY nombre ASC";
 
         $conexion = mainModel::conectar();
