@@ -10,7 +10,7 @@
                     <h1 class="panel-title-name">Filtro por fecha de creación</h1>
                 </div>
 
-                <!--FILTRO POR COMBO AÑOS-->
+<!--FILTRO POR COMBO AÑOS-->
                 <?php
                 require_once "./controladores/homeControlador.php";
                 $ins_home = new homeControlador();
@@ -34,13 +34,16 @@
                 usort($array, 'comparar_anos');
                 ?>
                 <form action="<?php echo SERVER_URL ?>ajax/homeAjax.php" method="POST">
-                    <p class="dataTables_length">Seleccionar año:</p>
-                    <select name="codano" id="codano">
-                        <?php foreach($array AS $ano){?>
-                            <option value="<?php echo $ano; ?>"><?php echo $ano; ?></option>
-                        <?php } ?>
-                    </select>
-                    <input type="submit" value="Buscar" class="buttonSearchYear">
+                    <div class="containerComboAños">
+                        <p class="dataTables_length">Recursos creados en </p>
+                        <select name="codano" id="codano">
+                            <option value="" disabled selected>año</option>
+                            <?php foreach($array AS $ano){?>
+                                <option value="<?php echo $ano; ?>"><?php echo $ano; ?></option>
+                            <?php } ?>
+                        </select>
+                        <input type="submit" value="Buscar" class="buttonSearchYear">
+                    </div>
                 </form>
 
                 <div class="panel-title-name table-dataJQ-container">

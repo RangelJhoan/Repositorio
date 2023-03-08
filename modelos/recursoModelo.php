@@ -91,6 +91,16 @@
             return $sql;
         }
 
+        protected static function editar_estado_recurso_modelo(Recurso $recurso){
+            try {
+                $sql = mainModel::conectar()->prepare("UPDATE recurso SET estado=? WHERE id=?");
+                $sql->execute([$recurso->getEstado(), $recurso->getIdRecurso()]);
+                return $sql->rowCount();
+            } catch (\Throwable $th) {
+                return $th->getMessage();
+            }
+        }
+
     }
 
 ?>

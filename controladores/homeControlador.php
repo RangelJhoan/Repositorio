@@ -18,8 +18,9 @@ class homeControlador extends homeModelo{
     public function cargar_informacion_recurso($pId){
         $informacion = homeModelo::cargar_autores($pId);
         $autores = "";
-        foreach ($informacion AS $autor){
-            $autores .= $autor['apellido'].", ".$autor['nombre']."; ";
+        foreach ($informacion AS $key => $autor){
+            $separador = ($key == count($informacion) - 1) ? "" : "; ";
+            $autores .= $autor['apellido'].", ".$autor['nombre'].$separador;
         }
         return $autores;
     }

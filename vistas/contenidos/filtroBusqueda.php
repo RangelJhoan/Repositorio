@@ -6,7 +6,7 @@
             <div class="overview-general-admin">
                 <!--TÍTULO-->
                 <div class="title">
-                    <i><img src="<?php echo SERVER_URL; ?>vistas/assets/img/tituloHome.svg" class="titleImgIcon" alt="Autor Img"/></i>
+                    <i class="uil uil-search search-iconHome"></i>
                     <h1 class="panel-title-name">Búsqueda...</h1>
                 </div>
                 

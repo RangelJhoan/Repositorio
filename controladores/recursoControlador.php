@@ -138,6 +138,34 @@ class recursoControlador extends recursoModelo{
         return recursoModelo::archivoXRecursoModelo($id)->fetch();
     }
 
+    public function eliminar_recurso_controlador(){
+        $recurso = new Recurso();
+        $recurso->setIdRecurso(mainModel::decryption($_POST['id_recurso_del']));
+        $recurso->setEstado(3);
+
+        $eliminarRecurso = recursoModelo::editar_estado_recurso_modelo($recurso);
+
+        if(is_string($eliminarRecurso) || $eliminarRecurso < 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"No se pudo eliminar el recurso",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $alerta=[
+            "Alerta"=>"recargar",
+            "Titulo"=>"Exitoso",
+            "Texto"=>"Recurso eliminado exitosamente",
+            "Tipo"=>"success"
+        ];
+        echo json_encode($alerta);
+
+    }
+
 }
 
 ?>

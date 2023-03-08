@@ -15,7 +15,7 @@
                 include("filtroCurso.php");
             }else if($pagina[1]=="Fecha" || $pagina[1]=="Fechafiltrar"){
                 include("filtroFecha.php");
-            }else if($pagina[1]=="Busqueda"){
+            }else if($pagina[1]=="Busqueda" || $pagina[1]=="filtroCurso" || $pagina[1]=="filtroAutor"){
                 include("filtroBusqueda.php");
             }
         ?>

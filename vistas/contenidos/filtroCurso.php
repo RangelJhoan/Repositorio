@@ -42,7 +42,7 @@
                             $recursos = $ins_home->cargar_recursos_curso($vRecurso['id']);
                             ?>
                             <tr>
-                                <td data-titulo="NOMBRE"><a href="#" class="redireccionTable"><?php echo $vRecurso['nombre']; ?><span class="tableFilterCounter"><?php echo $recursos; ?></span></a></td>
+                                <td data-titulo="NOMBRE"><a href="<?php echo SERVER_URL."recursosBusqueda/filtroCurso/".$vRecurso['id']; ?>" class="redireccionTable"><?php echo $vRecurso['nombre']; ?><span class="tableFilterCounter"><?php echo $recursos; ?></span></a></td>
                             </tr>
                             <?php } ?>  
                         </tbody>

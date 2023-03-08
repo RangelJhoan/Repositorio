@@ -432,6 +432,16 @@ body.dark .switch:before{
     }
 }
 
+@media (max-width:850px){
+    .responsive-file{
+        display: flex;
+        flex-direction: column;
+    }
+    .center-name{
+        font-size: 1rem;
+    }
+}
+
 @media (max-width:500px){
     .lateralNavBar{
         width:73px;
@@ -474,10 +484,7 @@ body.dark .switch:before{
     .top-navbar .top-container .sidebar-toggle{
         display: none;
     }
-}
-@media (max-width:850px){
-    .responsive-file{
-        display: flex;
-        flex-direction: column;
+    .center-name{
+        font-size: 0.9rem;
     }
 }

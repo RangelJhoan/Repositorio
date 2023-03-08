@@ -930,7 +930,7 @@ select {
     user-select: none;
     }
 
-/*Tótulos que empiecen por la letra:*/
+/*Títulos que empiecen por la letra:*/
 .aLetraFiltro{
     display: inline-flex;
     flex-direction: row;
@@ -964,7 +964,10 @@ select {
     padding: 3.75px 15px 3.75px 7.5px;
     line-height: 22.5px;
 }
-
+/*Contenedor combo años*/
+.containerComboAños{
+    margin-bottom: -10px;
+}
 /*Estilo botón buscar año*/
 .buttonSearchYear{
     align-items: flex-start;

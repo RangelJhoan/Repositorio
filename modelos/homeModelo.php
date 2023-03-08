@@ -17,8 +17,8 @@
                 }
 
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
-                ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor 
-                WHERE r.titulo LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellido) LIKE '%".$search."%' OR CONCAT(a.apellido,' ',a.nombre) LIKE '%".$search."%';");    
+                ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor JOIN etiqueta_recurso er ON er.id_recurso = r.id JOIN etiqueta e ON er.id_etiqueta = e.id
+                WHERE r.titulo LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellido) LIKE '%".$search."%' OR CONCAT(a.apellido,' ',a.nombre) LIKE '%".$search."%' OR e.descripcion LIKE '%".$search."%';");    
             }else if($pTipo=="Autor"){
                 $sql = mainModel::conectar()->prepare("SELECT nombre,apellido,id FROM autor ORDER BY apellido");
             }else if($pTipo=="Titulo"){
@@ -42,6 +42,13 @@
             }else if($pTipo == "Titulonumero"){
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id), r.titulo, r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar ON r.id = ar.id_recurso JOIN autor a ON a.id = ar.id_autor 
                 WHERE r.titulo REGEXP '^[0-9]' ORDER BY r.titulo;");
+            }else if($pTipo == "filtroAutor"){
+                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id), r.titulo, r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar ON r.id = ar.id_recurso JOIN autor a ON a.id = ar.id_autor 
+                WHERE a.id = '".$pBuscar."' ORDER BY r.titulo;");
+            }else if($pTipo == "filtroCurso"){
+                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id), r.titulo, r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar ON r.id = ar.id_recurso JOIN autor a ON a.id = ar.id_autor
+                    JOIN curso_recurso cr ON cr.id_recurso = r.id JOIN curso c ON c.id = cr.id_curso
+                WHERE c.id = '".$pBuscar."' ORDER BY r.titulo;");
             }
             $sql->execute();
 

@@ -1,4 +1,3 @@
-
     <!-- BARRA DE NAVEGACIÓN -->
     <nav class="nav-Home-Main">
         <section class="logo-section-Home">
@@ -60,8 +59,8 @@
         </ul>
     </nav>
 
-    <!-- SECCIÓN 1: BANNER + BARRA BÚSQUEDA-->
-    <section class="bannerSearchHome-Section">
+        <!-- SECCIÓN 1: BANNER + BARRA BÚSQUEDA-->
+        <section class="bannerSearchHome-Section">
         <!-- Banner -->
         <img class="bannerImg" src="<?php echo SERVER_URL ?>vistas/assets/img/bannerHome.png" alt="Banner Repositorio Institucional">
         <!-- Barra búsqueda -->

@@ -324,6 +324,7 @@ label{
     padding-left: 200px;
     padding-right: 200px;
     font-size: var(--normal-font-size);
+    list-style: circle;
 }
 /*Espaciado de la tabla*/
 .table-admin-container .tb-admin-records,

@@ -10,6 +10,7 @@ class Recurso {
     private $fecha;
     private $enlace;
     private $archivo;
+    private $estado;
 
     public function __construct(){}
 
@@ -51,6 +52,10 @@ class Recurso {
         return $this->archivo;
     }
 
+    public function getEstado(){
+        return $this->estado;
+    }
+
     //Setters
     public function setIdRecurso($idRecurso){
         $this->idRecurso = $idRecurso;
@@ -86,6 +91,10 @@ class Recurso {
 
     public function setArchivo($archivo){
         $this->archivo = $archivo;
+    }
+
+    public function setEstado($estado){
+        $this->estado = $estado;
     }
 }
 

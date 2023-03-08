@@ -80,9 +80,9 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                                     <div class="btn-group-action">
                                         <a href="<?php echo SERVER_URL ?>adminEditarRecurso/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" class="btn-admin-edit-record" title="Editar recurso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
                                     </div>
-                                    <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/cursoAjax.php" method="POST" data-form="delete" autocomplete="off">
+                                    <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/recursoAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
-                                            <input type="hidden" name="id_curso_del" value="<?php echo $ins_recurso->encryption($rows['idRecurso']) ?>">
+                                            <input type="hidden" name="id_recurso_del" value="<?php echo $ins_recurso->encryption($rows['idRecurso']) ?>">
                                             <button type="submit" class="btn-delete-record" title="Eliminar recurso"><i class="uil uil-trash-alt"></i></button>
                                         </div>
                                     </form>

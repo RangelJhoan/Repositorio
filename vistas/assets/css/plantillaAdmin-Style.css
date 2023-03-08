@@ -10,7 +10,7 @@
     --gray-color:#c9c9c9;
     --border-color:#a0a0a08a;
     --cards-text-color: #fff;
-    --normal-font-size: 1.1rem;
+    --normal-font-size: 0.7rem
     --title-table-font-size:1.2rem;
     --titlecards-font-size:1.5rem;
     --numbercards-font-size:1.9rem;
@@ -433,6 +433,16 @@ body.dark .switch:before{
     }
 }
 
+@media (max-width:850px){
+    .responsive-file{
+        display: flex;
+        flex-direction: column;
+    }
+    .center-name{
+        font-size: 1rem;
+    }
+}
+
 @media (max-width:500px){
     .lateralNavBar{
         width:73px;
@@ -475,10 +485,7 @@ body.dark .switch:before{
     .top-navbar .top-container .sidebar-toggle{
         display: none;
     }
-}
-@media (max-width:850px){
-    .responsive-file{
-        display: flex;
-        flex-direction: column;
+    .center-name{
+        font-size: 0.9rem;
     }
 }
