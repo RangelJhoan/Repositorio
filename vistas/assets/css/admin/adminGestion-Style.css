@@ -59,7 +59,7 @@
         width: 40px;
         background-color: var(--main-color);
         border-radius: 50%;
-        color: var(--white-color);
+        color: var(--text-color);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -87,7 +87,7 @@
     width: 40px;
     background-color: var(--main-color);
     border-radius: 50%;
-    color: var(--white-color);
+    color: var(--text-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -331,6 +331,7 @@ label{
 .table-admin-container .tb-admin-records th,
 .table-admin-container .tb-admin-records td{
     padding:5px 10px;
+    /* border-bottom: 1px solid var(--row-selected-color); */
 }
 /*Título de columna*/
 .table-admin-container .tb-admin-records th{
@@ -340,10 +341,15 @@ label{
     text-transform: uppercase;
     color:var(--text-color);
     cursor:pointer;
+    transition: all .5s;
+}
+.table-admin-container .tb-admin-records th:hover{
+    color:var(--main-color);
 }
 /*Color de texto de cada fila*/
 .table-admin-container .tb-admin-records tbody tr{
     color:var(--text-color);
+    font-size: 1rem;
 }
 /*Color de fila coloreada al posicionarnos sobre un registro*/
 .table-admin-container .tb-admin-records tbody tr:hover{
@@ -417,6 +423,17 @@ label{
 .btn-delete-record:hover{
     background-color:  var(--delete-button-hover);
 }
+
+/*Link en archivo para poder abrirlo directamente y verlo*/
+.abrirArchivoTbRecurso{
+    text-decoration: none;
+    color: var(--main-color);
+    transition: all .5s;
+    }
+    .abrirArchivoTbRecurso:hover{
+    color: #966f26;
+    }
+
 
 /*?---------------------MOSTRANDO DE X 1 X DE X ENTRADAS----------------------*/
 .dataTables_info{
@@ -743,8 +760,6 @@ select::-ms-expand{
 }
 
 
-
-
 /*Contenedor gereal del input*/
 .fileUploadContainer {
     position: relative;
@@ -775,6 +790,7 @@ select::-ms-expand{
     margin: auto;
     border-radius: 25px;
     cursor: pointer;
+    user-select: none;
 }
 .labelFileUpload:hover {
     background-color: #d69e36;
@@ -806,15 +822,34 @@ select::-ms-expand{
     border-radius: 0 0 25px 25px;  
     max-width: 380px;
     width: 100%;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     overflow: hidden;
     text-overflow: ellipsis;
     overflow-wrap: break-word;
-    line-height: 2;
-    padding-right: 250px;
+    /* line-height: 2; */
+    /* padding-right: 250px; */
     font-size: medium;
+    word-wrap: break-word;
+    /* word-break: break-all; */
 }
 
+/*BARRA DE CARGA DEL ARCHIVO - PROGRESO*/
+.progress {
+    height: auto;
+    background-color: transparent;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.progress-bar {
+    height: 100%;
+    background-color: #3da096;
+    border-radius: 50px;
+    width: 0%;
+    transition: width 0.2s ease-in-out;
+    text-align:center;
+    font-size:var(--pequeña-font-size);
+    user-select: none;
+}
 
 
 /*?------------------ERROR EDITAR REGISTRO----------------*/
@@ -978,7 +1013,6 @@ select::-ms-expand{
 }
 .mult-select-tag .btn-container{
     color:#e2ebf0;
-    padding:.5rem;
     display:flex;
     border-left:1px solid var(--row-selected-color);
 }
@@ -999,8 +1033,13 @@ select::-ms-expand{
     margin:0;
 }
 .mult-select-tag button:first-child{
-    width:1rem;
+    width:1.2rem;
     height:90%;
+    transition: all .4s;
+}
+.mult-select-tag button:first-child:hover{
+    transform: scale(1.1);
+    color:var(--main-color);
 }
 /*Contenedor general del momento en que se abren las opciones*/
 .mult-select-tag .drawer{
@@ -1199,6 +1238,9 @@ select::-ms-expand{
         }
         .container-modal-add-record{
             overflow-y: scroll;
+        }
+        .mult-select-tag button:first-child{
+            width:1.1rem;
         }
     }
 

@@ -18,7 +18,7 @@
 
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
                 ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor JOIN etiqueta_recurso er ON er.id_recurso = r.id JOIN etiqueta e ON er.id_etiqueta = e.id
-                WHERE r.titulo LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellido) LIKE '%".$search."%' OR CONCAT(a.apellido,' ',a.nombre) LIKE '%".$search."%' OR e.descripcion LIKE '%".$search."%';");    
+                WHERE r.titulo LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellido) LIKE '%".$search."%' OR CONCAT(a.apellido,' ',a.nombre) LIKE '%".$search."%' OR e.descripcion LIKE '%".$search."%' OR r.fecha_publicacion_recurso LIKE '%".$search."%';");    
             }else if($pTipo=="Autor"){
                 $sql = mainModel::conectar()->prepare("SELECT nombre,apellido,id FROM autor ORDER BY apellido");
             }else if($pTipo=="Titulo"){

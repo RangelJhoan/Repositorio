@@ -7,7 +7,7 @@ class vistasControlador extends vistasModelo{
     /*----- Controlador para obtener plantilla -----*/
     public function obtener_plantilla_controlador(){
         session_start(['name'=>'REPO']);
-        $listaBlancaHome = ["preguntasFreq","recursosBusqueda","asideHomeFilters"];
+        $listaBlancaHome = ["preguntasFreq","recursosBusqueda","asideHomeFilters","recursosVisualizacion"];
 
         if(isset($_SESSION['tipo_usuario']) && isset($_GET['views'])){
             $ruta = explode("/", $_GET['views']);

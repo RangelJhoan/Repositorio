@@ -29,7 +29,7 @@
                                 ?>
                                 <tr>
                                     <td data-titulo="FECHA"><a href="#" class="deleteRedireccionTable"><?php echo $vRecurso['fecha_publicacion_recurso'];?></a></td>
-                                    <td data-titulo="TITULO"><a href="#" class="redireccionTable"><?php echo $vRecurso['titulo']; ?> </a></td>
+                                    <td data-titulo="TITULO"><a href="<?php echo SERVER_URL ?>recursosVisualizacion/" class="redireccionTable"><?php echo $vRecurso['titulo']; ?> </a></td>
                                     <td data-titulo="AUTOR(ES)"><a href="#" class="deleteRedireccionTable italicTableStyle"><?php echo $autores; ?></a></td>
                                 </tr>
                                 <?php } ?>  

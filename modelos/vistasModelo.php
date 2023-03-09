@@ -6,7 +6,7 @@ class vistasModelo{
         $listaBlancaAdmin = ["adminDashboard","adminUsuarios","adminEditarUsuario","editarPerfil","adminProgramas","adminEditarPrograma","adminCursos","adminEditarCurso","adminRecursos","adminAutores","adminEditarAutor","adminReportes","crearRecurso","panelEtiquetas","editarEtiqueta"];
         $listaBlancaDocente = ["docenteDashboard"];
         $listaBlancaEstudiante = ["estudianteDashboard","estudianteFavoritos","editarPerfil","estudianteFeedbacks"];
-        $listaBlancaHome = ["preguntasFreq","recursosBusqueda","asideHomeFilters"];
+        $listaBlancaHome = ["preguntasFreq","recursosBusqueda","asideHomeFilters","recursosVisualizacion"];
 
         //?VERIFICACIÓN TIPO DE USUARIO
         if(isset($_SESSION['tipo_usuario'])){

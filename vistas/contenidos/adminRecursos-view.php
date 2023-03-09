@@ -69,7 +69,7 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                                 }
                             ?>
                             </td>
-                            <td data-titulo="ARCHIVO"><?php if($archivo != false) echo $archivo['nombre'] ?></td>
+                            <td data-titulo="ARCHIVO"><a href="" target="_blank" class="abrirArchivoTbRecurso" title="Ver archivo"><?php if($archivo != false) echo $archivo['nombre'] ?></a></td>
                             <td data-titulo="POSITIVOS"><?php echo $rows['puntos_positivos'] ?></td>
                             <td data-titulo="NEGATIVOS"><?php echo $rows['puntos_negativos'] ?></td>
                             <td data-titulo="ACCIÓN">

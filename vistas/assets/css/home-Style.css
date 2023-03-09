@@ -13,10 +13,12 @@
     --hover-navBarHome1: #33508f;
     --hover-navBarHome2: #415fa0;
     --secondary-main-homeColor:#678c8f;
+    
     --hexagonN1:rgb(231, 99, 99);
     --hexagonN2:rgb(104, 104, 255);
     --hexagonN3:rgb(79, 170, 114);
     --hexagonN4:rgb(90, 11, 77);
+
     --colorTableN1: rgb(80, 121, 104);
     --colorTableN2: rgb(46, 68, 57);
     --colorTableN3: rgba(160, 211, 190, 0.692);
@@ -990,6 +992,146 @@ select {
     color:var(--white-home-color);
 }
 
+
+
+/*! ******************** VISUALIZACIÓN RECURSO ******************/
+/**Contenedor principal "Sección"*/
+.containerVerRecurso{
+    height: fit-content;
+    border-radius: 5%;
+    border-collapse: collapse;
+    border: 0;
+    width: 100%;
+    max-width: 1200px;
+    margin:0 auto;
+    padding:20px;
+}
+/**Título de tabla para visualizar recurso*/
+.containerVerRecursoTitulo{
+    text-align: center;
+    font-weight: 500;
+    padding-bottom: 10px;
+    font-size: 0.9rem;
+    color: var(--colorTableN2);
+    user-select: none;
+    font-size: var(--phrgp-home-normal-font-size);
+    background: var(--colorTableN3);
+    background: linear-gradient(360deg, var(--colorTableN4) 3%, var(--home-background-color) 100%);
+    text-transform: uppercase;
+}
+/*Estilo de la tabla*/
+.tableRecursoVisualizar{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid var(--colorTableN4);
+}
+/*Titulos de las columnas*/
+.tituloColVerRecurso{
+    padding: 10px;
+    border:0;
+    background:var(--white-home-color);
+    border-bottom: 1px solid var(--gray-home-color);
+    font-weight: 500;
+    text-align: left;
+    font-size: var(--phrgp-home-medium-font-size);
+    color: var(--colorTableN2);
+}
+/*Información de las columnas*/
+.infoColVerRecurso {
+    background:var(--white-home-color);
+    border-bottom: 1px solid var(--gray-home-color);
+    border-left: 1px solid var(--gray-home-color);
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: var(--phrgp-home-medium-font-size);
+    color: var(--home-text-color);
+}
+/**Listas para redirigir. ENLACE DEL RECURSO*/
+.redireccionVerRecurso{
+    font-weight: 500;
+    text-decoration: none;
+    color:var(--colorTableN4);
+    transition: .5s all ease;
+    justify-content: space-between;
+    gap:5px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.redireccionVerRecurso:hover{
+    color:var(--colorTableN2);
+}
+.ulVerRecurso{
+    /* display: flex;
+    flex-direction: column; */
+    display: inline-block;
+    flex-direction: column;
+}
+.liVerRecurso{
+    list-style: none;
+}
+
+/**Acciones (botones) ARCHIVO DEL RECURSO*/
+.btn-group-action{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+    gap:10px;
+}
+
+.btn-group-action i{
+    padding:3px 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+    align-items: center;
+    color:white;
+    text-decoration: none;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s; 
+}
+.btnAccionesRecurso {
+    border-radius: 5px;
+    border-style: none;
+    transition: all .5s;
+    text-decoration: none;
+    width: 48%;
+  }
+/*Botón visualizar*/
+.btnVisRec{
+    background-color: var(--hexagonN3);
+}
+.btnVisRec:hover{
+    background-color: var(--colorTableN4) ;
+}
+/*Botón descargar*/
+.btnDescRec{
+    background-color: var(--hover-navBarHome2);
+}
+.btnDescRec:hover{
+    background-color: var(--hover-navBarHome1);
+}
+/*Botón calificar*/
+.btnCalRec{
+    background-color: #c99a35;
+}
+.btnCalRec:hover{
+    background-color: #b8871e;
+}
+/*Botón favoritos*/
+.btnFavRec{
+    background-color: #e24b45;
+}
+.btnFavRec:hover{
+    background-color: #882c27;
+}
+
+
+
 /*! ************************** RESPONSIVE DESIGN *************/
 @media all and (max-width:1070px){
     .mainContarinerFilters{
@@ -1149,6 +1291,9 @@ select {
     #codano {
         font-size: var(--phrgp-home-medium-font-size);
     }
+    .infoBotonesVerRec{
+        padding:10px;
+    }
 }
 
 @media all and (max-width:600px){
@@ -1239,6 +1384,12 @@ select {
     }
     .dataTables_length, .form-select.form-select-sm,.dataTables_filter, .form-control.form-control-sm,.dataTables_info,.pagination, .pagination li,.pagination li a{
         font-size: var(--phrgp-home-medium-font-size);
+    }
+    .containerVerRecursoTitulo{
+        font-size: var(--phrgp-home-medium-font-size);
+    }
+    .tituloColVerRecurso, .infoColVerRecurso{
+    font-size: var(--phrgp-home-tiny-font-size);
     }
 }
 

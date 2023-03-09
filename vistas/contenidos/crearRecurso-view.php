@@ -90,12 +90,16 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
                         <!--Cargue del archivo-->
                         <div class="fileUploadContainer">
                             <input class="inputUploadFile" type="file" id="file-input"/>
-                        <label class="labelFileUpload" for="file-input">
-                        <i class="uil uil-upload"></i>
-                        &nbsp; Subir archivo
-                        </label>
+                            <label class="labelFileUpload" for="file-input">
+                                <i class="uil uil-upload"></i>
+                                &nbsp; Subir archivo
+                            </label>
+                            <!--Barra de carga / progreso-->
                             <ul id="files-list"></ul>
-                        </div>
+                            <div class="progress">
+                                <div id="progress-bar" class="progress-bar" role="progressbar"></div>
+                            </div>
+                            </div>
                         <!--Botones de acción-->
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-submit-add-record" value="Crear" title="Crear recurso"/>

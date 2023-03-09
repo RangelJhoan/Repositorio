@@ -59,7 +59,7 @@
         width: 40px;
         background-color: var(--main-color);
         border-radius: 50%;
-        color: var(--white-color);
+        color: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -87,7 +87,7 @@
     width: 40px;
     background-color: var(--main-color);
     border-radius: 50%;
-    color: var(--white-color);
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -263,10 +263,15 @@ label{
     text-transform: uppercase;
     color:var(--text-color);
     cursor:pointer;
+    transition: all .5s;
+}
+.table-admin-container .tb-admin-records th:hover{
+    color:var(--main-color);
 }
 /*Color de texto de cada fila*/
 .table-admin-container .tb-admin-records tbody tr{
     color:var(--text-color);
+    font-size: 1rem;
 }
 /*Color de fila coloreada al posicionarnos sobre un registro*/
 .table-admin-container .tb-admin-records tbody tr:hover{
