@@ -95,11 +95,12 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
                                 &nbsp; Subir archivo
                             </label>
                             <!--Barra de carga / progreso-->
-                            <ul id="files-list"></ul>
+                            <ul id="files-list">
+                            </ul>
                             <div class="progress">
                                 <div id="progress-bar" class="progress-bar" role="progressbar"></div>
                             </div>
-                            </div>
+                        </div>
                         <!--Botones de acción-->
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-submit-add-record" value="Crear" title="Crear recurso"/>

@@ -35,10 +35,10 @@ fileInput.addEventListener("change", () => {
         let listItem = document.createElement("li");
         let fileName = i.name;
         let fileSize = (i.size / 1024).toFixed(1);
-        listItem.innerHTML = `<p>${fileName}</p><p>${fileSize}KB</p>`;
+        listItem.innerHTML = `<a href="#" onclick="window.open('${URL.createObjectURL(i)}')" class="link-estilo"> ${fileName} </a><p class="tamano-archivo">${fileSize}KB</p>`;
         if (fileSize >= 1024) {
             fileSize = (fileSize / 1024).toFixed(1);
-            listItem.innerHTML = `<p>${fileName}</p><p>${fileSize}MB</p>`;
+            listItem.innerHTML = `<a href="#" onclick="window.open('${URL.createObjectURL(i)}')" class="link-estilo"> ${fileName} </a><p class="tamano-archivo">${fileSize}MB</p>`;
         }
         fileList.appendChild(listItem);
 

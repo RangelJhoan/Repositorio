@@ -832,6 +832,16 @@ select::-ms-expand{
     word-wrap: break-word;
     /* word-break: break-all; */
 }
+.link-estilo {
+    color: var(--main-color);
+    text-decoration: none;
+    font-size: var(--pequeña-font-size);
+  }
+  
+  .tamano-archivo {
+    font-size: var(--pequeña-font-size);
+    color: var(--text-color);
+  }
 
 /*BARRA DE CARGA DEL ARCHIVO - PROGRESO*/
 .progress {
