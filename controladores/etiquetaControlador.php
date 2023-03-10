@@ -13,7 +13,7 @@ class etiquetaControlador extends etiquetaModelo{
     public function agregar_etiqueta_controlador(){
         $etiqueta = new Etiqueta();
         $etiqueta->setDescripcion($_POST['descripcion_ins']);
-        $etiqueta->setEstado(1);
+        $etiqueta->setEstado(Utilidades::getIdEstado("ACTIVO"));
 
         if($etiqueta->getDescripcion() == ""){
             $alerta=[
@@ -106,7 +106,7 @@ class etiquetaControlador extends etiquetaModelo{
         try {
             $autor = new Etiqueta();
             $autor->setIdEtiqueta(mainModel::decryption($_POST['id_etiqueta_del']));
-            $autor->setEstado(3);
+            $autor->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
             $eliminarEtiqueta = etiquetaModelo::eliminar_etiqueta_modelo($autor);
 
@@ -156,7 +156,7 @@ class etiquetaControlador extends etiquetaModelo{
     public function paginador_etiqueta_controlador(){
         $consulta = "SELECT * 
         FROM etiqueta 
-        WHERE estado != ". 3 ." 
+        WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") ." 
         ORDER BY descripcion ASC";
 
         $conexion = mainModel::conectar();

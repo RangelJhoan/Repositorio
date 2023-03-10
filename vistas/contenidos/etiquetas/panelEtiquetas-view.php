@@ -65,7 +65,7 @@
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
                             <td data-titulo="NOMBRE"><?php echo $rows['descripcion'] ?></td>
-                            <td data-titulo="ESTADO"><?php echo $estados[$rows['estado']] ?></td>
+                            <td data-titulo="ESTADO"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">

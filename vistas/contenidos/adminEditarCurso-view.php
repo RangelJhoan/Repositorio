@@ -85,12 +85,12 @@ if($datos_curso->rowCount()>0){
                             <select name="estado" class="combobox-titulo" title="Estado del curso">
                                 <option disabled value="" class="combobox-opciones">Estado</option>
                                 <?php
-                                    for ($i = 0; $i<count($estados); $i++) {
-                                    ?>
-                                    <option <?php if($campos['estado'] == $i){echo "selected";} ?> value="<?php echo $i; ?>"><?php echo $estados[$i]; ?></option>
-                                    <?php
-                                    }
-                                    ?>
+                                foreach (Utilidades::getEstados() as $clave => $valor) {
+                                ?>
+                                <option <?php if($campos_curso['estado'] == $clave){echo "selected";} ?> value="<?php echo $clave; ?>"><?php echo $valor; ?></option>
+                                <?php
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>

@@ -19,6 +19,7 @@ class recursoControlador extends recursoModelo{
         $recurso = new Recurso();
         $recurso->setTitulo($_POST['titulo_ins']);
         $recurso->setResumen($_POST['resumen_ins']);
+        $recurso->setEstado(Utilidades::getIdEstado("ACTIVO"));
 
         if(isset($_POST['autores_ins']))
             $recurso->setAutor($_POST['autores_ins']);
@@ -79,7 +80,7 @@ class recursoControlador extends recursoModelo{
                     $archivo->setISBN($_POST['ISBN_ins']);
                 }
 
-                $archivo->setEstado(1);
+                $archivo->setEstado(Utilidades::getIdEstado("ACTIVO"));
 
                 $recurso->setArchivo($archivo);
 

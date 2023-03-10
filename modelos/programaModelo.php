@@ -44,12 +44,12 @@
             if($tipo == "Unico"){
                 $sql = mainModel::conectar()->prepare("SELECT * 
                 FROM programa 
-                WHERE estado != ". 3 ." AND id = :ID;");
+                WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") ." AND id = :ID;");
                 $sql->bindParam(":ID", $id);
             }elseif($tipo == "Conteo"){
                 $sql = mainModel::conectar()->prepare("SELECT id
                 FROM programa
-                WHERE estado != ". 3 .";");
+                WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") .";");
             }
             $sql->execute();
             return $sql;

@@ -13,8 +13,8 @@ class etiquetaModelo extends mainModel{
 
     protected static function agregar_etiqueta_modelo(Etiqueta $etiqueta){
         try {
-            $sql = mainModel::conectar()->prepare("INSERT INTO etiqueta(descripcion) VALUES(?);");
-            $sql->execute([$etiqueta->getDescripcion()]);
+            $sql = mainModel::conectar()->prepare("INSERT INTO etiqueta(descripcion, estado) VALUES(?, ?);");
+            $sql->execute([$etiqueta->getDescripcion(), $etiqueta->getEstado()]);
 
             return $sql->rowCount();
         } catch (Exception $e) {
@@ -50,12 +50,12 @@ class etiquetaModelo extends mainModel{
         if($tipo == "Unico"){
             $sql = mainModel::conectar()->prepare("SELECT * 
             FROM etiqueta 
-            WHERE estado != ". 3 ." AND id = :ID;");
+            WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") ." AND id = :ID;");
             $sql->bindParam(":ID", $id);
         }elseif($tipo == "Conteo"){
             $sql = mainModel::conectar()->prepare("SELECT id 
             FROM etiqueta
-            WHERE estado != ". 3 .";");
+            WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") .";");
         }
         $sql->execute();
         return $sql;

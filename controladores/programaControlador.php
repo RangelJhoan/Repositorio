@@ -17,7 +17,7 @@ class programaControlador extends programaModelo{
         $programa = new Programa();
         $programa->setNombre($_POST['nombre_ins']);
         $programa->setDescripcion($_POST['descripcion_ins']);
-        $programa->setEstado(1);
+        $programa->setEstado(Utilidades::getIdEstado("ACTIVO"));
 
         if($programa->getNombre() == "" || $programa->getDescripcion() == ""){
             $alerta=[
@@ -69,7 +69,7 @@ class programaControlador extends programaModelo{
     public function eliminar_programa_controlador(){
         $programa = new Programa();
         $programa->setIdPrograma(mainModel::decryption($_POST['id_programa_del']));
-        $programa->setEstado(3);
+        $programa->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
         $editarPrograma = programaModelo::editar_estado_programa_modelo($programa);
 
@@ -173,7 +173,7 @@ class programaControlador extends programaModelo{
     public function paginador_programa_controlador(){
         $consulta = "SELECT * 
         FROM programa 
-        WHERE estado != ". 3 ." 
+        WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") ." 
         ORDER BY nombre ASC";
 
         $conexion = mainModel::conectar();

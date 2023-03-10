@@ -2,8 +2,10 @@
 
     if($peticionAjax){
         require_once "../config/SERVER.php";
+        require_once "../utilidades/Utilidades.php";
     }else{
         require_once "./config/SERVER.php";
+        require_once "./utilidades/Utilidades.php";
     }
 
     class mainModel{

@@ -23,11 +23,10 @@ class usuarioControlador extends usuarioModelo{
         $persona->setDocumento($_POST['documento']);
         $persona->setClave($_POST['clave']);
         $persona->setIdTipoUsuario($_POST['tipoUsuario']);
-        $persona->setEstado($_POST['estado']);
         $confirmarClave = $_POST['confirmarClave'];
 
-        $persona->setEstado(1);
-        $persona->setEstadoPersona(1);
+        $persona->setEstado(Utilidades::getIdEstado("ACTIVO"));
+        $persona->setEstadoPersona(Utilidades::getIdEstado("ACTIVO"));
 
         $tipoDocumento = new TipoDocumento();
         $tipoDocumento->setIdTipoDocumento($_POST['tipoDocumento']);
@@ -117,7 +116,7 @@ class usuarioControlador extends usuarioModelo{
 
         if($check_account->rowCount() > 0){
             $row = $check_account->fetch();
-            if($row['estado'] != 1){
+            if($row['estado'] != Utilidades::getIdEstado("ACTIVO")){
                 echo '<script>
                     Swal.fire({
                         title:"Error",
@@ -209,8 +208,8 @@ class usuarioControlador extends usuarioModelo{
         $persona = new Persona();
         $persona->setIdPersona(mainModel::decryption($_POST['idPersona']));
         $persona->setIdUsuario(mainModel::decryption($_POST['idUsuario']));
-        $persona->setEstadoPersona(3);
-        $persona->setEstado(3);
+        $persona->setEstadoPersona(Utilidades::getIdEstado("ELIMINADO"));
+        $persona->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
         $editarPersona = usuarioModelo::editar_estado_persona_modelo($persona);
 
@@ -257,7 +256,7 @@ class usuarioControlador extends usuarioModelo{
     /*---------- Controlador editar usuario ----------*/
     public function editar_usuario_controlador(){
         session_start(['name'=>'REPO']);
-        if($_SESSION['correo_usuario'] != "admin.repositorioinstitucional@gmail.com" && $_POST['estado'] == 3){
+        if($_SESSION['correo_usuario'] != "admin.repositorioinstitucional@gmail.com" && $_POST['estado'] == Utilidades::getIdEstado("ELIMINADO")){
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
@@ -495,7 +494,7 @@ class usuarioControlador extends usuarioModelo{
 
         $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, p.documento as numeroDocumento, td.descripcion as documento, tu.descripcion as tipoUsuario, p.id_usuario, u.estado, tu.descripcion 
         FROM persona p JOIN tipo_documento td ON td.id = p.id_tipo_documento JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
-        WHERE u.correo != 'admin.repositorioinstitucional@gmail.com' and u.correo != '". $_SESSION['correo_usuario'] ."' and u.estado != ". 3 ." 
+        WHERE u.correo != 'admin.repositorioinstitucional@gmail.com' and u.correo != '". $_SESSION['correo_usuario'] ."' and u.estado != ". Utilidades::getIdEstado("ELIMINADO") ." 
         ORDER BY p.nombre ASC";
 
         $conexion = mainModel::conectar();
@@ -517,7 +516,7 @@ class usuarioControlador extends usuarioModelo{
         FROM persona p 
         JOIN usuario u ON u.id = p.id_usuario 
         JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
-        WHERE u.correo != 'admin.repositorioinstitucional@gmail.com' and u.estado != ". 3 ." and UPPER(tu.descripcion) = UPPER('". $tipoUsuario ."') 
+        WHERE u.correo != 'admin.repositorioinstitucional@gmail.com' and u.estado != ". Utilidades::getIdEstado("ELIMINADO") ." and UPPER(tu.descripcion) = UPPER('". $tipoUsuario ."') 
         ORDER BY p.nombre ASC";
 
         $conexion = mainModel::conectar();

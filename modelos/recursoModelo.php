@@ -16,7 +16,7 @@
             try{
                 session_start(['name'=>"REPO"]);
                 $sql = mainModel::conectar()->prepare("INSERT INTO recurso(titulo, fecha_publicacion_profesor, fecha_publicacion_recurso, resumen, estado, enlace, id_docente) VALUES(?, ?, ?, ?, ?, ?, ?);");
-                $sql->execute([$recurso->getTitulo(), date("Y-m-d H:i:s"), $recurso->getFecha(), $recurso->getResumen(), 1, $recurso->getEnlace(), $_SESSION['id_persona']]);
+                $sql->execute([$recurso->getTitulo(), date("Y-m-d H:i:s"), $recurso->getFecha(), $recurso->getResumen(), $recurso->getEstado(), $recurso->getEnlace(), $_SESSION['id_persona']]);
 
                 $sqlQuery = mainModel::conectar()->prepare("SELECT id FROM recurso WHERE titulo = ?;");
                 $sqlQuery->execute([$recurso->getTitulo()]);
@@ -69,12 +69,12 @@
             if($tipo == "Unico"){
                 $sql = mainModel::conectar()->prepare("SELECT * 
                 FROM recurso 
-                WHERE estado != ". 3 ." AND id = :ID;");
+                WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") ." AND id = :ID;");
                 $sql->bindParam(":ID", $id);
             }elseif($tipo == "Conteo"){
                 $sql = mainModel::conectar()->prepare("SELECT id 
                 FROM recurso
-                WHERE estado != ". 3 .";");
+                WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") .";");
             }
             $sql->execute();
             return $sql;

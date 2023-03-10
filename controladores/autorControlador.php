@@ -17,7 +17,7 @@ class autorControlador extends autorModelo{
         $autor = new Autor();
         $autor->setNombre($_POST['nombre_ins']);
         $autor->setApellido($_POST['apellido_ins']);
-        $autor->setEstado(1);
+        $autor->setEstado(Utilidades::getIdEstado("ACTIVO"));
 
         if($autor->getApellido() == ""){
             $alerta=[
@@ -57,7 +57,7 @@ class autorControlador extends autorModelo{
         try {
             $autor = new Autor();
             $autor->setIdAutor(mainModel::decryption($_POST['id_autor_del']));
-            $autor->setEstado(3);
+            $autor->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
             $eliminarAutor = autorModelo::eliminar_autor_modelo($autor);
 
@@ -160,7 +160,7 @@ class autorControlador extends autorModelo{
     public function paginador_autor_controlador(){
         $consulta = "SELECT * 
         FROM autor 
-        WHERE estado != ". 3 ." 
+        WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") ." 
         ORDER BY nombre ASC";
 
         $conexion = mainModel::conectar();

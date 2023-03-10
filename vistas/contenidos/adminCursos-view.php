@@ -111,7 +111,7 @@ $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
                                     <?php
                                 }
                             ?></td>
-                            <td data-titulo="ESTADO"><?php echo $estados[$rows['estado']] ?></td>
+                            <td data-titulo="ESTADO"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">

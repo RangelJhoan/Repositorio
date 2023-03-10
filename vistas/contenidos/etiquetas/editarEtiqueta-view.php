@@ -39,9 +39,9 @@ if($datos->rowCount()>0){
                                 <select name="estado" class="combobox-titulo" title="Estado de la etiqueta">
                                     <option disabled value="" class="combobox-opciones">Estado</option>
                                     <?php
-                                    for ($i = 0; $i<count($estados); $i++) {
+                                    foreach (Utilidades::getEstados() as $clave => $valor) {
                                     ?>
-                                    <option <?php if($campos['estado'] == $i){echo "selected";} ?> value="<?php echo $i; ?>"><?php echo $estados[$i]; ?></option>
+                                    <option <?php if($campos['estado'] == $clave){echo "selected";} ?> value="<?php echo $clave; ?>"><?php echo $valor; ?></option>
                                     <?php
                                     }
                                     ?>

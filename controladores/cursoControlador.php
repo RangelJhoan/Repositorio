@@ -18,7 +18,7 @@ class cursoControlador extends cursoModelo{
         $curso->setNombre($_POST['nombre_ins']);
         $curso->setDescripcion($_POST['descripcion_ins']);
         $curso->setListaProgramas([]);
-        $curso->setEstado(1);
+        $curso->setEstado(Utilidades::getIdEstado("ACTIVO"));
         if(isset($_POST['programas_ins'])){
             $curso->setListaProgramas($_POST['programas_ins']);
         }
@@ -128,7 +128,7 @@ class cursoControlador extends cursoModelo{
     public function eliminar_curso_controlador(){
         $curso = new Curso();
         $curso->setIdCurso(mainModel::decryption($_POST['id_curso_del']));
-        $curso->setEstado(3);
+        $curso->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
         $eliminarCurso = cursoModelo::editar_estado_curso_modelo($curso);
 
@@ -160,7 +160,7 @@ class cursoControlador extends cursoModelo{
     public function paginador_curso_controlador(){
         $consulta = "SELECT SQL_CALC_FOUND_ROWS * 
         FROM curso
-        WHERE estado != ". 3 ." 
+        WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") ." 
         ORDER BY nombre ASC";
 
         $conexion = mainModel::conectar();

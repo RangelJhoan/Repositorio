@@ -54,14 +54,14 @@
             if($tipo == "Unico"){
                 $sql = mainModel::conectar()->prepare("SELECT p.id, p.nombre, p.apellido, p.documento, td.descripcion as descripcionTipoDocumento, u.correo, u.clave, u.estado, tu.descripcion 
                 FROM persona p JOIN tipo_documento td ON td.id = p.id_tipo_documento JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
-                WHERE p.estado != ". 3 ." AND p.id = :ID;");
+                WHERE p.estado != ". Utilidades::getIdEstado("ELIMINADO") ." AND p.id = :ID;");
                 $sql->bindParam(":ID", $id);
             }elseif($tipo == "Conteo"){
                 $sql = mainModel::conectar()->prepare("SELECT p.id 
                 FROM persona p 
                 JOIN usuario u ON u.id = p.id_usuario 
                 JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario
-                WHERE p.estado != ". 3 .";");
+                WHERE p.estado != ". Utilidades::getIdEstado("ELIMINADO") .";");
             }
             $sql->execute();
             return $sql;
