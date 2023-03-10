@@ -213,7 +213,9 @@ select::-ms-expand{
   text-decoration:underline;
 }
 
-
+.modal-open {
+  overflow:hidden!important;
+}
 /*Contenedor principal del modal (externo)*/
 .modal-container{
   opacity: 0;
@@ -224,7 +226,7 @@ select::-ms-expand{
   height: 100vh;
   top: 0;
   left: 0;
-  background-color: #0e0e0e7c;
+  background-color: #0e0e0e8c;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1100,7 +1100,7 @@ select {
     transition: all .5s;
     text-decoration: none;
     width: 48%;
-  }
+}
 /*Botón visualizar*/
 .btnVisRec{
     background-color: var(--hexagonN3);
@@ -1129,6 +1129,175 @@ select {
 .btnFavRec:hover{
     background-color: #882c27;
 }
+
+/**?--------------MODAL FEEDBACK-------------*/
+/*Contenedor principal del modal (externo)*/
+.modal-container{
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: #0e0e0e8c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*Campos de texto: titulo, párrafo, campo de correo*/
+.textosmodal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 1.5rem;
+}
+/*Contenedor del modal (interno)*/
+.modal-feedback {
+    width: 100%;
+    max-width: 600px; /* Puedes ajustar este valor según tus necesidades */
+    height: fit-content;
+    background-color: var(--white-home-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    transition: all .5s;
+    transform: translateY(0%);
+    border-radius: 10px;
+    margin:15px;
+}
+/*Animación al momento de cerrar modal*/
+.modal-close-feedback{
+    transform: translateY(-200%);
+}
+/*Ajusta del tamaño de la imagen*/
+.recover-password-pic{
+    /* width: 70%; */
+    max-width: 40%;
+    margin-right: 0;
+    padding-top: 20px;
+    display: flex;
+    align-self: center;
+}
+  /*Estilización para la X de cerrar */
+.close{
+    position: absolute;
+    top:5px;
+    right: 5px;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-color: #c44a4a;
+    color:#fff;
+    cursor: pointer;
+    line-height: 25px;
+    border-radius: 50%;
+}
+/*Estilo del párrafo*/
+.phrp-feedback{
+    color:var(--text-color);
+    font-size: var(--phrgp-home-normal-font-size);
+    margin-bottom: 18px;
+}
+/*Estilo del título*/
+.title-feedback{
+    color:#444;
+    font-weight: 600;
+    line-height: 1;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-decoration:underline;
+}
+.botones-accion-modal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    overflow:hidden ;
+}
+/*Botón cerrar*/
+.btn-close-add-record,
+.btn-close-edit-record{
+    background-color: #c44a4a;;
+    cursor: pointer;
+    padding: 7px 10px;
+    border-radius: 4px;
+    transition: all 300ms ease;
+    color:#fff;
+    font-size: var(--phrgp-home-normal-font-size);
+    border-style: none;
+    margin-left: 10px;
+    text-decoration: none;;
+    text-align: center;
+    display: flex;
+    align-items: center;
+} 
+.btn-close-add-record:hover,
+.btn-close-edit-record:hover{
+    background-color: #7c3232;
+}
+/*Botón crear*/
+.btn-submit-add-record,
+.btn-admin-edit-record{
+    background-color: var(--main-home-color);
+    cursor: pointer;
+    padding: 7px 10px;
+    border-radius: 4px;
+    transition: all 300ms ease;
+    color:#fff;
+    border-style: none;
+    font-size: var(--phrgp-home-normal-font-size);
+}
+.btn-submit-add-record:hover{
+    background-color: #3e5992;
+}
+/**Estilos del radio*/
+.radio {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    user-select: none;
+}
+.radio .inputRadio {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.checkmark {
+    display: inline-block;
+    position: relative;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--colorTableN3);
+    margin-right: 10px;
+    font-size: 10px;
+}
+.radio .inputRadio:checked ~ .checkmark {
+    background-color: var(--colorTableN4);
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.radio .inputRadio:checked ~ .checkmark:after {
+    display: block;
+}
+.label-text {
+    margin-left: 5px;
+    font-size: var(--phrgp-home-normal-font-size);
+    color:var(--home-text-color);
+}
+
+
+
 
 
 
@@ -1293,6 +1462,16 @@ select {
     }
     .infoBotonesVerRec{
         padding:10px;
+    }
+    .title-feedback{
+        font-size: 1.2rem;
+    }
+    .phrp-feedback,.label-text{
+        font-size: var(--phrgp-home-medium-font-size);
+    }
+    .checkmark {
+        height: 16px;
+        width: 16px;
     }
 }
 
