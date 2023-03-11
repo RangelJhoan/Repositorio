@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repositorio Institucional</title>
-</head>
 <body class="bodyFQ">
 <h2 class="fq-main-Title">Preguntas frecuentes</h2>
     <section class="wrapperFAQ">
@@ -99,5 +93,3 @@
             </div>
         </div>
     </section>
-</body>
-</html>

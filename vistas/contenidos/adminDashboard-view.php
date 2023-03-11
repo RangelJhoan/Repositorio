@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- <meta charset="UTF-8"> -->
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
-    <title>Repositorio Institucional</title>
-</head>
-<body>
     <?php 
     require_once "./controladores/usuarioControlador.php";
     require_once "./controladores/programaControlador.php";
@@ -91,4 +81,3 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.umd.js"></script>
 <script src="<?php echo SERVER_URL ?>vistas/assets/js/dashboard.js"></script> 
 
-</html>

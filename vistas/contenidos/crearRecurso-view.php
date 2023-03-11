@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
-    <title>Repositorio Institucional</title>
-</head>
-<body>
 <?php
 require_once "./controladores/autorControlador.php";
 require_once "./controladores/etiquetaControlador.php";
@@ -114,5 +106,3 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/multipleComboRecurso.js"></script> 
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/uploadFile.js"></script> 
-</body>
-</html>

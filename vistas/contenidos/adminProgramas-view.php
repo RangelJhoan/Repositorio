@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
-    <title>Repositorio Institucional</title>
-</head>
-<body>
     <section class="general-admin-container">
         <div class="overview-general-admin">
             <!--TÍTULO-->
@@ -99,5 +91,3 @@
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/datatables.js"></script> 
-</body>
-</html>

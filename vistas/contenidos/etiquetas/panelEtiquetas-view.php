@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
-</head>
-    <title>Repositorio Institucional</title>
-</head>
-<body>
 <?php
     require_once "./controladores/etiquetaControlador.php";
     require_once "./utilidades/Utilidades.php";
@@ -96,11 +87,4 @@
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
 
-    <!-- <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script> -->
-
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/datatables.js"></script>
-    <script src="<?php echo SERVER_URL ?>vistas/assets/js/multipleCombo.js"></script>
-
-
-</body>
-</html>

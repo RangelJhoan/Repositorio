@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.0/css/line.css">
-    <title>Repositorio Institucional</title>
-</head>
-<body>
 <?php
 
 require_once "./controladores/autorControlador.php";
@@ -71,5 +61,3 @@ if($datos_autor->rowCount()>0){
         </section>
     </div>
 <?php } ?>
-</body>
-</html>

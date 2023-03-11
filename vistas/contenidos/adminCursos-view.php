@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
-</head>
-    <title>Repositorio Institucional</title>
-</head>
-<body>
 <?php
 require_once "./controladores/programaControlador.php";
 require_once "./controladores/usuarioControlador.php";
@@ -147,6 +138,3 @@ $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/datatables.js"></script> 
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/multipleComboCurso.js"></script> 
 
-
-</body>
-</html>

@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="<?php echo SERVER_URL; ?>vistas/assets/css/admin/adminGestion-Style.css">
-</head>
-    <title>Repositorio Institucional</title>
-</head>
-<body>
     <section class="general-admin-container">
         <div class="overview-general-admin">
             <!--TÍTULO-->
@@ -104,5 +95,3 @@
     <!-- <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script> -->
 
     <script src="<?php echo SERVER_URL ?>vistas/assets/js/datatables.js"></script>
-</body>
-</html>
