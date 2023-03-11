@@ -35,7 +35,7 @@ class recursoControlador extends recursoModelo{
 
         $recurso->setFecha($_POST['anioRecurso']);
 
-        if($recurso->getTitulo() == "" || $recurso->getResumen() == "" || $recurso->getFecha() == ""){
+        if($recurso->getTitulo() == "" || $recurso->getResumen() == ""){
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
@@ -45,6 +45,17 @@ class recursoControlador extends recursoModelo{
             echo json_encode($alerta);
             exit();
         }else{
+            if(!isset($_FILES["archivo"]["name"]) && $recurso->getEnlace() == ""){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Error",
+                    "Texto"=>"Por favor ingrese un enlace o seleccione un archivo",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+
             $agregar_recurso = recursoModelo::agregar_recurso_modelo($recurso);
 
             if(is_string($agregar_recurso) || $agregar_recurso < 0){

@@ -59,7 +59,7 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
                                 <?php
                                 foreach($datos_cursos as $campos_curso){
                                 ?>
-                                <option value="<?php echo $campos_curso['id'] ?>"><?php echo $campos_curso['descripcion'] ?></option>
+                                <option value="<?php echo $campos_curso['id'] ?>"><?php echo $campos_curso['nombre'] ?></option>
                                 <?php
                                 }
                                 ?>
