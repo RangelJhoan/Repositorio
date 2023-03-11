@@ -54,6 +54,36 @@ class homeControlador extends homeModelo{
 
         return $fechas;
     }
+
+    public function buscar_info_recurso($pId){
+        $informacion = homeModelo::detalles_recurso(mainModel::decryption($pId));
+
+        return $informacion;
+    }
+
+    public function autores_recurso($pId){
+        $informacion = homeModelo::cargar_autores($pId);
+        
+        return $informacion;
+    }
+
+    public function curso_recurso($pId){
+        $informacion = homeModelo::cursos_recurso($pId);
+        
+        return $informacion;
+    }
+
+    public function etiquetas_recurso($pId){
+        $informacion = homeModelo::cargar_etiquetas($pId);
+        
+        return $informacion;
+    }
+
+    public function archivo_recurso($pId){
+        $informacion = homeModelo::cargar_archivos($pId);
+        
+        return $informacion;
+    }
 }
 
 

@@ -56,7 +56,7 @@
         }
 
         protected static function cargar_autores($pId){
-            $sql = mainModel::conectar()->prepare("SELECT a.nombre,a.apellido FROM autor a JOIN autor_recurso ar ON a.id = ar.id_autor WHERE ar.id_recurso = '".$pId."'");
+            $sql = mainModel::conectar()->prepare("SELECT a.nombre,a.apellido FROM autor a JOIN autor_recurso ar ON a.id = ar.id_autor WHERE ar.id_recurso = '".$pId."'ORDER BY a.apellido");
             $sql->execute();
 
             return $sql->fetchAll();
@@ -81,6 +81,35 @@
             $sql->execute();
 
             return $sql->fetchAll();
+        }
+
+        protected static function detalles_recurso($pId){
+            $sql = mainModel::conectar()->prepare("SELECT r.id,r.titulo,r.fecha_publicacion_recurso,r.resumen,d.nombre,r.fecha_publicacion_profesor,r.enlace FROM recurso r JOIN persona d ON d.id = r.id_docente
+            WHERE r.id='".$pId."'");
+            $sql->execute();
+
+            return $sql->fetch();
+        }
+
+        protected static function cursos_recurso($pId){
+            $sql = mainModel::conectar()->prepare("SELECT c.id,c.nombre FROM recurso r JOIN curso_recurso cr ON r.id = cr.id_recurso JOIN curso c ON c.id = cr.id_curso WHERE r.id = '".$pId."'");
+            $sql->execute();
+
+            return $sql->fetchAll();
+        }
+
+        protected static function cargar_etiquetas($pId){
+            $sql = mainModel::conectar()->prepare("SELECT e.descripcion FROM etiqueta e JOIN etiqueta_recurso r ON e.id = r.id_etiqueta WHERE r.id_recurso = '".$pId."'");
+            $sql->execute();
+
+            return $sql->fetchAll();
+        }
+
+        protected static function cargar_archivos($pId){
+            $sql = mainModel::conectar()->prepare("SELECT ruta,tamano,nombre,isbn,editorial FROM archivo WHERE id_recurso = '".$pId."'");
+            $sql->execute();
+
+            return $sql->fetch();
         }
         
     }

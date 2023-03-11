@@ -22,6 +22,8 @@
                         <tbody>
                         <?php
                             require_once "./controladores/homeControlador.php";
+                            require_once "./modelos/mainModel.php";
+                            $ins_main = new mainModel();
                             $ins_home = new homeControlador();
                             $datos_filtro = $ins_home->listado_filtro_recursos($pagina[1],$pagina[2]);
                             foreach($datos_filtro as $vRecurso){
@@ -29,7 +31,7 @@
                                 ?>
                                 <tr>
                                     <td data-titulo="FECHA"><a href="#" class="deleteRedireccionTable"><?php echo $vRecurso['fecha_publicacion_recurso'];?></a></td>
-                                    <td data-titulo="TITULO"><a href="<?php echo SERVER_URL ?>recursosVisualizacion/" class="redireccionTable"><?php echo $vRecurso['titulo']; ?> </a></td>
+                                    <td data-titulo="TITULO"><a href="<?php echo SERVER_URL."recursosVisualizacion/".$ins_main->encryption($vRecurso['id']); ?>" class="redireccionTable"><?php echo $vRecurso['titulo']; ?> </a></td>
                                     <td data-titulo="AUTOR(ES)"><a href="#" class="deleteRedireccionTable italicTableStyle"><?php echo $autores; ?></a></td>
                                 </tr>
                                 <?php } ?>  

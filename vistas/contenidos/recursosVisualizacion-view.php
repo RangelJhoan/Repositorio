@@ -1,4 +1,29 @@
+<?php
+    require_once "./controladores/homeControlador.php";
+    require_once "./modelos/mainModel.php";
+    $ins_main = new mainModel();
+    $ins_home = new homeControlador();
 
+    $inforecurso = $ins_home->buscar_info_recurso($pagina[1]);
+    $autores = $ins_home->autores_recurso($inforecurso['id']);
+    $cursos = $ins_home->curso_recurso($inforecurso['id']);
+    $etiquetas = $ins_home->etiquetas_recurso($inforecurso['id']);
+    $archivo = $ins_home->archivo_recurso($inforecurso['id']);
+    if(isset($archivo['editorial'])){
+        $editorial = $archivo['editorial'];
+        $isbn = $archivo['isbn'];
+        $nArchivo = $archivo['nombre'];
+        $tamano = $archivo['tamano'];
+        $ruta = $archivo['ruta'];
+    }else{
+        $editorial = "";
+        $isbn = "";
+        $nArchivo = "";
+        $tamano = "";
+        $ruta = "";
+    }
+
+?>
 <html class="no-scroll">
 <!-- TABLA INFORMACIÓN DEL RECURSO -->
     <section class = "containerVerRecurso">
@@ -8,40 +33,45 @@
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Título:</th>
-                <td class="infoColVerRecurso">
-                Programación orientada a objetos para enfermitos</td>
+                <td class="infoColVerRecurso"><?php echo $inforecurso['titulo']; ?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Autor(es):</th>
                 <td class="infoColVerRecurso">          
                     <ul class="ulVerRecurso">
-                        <a href="<?php echo SERVER_URL ?>#" class="redireccionVerRecurso"><li class="liVerRecurso">Juan Camilo Valencia Silva</li></a>
-                        <a href="<?php echo SERVER_URL ?>#" class="redireccionVerRecurso"><li class="liVerRecurso">Jhoan Manuel Rangel Mariño</li></a>
+                        <?php 
+                            foreach($autores AS $autor){
+                        ?>
+                        <a href="<?php echo SERVER_URL."recursosBusqueda/filtroAutor/".$autor['id'] ?>" class="redireccionVerRecurso"><li class="liVerRecurso"><?php echo $autor['nombre']." ".$autor['apellido']; ?></li></a>
+                        <?php } ?>
                     </ul>
                 </td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Resumen:</th>
-                <td class="infoColVerRecurso">Este es el resumen del recurso</td>
+                <td class="infoColVerRecurso"><?php echo $inforecurso['resumen']; ?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Año de creación:</th>
-                <td class="infoColVerRecurso">1999</td>
+                <td class="infoColVerRecurso"><?php echo $inforecurso['fecha_publicacion_recurso']?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Publicado por:</th>
-                <td class="infoColVerRecurso">Rafael Ricardo Mantilla</td>
+                <td class="infoColVerRecurso"><?php echo $inforecurso['nombre']; ?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Fecha de publicación:</th>
-                <td class="infoColVerRecurso">12 - 06 - 2023</td>
+                <td class="infoColVerRecurso"><?php echo $inforecurso['fecha_publicacion_profesor']?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Curso(s):</th>
                 <td class="infoColVerRecurso">          
-                    <ul class="ulVerRecurso">
-                        <a href="<?php echo SERVER_URL ?>#" class="redireccionVerRecurso"><li class="liVerRecurso">Minería de datos</li></a>
-                        <a href="<?php echo SERVER_URL ?>#" class="redireccionVerRecurso"><li class="liVerRecurso">Seguridad informática</li></a>
+                <ul class="ulVerRecurso">
+                        <?php 
+                            foreach($cursos AS $curso){
+                        ?>
+                        <a href="<?php echo SERVER_URL."recursosBusqueda/filtroCurso/".$curso['id'] ?>" class="redireccionVerRecurso"><li class="liVerRecurso"><?php echo $curso['nombre']; ?></li></a>
+                        <?php } ?>
                     </ul>
                 </td>    
             </tr>
@@ -49,27 +79,39 @@
                 <th class="tituloColVerRecurso">Etiqueta(s):</th>
                 <td class="infoColVerRecurso">
                     <ul class="ulVerRecurso">
-                        <a href="<?php echo SERVER_URL ?>#" class="redireccionVerRecurso"><li class="liVerRecurso">SQL</li></a>
-                        <a href="<?php echo SERVER_URL ?>#" class="redireccionVerRecurso"><li class="liVerRecurso">POO</li></a>
-                    </ul></td>
+                        <?php 
+                            foreach($etiquetas AS $etiqueta){
+                                $array = explode(" ", $etiqueta['descripcion']);
+                                $parametro = "";
+                                foreach($array as $dato){
+                                    if($parametro!=""){
+                                        $parametro .= "¡";
+                                    }
+                                    $parametro .= $ins_main->encryption($dato);
+                                }
+                        ?>
+                        <a href="<?php echo SERVER_URL."recursosBusqueda/Busqueda/".$parametro; ?>" class="redireccionVerRecurso"><li class="liVerRecurso"><?php echo $etiqueta['descripcion']; ?></li></a>
+                        <?php } ?>
+                    </ul>
+                </td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Editorial:</th>
-                <td class="infoColVerRecurso">Norma</td>
+                <td class="infoColVerRecurso"><?php echo $editorial; ?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">ISBN:</th>
-                <td class="infoColVerRecurso">04028524</td>
+                <td class="infoColVerRecurso"><?php echo $isbn; ?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">URI:</th>
                 <td class="infoColVerRecurso">
-                    <a href="<?php echo SERVER_URL ?>#" class="redireccionVerRecurso">http://localhost/Repositorio/recursosVisualizacion/</a>
+                    <a href="<?php echo SERVER_URL ?>#" class="redireccionVerRecurso"><?php echo $ruta; ?></a>
                 </td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Identificador:</th>
-                <td class="infoColVerRecurso"> REC-090320231106</td>
+                <td class="infoColVerRecurso">REC-090320231106</td>
             </tr>
     <!-- ENLACE DEL RECURSO -->
             <tr>
@@ -78,7 +120,7 @@
             <tr>
                 <th class="tituloColVerRecurso">URL:</th>
                 <td class="infoColVerRecurso">
-                    <a href="<?php echo SERVER_URL ?>#" target="_blank" class="redireccionVerRecurso">https://www.youtube.com/watch?v=StxPHD_7Mzc&ab_channel=TheWildProject</a>
+                    <a href="<?php echo SERVER_URL ?>#" target="_blank" class="redireccionVerRecurso"><?php echo $inforecurso['enlace']; ?></a>
                 </td>
             </tr>
     <!-- ARCHIVO DEL RECURSO -->
@@ -88,12 +130,12 @@
             <tr>
                 <th class="tituloColVerRecurso">Archivo:</th>
                 <td class="infoColVerRecurso">
-                    <a href="<?php echo SERVER_URL ?>#" target="_blank" class="redireccionVerRecurso">LondonoJuan_1944_AnalesAcademiaMedicina.pdf</a>
+                    <a href="<?php echo SERVER_URL ?>#" target="_blank" class="redireccionVerRecurso"><?php echo $nArchivo; ?></a>
                 </td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Tamaño:</th>
-                <td class="infoColVerRecurso">10.07MB</td>
+                <td class="infoColVerRecurso"><?php echo $tamano; ?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Formato:</th>
