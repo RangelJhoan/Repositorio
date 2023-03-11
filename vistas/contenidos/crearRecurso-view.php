@@ -31,13 +31,13 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
                 <div class="content-modal-add-record">
                 <p class="content-modal-recordatorio">Recuerde que * indica que el campo es obligatorio.</p>
 
-                <form action="<?php echo SERVER_URL ?>ajax/recursoAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
+                <form action="<?php echo SERVER_URL ?>ajax/recursoAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save_resource" autocomplete="off" enctype="multipart/form-data">
                         <!--Título recurso-->
                         <div class="input-field">
                             <input name="titulo_ins" type="text" placeholder="Título *" title="Por favor, complete el campo" required/>
                         </div>
                         <!--Lista de autores-->
-                        <label for="autorSeleccion" class="titleComboMultiple">Autor(es) *</label>
+                        <label for="autorSeleccion" class="titleComboMultiple">Autor(es)</label>
                             <select name="autores_ins[]" id="autorSeleccionarCbx" multiple="multiple" title="Por favor, selecciona el o los autores del recurso">
                                 <?php
                                 foreach($datos_autores as $datos_autor){
@@ -65,7 +65,7 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
                                 ?>
                             </select>
                         <!--Lista de etiquetas-->
-                        <label for="etiquetaSeleccion" class="titleComboMultiple">Etiqueta (s) *</label>
+                        <label for="etiquetaSeleccion" class="titleComboMultiple">Etiqueta (s)</label>
                             <select name="etiquetas_ins[]" id="etiquetaSeleccionarCbx" multiple="multiple" title="Por favor, selecciona la o las etiquetas para el recurso">
                                 <?php
                                 foreach($datos_etiquetas as $campos_etiqueta){
@@ -85,7 +85,7 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
                         </div>
                         <!--Link del recurso-->
                         <div class="input-field">
-                            <input name="link_ins" type="text" placeholder="Enlace" title="Por favor, complete el campo" required/>
+                            <input name="link_ins" type="text" placeholder="Enlace" title="Por favor, complete el campo"/>
                         </div>
                         <!--Cargue del archivo-->
                         <div class="fileUploadContainer">

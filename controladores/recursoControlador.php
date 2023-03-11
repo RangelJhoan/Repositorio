@@ -20,12 +20,24 @@ class recursoControlador extends recursoModelo{
         $recurso->setTitulo($_POST['titulo_ins']);
         $recurso->setResumen($_POST['resumen_ins']);
         $recurso->setEstado(Utilidades::getIdEstado("ACTIVO"));
+        $recurso->setEtiqueta(array());
+        $recurso->setAutor(array());
 
         if(isset($_POST['autores_ins']))
             $recurso->setAutor($_POST['autores_ins']);
 
-        if(isset($_POST['cursos_ins']))
-            $recurso->setCurso($_POST['cursos_ins']);
+        if(!isset($_POST['cursos_ins'])){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"Por favor seleccione un curso",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $recurso->setCurso($_POST['cursos_ins']);
 
         if(isset($_POST['etiquetas_ins']))
             $recurso->setEtiqueta($_POST['etiquetas_ins']);
@@ -50,6 +62,18 @@ class recursoControlador extends recursoModelo{
                     "Alerta"=>"simple",
                     "Titulo"=>"Error",
                     "Texto"=>"Por favor ingrese un enlace o seleccione un archivo",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+
+            //El tamaño máximo permitido para almacenar un archivo son 100 megas = 104857600 bytes
+            if(isset($_FILES["archivo"]["name"]) && $_FILES["archivo"]["size"] > 104857600){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Error",
+                    "Texto"=>"El tamaño del archivo excede el limite permitido (100MB)",
                     "Tipo"=>"error"
                 ];
                 echo json_encode($alerta);

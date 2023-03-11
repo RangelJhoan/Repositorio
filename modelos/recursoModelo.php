@@ -15,7 +15,7 @@
         protected static function agregar_recurso_modelo(Recurso $recurso){
             try{
                 session_start(['name'=>"REPO"]);
-                $sql = mainModel::conectar()->prepare("INSERT INTO recurso(titulo, fecha_publicacion_profesor, fecha_publicacion_recurso, resumen, puntos_positivos, puntos_negativos, estado, enlace, id_docente) VALUES(?, ?, ?, ?, ?, ?, ?);");
+                $sql = mainModel::conectar()->prepare("INSERT INTO recurso(titulo, fecha_publicacion_profesor, fecha_publicacion_recurso, resumen, puntos_positivos, puntos_negativos, estado, enlace, id_docente) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);");
                 $sql->execute([$recurso->getTitulo(), date("Y-m-d H:i:s"), $recurso->getFecha(), $recurso->getResumen(), 0, 0, $recurso->getEstado(), $recurso->getEnlace(), $_SESSION['id_persona']]);
 
                 $sqlQuery = mainModel::conectar()->prepare("SELECT id FROM recurso WHERE titulo = ?;");

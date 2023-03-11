@@ -39,8 +39,8 @@ function enviar_formulario_ajax(e){
         texto_alerta = "Los datos del repositorio serán actualizados"
     }else if(tipo === "search"){
         texto_alerta = "Se eliminará el término de búsqueda y tendrá que escribir uno nuevo"
-    }else if(tipo === "loans"){
-        texto_alerta = "Desea remover los datos seleccionados para préstamos o reservaciones"
+    }else if(tipo === "save_resource"){
+        texto_alerta = "Por favor, tenga en cuenta que al cargar un archivo en este sitio, usted confirma que tiene los derechos necesarios para hacerlo. Si no está seguro de tener los derechos de autor o permisos necesarios para publicar este archivo, por favor no lo cargue. Al hacer clic en 'Aceptar', usted acepta que posee los derechos necesarios y asume la responsabilidad legal por cualquier violación de derechos de autor u otra infracción legal."
     }else{
         texto_alerta = "¿Quiere realizar la operacion solicitada?"
     }
