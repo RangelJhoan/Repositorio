@@ -69,7 +69,7 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                                         <a href="" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>
                                     </div>
                                     <div class="btn-group-action">
-                                        <a href="<?php echo SERVER_URL ?>adminEditarRecurso/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" class="btn-admin-edit-record" title="Editar recurso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
+                                        <a href="<?php echo SERVER_URL ?>editarRecurso/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" class="btn-admin-edit-record" title="Editar recurso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/recursoAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">

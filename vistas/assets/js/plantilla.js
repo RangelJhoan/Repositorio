@@ -3,11 +3,32 @@ const body = document.querySelector("body"),
     sidebar = body.querySelector("nav");
     sidebarToggle = body.querySelector(".sidebar-toggle");
 
-/*Submenú wrap*/
+/*SUBMENU WRAP*/
 let subMenu = document.getElementById("subMenu");
-function toggleMenu(){
+    function toggleMenu(){
     subMenu.classList.toggle("open-submenu");
 }
+
+/*Cerrar submenú al hacer clic en cualquier parte de la pantalla*/
+window.addEventListener("click", function(event) {
+    if (subMenu.classList.contains("open-submenu") && event.target.closest(".profile-details") === null) {
+    subMenu.classList.remove("open-submenu");
+    }
+    });
+/*Cerrar submenú al presionar la tecla "Esc"*/
+window.addEventListener("keydown", function(event) {
+    if (subMenu.classList.contains("open-submenu") && event.key === "Escape") {
+    subMenu.classList.remove("open-submenu");
+    }
+    });
+/*Cerrar submenú al hacer clic en el enlace*/
+let submenuLinks = document.querySelectorAll(".submenu-link");
+    for (let i = 0; i < submenuLinks.length; i++) {
+    submenuLinks[i].addEventListener("click", function() {
+    subMenu.classList.remove("open-submenu");
+    });
+    }
+
 /*DarkMode*/
 let getMode = localStorage.getItem("mode");
 if(getMode && getMode ==="dark"){
