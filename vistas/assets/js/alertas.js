@@ -56,8 +56,33 @@ function enviar_formulario_ajax(e){
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(action, config)
+            Swal.showLoading();
+                // crea una capa que cubre toda la pantalla
+                const capaCarga = document.createElement('div');
+                const scrollBody = document.getElementById('bodyID')
+                capaCarga.style.position = 'fixed';
+                capaCarga.style.top = '0';
+                capaCarga.style.left = '0';
+                capaCarga.style.width = '100%';
+                capaCarga.style.height = '100%';
+                capaCarga.style.backgroundColor = 'rgba(0, 0, 0, 0.7)'; // el último valor es la opacidad
+                capaCarga.style.zIndex = '9999';
+                capaCarga.style.zIndex = 'hidden'; // desactiva el scroll
+                scrollBody.style.overflowX = 'hidden'; // desactiva el scroll
+                scrollBody.style.overflowY = 'hidden'; // desactiva el scroll
+                // crea un elemento div para la animación de carga
+                const loader = document.createElement('div');
+                loader.className = 'loader'; // agregar una clase para la animación de carga
+                capaCarga.appendChild(loader);
+
+                document.body.appendChild(capaCarga);
+                // agrega la capa al body
+                document.body.appendChild(capaCarga);
+                            fetch(action, config)
             .then(respuesta =>{
+                capaCarga.remove();
+                capaCarga.style.zIndex = 'hidden'; // desactiva el scroll
+                scrollBody.style.overflowY = 'auto'; // activa el scroll
                 return respuesta.json()
             })
             .catch(e =>{
@@ -78,6 +103,8 @@ function enviar_formulario_ajax(e){
 formularios_ajax.forEach(formularios => {
     formularios.addEventListener("submit", enviar_formulario_ajax)
 });
+
+
 
 function alertas_ajax(alerta){
     if(alerta.Alerta === "simple"){

@@ -10,7 +10,7 @@
     <?php include "incAdmin/link.php";?>
     <title>Repositorio Institucional</title>
 </head>
-<body class="mode">
+<body class="mode" id="bodyID">
     <?php
     $peticionAjax = false;
     require_once "./controladores/vistasControlador.php";

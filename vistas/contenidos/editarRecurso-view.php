@@ -28,6 +28,21 @@ if($datos_curso->rowCount()>0){
             <div class="container-modal-edit-record" id="modal-container-edit-user">
                 <div class="content-modal-edit-record">
                 <form action="<?php echo SERVER_URL ?>ajax/recursoAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save_resource" autocomplete="off" enctype="multipart/form-data">
+                        <!--Select tag-->
+                        <div class="input-field ">
+                            <div class="select-option">
+                                <select name="estado" class="combobox-titulo" title="Estado del curso">
+                                    <option disabled value="" class="combobox-opciones">Estado</option>
+                                    <?php
+                                    foreach (Utilidades::getEstados() as $clave => $valor) {
+                                    ?>
+                                    <option <?php if($campos['estado'] == $clave){echo "selected";} ?> value="<?php echo $clave; ?>"><?php echo $valor; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
                         <!--Título recurso-->
                         <div class="input-field">
                             <input name="titulo_ins" type="text" placeholder="Título *" title="Por favor, complete el campo" required/>

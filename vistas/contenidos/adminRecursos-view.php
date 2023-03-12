@@ -35,8 +35,7 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                             <th>Título</th>
                             <th>Autor(es)</th>
                             <th>Archivo</th>
-                            <th>Positivos</th>
-                            <th>Negativos</th>
+                            <th>Feedback</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -61,8 +60,10 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                             ?>
                             </td>
                             <td data-titulo="ARCHIVO"><?php if($archivo != false) echo $archivo['nombre'] ?></td>
-                            <td data-titulo="POSITIVOS"><?php echo $rows['puntos_positivos'] ?></td>
-                            <td data-titulo="NEGATIVOS"><?php echo $rows['puntos_negativos'] ?></td>
+                            <td data-titulo="FEEDBACK" class="responsive-file listFeedback">
+                                <li title="Calificación positiva"><i class="uil uil-thumbs-up iconFeedback plus"></i>: <?php echo $rows['puntos_positivos'] ?> </li>
+                                <li title="Calificación negativa"><i class="uil uil-thumbs-down iconFeedback minus"></i>: <?php echo $rows['puntos_negativos'] ?> </li>
+                            </td>
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">

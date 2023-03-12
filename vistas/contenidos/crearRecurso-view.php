@@ -95,7 +95,7 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
                         </div>
                         <!--Botones de acción-->
                         <div class="botones-accion-modal">
-                            <input type="submit" class="btn-submit-add-record" value="Crear" title="Crear recurso"/>
+                            <input type="submit" class="btn-submit-add-record" value="Crear" title="Crear recurso" id="btn-submit"/>
                             <a href="javascript:history.back()" class="btn-close-add-record" title="Volver atrás">Volver atrás</a>
                         </div>
                     </form>
