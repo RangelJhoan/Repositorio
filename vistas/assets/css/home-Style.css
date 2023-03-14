@@ -225,8 +225,15 @@ body{
     opacity: 0;
     pointer-events: none;
 }
-
-
+/*Botón Login énfasis*/
+.homeHideListMin{
+    background-color: var(--main-home-color);
+    border-radius: 5px;
+}
+.nav-Home-Main .ul-Home .li-Home .homeHideListMin,
+.nav-Home-Main .ul-Home .li-Home .homeHideListMin:hover{
+    color:var(--white-home-color);
+}
 /*?--------------SECCIÓN BANNER ---------------*/
 /*Contenedor principal*/
 .bannerSearchHome-Section{
@@ -767,7 +774,7 @@ body{
 .titleTableFilterSearch:hover{
     color: var(--colorTableN2);
 }
-/**TABLA GENERAL*/
+/**TABLA GENERAL RESPONSIVE*/
 /*Tabla general*/
 .table-dataJQ-container .tb-admin-records{
     width: 100%!important;
@@ -794,6 +801,36 @@ body{
 }
 /*Color de texto de cada fila*/
 .table-dataJQ-container .tb-admin-records tbody tr{
+    color:var(--home-text-color);
+}
+
+/**TABLA GENERAL NO RESPONSIVE*/
+/*Tabla general*/
+.noRESPtable-dataJQ-container .noRESPtb-admin-records{
+    width: 100%!important;
+    border-collapse: collapse;
+    padding-left: 200px;
+    padding-right: 200px;
+    font-size: var(--phrgp-home-medium-font-size);
+}
+/*Espaciado de la tabla*/
+.noRESPtable-dataJQ-container .noRESPtb-admin-records,
+.noRESPtable-dataJQ-container .noRESPtb-admin-records th,
+.noRESPtable-dataJQ-container .noRESPtb-admin-records td{
+    padding:5px 10px;
+    border: 1px solid var(--colorTableN3);
+}
+/*Título de columna*/
+.noRESPtable-dataJQ-container .noRESPtb-admin-records th{
+    font-weight: bolder;
+    text-align: left;
+    text-transform: uppercase;
+    color:var(--home-text-color);
+    cursor:pointer;
+    font-size: var(--title-font-size);
+}
+/*Color de texto de cada fila*/
+.noRESPtable-dataJQ-container .noRESPtb-admin-records tbody tr{
     color:var(--home-text-color);
 }
 /*?--------------Estilos Mostrar X registros (combobox)-------------*/
@@ -1541,6 +1578,14 @@ select {
         font-size: var(--phrgp-home-tiny-font-size)!important;
         /* pointer-events: none!important; */
     }
+
+    .noRESPtable-dataJQ-container .noRESPtb-admin-records tr{
+        font-size: var(--phrgp-home-tiny-font-size);
+    }
+    .titleTableFilterSearch {
+        font-size: var(--question-homepq-medium-font-size);
+    }
+
     .table-dataJQ-container .tb-admin-records td[data-titulo]{
         display: flex!important;
         justify-content: space-between!important;
@@ -1646,4 +1691,11 @@ select {
         height: 200px;
         margin:5px;
         }
+}
+
+@media all and (max-width:370px){
+    .form-control.form-control-sm {
+    margin:0;
+    width: 150px;
+    }
 }

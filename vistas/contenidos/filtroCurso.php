@@ -26,8 +26,8 @@
                 <?php } ?>
 
                 
-                <div class="panel-title-name table-dataJQ-container">
-                    <table id="tablaUsuarios" class="tb-admin-records">
+                <div class="panel-title-name noRESPtable-dataJQ-container">
+                    <table id="tablaUsuarios" class="noRESPtb-admin-records">
                         <thead>
                             <tr>
                                 <td class="titleTableFilterSearch">Nombre</td>

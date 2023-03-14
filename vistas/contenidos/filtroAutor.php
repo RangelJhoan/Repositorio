@@ -24,8 +24,8 @@
                 </ul>
                 <?php } ?>
 
-                <div class="panel-title-name table-dataJQ-container">
-                    <table id="tablaUsuarios" class="tb-admin-records">
+                <div class="panel-title-name noRESPtable-dataJQ-container">
+                    <table id="tablaUsuarios" class="noRESPtb-admin-records">
                         <thead>
                             <tr>
                                 <td class="titleTableFilterSearch">Nombre</td>
@@ -44,7 +44,7 @@
                         $recursos = $ins_home->cargar_recursos_autor($vRecurso['id']);
                         ?>
                         <tr>
-                            <td data-titulo="NOMBRE"><a href="<?php echo SERVER_URL."recursosBusqueda/filtroAutor/".$vRecurso['id']; ?>" class="redireccionTable"><?php echo $vRecurso['apellido']." ".$vRecurso['nombre']; ?><span class="tableFilterCounter"><?php echo $recursos; ?></span></a></td>
+                            <td><a href="<?php echo SERVER_URL."recursosBusqueda/filtroAutor/".$vRecurso['id']; ?>" class="redireccionTable"><?php echo $vRecurso['apellido']." ".$vRecurso['nombre']; ?><span class="tableFilterCounter"><?php echo $recursos; ?></span></a></td>
                         </tr>
                         <?php } ?>  
                         </tbody>
