@@ -94,7 +94,13 @@ class recursoControlador extends recursoModelo{
             }
 
             if(isset($_FILES["archivo"]["name"])){
-                $ruta = "../recursos/".$_FILES["archivo"]["name"];
+                $rutaCarpeta = "../recursos/".$_SESSION['documento_usuario'];
+                //Si la carpeta del usuario no existe, se crea
+                if(!file_exists($rutaCarpeta)){
+                    mkdir($rutaCarpeta, 0777, true);
+                }
+                //El archivo se crea fechaactual_nombrearchivo.extension
+                $ruta = $rutaCarpeta."/".date('dmYHis')."_".$_FILES["archivo"]["name"];
                 move_uploaded_file($_FILES["archivo"]["tmp_name"], $ruta);
             }else{
                 $ruta = "null";
