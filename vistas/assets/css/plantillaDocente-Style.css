@@ -328,6 +328,9 @@ body.dark .switch:before{
     background-color: var(--white-color);
     border-radius: 0px 0 0 10px;
     transition: var(--trans-03);
+    -webkit-box-shadow: -6px 23px 34px -8px rgba(0,0,0,0.6);
+    -moz-box-shadow: -6px 23px 34px -8px rgba(0,0,0,0.6);
+    box-shadow: -6px 23px 34px -8px rgba(0,0,0,0.6);
 }
 .submenu-wrap.open-submenu{
     max-height: 400px;
@@ -349,6 +352,7 @@ body.dark .switch:before{
     text-transform: uppercase;
     text-align:center;
     color:var(--text-color);
+    max-width: 170px;
 }
 .submenu hr{
     border: 0;

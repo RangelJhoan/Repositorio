@@ -40,7 +40,7 @@ if($datos->rowCount()>0){
                         </div>
                         <div class="botones-accion-modal">
                             <button type="submit" class="btn-admin-edit-record" title="Actualizar">Guardar cambios</button>
-                            <a href="<?php echo SERVER_URL ?>panelEtiquetas/" class="btn-close-edit-record" title="Autores">Volver atrás</a>
+                            <a href="javascript:history.back()" class="btn-close-edit-record" title="Autores">Volver atrás</a>
                         </div>
                 </div>
             </div>

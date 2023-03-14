@@ -4,7 +4,7 @@ class vistasModelo{
     /*----- Modelo para obtener vistas -----*/
     protected static function obtener_vistas_modelo($vistas){
         $listaBlancaAdmin = ["adminDashboard","adminUsuarios","adminEditarUsuario","editarPerfil","adminProgramas","adminEditarPrograma","adminCursos","adminEditarCurso","adminRecursos","adminAutores","adminEditarAutor","adminReportes","crearRecurso","panelEtiquetas","editarEtiqueta","editarRecurso"];
-        $listaBlancaDocente = ["docenteDashboard"];
+        $listaBlancaDocente = ["docenteDashboard","docenteRecursos","docenteMisRecursos","crearRecurso","editarRecurso","docenteAutores","docenteMisAutores","adminEditarAutor","docenteEtiquetas","docenteMisEtiquetas","editarEtiqueta","editarPerfil"];
         $listaBlancaEstudiante = ["estudianteDashboard","estudianteFavoritos","editarPerfil","estudianteFeedbacks"];
         $listaBlancaHome = ["preguntasFreq","recursosBusqueda","asideHomeFilters","recursosVisualizacion"];
 
@@ -33,6 +33,8 @@ class vistasModelo{
                 //*Puede acceder a las siguientes rutas: contenidos
                 if(is_file("./vistas/contenidos/".$vistas."-view.php")){
                     $contenido = "./vistas/contenidos/".$vistas."-view.php";
+                }else if(is_file("./vistas/contenidos/etiquetas/".$vistas."-view.php")){
+                    $contenido = "./vistas/contenidos/etiquetas/".$vistas."-view.php";
                 }else{
                     $contenido = "404";
                 }

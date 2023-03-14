@@ -15,33 +15,27 @@
             <!--Opciones principales-->
             <ul class="nav-links">
                 <li class="li-plantilla" title="Dashboard">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminDashboard/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docenteDashboard/">
                         <i class="uil uil-dashboard"></i>
                         <span class="option-name">Dashboard</span>
                     </a>
                 </li>
-                <li class="li-plantilla" title="Usuarios">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminUsuarios/">
-                        <i class="uil uil-users-alt"></i>
-                        <span class="option-name">Usuarios</span>
-                    </a>
-                </li>
-                <li class="li-plantilla" title="Programas">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminProgramas/">
-                        <i class="uil uil-graduation-cap"></i>
-                        <span class="option-name">Programas</span>
-                    </a>
-                </li>
-                <li class="li-plantilla" title="Cursos">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminCursos/">
-                        <i class="uil uil-book-open"></i>
-                        <span class="option-name">Cursos</span>
-                    </a>
-                </li>
                 <li class="li-plantilla" title="Recursos">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminRecursos/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docenteRecursos/">
                         <i class="uil uil-file-blank"></i>
                         <span class="option-name">Recursos</span>
+                    </a>
+                </li>
+                <li class="li-plantilla" title="Autores">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docenteAutores/">
+                        <i class="uil uil-pen"></i>
+                        <span class="option-name">Autores</span>
+                    </a>
+                </li>
+                <li class="li-plantilla" title="Etiquetas">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docenteEtiquetas/">
+                        <i class="uil uil-tag"></i>
+                        <span class="option-name">Etiquetas</span>
                     </a>
                 </li>
                 <!-- <li class="li-plantilla" title="Reportes">

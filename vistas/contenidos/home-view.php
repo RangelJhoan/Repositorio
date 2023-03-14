@@ -1,5 +1,14 @@
+<?php 
+    require_once "./controladores/recursoControlador.php";
+    $insRecurso = new recursoControlador();
+    $totalRecursos = $insRecurso->datos_recurso_controlador("Conteo", 0);
+?>
+
+
+
+
 <section class="filters-main-container">
-    <p class="msg-total-resources">Este repositorio institucional cuenta con un total de <span class="resources-total-count">1000</span> recursos disponibles para toda la comunidad. </p>
+    <p class="msg-total-resources">Este repositorio institucional cuenta con un total de <span class="resources-total-count"><?php echo $totalRecursos->rowCount(); ?></span> recursos disponibles para toda la comunidad. </p>
         <h2 class="filter-main-Title">Filtrar búsqueda por</h2>
         <div class="filterHomeContainer">
             <div class="hexagonFilters">

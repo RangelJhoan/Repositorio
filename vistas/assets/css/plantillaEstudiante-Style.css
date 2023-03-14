@@ -329,6 +329,9 @@ body.dark .switch:before{
     border-radius: 0px 0 0 10px;
     transition: var(--trans-03);
     padding-right: 20px;
+    -webkit-box-shadow: -6px 23px 34px -8px rgba(0,0,0,0.6);
+    -moz-box-shadow: -6px 23px 34px -8px rgba(0,0,0,0.6);
+    box-shadow: -6px 23px 34px -8px rgba(0,0,0,0.6);
 }
 .submenu-wrap.open-submenu{
     max-height: 400px;

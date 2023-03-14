@@ -45,6 +45,7 @@
         --input-modify-info:#1e1e1e;
         --input-text-for-write:rgba(255, 255, 255, 0.564);
         --modal-open-background-color:#0e0e0ed8;
+        --main-color: rgb(68, 128, 168);
     }
 
 /*?--------------------TITULO DE LAS SECCIONES GENERALES---------------------*/
@@ -59,7 +60,7 @@
         width: 40px;
         background-color: var(--main-color);
         border-radius: 50%;
-        color: #fff;
+        color: #e9e9e9;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -87,7 +88,7 @@
     width: 40px;
     background-color: var(--main-color);
     border-radius: 50%;
-    color: #fff;
+    color: #e9e9e9;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -100,7 +101,9 @@
     margin-left: 10px;
     text-transform: uppercase;
 }
-/**Tarjetas panel*/
+
+
+/*?--------------TARJETAS PANEL-------------------*/
 .dashboard-container .cards-container {
     display: grid;
     /*Espacio entre tarjetas*/
@@ -112,60 +115,135 @@
 }
 .dashboard-container .cards-container .card {
     border-radius: 12px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* width: calc(100% / 4 - 15px); */
-    /* padding: 15px 20px; */
     -webkit-user-select:none;
     user-select: none;
     text-transform: capitalize;
+    text-decoration: none;
+    background-color: var(--white-color);
+    outline: 0.1rem dashed var(--text-color);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 /*Icono de la tarjeta*/
 .cards-container .card i {
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 500;
-    color: var(--cards-text-color);
+    color: var(--text-color);
+    z-index: 2;
+    overflow: hidden;
 }
 /*Titulo de la tarjeta*/
 .cards-container .card .cards-title-name {
     white-space: nowrap;
     font-size: var(--titlecards-font-size);
     font-weight: 400;
-    color: var(--cards-text-color);
+    color: var(--text-color);
+    z-index: 2;
+    overflow: hidden;
+
 }
 /*Número total de registros*/
 .cards-container .card .cards-total-count {
     white-space: nowrap;
     font-size: var(--numbercards-font-size);
     font-weight: 600;
-    color: var(--cards-text-color);
+    color: var(--text-color);
+    z-index: 2;
+    overflow: hidden;
+
 }
-/*Colores especiales tarjetas*/
-.cards-container .card.card1,
-.cards-container .card.card3 {
-    background: linear-gradient(-45deg, #faac1d, #DBA034, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+
+/**---EFECTO AL PASAR EL MOUSE*/
+#cards:hover > .card::after {
+    opacity: 1;
 }
-.cards-container .card.card2,
-.cards-container .card.card4 {
-    background: linear-gradient(-95deg, #23a6d5, #DBA034, #faac1d, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 30s ease infinite;
+.card:hover::before {
+    opacity: 1;
 }
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
+.dashboard-container .cards-container .card:hover::before {
+    outline: 2px solid var(--main-color);
+}
+.card::before,
+.card::after {
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0px;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    transition: opacity 200ms;
+    width: 100%;
+}
+.card::before {
+    background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y), rgba(35, 118, 212, 0.514),transparent 40%);
+    z-index: 2;
+}
+.card::after {  
+    background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y), rgba(40, 160, 230, 0.164),transparent 30%);
+    z-index: 2;
+}
+
+/*?--------------CHARTS: GRÁFICAS -------------------*/
+.graphBox{
+    position: relative;
+    padding: 20px;
+    display: grid;
+    gap: 1rem;
+    /*Contenedor ajustado a la pantalla*/
+    grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
+}
+.graphBox .box{
+    position: relative;
+    background-color: var(--background-color);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.466);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Media queries para ajustar tamaños en diferentes tamaños de pantalla */
+
+@media (max-width: 600px) {
+    .graphBox {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .graphBox {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     }
 }
+
+@media (min-width: 901px) and (max-width: 1200px) {
+    .graphBox {
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    }
+}
+
+@media (min-width: 1201px) {
+    .graphBox {
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    }
+}
+
+  /* Estilos para la gráfica */
+
+canvas {
+    max-height: 400px; /* Altura máxima de la gráfica */
+    min-height: 200px; /* Altura mínima de la gráfica */
+    width: 100%; /* Ancho de la gráfica */
+}
+
 
 /*?-------------------------BOTÓN NUEVO------------------*/
 .btn-add-record{
@@ -188,7 +266,15 @@
 .btn-add-record:hover{
     background-color:  var(--create-button-hover);
 }
-
+/*Btn MIS*/
+.btnDocenteMis{
+    background-color:  var(--main-color);
+    color:#fff
+}
+.btnDocenteMis:hover{
+    background-color:  #445d92;
+}
+/*?-------------------DATA TABLE JQUERY----------------------*/
 /*?-------------------MOSTRAR X REGISTROS----------------------*/
 .dataTables_length{
     color:var(--text-color);
@@ -254,6 +340,7 @@ label{
 .table-admin-container .tb-admin-records th,
 .table-admin-container .tb-admin-records td{
     padding:5px 10px;
+    /* border-bottom: 1px solid var(--row-selected-color); */
 }
 /*Título de columna*/
 .table-admin-container .tb-admin-records th{
@@ -346,40 +433,83 @@ label{
     background-color:  var(--delete-button-hover);
 }
 
-/*?---------------------MOSTRANDO DE X 1 X DE X ENTRADAS----------------------*/
-.dataTables_info{
-    color:var(--text-color);
-    border-top: 1px solid var(--text-color);
-    padding-top: 20px;
+/*Link en el título del recurso para poder abrirlo directamente y verlo*/
+.irAlRecurso{
+    text-decoration: none;
+    color: var(--main-color);
+    transition: all .5s;
+    font-weight: 600;
+    cursor:pointer;
+    pointer-events: all!important;
+    }
+    .irAlRecurso:hover{
+    color:#445d92;
+    }
+
+/*LI FEEDBACK*/
+.listFeedback{
+    list-style: none;
+    user-select: none;
+}
+.iconFeedback {
     font-size: var(--normal-font-size);
-    display: inline-flex;
-    justify-content: flex-start;
-    position: absolute;
-    line-height: 20px;
+    transform: scale(1,1);
+}
+.iconFeedback.plus {
+    color:var(--create-button);
+}
+.iconFeedback.minus {
+    color:var(--delete-button);
 }
 
+
+/*?---------------------MOSTRANDO DE X 1 X DE X ENTRADAS----------------------*/
+.dataTables_info{
+    text-align: center;
+    color:var(--text-color);
+    font-size: var(--normal-font-size);
+    padding-top: 20px;
+    border-top: 1px solid var(--text-color);
+}
 /*?--------------------PAGINACIÓN--------------------*/
 .dataTables_paginate{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+.dataTables_info{
+    text-align: center;
+    color:var(--text-color);
+    font-size: var(--normal-font-size);
     padding-top: 20px;
     border-top: 1px solid var(--text-color);
 }
 .pagination{
     display: flex;
-    justify-content: space-around;
-    width: 250px;
+    justify-content: center;
+    align-items: center;
     list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    text-align: center;
 }
-.pagination a{
-    text-decoration: none;
-    color:var(--text-color);
-    transition: all .5s;
+.pagination li {
+    margin: 0 5px;
     font-size: var(--normal-font-size);
 }
-.pagination a:hover{
+.pagination li a {
+    color:var(--input-text-for-write);
+    text-decoration: none;
+    transition: all .5s;
+    font-weight: 400;
+    padding: 5px;
+    font-size: var(--normal-font-size);
+}
+.pagination li a:hover {
     font-weight: 500;
-    color:var(--main-color);
+    color: var(--main-color);
 }
 
 /*?------------------------MODAL NUEVO/CREAR--------------------------*/
@@ -395,7 +525,7 @@ label{
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 999999;
 }
 .container-modal-add-record-resource{
     width: 100%;
@@ -406,7 +536,11 @@ label{
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 100;
+}
+.swal2-container.swal2-backdrop-show, .swal2-container.swal2-noanimation {
+    background: var(--modal-open-background-color);
+    z-index: 999999;
 }
 #btn-modal-admin-add-record:checked ~ .container-modal-add-record{
     display: flex;
@@ -472,6 +606,14 @@ label{
 .content-modal-add-record .btn-close-add-record:hover,
 .content-modal-edit-record .btn-close-edit-record:hover{
     background-color: var(--delete-button-hover);
+}
+.cerrar-modal{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top:0; left:0;
+    z-index: -1;
+
 }
 /*Botón crear*/
 .content-modal-add-record .btn-submit-add-record,
@@ -633,10 +775,10 @@ select::-ms-expand{
     margin-right: 15px;
 }
 .container-fileBtn:hover {
-    background-color: #d69e36;
+    background-color: #445d92;
 }
 .container-fileBtn:active {
-    background-color: #d89e33;
+    background-color: #445d92;
 }
 .container-fileBtn label{
     display: block;
@@ -648,8 +790,6 @@ select::-ms-expand{
     left: 0;
     cursor: pointer;
 }
-
-
 
 
 /*Contenedor gereal del input*/
@@ -682,12 +822,15 @@ select::-ms-expand{
     margin: auto;
     border-radius: 25px;
     cursor: pointer;
+    user-select: none;
+    color:#fff;
+    transition: .5s all ease-in;
 }
 .labelFileUpload:hover {
-    background-color: #d69e36;
+    background-color: #445d92;
 }
 .labelFileUpload:active {
-    background-color: #d89e33;
+    background-color: #445d92;
 }
 /*Campo opcional para los archivos seleccionados...*/
 #num-of-files {
@@ -713,15 +856,44 @@ select::-ms-expand{
     border-radius: 0 0 25px 25px;  
     max-width: 380px;
     width: 100%;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     overflow: hidden;
     text-overflow: ellipsis;
     overflow-wrap: break-word;
-    line-height: 2;
-    padding-right: 250px;
+    /* line-height: 2; */
+    /* padding-right: 250px; */
     font-size: medium;
+    word-wrap: break-word;
+    /* word-break: break-all; */
 }
+.link-estilo {
+    color: var(--main-color);
+    text-decoration: none;
+    font-size: var(--pequeña-font-size);
+  }
+  
+  .tamano-archivo {
+    font-size: var(--pequeña-font-size);
+    color: var(--text-color);
+  }
 
+/*BARRA DE CARGA DEL ARCHIVO - PROGRESO*/
+.progress {
+    height: auto;
+    background-color: transparent;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.progress-bar {
+    height: 100%;
+    background-color: #3da096;
+    border-radius: 50px;
+    width: 0%;
+    transition: width 0.2s ease-in-out;
+    text-align:center;
+    font-size:var(--pequeña-font-size);
+    user-select: none;
+}
 
 
 /*?------------------ERROR EDITAR REGISTRO----------------*/
@@ -783,11 +955,11 @@ select::-ms-expand{
     -ms-border-radius: .3rem;
     -o-border-radius: .3rem;
     border-radius: .3rem;
-    transition: opacity .5s all;
-    -webkit-transition: opacity .5s all;
-    -moz-transition: opacity .5s all;
-    -ms-transition: opacity .5s all;
-    -o-transition: opacity .5s all;
+    transition: all opacity .5s;
+    -webkit-transition: all opacity .5s;
+    -moz-transition: all opacity .5s;
+    -ms-transition: all opacity .5s;
+    -o-transition: all opacity .5s;
     text-align: center;
     transition: 0.5s;
 
@@ -795,11 +967,11 @@ select::-ms-expand{
 /*Botón volver atrás con hover*/
 .btn-UserNotFound:hover{
     background-color: #ffc965;
-    -webkit-transition: opacity .5s all;
-    -moz-transition: opacity .5s all;
-    -ms-transition: opacity .5s all;
-    -o-transition: opacity .5s all;  
-    transition: opacity .5s all;
+    -webkit-transition: all opacity .5s ;
+    -moz-transition: all opacity .5s ;
+    -ms-transition: all opacity .5s ;
+    -o-transition: all opacity .5s ;  
+    transition: all opacity .5s ;
 }
 /*Campo de texto grande con scroll*/
 .textAreaStl{
@@ -885,7 +1057,6 @@ select::-ms-expand{
 }
 .mult-select-tag .btn-container{
     color:#e2ebf0;
-    padding:.5rem;
     display:flex;
     border-left:1px solid var(--row-selected-color);
 }
@@ -906,8 +1077,13 @@ select::-ms-expand{
     margin:0;
 }
 .mult-select-tag button:first-child{
-    width:1rem;
+    width:1.2rem;
     height:90%;
+    transition: all .4s;
+}
+.mult-select-tag button:first-child:hover{
+    transform: scale(1.1);
+    color:var(--main-color);
 }
 /*Contenedor general del momento en que se abren las opciones*/
 .mult-select-tag .drawer{
@@ -942,6 +1118,7 @@ select::-ms-expand{
 /*Hover al pasar por encima de las opciones*/
 .mult-select-tag ul li:hover{
     background:var(--main-color);
+    color:#fff;
 }
 /*Estilo al momento de seleccionar la opción*/
 .mult-select-tag .item-container{
@@ -1009,10 +1186,28 @@ select::-ms-expand{
 }
 
 
+.container-modal-add-record{
+    overflow-y: scroll;
+}
 
+/**? ANIMACIÓN PANTALLA DE CARGA*/
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 7px solid #f3f3f3;
+    border-top: 7px solid var(--main-color);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+}
 
-
-
+@keyframes spin {
+0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 
 /*?--------------------- RESPONSIVE DESIGN-----------------------*/
@@ -1069,16 +1264,18 @@ select::-ms-expand{
         .table-admin-container .tb-admin-records thead{
             display:none!important;
         }
-        .dataTables_paginate{
-            display: inline-flex!important;
-        }
         .pagination{
             display: flex!important;
             justify-content: space-around;
-            margin-top: 40px!important;
         }
         .dataTables_info,
         .pagination a{
+            font-size: var(--pequeña-font-size);
+        }
+        .pagination li {
+            font-size: var(--pequeña-font-size);
+        }
+        .pagination li a {
             font-size: var(--pequeña-font-size);
         }
         .content-modal-add-record{
@@ -1102,6 +1299,9 @@ select::-ms-expand{
         }
         .container-modal-add-record{
             overflow-y: scroll;
+        }
+        .mult-select-tag button:first-child{
+            width:1.1rem;
         }
     }
 
@@ -1199,3 +1399,8 @@ select::-ms-expand{
             padding-bottom: 4rem;
         }
     }
+
+
+
+
+

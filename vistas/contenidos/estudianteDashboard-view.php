@@ -19,7 +19,7 @@
             <div class="cards-container" id="cards">
                 <a href="<?php echo SERVER_URL ?>estudianteFavoritos/" class="card">
                     <span class="cards-title-name">Favoritos</span>
-                    <i class="uil uil-users-alt"></i>
+                    <i class="uil uil-heart-alt"></i>
                     <span class="cards-total-count"><?php echo $total_usuarios->rowCount(); ?></span>
                 </a>
                 <a href="<?php echo SERVER_URL ?>estudianteFeedbacks/" class="card">
