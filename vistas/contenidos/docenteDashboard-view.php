@@ -32,20 +32,20 @@
                 <h1 class="panel-title-name">Dashboard</h1>
             </div>
             <div class="cards-container" id="cards">
-                <a href="<?php echo SERVER_URL ?>docenteRecursos/" class="card">
-                    <span class="cards-title-name">Recursos</span>
-                    <i class="uil uil-file-blank"></i>
-                    <span class="cards-total-count"><?php echo $totalRecursos->rowCount(); ?></span>
-                </a>
                 <a href="<?php echo SERVER_URL ?>docenteAutores/" class="card">
                     <span class="cards-title-name">Autores</span>
                     <i class="uil uil-pen"></i>
                     <span class="cards-total-count"><?php echo $total_autores->rowCount(); ?></span>
                 </a>
-                <a href="<?php echo SERVER_URL ?>docenteEtiquetas/" class="card">
-                    <span class="cards-title-name">Etiquetas</span>
+                <a href="<?php echo SERVER_URL ?>docentePalabrasClave/" class="card">
+                    <span class="cards-title-name">Palabras Clave</span>
                     <i class="uil uil-tag"></i>
                     <span class="cards-total-count"><?php echo $total_etiquetas->rowCount(); ?></span>
+                </a>
+                <a href="<?php echo SERVER_URL ?>docenteRecursos/" class="card">
+                    <span class="cards-title-name">Recursos</span>
+                    <i class="uil uil-file-blank"></i>
+                    <span class="cards-total-count"><?php echo $totalRecursos->rowCount(); ?></span>
                 </a>
             </div>
         </div>

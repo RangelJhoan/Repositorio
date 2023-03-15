@@ -325,7 +325,12 @@ label{
     padding:3.75px 7.5px;
 }
 
+
 /*?-----------------------TABLA DE REGISTROS -------------------*/
+.fileStyleResp {
+    word-wrap: break-word;
+    word-break: break-all;
+}
 /*Tabla general*/
 .table-admin-container .tb-admin-records{
     width: 100%!important;
@@ -1314,7 +1319,7 @@ select::-ms-expand{
         }
         .btn-group-action{
             display: flex;
-            margin-left: 10px;
+            margin-right: 10px;
         }
         .input-field,.labelFileUpload {
             margin: 5px 0;

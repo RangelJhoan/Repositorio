@@ -54,10 +54,10 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                                 }
                             ?>
                             </td>
-                            <td data-titulo="ARCHIVO" class="responsive-file"><?php if($archivo != false) echo $archivo['nombre'] ?></td>
-                            <td data-titulo="CURSO" class="responsive-file"><?php if($archivo != false) echo $archivo['nombre'] ?></td>
+                            <td data-titulo="ARCHIVO" class="responsive-file fileStyleResp"><?php if($archivo != false) echo $archivo['nombre'] ?></td>
+                            <td data-titulo="CURSO" class="responsive-file">Curso?</td>
                             <td data-titulo="ESTADO" class="responsive-file">Estado?</td>
-                            <td data-titulo="ACCIÓN" >
+                            <td data-titulo="ACCIÓN" class="responsive-file">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
                                         <a href="" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>

@@ -42,7 +42,7 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
-                            <td data-titulo="TÍTULO">
+                            <td data-titulo="TÍTULO" class="responsive-file">
                                 <a href="" target="_blank" class="irAlRecurso" title="Ir al recurso"><?php echo $rows['titulo'] ?></a></td>
                             </td>
                             <td data-titulo="AUTOR(ES)" class="responsive-file">

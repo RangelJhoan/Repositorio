@@ -387,7 +387,15 @@ body.dark .switch:before{
 .li-plantilla:is(:link,:active,:visited).activeLi{
     background: var(--active-bgr-color);
 }
-
+.archivoResp{
+    max-width: 350px;
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    font-size: medium;
+    word-wrap: break-word;
+}
 
 /*?RESPONSIVE*/
 @media (max-width:1000px){
@@ -443,6 +451,9 @@ body.dark .switch:before{
     }
     .center-name{
         font-size: 1rem;
+    }
+    .archivoResp{
+        max-width: 850;
     }
 }
 

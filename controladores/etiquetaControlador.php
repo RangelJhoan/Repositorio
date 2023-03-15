@@ -87,7 +87,7 @@ class etiquetaControlador extends etiquetaModelo{
             $alerta=[
                 "Alerta"=>"redireccionar",
                 "Titulo"=>"Datos actualizados",
-                "URL"=>SERVER_URL."panelEtiquetas/",
+                "URL"=>SERVER_URL."panelPalabrasClave/",
                 "Texto"=>"Los datos han sido actualizados con éxito",
                 "Tipo"=>"success"
             ];

@@ -46,7 +46,7 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
                             <input name="anioRecurso" type="number" placeholder="Año de creación" min="1700" pattern="[0-9]+" title="Por favor, complete el campo"/>
                         </div>
                         <!--Lista de cursos-->
-                        <label for="cursoSeleccion" class="titleComboMultiple">Curso (s) *</label>
+                        <label for="cursoSeleccion" class="titleComboMultiple">Curso(s) *</label>
                             <select name="cursos_ins[]" id="cursoSeleccionarCbx" multiple="multiple" title="Por favor, selecciona el o los programas asociados al recurso">
                                 <?php
                                 foreach($datos_cursos as $campos_curso){
@@ -57,8 +57,8 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
                                 ?>
                             </select>
                         <!--Lista de etiquetas-->
-                        <label for="etiquetaSeleccion" class="titleComboMultiple">Etiqueta (s)</label>
-                            <select name="etiquetas_ins[]" id="etiquetaSeleccionarCbx" multiple="multiple" title="Por favor, selecciona la o las etiquetas para el recurso">
+                        <label for="etiquetaSeleccion" class="titleComboMultiple">Palabra(s) clave</label>
+                            <select name="etiquetas_ins[]" id="etiquetaSeleccionarCbx" multiple="multiple" title="Por favor, selecciona la o las palabras clave para el recurso">
                                 <?php
                                 foreach($datos_etiquetas as $campos_etiqueta){
                                 ?>

@@ -20,22 +20,22 @@
                         <span class="option-name">Dashboard</span>
                     </a>
                 </li>
-                <li class="li-plantilla" title="Recursos">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docenteRecursos/">
-                        <i class="uil uil-file-blank"></i>
-                        <span class="option-name">Recursos</span>
-                    </a>
-                </li>
                 <li class="li-plantilla" title="Autores">
                     <a class="li-plantilla" href="<?php echo SERVER_URL ?>docenteAutores/">
                         <i class="uil uil-pen"></i>
                         <span class="option-name">Autores</span>
                     </a>
                 </li>
-                <li class="li-plantilla" title="Etiquetas">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docenteEtiquetas/">
+                <li class="li-plantilla" title="Palabras Clave">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docentePalabrasClave/">
                         <i class="uil uil-tag"></i>
-                        <span class="option-name">Etiquetas</span>
+                        <span class="option-name">Palabras clave</span>
+                    </a>
+                </li>
+                <li class="li-plantilla" title="Recursos">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docenteRecursos/">
+                        <i class="uil uil-file-blank"></i>
+                        <span class="option-name">Recursos</span>
                     </a>
                 </li>
                 <!-- <li class="li-plantilla" title="Reportes">

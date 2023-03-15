@@ -93,7 +93,7 @@ $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $contador; ?></td>
-                            <td data-titulo="NOMBRE"><?php echo $rows['nombre'] ?></td>
+                            <td data-titulo="NOMBRE" class="responsive-file"><?php echo $rows['nombre'] ?></td>
                             <td data-titulo="DESCRIPCIÓN" class="responsive-file"><?php echo $rows['descripcion'] ?></td>
                             <td data-titulo="PROGRAMA" class="responsive-file"><?php
                                 foreach($programas_curso as $campos){
@@ -102,8 +102,8 @@ $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
                                     <?php
                                 }
                             ?></td>
-                            <td data-titulo="ESTADO"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
-                            <td data-titulo="ACCIÓN">
+                            <td data-titulo="ESTADO" class="responsive-file"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
+                            <td data-titulo="ACCIÓN" class="responsive-file">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
                                         <a href="<?php echo SERVER_URL ?>adminEditarCurso/<?php echo $ins_curso->encryption($rows['id'])?>/" class="btn-admin-edit-record" title="Editar curso"><i class="uil uil-edit btn-admin-edit-record"></i></a>

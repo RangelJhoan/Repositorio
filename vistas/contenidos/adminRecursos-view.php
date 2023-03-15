@@ -17,13 +17,13 @@ $datos = $ins_recurso->paginador_recurso_controlador();
             <!--BOTÓN CREAR-->
             <div class="new-record-container">
                 <a class="btn-add-record" title="Crear recurso" href="<?php echo SERVER_URL ?>crearRecurso/">
-                <i class="uil uil-plus-circle"></i></i></i>Nuevo
+                <i class="uil uil-plus-circle"></i>Nuevo
                 </a>
                 <a class="btn-add-record" title="Ir a autores" href="<?php echo SERVER_URL ?>adminAutores/">
-                <i class="uil uil-pen"></i></i></i>Autores
+                <i class="uil uil-pen"></i>Autores
                 </a>
-                <a class="btn-add-record" title="Ir a etiquetas" href="<?php echo SERVER_URL ?>panelEtiquetas/">
-                <i class="uil uil-tag"></i></i></i>Etiquetas
+                <a class="btn-add-record" title="Ir a palabras clave" href="<?php echo SERVER_URL ?>panelPalabrasClave/">
+                <i class="uil uil-tag"></i>Palabras clave
                 </a>
             </div>
             <!--TABLA-->
@@ -36,6 +36,7 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                             <th>Autor(es)</th>
                             <th>Archivo</th>
                             <th>Feedback</th>
+                            <th>Estado</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -49,7 +50,7 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
-                            <td data-titulo="TÍTULO"><?php echo $rows['titulo'] ?></td>
+                            <td data-titulo="TÍTULO" class="responsive-file"><?php echo $rows['titulo'] ?></td>
                             <td data-titulo="AUTOR" class="responsive-file">
                             <?php
                                 foreach($autoresRecurso as $campo){
@@ -59,12 +60,13 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                                 }
                             ?>
                             </td>
-                            <td data-titulo="ARCHIVO"><?php if($archivo != false) echo $archivo['nombre'] ?></td>
+                            <td data-titulo="ARCHIVO" class="responsive-file fileStyleResp"><?php if($archivo != false) echo $archivo['nombre'] ?></td>
                             <td data-titulo="FEEDBACK" class="responsive-file listFeedback">
                                 <li title="Calificación positiva"><i class="uil uil-thumbs-up iconFeedback plus"></i>: <?php echo $rows['puntos_positivos'] ?> </li>
                                 <li title="Calificación negativa"><i class="uil uil-thumbs-down iconFeedback minus"></i>: <?php echo $rows['puntos_negativos'] ?> </li>
                             </td>
-                            <td data-titulo="ACCIÓN">
+                            <td data-titulo="ESTADO" class="responsive-file">PONER EL ESTADO</td>
+                            <td data-titulo="ACCIÓN" class="responsive-file">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
                                         <a href="" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>

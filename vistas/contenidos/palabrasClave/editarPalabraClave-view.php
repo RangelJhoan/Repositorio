@@ -14,7 +14,7 @@ if($datos->rowCount()>0){
             <!--TÍTULO-->
             <div class="title">
                 <i class="uil uil-tag"></i>
-                <h1 class="panel-title-name">Editar Etiqueta</h1>
+                <h1 class="panel-title-name">Editar Palabra Clave</h1>
             </div>
             <div class="container-modal-edit-record" id="modal-container-edit-user">
                 <div class="content-modal-edit-record">
@@ -26,7 +26,7 @@ if($datos->rowCount()>0){
                         <!--Select tag-->
                         <div class="input-field ">
                             <div class="select-option">
-                                <select name="estado" class="combobox-titulo" title="Estado de la etiqueta">
+                                <select name="estado" class="combobox-titulo" title="Estado de la palabra clave">
                                     <option disabled value="" class="combobox-opciones">Estado</option>
                                     <?php
                                     foreach (Utilidades::getEstados() as $clave => $valor) {
@@ -40,7 +40,7 @@ if($datos->rowCount()>0){
                         </div>
                         <div class="botones-accion-modal">
                             <button type="submit" class="btn-admin-edit-record" title="Actualizar">Guardar cambios</button>
-                            <a href="javascript:history.back()" class="btn-close-edit-record" title="Autores">Volver atrás</a>
+                            <a href="javascript:history.back()" class="btn-close-edit-record" title="Palabras clave">Volver atrás</a>
                         </div>
                 </div>
             </div>
@@ -53,8 +53,8 @@ if($datos->rowCount()>0){
             <p class="message-record-not-found">Ha ocurrido un error inesperado.</p>
         </section>
         <section class="img-section">
-            <img class="image-errorEditRecord"src="<?php echo SERVER_URL; ?>vistas/assets/img/errorEditarRegistro.svg" alt="Error al intentar editar la etiqueta.">
-            <a href="<?php echo SERVER_URL; ?>panelEtiquetas/" class="btn-UserNotFound" title="Ir a etiquetas">Volver atrás</a>
+            <img class="image-errorEditRecord"src="<?php echo SERVER_URL; ?>vistas/assets/img/errorEditarRegistro.svg" alt="Error al intentar editar la palabra clave.">
+            <a href="<?php echo SERVER_URL; ?>panelPalabrasClave/" class="btn-UserNotFound" title="Ir a palabras clave">Volver atrás</a>
         </section>
     </div>
 <?php } ?>

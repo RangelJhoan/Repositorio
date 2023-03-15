@@ -57,8 +57,8 @@
                     <i class="uil uil-pen"></i>
                     <span class="cards-total-count"><?php echo $total_autores->rowCount(); ?></span>
                 </a>
-                <a href="<?php echo SERVER_URL ?>panelEtiquetas/" class="card">
-                    <span class="cards-title-name">Etiquetas</span>
+                <a href="<?php echo SERVER_URL ?>panelPalabrasClave/" class="card">
+                    <span class="cards-title-name">Palabras Clave</span>
                     <i class="uil uil-tag"></i>
                     <span class="cards-total-count"><?php echo $total_etiquetas->rowCount(); ?></span>
                 </a>

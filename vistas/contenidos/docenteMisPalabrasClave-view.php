@@ -9,11 +9,11 @@
             <!--TÍTULO-->
             <div class="title">
                 <i class="uil uil-tag"></i>
-                <h1 class="panel-title-name">Etiquetas</h1>
+                <h1 class="panel-title-name">Mis Palabras Clave</h1>
             </div>
             <!--BOTÓN CREAR-->
             <div class="new-record-container">
-                <label for="btn-modal-admin-add-record" class="btn-add-record" title="Crear autor">
+                <label for="btn-modal-admin-add-record" class="btn-add-record" title="Crear palabra clave">
                     <i class="uil uil-plus-circle"></i>Nuevo
                 </label>
             </div>
@@ -21,7 +21,7 @@
             <input type="checkbox" id="btn-modal-admin-add-record">
                 <div class="container-modal-add-record">
                 <div class="content-modal-add-record">
-                    <h3 class="content-modal-titulo">Nueva etiqueta</h3>
+                    <h3 class="content-modal-titulo">Nueva palabra clave</h3>
                     <p class="content-modal-recordatorio">Recuerde que * indica que el campo es obligatorio.</p>
                     <form action="<?php echo SERVER_URL ?>ajax/etiquetaAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                         <div class="input-field">
@@ -60,12 +60,12 @@
                             <td data-titulo="ACCIÓN">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <a href="<?php echo SERVER_URL ?>editarEtiqueta/<?php echo $ins_etiqueta->encryption($rows['id'])?>/" class="btn-admin-edit-record" title="Editar etiqueta"><i class="uil uil-edit btn-admin-edit-record"></i></a>
+                                        <a href="<?php echo SERVER_URL ?>editarPalabraClave/<?php echo $ins_etiqueta->encryption($rows['id'])?>/" class="btn-admin-edit-record" title="Editar palabra clave"><i class="uil uil-edit btn-admin-edit-record"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/etiquetaAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
                                             <input type="hidden" name="id_etiqueta_del" value="<?php echo $ins_etiqueta->encryption($rows['id']) ?>">
-                                            <button type="submit" class="btn-delete-record" title="Eliminar etiqueta"><i class="uil uil-trash-alt"></i></button>
+                                            <button type="submit" class="btn-delete-record" title="Eliminar palabra clave"><i class="uil uil-trash-alt"></i></button>
                                         </div>
                                     </form>
                                 </div>

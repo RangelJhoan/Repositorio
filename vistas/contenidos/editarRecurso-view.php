@@ -81,8 +81,8 @@ if($consultaRecursos->rowCount() > 0){
                             ?>
                         </select>
                     <!--Lista de etiquetas-->
-                    <label for="etiquetaSeleccion" class="titleComboMultiple">Etiqueta (s)</label>
-                        <select name="etiquetas_edit[]" id="etiquetaSeleccionarCbx" multiple="multiple" title="Por favor, selecciona la o las etiquetas para el recurso">
+                    <label for="etiquetaSeleccion" class="titleComboMultiple">Palabra(s) clave</label>
+                        <select name="etiquetas_edit[]" id="etiquetaSeleccionarCbx" multiple="multiple" title="Por favor, selecciona la o las palabras clave para el recurso">
                             <?php
                             foreach($listaEtiquetas as $datosEtiqueta){
                                 $selected = false;
