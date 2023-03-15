@@ -60,6 +60,18 @@ class etiquetaModelo extends mainModel{
         $sql->execute();
         return $sql;
     }
+
+    /*---------- Modelo etiquetas por recurso ----------*/
+    protected static function etiquetasXRecursoModelo($id){
+        $sql = mainModel::conectar()->prepare("SELECT e.id, e.descripcion 
+        FROM etiqueta e 
+        JOIN etiqueta_recurso er ON e.id = er.id_etiqueta 
+        JOIN recurso r ON r.id = er.id_recurso 
+        WHERE r.id = :ID;");
+        $sql->bindParam(":ID", $id);
+        $sql->execute();
+        return $sql;
+    }
 }
 
 ?>

@@ -183,7 +183,7 @@ class recursoControlador extends recursoModelo{
     public function eliminar_recurso_controlador(){
         $recurso = new Recurso();
         $recurso->setIdRecurso(mainModel::decryption($_POST['id_recurso_del']));
-        $recurso->setEstado(3);
+        $recurso->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
         $eliminarRecurso = recursoModelo::editar_estado_recurso_modelo($recurso);
 
@@ -206,6 +206,94 @@ class recursoControlador extends recursoModelo{
         ];
         echo json_encode($alerta);
 
+    }
+
+    public function editar_recurso_controlador(){
+        $recurso = new Recurso();
+        $archivo = new Archivo();
+
+        if(!isset($_POST['cursos_edit'])){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"Por favor seleccione un curso",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $recurso->setIdRecurso(mainModel::decryption($_POST['id_recurso_edit']));
+
+        //Comprobar que el recurso existe
+        $checkRecurso = mainModel::ejecutar_consulta_simple("SELECT * FROM recurso WHERE id = '". $recurso->getIdRecurso() ."';");
+        if($checkRecurso->rowCount() <= 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrió un error",
+                "Texto"=>"No se encontró el recurso a editar",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        //Construimos el objeto de recurso con información actual o nueva
+        $recurso->setTitulo($_POST['titulo_edit']);
+        $recurso->setResumen($_POST['resumen_edit']);
+        $recurso->setFecha($_POST['anioRecurso_edit']);
+        $recurso->setEstado($_POST['estado_edit']);
+        $recurso->setCurso($_POST['cursos_edit']);
+        $recurso->setEnlace($_POST['link_edit']);
+        $recurso->setAutor(array());
+        $recurso->setEtiqueta(array());
+
+        if(isset($_POST['etiquetas_edit']))
+            $recurso->setEtiqueta($_POST['etiquetas_edit']);
+
+        //Obtener las etiquetas seleccionadas (Agregar nuevas y Eliminar no seleccionadas)
+        $etiquetasActuales = recursoModelo::idEtiquetasRecurso($recurso->getIdRecurso())->fetchAll(PDO::FETCH_COLUMN, 0);
+        $etiquetasAgregadas = array_diff($recurso->getEtiqueta(), $etiquetasActuales);
+        $etiquetasEliminadas = array_diff($etiquetasActuales, $recurso->getEtiqueta());
+
+        recursoModelo::editar_recurso_etiqueta_modelo($recurso, $etiquetasAgregadas, $etiquetasEliminadas);
+
+        if(isset($_POST['autores_edit']))
+            $recurso->setAutor($_POST['autores_edit']);
+
+        //Obtener los autores seleccionados (Agregar nuevos y Eliminar no seleccionados)
+        $autoresActuales = recursoModelo::idAutoresRecurso($recurso->getIdRecurso())->fetchAll(PDO::FETCH_COLUMN, 0);
+        $autoresAgregados = array_diff($recurso->getAutor(), $autoresActuales);
+        $autoresEliminados = array_diff($autoresActuales, $recurso->getAutor());
+
+        recursoModelo::editar_recurso_autor_modelo($recurso, $autoresAgregados, $autoresEliminados);
+
+        if(isset($_POST['link_ins']))
+            $recurso->setEnlace($_POST['link_ins']);
+
+        //Obtener los cursos seleccionados (Agregar nuevos y Eliminar no seleccionados)
+        $cursosActuales = recursoModelo::idCursosRecurso($recurso->getIdRecurso())->fetchAll(PDO::FETCH_COLUMN, 0);
+        $cursosAgregados = array_diff($recurso->getCurso(), $cursosActuales);
+        $cursosEliminados = array_diff($cursosActuales, $recurso->getCurso());
+        $editarRecurso = recursoModelo::editar_recurso_modelo($recurso, $cursosAgregados, $cursosEliminados);
+
+        if(is_string($editarRecurso) || $editarRecurso->rowCount() < 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"No se pudo actualizar la información",
+                "Tipo"=>"error"
+            ];
+        }else{
+            $alerta=[
+                "Alerta"=>"redireccionar",
+                "Titulo"=>"Datos actualizados",
+                "URL"=>SERVER_URL."adminRecursos/",
+                "Texto"=>"Los datos han sido actualizados con éxito",
+                "Tipo"=>"success"
+            ];
+        }
+        echo json_encode($alerta);
     }
 
 }

@@ -148,6 +148,18 @@
             return $sql;
         }
 
+        /*---------- Modelo cursos por recurso ----------*/
+        protected static function cursosXRecursoModelo($id){
+            $sql = mainModel::conectar()->prepare("SELECT c.id, c.nombre 
+            FROM curso c 
+            JOIN curso_recurso cr ON c.id = cr.id_curso 
+            JOIN recurso r ON r.id = cr.id_recurso 
+            WHERE r.id = :ID;");
+            $sql->bindParam(":ID", $id);
+            $sql->execute();
+            return $sql;
+        }
+
     }
 
 ?>

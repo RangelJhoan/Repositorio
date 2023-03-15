@@ -74,7 +74,7 @@
 
         /*---------- Modelo autores por recurso ----------*/
         protected static function autoresXRecursoModelo($id){
-            $sql = mainModel::conectar()->prepare("SELECT a.nombre, a.apellido 
+            $sql = mainModel::conectar()->prepare("SELECT a.id, a.nombre, a.apellido 
             FROM autor a 
             JOIN autor_recurso ar ON a.id = ar.id_autor 
             JOIN recurso r ON r.id = ar.id_recurso 

@@ -1,22 +1,29 @@
 <?php
 
+require_once "./controladores/recursoControlador.php";
+require_once "./controladores/autorControlador.php";
 require_once "./controladores/cursoControlador.php";
-require_once "./controladores/programaControlador.php";
-require_once "./controladores/usuarioControlador.php";
-require_once "./utilidades/Utilidades.php";
+require_once "./controladores/etiquetaControlador.php";
 
-$ins_curso = new cursoControlador();
-$ins_programa = new programaControlador();
-$insUsuario = new usuarioControlador();
+$insRecurso = new recursoControlador();
+$insAutor = new autorControlador();
+$insCurso = new cursoControlador();
+$insEtiqueta = new etiquetaControlador();
 
-$datos_curso = $ins_curso->datos_curso_controlador("Unico", $pagina[1]);
-$datos_programas = $ins_programa->listar_programas_controlador();
-$datosUsuarios = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
+$consultaRecursos = $insRecurso->datos_recurso_controlador("Unico", $pagina[1]);
+if($consultaRecursos->rowCount() > 0){
+    //Se carga la información del recurso y del archivo
+    $datosRecurso = $consultaRecursos->fetch();
 
-if($datos_curso->rowCount()>0){
-    $campos_curso = $datos_curso->fetch();
-    $programas_curso = $ins_curso->programas_curso_controlador($campos_curso['id']);
-    $docentesCurso = $ins_curso->docentes_curso_controlador($campos_curso['id']);
+    //Se consultan toda la lista de tablas intermedias
+    $listaAutores = $insAutor->paginador_autor_controlador();
+    $listaCursos = $insCurso->paginador_curso_controlador();
+    $listaEtiquetas = $insEtiqueta->paginador_etiqueta_controlador();
+
+    //Se consultan los registros relacionados
+    $autoresActuales = $insAutor->autoresXRecursoControlador($datosRecurso['id_recurso']);
+    $cursosActuales = $insCurso->cursosXRecursoControlador($datosRecurso['id_recurso']);
+    $etiquetasActuales = $insEtiqueta->etiquetasXRecursoControlador($datosRecurso['id_recurso']);
     ?>
 <section class="general-admin-container">
     <div class="overview-general-admin">
@@ -28,90 +35,109 @@ if($datos_curso->rowCount()>0){
             <div class="container-modal-edit-record" id="modal-container-edit-user">
                 <div class="content-modal-edit-record">
                 <form action="<?php echo SERVER_URL ?>ajax/recursoAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save_resource" autocomplete="off" enctype="multipart/form-data">
-                        <!--Select tag-->
-                        <div class="input-field ">
-                            <div class="select-option">
-                                <select name="estado" class="combobox-titulo" title="Estado del curso">
-                                    <option disabled value="" class="combobox-opciones">Estado</option>
-                                    <?php
-                                    foreach (Utilidades::getEstados() as $clave => $valor) {
-                                    ?>
-                                    <option <?php if($campos['estado'] == $clave){echo "selected";} ?> value="<?php echo $clave; ?>"><?php echo $valor; ?></option>
-                                    <?php
+                    <input type="hidden" name="id_recurso_edit" value="<?php echo $pagina[1] ?>">
+                    <!--Título recurso-->
+                    <div class="input-field">
+                        <input name="titulo_edit" type="text" value="<?php echo $datosRecurso['titulo']?>" placeholder="Título *" title="Por favor, complete el campo" required/>
+                    </div>
+                    <!--Lista de autores-->
+                    <label for="autorSeleccion" class="titleComboMultiple">Autor(es)</label>
+                        <select name="autores_edit[]" id="autorSeleccionarCbx" multiple="multiple" title="Por favor, selecciona el o los autores del recurso">
+                            <?php
+                            foreach($listaAutores as $datosAutor){
+                                $selected = false;
+                                foreach ($autoresActuales as $datosAutorActual) {
+                                    if($datosAutor['id'] == $datosAutorActual['id']){
+                                        $selected = true;
                                     }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <!--Título recurso-->
-                        <div class="input-field">
-                            <input name="titulo_ins" type="text" placeholder="Título *" title="Por favor, complete el campo" required/>
-                        </div>
-                        <!--Lista de autores-->
-                        <label for="autorSeleccion" class="titleComboMultiple">Autor(es)</label>
-                            <select name="autores_ins[]" id="autorSeleccionarCbx" multiple="multiple" title="Por favor, selecciona el o los autores del recurso">
+                                }
+                            ?>
+                            <option <?php if($selected) echo "selected" ?> value="<?php echo $datosAutor['id'] ?>"><?php echo $datosAutor['nombre'] . " " .  $datosAutor['apellido']?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    <!--Resumen-->
+                    <textarea class="textAreaStl" name="resumen_edit" type="text" placeholder="Resumen *" title="Por favor, complete el campo" required><?php echo $datosRecurso['resumen'] ?></textarea>
+                    <!--Año recurso-->
+                    <div class="input-field">
+                        <input name="anioRecurso_edit" type="number" value="<?php echo $datosRecurso['fecha_publicacion_recurso'] ?>" placeholder="Año de creación" min="1700" pattern="[0-9]+" title="Por favor, complete el campo"/>
+                    </div>
+                    <!--Lista de cursos-->
+                    <label for="cursoSeleccion" class="titleComboMultiple">Curso (s) *</label>
+                        <select name="cursos_edit[]" id="cursoSeleccionarCbx" multiple="multiple" title="Por favor, selecciona el o los programas asociados al recurso">
+                            <?php
+                            foreach($listaCursos as $datosCurso){
+                                $selected = false;
+                                foreach ($cursosActuales as $datosCursoActual) {
+                                    if($datosCurso['id'] == $datosCursoActual['id']){
+                                        $selected = true;
+                                    }
+                                }
+                            ?>
+                            <option <?php if($selected) echo "selected" ?> value="<?php echo $datosCurso['id'] ?>"><?php echo $datosCurso['nombre']?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    <!--Lista de etiquetas-->
+                    <label for="etiquetaSeleccion" class="titleComboMultiple">Etiqueta (s)</label>
+                        <select name="etiquetas_edit[]" id="etiquetaSeleccionarCbx" multiple="multiple" title="Por favor, selecciona la o las etiquetas para el recurso">
+                            <?php
+                            foreach($listaEtiquetas as $datosEtiqueta){
+                                $selected = false;
+                                foreach ($etiquetasActuales as $datosEtiquetaActual) {
+                                    if($datosEtiqueta['id'] == $datosEtiquetaActual['id']){
+                                        $selected = true;
+                                    }
+                                }
+                            ?>
+                            <option <?php if($selected) echo "selected" ?> value="<?php echo $datosEtiqueta['id'] ?>"><?php echo $datosEtiqueta['descripcion']?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    <!--Editorial-->
+                    <div class="input-field">
+                        <input name="editorial_edit" type="text" placeholder="Editorial " value="<?php echo $datosRecurso['editorial'] ?>" title="Por favor, complete el campo"/>
+                    </div>
+                    <!--ISBN-->
+                    <div class="input-field">
+                        <input name="ISBN_edit" type="number" placeholder="ISBN" value="<?php echo $datosRecurso['isbn'] ?>" title="Por favor, complete el campo"/>
+                    </div>
+                    <!--Link del recurso-->
+                    <div class="input-field">
+                        <input name="link_edit" type="text" placeholder="Enlace" value="<?php echo $datosRecurso['enlace'] ?>" title="Por favor, complete el campo"/>
+                    </div>
+                    <!--Estados-->
+                    <div class="input-field ">
+                        <div class="select-option">
+                            <select name="estado_edit" class="combobox-titulo" title="Estado del curso">
+                            <option disabled value="" class="combobox-opciones">Estado</option>
                                 <?php
-                                foreach($datos_autores as $datos_autor){
+                                foreach (Utilidades::getEstados() as $clave => $valor) {
                                 ?>
-                                <option value="<?php echo $datos_autor['id'] ?>"><?php echo $datos_autor['nombre'] . " " .  $datos_autor['apellido']?></option>
+                                <option <?php if($datosRecurso['estado'] == $clave){echo "selected";} ?> value="<?php echo $clave; ?>"><?php echo $valor; ?></option>
                                 <?php
                                 }
                                 ?>
                             </select>
-                        <!--Resumen-->
-                        <textarea class="textAreaStl" name="resumen_ins" type="text" placeholder="Resumen *" title="Por favor, complete el campo" required></textarea>
-                        <!--Año recurso-->
-                        <div class="input-field">
-                            <input name="anioRecurso" type="number" placeholder="Año de creación" min="1700" pattern="[0-9]+" title="Por favor, complete el campo"/>
                         </div>
-                        <!--Lista de cursos-->
-                        <label for="cursoSeleccion" class="titleComboMultiple">Curso (s) *</label>
-                            <select name="cursos_ins[]" id="cursoSeleccionarCbx" multiple="multiple" title="Por favor, selecciona el o los programas asociados al recurso">
-                                <?php
-                                foreach($datos_cursos as $campos_curso){
-                                ?>
-                                <option value="<?php echo $campos_curso['id'] ?>"><?php echo $campos_curso['nombre'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        <!--Lista de etiquetas-->
-                        <label for="etiquetaSeleccion" class="titleComboMultiple">Etiqueta (s)</label>
-                            <select name="etiquetas_ins[]" id="etiquetaSeleccionarCbx" multiple="multiple" title="Por favor, selecciona la o las etiquetas para el recurso">
-                                <?php
-                                foreach($datos_etiquetas as $campos_etiqueta){
-                                ?>
-                                <option value="<?php echo $campos_etiqueta['id'] ?>"><?php echo $campos_etiqueta['descripcion'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        <!--Editorial-->
-                        <div class="input-field">
-                            <input name="editorial_ins" type="text" placeholder="Editorial " title="Por favor, complete el campo"/>
+                    </div>
+                    <!--Cargue del archivo-->
+                    <div class="fileUploadContainer">
+                        <input class="inputUploadFile" type="file" id="file-input"/>
+                        <label class="labelFileUpload" for="file-input">
+                            <i class="uil uil-upload"></i>
+                            &nbsp; Subir archivo
+                        </label>
+                        <!--Barra de carga / progreso-->
+                        <ul id="files-list">
+                        </ul>
+                        <div class="progress">
+                            <div id="progress-bar" class="progress-bar" role="progressbar"></div>
                         </div>
-                        <!--ISBN-->
-                        <div class="input-field">
-                            <input name="ISBN_ins" type="number" placeholder="ISBN" title="Por favor, complete el campo"/>
-                        </div>
-                        <!--Link del recurso-->
-                        <div class="input-field">
-                            <input name="link_ins" type="text" placeholder="Enlace" title="Por favor, complete el campo"/>
-                        </div>
-                        <!--Cargue del archivo-->
-                        <div class="fileUploadContainer">
-                            <input class="inputUploadFile" type="file" id="file-input"/>
-                            <label class="labelFileUpload" for="file-input">
-                                <i class="uil uil-upload"></i>
-                                &nbsp; Subir archivo
-                            </label>
-                            <!--Barra de carga / progreso-->
-                            <ul id="files-list">
-                            </ul>
-                            <div class="progress">
-                                <div id="progress-bar" class="progress-bar" role="progressbar"></div>
-                            </div>
-                        </div>
+                    </div>
                     <div class="botones-accion-modal">
                         <button type="submit" class="btn-admin-edit-record" title="Actualizar">Guardar cambios</button>
                         <a href="javascript:history.back()" class="btn-close-edit-record" title="Recursos">Volver atrás</a>

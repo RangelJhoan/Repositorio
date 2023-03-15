@@ -16,4 +16,8 @@ if(isset($_POST['titulo_ins'])){
 
     echo $ins_recurso->eliminar_recurso_controlador();
 }
+
+if(isset($_POST['titulo_edit'])){
+    echo $ins_recurso->editar_recurso_controlador();
+}
 ?>

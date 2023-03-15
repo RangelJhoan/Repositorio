@@ -165,6 +165,11 @@ class etiquetaControlador extends etiquetaModelo{
         $datos = $datos->fetchAll();
         return $datos;
     }
+
+    /*---------- Controlador etiquetas de un recurso en específico ----------*/
+    public function etiquetasXRecursoControlador($id){
+        return etiquetaModelo::etiquetasXRecursoModelo($id)->fetchAll();
+    }
 }
 
 ?>

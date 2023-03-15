@@ -188,6 +188,11 @@ class cursoControlador extends cursoModelo{
         return cursoModelo::docentes_curso_modelo($id)->fetchAll();
     }
 
+    /*---------- Controlador cursos de un recurso en específico ----------*/
+    public function cursosXRecursoControlador($id){
+        return cursoModelo::cursosXRecursoModelo($id)->fetchAll();
+    }
+
 }
 
 ?>

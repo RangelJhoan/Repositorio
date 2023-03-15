@@ -68,8 +68,9 @@
         protected static function datos_recurso_modelo($tipo, $id){
             if($tipo == "Unico"){
                 $sql = mainModel::conectar()->prepare("SELECT * 
-                FROM recurso 
-                WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") ." AND id = :ID;");
+                FROM recurso r
+                LEFT JOIN archivo a ON a.id_recurso = r.id
+                WHERE r.estado != ". Utilidades::getIdEstado("ELIMINADO") ." AND r.id = :ID;");
                 $sql->bindParam(":ID", $id);
             }elseif($tipo == "Conteo"){
                 $sql = mainModel::conectar()->prepare("SELECT id 
@@ -97,6 +98,95 @@
                 $sql->execute([$recurso->getEstado(), $recurso->getIdRecurso()]);
                 return $sql->rowCount();
             } catch (\Throwable $th) {
+                return $th->getMessage();
+            }
+        }
+
+        /*---------- Modelo id de autores por recurso ----------*/
+        protected static function idAutoresRecurso($id){
+            $sql = mainModel::conectar()->prepare("SELECT ar.id_autor 
+            FROM recurso r 
+            JOIN autor_recurso ar ON r.id = ar.id_recurso 
+            WHERE r.id = :ID;");
+            $sql->bindParam(":ID", $id);
+            $sql->execute();
+            return $sql;
+        }
+
+        /*---------- Modelo id de etiquetas por recurso ----------*/
+        protected static function idEtiquetasRecurso($id){
+            $sql = mainModel::conectar()->prepare("SELECT er.id_etiqueta 
+            FROM recurso r 
+            JOIN etiqueta_recurso er ON r.id = er.id_recurso 
+            WHERE r.id = :ID;");
+            $sql->bindParam(":ID", $id);
+            $sql->execute();
+            return $sql;
+        }
+
+        /*---------- Modelo id de cursos por recurso ----------*/
+        protected static function idCursosRecurso($id){
+            $sql = mainModel::conectar()->prepare("SELECT cr.id_curso 
+            FROM recurso r 
+            JOIN curso_recurso cr ON r.id = cr.id_recurso 
+            WHERE r.id = :ID;");
+            $sql->bindParam(":ID", $id);
+            $sql->execute();
+            return $sql;
+        }
+
+        /*---------- Modelo para editar información de recurso ----------*/
+        protected static function editar_recurso_modelo($recurso, $cursosAgregados, $cursosEliminados){
+            try {
+                $sql = mainModel::conectar()->prepare("UPDATE recurso SET titulo=?, fecha_publicacion_recurso=?, resumen=?, estado=?, enlace=? WHERE id=?");
+                $sql->execute([$recurso->getTitulo(), $recurso->getFecha(), $recurso->getResumen(), $recurso->getEstado(), $recurso->getEnlace(), $recurso->getIdRecurso()]);
+
+                foreach ($cursosAgregados as $cursoNuevo) {
+                    $sql = mainModel::conectar()->prepare("INSERT INTO curso_recurso(id_recurso, id_curso) VALUES(?, ?);");
+                    $sql->execute([$recurso->getIdRecurso(), $cursoNuevo]);
+                }
+
+                foreach ($cursosEliminados as $cursoEliminar) {
+                    $sql = mainModel::conectar()->prepare("DELETE FROM curso_recurso WHERE id_recurso = ? and id_curso = ?");
+                    $sql->execute([$recurso->getIdRecurso(), $cursoEliminar]);
+                }
+
+                return $sql;
+            } catch (Exception $th) {
+                return $th->getMessage();
+            }
+        }
+
+        /*---------- Modelo para editar información de recurso ----------*/
+        protected static function editar_recurso_etiqueta_modelo($recurso, $etiquetasAgregadas, $etiquetasEliminadas){
+            try {
+                foreach ($etiquetasAgregadas as $etiquetaNueva) {
+                    $sql = mainModel::conectar()->prepare("INSERT INTO etiqueta_recurso(id_recurso, id_etiqueta) VALUES(?, ?);");
+                    $sql->execute([$recurso->getIdRecurso(), $etiquetaNueva]);
+                }
+
+                foreach ($etiquetasEliminadas as $etiquetaEliminar) {
+                    $sql = mainModel::conectar()->prepare("DELETE FROM etiqueta_recurso WHERE id_recurso = ? and id_etiqueta = ?");
+                    $sql->execute([$recurso->getIdRecurso(), $etiquetaEliminar]);
+                }
+            } catch (Exception $th) {
+                return $th->getMessage();
+            }
+        }
+
+        /*---------- Modelo para editar información de recurso ----------*/
+        protected static function editar_recurso_autor_modelo($recurso, $autoresAgregados, $autoresEliminados){
+            try {
+                foreach ($autoresAgregados as $autorNuevo) {
+                    $sql = mainModel::conectar()->prepare("INSERT INTO autor_recurso(id_recurso, id_autor) VALUES(?, ?);");
+                    $sql->execute([$recurso->getIdRecurso(), $autorNuevo]);
+                }
+
+                foreach ($autoresEliminados as $autorEliminar) {
+                    $sql = mainModel::conectar()->prepare("DELETE FROM autor_recurso WHERE id_recurso = ? and id_autor = ?");
+                    $sql->execute([$recurso->getIdRecurso(), $autorEliminar]);
+                }
+            } catch (Exception $th) {
                 return $th->getMessage();
             }
         }
