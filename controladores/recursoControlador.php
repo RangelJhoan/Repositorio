@@ -45,8 +45,12 @@ class recursoControlador extends recursoModelo{
         if(isset($_POST['link_ins']))
             $recurso->setEnlace($_POST['link_ins']);
 
-        $recurso->setFecha($_POST['anioRecurso']);
-
+        if($_POST['anioRecurso']!=""){
+            $recurso->setFecha($_POST['anioRecurso']);
+        }else{
+            $recurso->setFecha("s.f");
+        }
+        
         if($recurso->getTitulo() == "" || $recurso->getResumen() == ""){
             $alerta=[
                 "Alerta"=>"simple",

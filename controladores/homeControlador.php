@@ -29,13 +29,15 @@ class homeControlador extends homeModelo{
         $search = "";
         $arrayParametro = explode("¡", $pBusqueda);
         foreach($arrayParametro AS $dato){
-            if($search!=""){
-                $search .= " ";
+            if(strpos($dato, '~~') != ""){
+                if($search!=""){
+                    $search .= "%";
+                }
             }
             $search .= mainModel::decryption($dato);
         }
 
-        return $search;
+        return str_replace("~~","",$search);
 
     }
     public function cargar_recursos_autor($pId){
@@ -83,6 +85,28 @@ class homeControlador extends homeModelo{
         $informacion = homeModelo::cargar_archivos($pId);
         
         return $informacion;
+    }
+
+    public function calificar_recurso($pId, $pRespuesta){
+        $valorar = homeModelo::evaluar_recurso($pId, $pRespuesta);
+        if(is_string($valorar)){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"Error: ".$valorar,
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }else{
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Exitoso",
+                "Texto"=>"Gracias por evaluar el recurso",
+                "Tipo"=>"success"
+            ];
+            echo json_encode($alerta);
+        }
     }
 }
 

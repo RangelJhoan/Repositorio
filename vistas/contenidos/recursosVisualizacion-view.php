@@ -57,7 +57,7 @@
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Publicado por:</th>
-                <td class="infoColVerRecurso"><?php echo $inforecurso['nombre']; ?></td>
+                <td class="infoColVerRecurso"><?php echo $inforecurso['nombre']." ".$inforecurso['apellido']; ?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Fecha de publicación:</th>
@@ -76,7 +76,7 @@
                 </td>    
             </tr>
             <tr>
-                <th class="tituloColVerRecurso">Etiqueta(s):</th>
+                <th class="tituloColVerRecurso">Palabra(s) clave:</th>
                 <td class="infoColVerRecurso">
                     <ul class="ulVerRecurso">
                         <?php 
@@ -106,7 +106,7 @@
             <tr>
                 <th class="tituloColVerRecurso">URI:</th>
                 <td class="infoColVerRecurso">
-                    <a href="<?php echo SERVER_URL ?>#" class="redireccionVerRecurso"><?php echo $ruta; ?></a>
+                    <a href="<?php echo SERVER_URL."recursosVisualizacion/".$pagina[1]; ?>" class="redireccionVerRecurso"><?php echo SERVER_URL."recursosVisualizacion/".$pagina[1]; ?></a>
                 </td>
             </tr>
             <tr>
@@ -120,7 +120,7 @@
             <tr>
                 <th class="tituloColVerRecurso">URL:</th>
                 <td class="infoColVerRecurso">
-                    <a href="<?php echo SERVER_URL ?>#" target="_blank" class="redireccionVerRecurso"><?php echo $inforecurso['enlace']; ?></a>
+                    <a href="<?php echo $inforecurso['enlace']; ?>" target="_blank" class="redireccionVerRecurso"><?php echo $inforecurso['enlace']; ?></a>
                 </td>
             </tr>
     <!-- ARCHIVO DEL RECURSO -->
@@ -164,10 +164,11 @@
                     <div class="textosmodal">
                         <h3 class="title-feedback">¿Considera que el recurso es útil?</h3>
                         <p class="phrp-feedback">Por favor seleccione una de las siguientes opciones:</p>
-                        <form action="#" class="" method="POST" data-form="save" autocomplete="off">
+                        <form action="<?php echo SERVER_URL."ajax/homeAjax.php";?>" class="" method="POST" data-form="save" autocomplete="off">
+                        <input type="hidden" name="codrecurso" value="<?php echo $pagina[1]; ?>">
                         <div class="input-field">
                             <label class="radio">
-                                <input class="inputRadio" type="radio" name="respuestaFeedback" value="Sí">
+                                <input class="inputRadio" type="radio" name="respuestaFeedback" value="Si">
                                 <span class="checkmark"></span>
                                 <span class="label-text">Sí, el recurso es útil.</span>
                             </label>
