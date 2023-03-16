@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="<?php echo SERVER_URL; ?>vistas/assets/img/dashboard-ri-logo.png">
     <!--ESTILOS CSS Y DEMÁS ESTILOS-->
     <?php include "incDocente/link.php";?>
-    <title>Repositorio Institucional</title>
+    <title>Docente - Repositorio Institucional</title>
 </head>
 <body class="mode" id="bodyID">
     <?php

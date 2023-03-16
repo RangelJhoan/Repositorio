@@ -24,19 +24,22 @@ if($datos_usuario->rowCount()>0){
                 <div class="content-modal-edit-record">
                     <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="FormularioAjax" method="POST" data-form="update" autocomplete="off">
                         <input type="hidden" name="id_usuario_editar" value="<?php echo $pagina[1] ?>">
-                        <div class="input-field">
-                            <div class="select-option arrow-blocked">
-                                <div class="icon-locked">
+                        
+                        <!--Select tag-->
+                        <div class="input-field" title="No se permite editar el tipo de usuario">
+                            <div class="icon-locked">
                                     <i class="uil uil-lock icon-no-edit-allowed"></i>
                                 </div>
-                                <select disabled name="tipoUsuario" class="combobox-titulo" title="No se permite editar el tipo de usuario">
-                                    <option disabled value="" class="combobox-opciones" class="input-blocked">Tipo de usuario</option>
+                                <div class="select-option-disabledEdit">
+                                <select disabled name="tipoUsuario" class="combobox-titulo input-disabledEdit" title="No se permite editar el tipo de usuario">
+                                    <option disabled value="" class="combobox-opciones input-blocked input-disabledEdit">Tipo de usuario</option>
                                     <option <?php if($campos['descripcion'] == 'Administrador'){echo "selected";} ?> value="Administrador">Administrador</option>
                                     <option <?php if($campos['descripcion'] == 'Docente'){echo "selected";} ?> value="Docente">Docente</option>
                                     <option <?php if($campos['descripcion'] == 'Estudiante'){echo "selected";} ?> value="Estudiante">Estudiante</option>
                                 </select>
                             </div>
                         </div>
+
                         <div class="input-field">
                             <input name="nombre" value="<?php echo $campos['nombre']; ?>" type="text" placeholder="Nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Nombres"/>
                         </div>
@@ -58,14 +61,16 @@ if($datos_usuario->rowCount()>0){
                                 </select>
                             </div>
                         </div>
+
                         <div class="input-field">
                             <input name="documento" value="<?php echo $campos['documento']; ?>" type="number" placeholder="Número de documento" min="1000" max="100000000000"  pattern="[0-9]+" title="Número de documento"/>
                         </div>
-                        <div class="input-field input-blocked">
+
+                        <div class="input-field" title="No se permite editar el correo electrónico">
                                 <div class="icon-locked">
                                     <i class="uil uil-lock icon-no-edit-allowed"></i>
                                 </div>
-                                <input disabled name="correo" value="<?php echo $campos['correo']; ?>" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60"  title="No se permite editar el correo electrónico"/>
+                                <input class="input-disabledEdit" disabled name="correo" value="<?php echo $campos['correo']; ?>" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60"  title="No se permite editar el correo electrónico"/>
                         </div>
                         <!--Select tag-->
                         <div class="input-field ">

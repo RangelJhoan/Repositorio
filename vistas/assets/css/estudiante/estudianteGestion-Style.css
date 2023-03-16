@@ -213,6 +213,10 @@ label{
 }
 
 /*?-----------------------TABLA DE REGISTROS -------------------*/
+.fileStyleResp {
+    word-wrap: break-word;
+    word-break: break-all;
+}
 /*Tabla general*/
 .table-admin-container .tb-admin-records{
     width: 100%!important;
@@ -547,6 +551,11 @@ input[type=number]{
     color:var(--input-text-for-write);
     font-weight: 400;
 }
+/*PROHIBIDO EDITAR (EDITAR PERFIL)*/
+.input-disabledEdit{
+    color:var(--main-color)!important;
+    font-style: italic!important;
+}
 /**Estilos del SELECT TAG (Tipo de documento)*/
 select{
     appearance: none;
@@ -563,6 +572,7 @@ select{
     font-weight: 400;
     border-radius: 55px;
     margin-left: 5px;
+    opacity: 1;
 }
 select::-ms-expand{
     display: none;
@@ -596,6 +606,19 @@ select::-ms-expand{
 }
 .select-option.arrow-blocked::after{
     display: none;
+}
+.select-option-disabledEdit{
+    position:relative;
+    display: flex;
+    max-width: 380px;
+    width: 100%;
+    line-height: 3;
+    background: var(--input-modify-info);
+    overflow: hidden;
+    border-color:var(--input-modify-info);
+    border-radius: 55px;
+    font-family: "Poppins", sans-serif;
+    pointer-events: none;
 }
 .container-fileBtn{
     display: inline-block;
@@ -984,7 +1007,7 @@ select::-ms-expand{
         }
         .btn-group-action{
             display: flex;
-            margin-left: 10px;
+            margin-right: 10px;
         }
         .input-field,.labelFileUpload {
             margin: 5px 0;

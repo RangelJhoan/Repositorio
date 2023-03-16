@@ -690,6 +690,11 @@ input[type=number]{
     color:var(--input-text-for-write);
     font-weight: 400;
 }
+/*PROHIBIDO EDITAR (EDITAR PERFIL)*/
+.input-disabledEdit{
+    color:var(--main-color)!important;
+    font-style: italic!important;
+}
 /**Estilos del SELECT TAG (Tipo de documento)*/
 select{
     appearance: none;
@@ -706,6 +711,7 @@ select{
     font-weight: 400;
     border-radius: 55px;
     margin-left: 5px;
+    opacity: 1;
 }
 select::-ms-expand{
     display: none;
@@ -734,13 +740,26 @@ select::-ms-expand{
     transition: .25s all ease;
     color:var(--input-text-for-write);
 }
+
 .select-option:hover::after{
     color:#383838;
 }
 .select-option.arrow-blocked::after{
     display: none;
 }
-
+.select-option-disabledEdit{
+    position:relative;
+    display: flex;
+    max-width: 380px;
+    width: 100%;
+    line-height: 3;
+    background: var(--input-modify-info);
+    overflow: hidden;
+    border-color:var(--input-modify-info);
+    border-radius: 55px;
+    font-family: "Poppins", sans-serif;
+    pointer-events: none;
+}
 /**Botón añadir archivo del recurso*/
 /* .container-fileBtn input[type="file"]{
     appearance: none;
@@ -952,7 +971,7 @@ select::-ms-expand{
 }
 /*Botón volver atrás con hover*/
 .btn-UserNotFound:hover{
-    background-color: #ffc965;
+    background-color: #bd8a2c;
     -webkit-transition: all opacity .5s ;
     -moz-transition: all opacity .5s ;
     -ms-transition: all opacity .5s ;

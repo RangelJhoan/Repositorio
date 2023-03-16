@@ -57,7 +57,7 @@ if($datos_autor->rowCount()>0){
         </section>
         <section class="img-section">
             <img class="image-errorEditRecord"src="<?php echo SERVER_URL; ?>vistas/assets/img/errorEditarRegistro.svg" alt="Error al intentar editar autor.">
-            <a href="<?php echo SERVER_URL; ?>adminAutores/" class="btn-UserNotFound" title="Ir a autores">Volver atrás</a>
+            <a href="javascript:history.back()" class="btn-UserNotFound" title="Volver">Volver atrás</a>
         </section>
     </div>
 <?php } ?>

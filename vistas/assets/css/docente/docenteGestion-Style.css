@@ -707,6 +707,11 @@ input[type=number]{
     color:var(--input-text-for-write);
     font-weight: 400;
 }
+/*PROHIBIDO EDITAR (EDITAR PERFIL)*/
+.input-disabledEdit{
+    color:var(--main-color)!important;
+    font-style: italic!important;
+}
 /**Estilos del SELECT TAG (Tipo de documento)*/
 select{
     appearance: none;
@@ -723,6 +728,7 @@ select{
     font-weight: 400;
     border-radius: 55px;
     margin-left: 5px;
+    opacity: 1;
 }
 select::-ms-expand{
     display: none;
@@ -757,7 +763,19 @@ select::-ms-expand{
 .select-option.arrow-blocked::after{
     display: none;
 }
-
+.select-option-disabledEdit{
+    position:relative;
+    display: flex;
+    max-width: 380px;
+    width: 100%;
+    line-height: 3;
+    background: var(--input-modify-info);
+    overflow: hidden;
+    border-color:var(--input-modify-info);
+    border-radius: 55px;
+    font-family: "Poppins", sans-serif;
+    pointer-events: none;
+}
 /**Botón añadir archivo del recurso*/
 /* .container-fileBtn input[type="file"]{
     appearance: none;
@@ -875,12 +893,12 @@ select::-ms-expand{
     color: var(--main-color);
     text-decoration: none;
     font-size: var(--pequeña-font-size);
-  }
-  
-  .tamano-archivo {
+}
+
+.tamano-archivo {
     font-size: var(--pequeña-font-size);
     color: var(--text-color);
-  }
+}
 
 /*BARRA DE CARGA DEL ARCHIVO - PROGRESO*/
 .progress {
@@ -899,7 +917,6 @@ select::-ms-expand{
     font-size:var(--pequeña-font-size);
     user-select: none;
 }
-
 
 /*?------------------ERROR EDITAR REGISTRO----------------*/
 /*Contenedor general*/
@@ -948,7 +965,7 @@ select::-ms-expand{
     width: 150px;
     outline: none;
     border-radius: 49px;
-    color: #1a1a1a;
+    color: #efefef;
     text-transform:capitalize;
     font-weight: 600;
     cursor: pointer;
@@ -971,7 +988,7 @@ select::-ms-expand{
 }
 /*Botón volver atrás con hover*/
 .btn-UserNotFound:hover{
-    background-color: #ffc965;
+    background-color: #31446d;
     -webkit-transition: all opacity .5s ;
     -moz-transition: all opacity .5s ;
     -ms-transition: all opacity .5s ;
@@ -1135,7 +1152,7 @@ select::-ms-expand{
     margin:.2rem;
     font-weight:500;
     border:1px solid var(--main-color);
-    background:#ffe4b352;
+    background:#5065911f;
     border-radius:9999px;
     -webkit-border-radius:9999px;
     -moz-border-radius:9999px;
@@ -1404,8 +1421,3 @@ select::-ms-expand{
             padding-bottom: 4rem;
         }
     }
-
-
-
-
-

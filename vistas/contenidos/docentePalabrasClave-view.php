@@ -53,9 +53,9 @@
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
-                            <td data-titulo="NOMBRE"><?php echo $rows['descripcion'] ?></td>
-                            <td data-titulo="CREADO POR">Creado por</td>
-                            <td data-titulo="FECHA CREACIÓN">2023-03-07 16:12:14</td>
+                            <td data-titulo="NOMBRE" class="responsive-file"><?php echo $rows['descripcion'] ?></td>
+                            <td data-titulo="CREADO POR" class="responsive-file">Creado por</td>
+                            <td data-titulo="FECHA CREACIÓN" class="responsive-file">2023-03-07 16:12:14</td>
                         </tr>
                         <?php
                             $contador++;

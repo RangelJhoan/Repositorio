@@ -88,7 +88,7 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Nombre</th>
+                            <th>Nombre Completo</th>
                             <th>Documento</th>
                             <th>Tipo Usuario</th>
                             <th>Estado</th>
@@ -102,11 +102,11 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo$contador ?></td>
-                            <td data-titulo="NOMBRE"><?php echo $rows['nombre'].' '.$rows['apellido'] ?></td>
-                            <td data-titulo="DOCUMENTO"><?php echo $rows['numeroDocumento'] ?></td>
-                            <td data-titulo="TIPO USUARIO"><?php echo $rows['tipoUsuario'] ?></td>
-                            <td data-titulo="ESTADO"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
-                            <td data-titulo="ACCIÓN">
+                            <td data-titulo="NOMBRE COMPLETO" class="responsive-file"><?php echo $rows['nombre'].' '.$rows['apellido'] ?></td>
+                            <td data-titulo="DOCUMENTO" class="responsive-file"><?php echo $rows['numeroDocumento'] ?></td>
+                            <td data-titulo="TIPO USUARIO" class="responsive-file"><?php echo $rows['tipoUsuario'] ?></td>
+                            <td data-titulo="ESTADO" class="responsive-file"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
+                            <td data-titulo="ACCIÓN" class="responsive-file">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
                                         <a href="<?php echo SERVER_URL ?>adminEditarUsuario/<?php echo $ins_usuario->encryption($rows['id'])?>/" class="btn-admin-edit-record" title="Editar usuario"><i class="uil uil-edit btn-admin-edit-record"></i></a>

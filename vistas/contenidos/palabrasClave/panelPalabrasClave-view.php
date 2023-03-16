@@ -43,6 +43,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Nombre</th>
+                            <th>Creada por</th>
                             <th>Estado</th>
                             <th>Acción</th>
                         </tr>
@@ -55,9 +56,10 @@
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
-                            <td data-titulo="NOMBRE"><?php echo $rows['descripcion'] ?></td>
-                            <td data-titulo="ESTADO"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
-                            <td data-titulo="ACCIÓN">
+                            <td data-titulo="NOMBRE" class="responsive-file"><?php echo $rows['descripcion'] ?></td>
+                            <td data-titulo="CREADO POR" class="responsive-file">¿Creada por?</td>
+                            <td data-titulo="ESTADO" class="responsive-file"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
+                            <td data-titulo="ACCIÓN" class="responsive-file">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
                                         <a href="<?php echo SERVER_URL ?>editarPalabraClave/<?php echo $ins_etiqueta->encryption($rows['id'])?>/" class="btn-admin-edit-record" title="Editar palabra clave"><i class="uil uil-edit btn-admin-edit-record"></i></a>

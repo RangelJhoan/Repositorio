@@ -396,7 +396,12 @@ body.dark .switch:before{
     font-size: medium;
     word-wrap: break-word;
 }
-
+/**OJO DE PASSWORD. CAMPO PASSWORD*/
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: block !important;
+    font-size: 1rem;
+}
 /*?RESPONSIVE*/
 @media (max-width:1000px){
     /**SIDEBAR*/
@@ -454,6 +459,11 @@ body.dark .switch:before{
     }
     .archivoResp{
         max-width: 850;
+    }
+    /**OJO DE PASSWORD. CAMPO PASSWORD*/
+    input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear {
+    font-size: 0.9rem;
     }
 }
 

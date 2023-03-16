@@ -8,7 +8,7 @@
 
     <!--ESTILOS CSS Y DEMÁS ESTILOS-->
     <?php include "incAdmin/link.php";?>
-    <title>Repositorio Institucional</title>
+    <title>Administrador - Repositorio Institucional</title>
 </head>
 <body class="mode" id="bodyID">
     <?php

@@ -169,6 +169,17 @@ select{
   font-family: "Poppins", sans-serif;
   border-radius: 55px;
 }
+/* Cambia el color del combobox cuando se selecciona una opción */
+.select-option select:not(:default) {
+  color:var(--paragraph-color);
+  caret-color: var(--paragraph-color);
+}
+
+/* Cambia el color de la opción seleccionada */
+.select-option select option:checked {
+  color: var(--main-color);
+  font-weight: 500;
+}
 select::-ms-expand{
   display: none;
 }
@@ -200,7 +211,6 @@ select::-ms-expand{
 .select-option:hover::after{
   color:var(--main-color);
 }
-
 /*?-----OLVIDÓ SU CONTRASEÑA?----*/
 .password-forget-text {
   padding: 0.7rem 0;
@@ -361,6 +371,12 @@ select::-ms-expand{
 }
 .btn:hover {
   background-color: var(--altern-main-color);
+}
+/**OJO DE PASSWORD. CAMPO PASSWORD*/
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: block !important;
+  font-size: 1rem;
 }
 
 /*? PANELES - CAMBIO DE ACCIÖN*/
@@ -533,7 +549,6 @@ select::-ms-expand{
     padding: 0.5rem 0;
   }
 
-
 .btn-submit-add-record{
   font-size: 0.9rem;
 }
@@ -579,6 +594,7 @@ select::-ms-expand{
     top: 5%;
     transform: translate(-50%, 0);
   }
+  
 }
 
 
@@ -619,6 +635,11 @@ select::-ms-expand{
   select{
     font-size: 1rem;
   }
+  /**OJO DE PASSWORD. CAMPO PASSWORD*/
+  input[type="password"]::-ms-reveal,
+  input[type="password"]::-ms-clear {
+  font-size: 0.9rem;
+}
 }
 /*?MEDIA QUERY MÓVIL*/
 @media (max-width: 600px) {

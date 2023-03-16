@@ -388,6 +388,12 @@ body.dark .switch:before{
     background: var(--active-bgr-color);
 }
 
+/**OJO DE PASSWORD. CAMPO PASSWORD*/
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+display: block !important;
+font-size: 1rem;
+}
 
 /*?RESPONSIVE*/
 @media (max-width:1000px){
@@ -437,9 +443,18 @@ body.dark .switch:before{
 }
 
 @media (max-width:850px){
+    .responsive-file{
+        display: flex;
+        flex-direction: column;
+    }
     .center-name{
         font-size: 1rem;
     }
+    /**OJO DE PASSWORD. CAMPO PASSWORD*/
+    input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear {
+    font-size: 0.9rem;
+}
 }
 
 @media (max-width:500px){

@@ -155,7 +155,7 @@ if($consultaRecursos->rowCount() > 0){
         </section>
         <section class="img-section">
             <img class="image-errorEditRecord"src="<?php echo SERVER_URL; ?>vistas/assets/img/errorEditarRegistro.svg" alt="Error al intentar editar recurso.">
-            <a href="<?php echo SERVER_URL; ?>adminRecursos/" class="btn-UserNotFound" title="Ir a recursos">Volver atrás</a>
+            <a href="javascript:history.back()" class="btn-UserNotFound" title="Volver">Volver atrás</a>
         </section>
     </div>
 <?php } ?>

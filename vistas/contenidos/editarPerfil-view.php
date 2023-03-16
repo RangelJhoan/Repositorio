@@ -23,9 +23,12 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                             <input name="apellido_edit_perfil" value="<?php echo $_SESSION['apellido_usuario'] ?>" type="text" placeholder="Apellidos" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Apellidos" />
                         </div>
                         <!--Select tag-->
-                        <div class="input-field ">
-                            <div class="select-option">
-                                <select name="tipoDocumento_edit_perfil" class="combobox-titulo" disabled title="Tipo de documento">
+                        <div class="input-field" title="No se permite editar el tipo de documento">
+                            <div class="icon-locked">
+                                <i class="uil uil-lock icon-no-edit-allowed"></i>
+                            </div>
+                            <div class="select-option-disabledEdit">
+                                <select name="tipoDocumento_edit_perfil" class="combobox-titulo input-disabledEdit" disabled>
                                     <option selected disabled value="" class="combobox-opciones">Tipo de documento</option>
                                     <?php
                                     foreach($datos_tipo_documento as $campoTD){
@@ -37,14 +40,17 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                                 </select>
                             </div>
                         </div>
-                        <div class="input-field">
-                            <input name="documento_edit_perfil" value="<?php echo $_SESSION['documento_usuario'] ?>" disabled type="number" placeholder="Número de documento" min="1000" max="100000000000"  pattern="[0-9]+" title="Número de documento"/>
-                        </div>
-                        <div class="input-field">
+                        <div class="input-field" title="No se permite editar el número de documento">
                             <div class="icon-locked">
                                 <i class="uil uil-lock icon-no-edit-allowed"></i>
                             </div>
-                            <input name="correo_edit_perfil" value="<?php echo $_SESSION['correo_usuario'] ?>" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60"  title="No se permite editar el correo electrónico"/>
+                            <input class="input-disabledEdit" name="documento_edit_perfil" value="<?php echo $_SESSION['documento_usuario'] ?>" disabled type="number" placeholder="Número de documento" min="1000" max="100000000000"  pattern="[0-9]+" title="Número de documento"/>
+                        </div>
+                        <div class="input-field" title="No se permite editar el correo electrónico">
+                            <div class="icon-locked">
+                                <i class="uil uil-lock icon-no-edit-allowed"></i>
+                            </div>
+                            <input class="input-disabledEdit" name="correo_edit_perfil" value="<?php echo $_SESSION['correo_usuario'] ?>" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60"  title="No se permite editar el correo electrónico"/>
                         </div>
                         <div class="input-field">
                             <input name="clave_edit_perfil" type="password" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Recuerde que la contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres."/>
