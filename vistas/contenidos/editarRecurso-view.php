@@ -21,9 +21,9 @@ if($consultaRecursos->rowCount() > 0){
     $listaEtiquetas = $insEtiqueta->paginador_etiqueta_controlador();
 
     //Se consultan los registros relacionados
-    $autoresActuales = $insAutor->autoresXRecursoControlador($datosRecurso['id_recurso']);
-    $cursosActuales = $insCurso->cursosXRecursoControlador($datosRecurso['id_recurso']);
-    $etiquetasActuales = $insEtiqueta->etiquetasXRecursoControlador($datosRecurso['id_recurso']);
+    $autoresActuales = $insAutor->autoresXRecursoControlador($datosRecurso['idRecurso']);
+    $cursosActuales = $insCurso->cursosXRecursoControlador($datosRecurso['idRecurso']);
+    $etiquetasActuales = $insEtiqueta->etiquetasXRecursoControlador($datosRecurso['idRecurso']);
     ?>
 <section class="general-admin-container">
     <div class="overview-general-admin">

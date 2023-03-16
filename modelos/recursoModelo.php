@@ -4,9 +4,11 @@
     if($peticionAjax){
         //Modelo llamado desde el archivo Ajax
         require_once "../entidades/Recurso.php";
+        require_once "../entidades/Archivo.php";
     }else{
         //Modelo llamado desde la vista Index
         require_once "./entidades/Recurso.php";
+        require_once "./entidades/Archivo.php";
     }
 
     class recursoModelo extends mainModel{
@@ -49,14 +51,8 @@
         /*---------- Modelo para agregar Recurso ----------*/
         protected static function agregar_archivo_modelo(Recurso $recurso){
             try {
-                $sqlQuery = mainModel::conectar()->prepare("SELECT MAX(id) AS id FROM recurso");
-                $sqlQuery->execute();
-
-                $codrecurso = $sqlQuery->fetch();
-                $id_recurso = $codrecurso['id'];
-
                 $sql = mainModel::conectar()->prepare("INSERT INTO archivo(ruta, tamano, nombre, isbn, editorial, estado, id_recurso, id_formato) VALUES(?, ?, ?, ?, ?, ?, ?, ?);");
-                $sql->execute([$recurso->getArchivo()->getRuta(), $recurso->getArchivo()->getTamano(), $recurso->getArchivo()->getNombre() ,$recurso->getArchivo()->getISBN(),$recurso->getArchivo()->getEditorial(),$recurso->getArchivo()->getEstado(), $id_recurso, '1']);
+                $sql->execute([$recurso->getArchivo()->getRuta(), $recurso->getArchivo()->getTamano(), $recurso->getArchivo()->getNombre() ,$recurso->getArchivo()->getISBN(),$recurso->getArchivo()->getEditorial(),$recurso->getArchivo()->getEstado(), $recurso->getIdRecurso(), '1']);
 
                 return $sql->rowCount();
             } catch (Exception $e) {
@@ -67,7 +63,7 @@
         /*---------- Modelo datos recurso ----------*/
         protected static function datos_recurso_modelo($tipo, $id){
             if($tipo == "Unico"){
-                $sql = mainModel::conectar()->prepare("SELECT * 
+                $sql = mainModel::conectar()->prepare("SELECT r.id as idRecurso, r.*, a.* 
                 FROM recurso r
                 LEFT JOIN archivo a ON a.id_recurso = r.id
                 WHERE r.estado != ". Utilidades::getIdEstado("ELIMINADO") ." AND r.id = :ID;");
@@ -188,6 +184,18 @@
                 }
             } catch (Exception $th) {
                 return $th->getMessage();
+            }
+        }
+
+        /*---------- Modelo para editar el archivo del Recurso ----------*/
+        protected static function editar_archivo_modelo(Recurso $recurso, Archivo $archivo){
+            try {
+                $sql = mainModel::conectar()->prepare("UPDATE archivo SET ruta=?, tamano=?, nombre=?, isbn=?, editorial=?, estado=? WHERE id=?;");
+                $sql->execute([$recurso->getArchivo()->getRuta(), $recurso->getArchivo()->getTamano(), $recurso->getArchivo()->getNombre() ,$recurso->getArchivo()->getISBN(),$recurso->getArchivo()->getEditorial(),$recurso->getArchivo()->getEstado(), $archivo->getIdArchivo()]);
+
+                return $sql->rowCount();
+            } catch (Exception $e) {
+                return $e->getMessage();
             }
         }
 

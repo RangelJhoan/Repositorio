@@ -50,7 +50,7 @@ class recursoControlador extends recursoModelo{
         }else{
             $recurso->setFecha("s.f");
         }
-        
+
         if($recurso->getTitulo() == "" || $recurso->getResumen() == ""){
             $alerta=[
                 "Alerta"=>"simple",
@@ -129,6 +129,12 @@ class recursoControlador extends recursoModelo{
 
                 $recurso->setArchivo($archivo);
 
+                $sqlQuery = mainModel::conectar()->prepare("SELECT id FROM recurso WHERE titulo = '". $recurso->getTitulo() ."'");
+                $sqlQuery->execute();
+
+                $codrecurso = $sqlQuery->fetch();
+                $recurso->setIdRecurso($codrecurso['id']);
+
                 $agregar_archivo = recursoModelo::agregar_archivo_modelo($recurso);
 
                 if(is_string($agregar_archivo)){
@@ -161,7 +167,7 @@ class recursoControlador extends recursoModelo{
      * @return Object Lista de los recursos consultados
      */
     public function paginador_recurso_controlador(){
-        $consulta = "SELECT r.id as idRecurso, r.titulo, r.puntos_positivos, r.puntos_negativos 
+        $consulta = "SELECT r.id as idRecurso, r.titulo, r.puntos_positivos, r.puntos_negativos, r.estado 
         FROM recurso r 
         ORDER BY r.id;";
 
@@ -214,7 +220,6 @@ class recursoControlador extends recursoModelo{
 
     public function editar_recurso_controlador(){
         $recurso = new Recurso();
-        $archivo = new Archivo();
 
         if(!isset($_POST['cursos_edit'])){
             $alerta=[
@@ -245,7 +250,13 @@ class recursoControlador extends recursoModelo{
         //Construimos el objeto de recurso con información actual o nueva
         $recurso->setTitulo($_POST['titulo_edit']);
         $recurso->setResumen($_POST['resumen_edit']);
-        $recurso->setFecha($_POST['anioRecurso_edit']);
+
+        if($_POST['anioRecurso_edit']!=""){
+            $recurso->setFecha($_POST['anioRecurso_edit']);
+        }else{
+            $recurso->setFecha("s.f");
+        }
+
         $recurso->setEstado($_POST['estado_edit']);
         $recurso->setCurso($_POST['cursos_edit']);
         $recurso->setEnlace($_POST['link_edit']);
@@ -280,6 +291,82 @@ class recursoControlador extends recursoModelo{
         $cursosAgregados = array_diff($recurso->getCurso(), $cursosActuales);
         $cursosEliminados = array_diff($cursosActuales, $recurso->getCurso());
         $editarRecurso = recursoModelo::editar_recurso_modelo($recurso, $cursosAgregados, $cursosEliminados);
+
+        //Revisamos si se subió un archivo a editar
+        if(isset($_FILES["archivo"]["name"])){
+            session_start(['name'=>"REPO"]);
+            $rutaCarpeta = "../recursos/".$_SESSION['documento_usuario'];
+            //Si la carpeta del usuario no existe, se crea
+            if(!file_exists($rutaCarpeta)){
+                mkdir($rutaCarpeta, 0777, true);
+            }
+            //El archivo se crea fechaactual_nombrearchivo.extension
+            $ruta = $rutaCarpeta."/".date('dmYHis')."_".$_FILES["archivo"]["name"];
+            move_uploaded_file($_FILES["archivo"]["tmp_name"], $ruta);
+        }else{
+            $ruta = "null";
+        }
+
+        //Si viene archivo revisamos si el recurso ya tenía archivo o se va a crear
+        if($ruta != "null"){
+            //Comprobamos si el recurso tiene archivo o no
+            $datosArchivo = mainModel::ejecutar_consulta_simple("SELECT a.id as idRecurso, a.ruta FROM archivo a JOIN recurso r ON r.id = a.id_recurso WHERE r.id = '". $recurso->getIdRecurso() ."';");
+
+            //Cargamos la información del formulario
+            $archivo = new Archivo();
+            $archivo->setRuta($ruta);
+            $archivo->setTamano($_FILES["archivo"]["size"]);
+            $archivo->setNombre($_FILES["archivo"]["name"]);
+
+            if(isset($_POST['editorial_ins'])){
+                $archivo->setEditorial($_POST['editorial_ins']);
+            }
+
+            if(isset($_POST['ISBN_ins'])){
+                $archivo->setISBN($_POST['ISBN_ins']);
+            }
+
+            $archivo->setEstado($recurso->getEstado());
+
+            $recurso->setArchivo($archivo);
+
+            //Si NO tiene archivo
+            if($datosArchivo->rowCount() <= 0){
+                //Creamos el registro
+
+                $agregar_archivo = recursoModelo::agregar_archivo_modelo($recurso);
+
+                if(is_string($agregar_archivo)){
+                    $alerta=[
+                        "Alerta"=>"simple",
+                        "Titulo"=>"Error",
+                        "Texto"=>"Ups! Hubo un problema al crear el archivo. Por favor intente nuevamente.",
+                        "Tipo"=>"error"
+                    ];
+                    echo json_encode($alerta);
+                    exit();
+                }
+            }else{ //Si tiene archivo
+                //Editamos la información del archivo
+                $archivoAntiguo = new Archivo();
+
+                $fetchArchivo = $datosArchivo->fetch();
+                $archivoAntiguo->setIdArchivo($fetchArchivo['idRecurso']);
+
+                $agregar_archivo = recursoModelo::editar_archivo_modelo($recurso, $archivoAntiguo);
+
+                if(is_string($agregar_archivo)){
+                    $alerta=[
+                        "Alerta"=>"simple",
+                        "Titulo"=>"Error",
+                        "Texto"=>"Ups! Hubo un problema al editar el archivo. Por favor intente nuevamente.",
+                        "Tipo"=>"error"
+                    ];
+                    echo json_encode($alerta);
+                    exit();
+                }
+            }
+        }
 
         if(is_string($editarRecurso) || $editarRecurso->rowCount() < 0){
             $alerta=[

@@ -65,7 +65,7 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                                 <li title="Calificación positiva"><i class="uil uil-thumbs-up iconFeedback plus"></i>: <?php echo $rows['puntos_positivos'] ?> </li>
                                 <li title="Calificación negativa"><i class="uil uil-thumbs-down iconFeedback minus"></i>: <?php echo $rows['puntos_negativos'] ?> </li>
                             </td>
-                            <td data-titulo="ESTADO" class="responsive-file">PONER EL ESTADO</td>
+                            <td data-titulo="ESTADO" class="responsive-file"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
                             <td data-titulo="ACCIÓN" class="responsive-file">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
