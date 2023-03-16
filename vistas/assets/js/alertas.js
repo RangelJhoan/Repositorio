@@ -70,6 +70,7 @@ function enviar_formulario_ajax(e){
                 capaCarga.style.zIndex = 'hidden'; // desactiva el scroll
                 scrollBody.style.overflowX = 'hidden'; // desactiva el scroll
                 scrollBody.style.overflowY = 'hidden'; // desactiva el scroll
+
                 // crea un elemento div para la animación de carga
                 const loader = document.createElement('div');
                 loader.className = 'loader'; // agregar una clase para la animación de carga

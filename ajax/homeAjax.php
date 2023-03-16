@@ -16,9 +16,9 @@ if(isset($_POST['barraBusqueda'])){
             $parametro .= "¡";
         }
         if(strlen($dato)>15){
-            $parteuno = substr($dato,0,10);
-            $parteuno .= "~~";
-            $partedos = substr($dato,10,15);
+            $parteuno = substr($dato,0,15);
+            $partedos = substr($dato,15,10);
+            $partedos .= "~~";
             $parametro.= $ins_main->encryption($parteuno);
             $parametro.="¡".$ins_main->encryption($partedos);
         }else{

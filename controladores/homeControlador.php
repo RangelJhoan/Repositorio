@@ -28,13 +28,15 @@ class homeControlador extends homeModelo{
     public function cargar_busqueda($pBusqueda){
         $search = "";
         $arrayParametro = explode("¡", $pBusqueda);
+        $prueba = "";
         foreach($arrayParametro AS $dato){
-            if(strpos($dato, '~~') != ""){
+            $varDato = mainModel::decryption($dato);
+            if(strpos($varDato, '~~') == ""){
                 if($search!=""){
-                    $search .= "%";
+                    $search .= " ";
                 }
             }
-            $search .= mainModel::decryption($dato);
+            $search .= $varDato;
         }
 
         return str_replace("~~","",$search);
@@ -100,7 +102,7 @@ class homeControlador extends homeModelo{
             exit();
         }else{
             $alerta=[
-                "Alerta"=>"simple",
+                "Alerta"=>"recargar",
                 "Titulo"=>"Exitoso",
                 "Texto"=>"Gracias por evaluar el recurso",
                 "Tipo"=>"success"

@@ -10,13 +10,13 @@
                 $arrayParametro = explode("¡", $pBuscar);
                 $search = "";
                 foreach($arrayParametro AS $dato){
-                    if(strpos($dato, '~~') != ""){
+                    $varDato = mainModel::decryption($dato);
+                    if(strpos($varDato, '~~') == ""){
                         if($search!=""){
-                            $search .= "%";
+                            $search .= " ";
                         }
                     }
-                    
-                    $search .= mainModel::decryption($dato);
+                    $search .= $varDato;
                 }
                 $search = str_replace("~~","",$search);
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
@@ -81,7 +81,7 @@
         }
 
         protected static function fechas_recurso(){
-            $sql = mainModel::conectar()->prepare("SELECT DISTINCT(fecha_publicacion_recurso) AS fecha FROM recurso ORDER BY fecha_publicacion_recurso");
+            $sql = mainModel::conectar()->prepare("SELECT DISTINCT(fecha_publicacion_recurso) AS fecha FROM recurso ORDER BY fecha_publicacion_recurso DESC");
             $sql->execute();
 
             return $sql->fetchAll();

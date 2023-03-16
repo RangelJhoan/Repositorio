@@ -158,13 +158,13 @@
 
         <!--MODAL FEEDBACK-->
         <div class="modal-container">
-            <div class="modal-feedback modal-close-feedback">
+            <div class="modal-feedback modal-close-feedback" >
                 <p class="close">X</p>
                     <img src="<?php echo SERVER_URL; ?>vistas/assets/img/feedback-Img.svg" class="recover-password-pic" alt="Ilustración calificar recurso" />
                     <div class="textosmodal">
                         <h3 class="title-feedback">¿Considera que el recurso es útil?</h3>
                         <p class="phrp-feedback">Por favor seleccione una de las siguientes opciones:</p>
-                        <form action="<?php echo SERVER_URL."ajax/homeAjax.php";?>" class="" method="POST" data-form="save" autocomplete="off">
+                        <form action="<?php echo SERVER_URL."ajax/homeAjax.php";?>" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
                         <input type="hidden" name="codrecurso" value="<?php echo $pagina[1]; ?>">
                         <div class="input-field">
                             <label class="radio">
@@ -190,3 +190,4 @@
         </div>
     </section>
 <script src="<?php echo SERVER_URL; ?>vistas/assets/js/feedbackForm.js"></script>
+<script src="<?php echo SERVER_URL; ?>vistas/assets/js/alertas.js"></script>

@@ -10,7 +10,7 @@
                     <h1 class="panel-title-name">Filtro por autor</h1>
                 </div>
             <!--FILTRO POR LETRAS-->
-            <p class="dataTables_length">Cursos que empiecen por:</p>
+            <p class="dataTables_length">Autores que empiecen por:</p>
                 <?php
                     $abecedario = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
                     foreach($abecedario as $letra){

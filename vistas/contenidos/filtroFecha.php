@@ -10,38 +10,21 @@
                     <h1 class="panel-title-name">Filtro por fecha de creación</h1>
                 </div>
 
-<!--FILTRO POR COMBO AÑOS-->
+                <!--FILTRO POR COMBO AÑOS-->
                 <?php
                 require_once "./controladores/homeControlador.php";
                 require_once "./modelos/mainModel.php";
                 $ins_main = new mainModel();
                 $ins_home = new homeControlador();
                 $fechas = $ins_home->capturar_fecha_recurso();
-
-                // Función de comparación para ordenar los años
-                function comparar_anos($a, $b) {
-                    return $b - $a;
-                }
-
-                // Extraer los años de las fechas y eliminar duplicados
-                $array = array_unique(array_map(function($fecha) {
-                    /* 
-                    1. El primer parámetro $fecha['fecha'] es la cadena de la cual se va a extraer una parte.
-                    2. El segundo parámetro 0 indica que la extracción debe comenzar desde el primer caracter de la cadena (índice 0).
-                    3. El tercer parámetro 4 indica que se deben extraer 4 caracteres a partir del índice 0, es decir, los primeros 4 caracteres de la cadena.*/
-                    return substr($fecha['fecha'], 0, 4);
-                }, $fechas));
-
-                // Ordenar los años de forma descendente
-                usort($array, 'comparar_anos');
                 ?>
                 <form action="<?php echo SERVER_URL ?>ajax/homeAjax.php" method="POST">
                     <div class="containerComboAños">
                         <p class="dataTables_length">Recursos creados en </p>
                         <select name="codano" id="codano">
                             <option value="" disabled selected>año</option>
-                            <?php foreach($array AS $ano){?>
-                                <option value="<?php echo $ano; ?>"><?php echo $ano; ?></option>
+                            <?php foreach($fechas AS $ano){?>
+                                <option value="<?php echo $ano['fecha']; ?>"><?php echo $ano['fecha']; ?></option>
                             <?php } ?>
                         </select>
                         <input type="submit" value="Buscar" class="buttonSearchYear">

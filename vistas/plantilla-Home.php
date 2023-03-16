@@ -9,7 +9,7 @@
     <?php include "incHome/link.php";?>
     <title>Repositorio Institucional</title>
 </head>
-<body>
+<body id="bodyID">
     <?php
     $peticionAjax = false;
     require_once "./controladores/vistasControlador.php";
