@@ -43,22 +43,86 @@ img{
     object-fit: cover;
 }
 
-h1{
-    color:var(--title-color);
+h1 {
+    color: var(--title-color);
     font-size: 15rem;
-    margin-bottom: -50px;
+    margin-bottom: 0;
+    transform: skew(10deg) rotate(-10deg);
+    white-space: nowrap;
+    overflow: hidden;
+    margin-left: 10px;
+    animation: glitch 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    transition: all 0.5s ease-in-out;
+    user-select: none;
+}
+
+@keyframes glitch {
+    0% {
+        color:#31497c;
+        clip: rect(22px, 9999px, 93px, 0);
+        transform: skew(10deg) rotate(-10deg);
+    }
+    20% {
+        clip: rect(60px, 9999px, 19px, 0);
+        transform: skew(10deg) rotate(-10.2deg);
+    }
+    40% {
+        color:var(--paragraph-color);
+        clip: rect(63px, 9999px, 39px, 0);
+        transform: skew(10deg) rotate(-9.8deg);
+    }
+    60% {
+        clip: rect(74px, 9999px, 64px, 0);
+        transform: skew(10deg) rotate(-10.1deg);
+    }
+    80% {
+        color:#31497c;
+        clip: rect(34px, 9999px, 87px, 0);
+        transform: skew(10deg) rotate(-9.9deg);
+    }
+    100% {
+        clip: rect(60px, 9999px, 19px, 0);
+        transform: skew(10deg) rotate(-10deg);
+    }
+}
+
+h1:hover{
+    animation: rainbow 0.15s linear infinite;
+}
+@keyframes rainbow {
+    0% {
+      color: rgb(231, 99, 99); /* Rojo */
+    }
+    17% {
+      color: rgb(219, 219, 56); /* Amarillo */
+    }
+    34% {
+      color: #0f0; /* Verde */
+    }
+    51% {
+      color: #0ff; /* Cyan */
+    }
+    68% {
+      color: rgba(160, 211, 190, 0.692); /* Azul */
+    }
+    85% {
+      color: #f0f; /* Magenta */
+    }
+    100% {
+      color: rgb(231, 99, 99); /* Rojo */
+    }
 }
 
 p{
     color:var(--paragraph-color);
     font-size: 1.1rem;
     font-weight: 500;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    padding:10px;
 }
 
 a{
     position:relative;
-    margin-top: 2rem;
     background-color: var(--paragraph-color);
     text-decoration: none;
     padding: .5rem 1rem;
@@ -72,7 +136,7 @@ a{
     background-color:  var(--paragraph-color);
     border:none;
     cursor:pointer;
-    width: 150px;
+    width: fit-content;
     outline: none;
     border-radius: 49px;
     color: var(--white-color);
@@ -80,7 +144,6 @@ a{
     font-weight: 600;
     cursor: pointer;
     transition: 0.5s;
-    margin-top: 20px;
     border-radius: .3rem;
     -webkit-border-radius: .3rem;
     -moz-border-radius: .3rem;
@@ -92,16 +155,32 @@ a{
     -ms-transition: opacity .5s all;
     -o-transition: opacity .5s all;
 }
+.btn404Back{
+    background-color:  var(--title-color);
+    transition: opacity .5s all;
+    -webkit-transition: opacity .5s all;
+    -moz-transition: opacity .5s all;
+    -ms-transition: opacity .5s all;
+    -o-transition: opacity .5s all;
+}
 /**Estilo para el botón*/
 .button-404:hover{
-    background-color: var(--title-color);
+    background-color:  #111111;
     transition: opacity .5s all;
     -webkit-transition: opacity .5s all;
     -moz-transition: opacity .5s all;
     -ms-transition: opacity .5s all;
     -o-transition: opacity .5s all;  
 }
-
+.btn404Back:hover{
+    background-color:  #31497c;
+}
+@media only screen and (max-width: 1400px){
+    h1{
+        font-size: 12rem;
+        margin-left: 10px;
+    }
+}
 @media only screen and (max-width: 1000px){
     .container{
         flex-direction: column;
@@ -119,6 +198,17 @@ a{
     
     p{
         font-size: 1.1rem;
+    }
+}
+@media only screen and (max-width: 600px){
+    .buttons-Section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .button-404{
+        margin-bottom: 5px;
     }
 }
 @media only screen and (max-width: 500px){

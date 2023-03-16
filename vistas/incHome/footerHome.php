@@ -6,7 +6,7 @@
                 <img class="logo-RI-footerHome" src="<?php echo SERVER_URL ?>vistas/assets/img/dashboard-ri-logo.png" alt="Logo Repositorio Institucional">
                 </div>
                 <div class="mainText-Footer">
-                    <p>Espacio ideal para gestionar todos los recursos digitales audiovisuales de la comunidad universitaria en un único espacio de manera completamente libre y rápida.</p>
+                    <p>Este espacio proporciona un lugar ideal para que la comunidad universitaria gestione todos sus recursos digitales audiovisuales en un solo lugar, de forma rápida y completamente libre.</p>
                 </div>
             </div>
             <div class="footer-Box">
@@ -14,7 +14,7 @@
                 <div class="centerInfoFooter">
                     <a class="link-a-footer" href="#">Ubicación IES</a>
                     <a class="link-a-footer" href="#">Teléfono IES</a>
-                    <a class="link-a-footer" href="#">Correo electrónico IES</a>
+                    <a class="link-a-footer" href="mailto:admin.repositorioinstitucional@gmail.com">admin.repositorioinstitucional@gmail.com</a>
                 </div>
             </div>
         </div>

@@ -1510,6 +1510,10 @@ select {
         height: 16px;
         width: 16px;
     }
+    .centerInfoFooter{
+        word-wrap: break-word;
+        word-break: break-all;
+    }
 }
 
 @media all and (max-width:600px){
@@ -1533,7 +1537,7 @@ select {
         width: 130px;
     }
     .centerInfoFooter{
-        flex-direction: row;
+        flex-direction: column;
     }
     .footer-Box .link-a-footer {
         margin-top: 0;
@@ -1638,9 +1642,6 @@ select {
     }
     .footer-Box .logoFooter-Home .logo-RI-footerHome{
         width: 100px;
-    }
-    .centerInfoFooter{
-        flex-direction: column;
     }
     .filters-main-container .filter-main-Title,
     .bodyFQ .fq-main-Title{
