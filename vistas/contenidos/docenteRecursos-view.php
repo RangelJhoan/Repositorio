@@ -5,7 +5,7 @@ require_once "./controladores/autorControlador.php";
 $ins_recurso = new recursoControlador();
 $insAutor = new autorControlador();
 
-$datos = $ins_recurso->paginador_recurso_controlador();
+$datos = $ins_recurso->paginador_recurso_controlador(null);
 ?>
     <section class="general-admin-container">
         <div class="overview-general-admin">
@@ -63,8 +63,8 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                                 }
                             ?>
                             </td>
-                            <td data-titulo="PUBLICADO POR" class="responsive-file">Publicado por</td>
-                            <td data-titulo="FECHA PUBLICACIÓN" class="responsive-file">2023-03-07 16:12:14</td>
+                            <td data-titulo="PUBLICADO POR" class="responsive-file"><?php echo $rows['nombre'] . " " . $rows['apellido'] ?></td>
+                            <td data-titulo="FECHA PUBLICACIÓN" class="responsive-file"><?php echo $rows['fecha_publicacion_profesor'] ?></td>
                             <!-- <td data-titulo="ARCHIVO"><?php if($archivo != false) echo $archivo['nombre'] ?></td> -->
                         </tr>
                         <?php

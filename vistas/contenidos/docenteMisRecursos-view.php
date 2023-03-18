@@ -1,11 +1,13 @@
 <?php
 require_once "./controladores/recursoControlador.php";
 require_once "./controladores/autorControlador.php";
+require_once "./controladores/cursoControlador.php";
 
 $ins_recurso = new recursoControlador();
 $insAutor = new autorControlador();
+$insCurso = new cursoControlador();
 
-$datos = $ins_recurso->paginador_recurso_controlador();
+$datos = $ins_recurso->paginador_recurso_controlador($_SESSION['id_persona']);
 ?>
     <section class="general-admin-container">
         <div class="overview-general-admin">
@@ -16,7 +18,7 @@ $datos = $ins_recurso->paginador_recurso_controlador();
             </div>
             <!--BOTÓN CREAR-->
             <div class="new-record-container">
-                <a class="btn-add-record" title="Crear recurso" href="<?php echo SERVER_URL ?>crearRecurso/">
+                <a class="btn-add-record" title="Crear recurso" href="<?php echo SERVER_URL ?>docenteCrearRecurso/">
                 <i class="uil uil-plus-circle"></i></i></i>Nuevo
                 </a>
             </div>
@@ -41,6 +43,7 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                             foreach($datos as $rows){
                                 $autoresRecurso = $insAutor->autoresXRecursoControlador($rows['idRecurso']);
                                 $archivo = $ins_recurso->archivoXRecursoControlador($rows['idRecurso']);
+                                $cursosRecurso = $insCurso->cursosXRecursoControlador($rows['idRecurso']);
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
@@ -55,15 +58,23 @@ $datos = $ins_recurso->paginador_recurso_controlador();
                             ?>
                             </td>
                             <td data-titulo="ARCHIVO" class="responsive-file fileStyleResp"><?php if($archivo != false) echo $archivo['nombre'] ?></td>
-                            <td data-titulo="CURSO" class="responsive-file">Curso?</td>
-                            <td data-titulo="ESTADO" class="responsive-file">Estado?</td>
+                            <td data-titulo="CURSO" class="responsive-file">
+                            <?php
+                                foreach($cursosRecurso as $camposCurso){
+                                    ?>
+                                    <li><?php echo $camposCurso['nombre'] ?></li>
+                                    <?php
+                                }
+                            ?>
+                            </td>
+                            <td data-titulo="ESTADO" class="responsive-file"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
                             <td data-titulo="ACCIÓN" class="responsive-file">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
                                         <a href="" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>
                                     </div>
                                     <div class="btn-group-action">
-                                        <a href="<?php echo SERVER_URL ?>editarRecurso/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" class="btn-admin-edit-record" title="Editar recurso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
+                                        <a href="<?php echo SERVER_URL ?>docenteEditarRecurso/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" class="btn-admin-edit-record" title="Editar recurso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/recursoAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">

@@ -5,7 +5,7 @@ require_once "./controladores/autorControlador.php";
 $ins_recurso = new recursoControlador();
 $insAutor = new autorControlador();
 
-$datos = $ins_recurso->paginador_recurso_controlador();
+$datos = $ins_recurso->paginador_recurso_controlador(null);
 ?>
     <section class="general-admin-container">
         <div class="overview-general-admin">
