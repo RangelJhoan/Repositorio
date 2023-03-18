@@ -8,6 +8,7 @@ if(isset($_POST['descripcion_ins']) || isset($_POST['id_etiqueta_del']) || isset
     require_once "../controladores/etiquetaControlador.php";
     $ins_etiqueta = new etiquetaControlador();
 
+    /*--- ADMINISTRADOR ---*/
     if(isset($_POST['descripcion_ins'])){
         echo $ins_etiqueta->agregar_etiqueta_controlador();
     }

@@ -13,8 +13,8 @@ class etiquetaModelo extends mainModel{
 
     protected static function agregar_etiqueta_modelo(Etiqueta $etiqueta){
         try {
-            $sql = mainModel::conectar()->prepare("INSERT INTO etiqueta(descripcion, estado) VALUES(?, ?);");
-            $sql->execute([$etiqueta->getDescripcion(), $etiqueta->getEstado()]);
+            $sql = mainModel::conectar()->prepare("INSERT INTO etiqueta(descripcion, estado, id_docente) VALUES(?, ?, ?);");
+            $sql->execute([$etiqueta->getDescripcion(), $etiqueta->getEstado(), $etiqueta->getIdDocente()]);
 
             return $sql->rowCount();
         } catch (Exception $e) {

@@ -9,6 +9,8 @@ if(isset($_POST['nombre_ins']) || isset($_POST['apellido_ins']) || isset($_POST[
     require_once "../controladores/autorControlador.php";
     $ins_autor = new autorControlador();
 
+    /*--- ADMINISTRADOR ---*/
+
     /*--- Agregar un autor ---*/
     if(isset($_POST['nombre_ins']) && isset($_POST['apellido_ins'])){
         echo $ins_autor->agregar_autor_controlador();

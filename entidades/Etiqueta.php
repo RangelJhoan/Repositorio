@@ -4,6 +4,7 @@ class Etiqueta{
     private $idEtiqueta;
     private $descripcion;
     private $estado;
+    private $idDocente;
 
     public function getIdEtiqueta(){
         return $this->idEtiqueta;
@@ -17,6 +18,10 @@ class Etiqueta{
         return $this->estado;
     }
 
+    public function getIdDocente(){
+        return $this->idDocente;
+    }
+
     public function setIdEtiqueta($idEtiqueta){
         $this->idEtiqueta = $idEtiqueta;
     }
@@ -27,6 +32,10 @@ class Etiqueta{
 
     public function setEstado($estado){
         $this->estado = $estado;
+    }
+
+    public function setIdDocente($idDocente){
+        $this->idDocente = $idDocente;
     }
 
 }

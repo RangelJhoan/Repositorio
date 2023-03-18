@@ -2,7 +2,7 @@
     require_once "./controladores/etiquetaControlador.php";
     require_once "./utilidades/Utilidades.php";
     $ins_etiqueta = new etiquetaControlador();
-    $datos = $ins_etiqueta->paginador_etiqueta_controlador();
+    $datos = $ins_etiqueta->paginador_etiqueta_controlador($_SESSION['id_persona']);
 ?>
     <section class="general-admin-container">
         <div class="overview-general-admin">

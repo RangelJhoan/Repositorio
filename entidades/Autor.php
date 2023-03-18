@@ -5,6 +5,7 @@ class Autor {
     private $nombre;
     private $apellido;
     private $estado;
+    private $idDocente;
 
     public function __construct(){}
 
@@ -25,6 +26,11 @@ class Autor {
         return $this->estado;
     }
 
+    public function getIdDocente(){
+        return $this->idDocente;
+    }
+
+
     //Setters
     public function setIdAutor($idAutor){
         $this->idAutor = $idAutor;
@@ -40,6 +46,10 @@ class Autor {
 
     public function setEstado($estado){
         $this->estado = $estado;
+    }
+
+    public function setIdDocente($idDocente){
+        $this->idDocente = $idDocente;
     }
 }
 

@@ -23,8 +23,8 @@
         protected static function agregar_autor_modelo(Autor $autor){
             try {
 
-                $sql = mainModel::conectar()->prepare("INSERT INTO autor(nombre, apellido, estado) VALUES(?, ?, ?);");
-                $sql->execute([$autor->getNombre(), $autor->getApellido(), $autor->getEstado()]);
+                $sql = mainModel::conectar()->prepare("INSERT INTO autor(nombre, apellido, estado, id_docente) VALUES(?, ?, ?, ?);");
+                $sql->execute([$autor->getNombre(), $autor->getApellido(), $autor->getEstado(), $autor->getIdDocente()]);
 
                 return $sql->rowCount();
 

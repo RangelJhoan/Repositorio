@@ -8,7 +8,6 @@ class Archivo{
     private $isbn;
     private $editorial;
     private $estado;
-    private $formato;
 
 
     public function getIdArchivo(){
@@ -67,13 +66,6 @@ class Archivo{
         $this->estado = $estado;
     }
 
-    public function getFormato(){
-        return $this->formato;
-    }
-
-    public function setFormato($formato){
-        $this->formato = $formato;
-    }
 }
 
 ?>

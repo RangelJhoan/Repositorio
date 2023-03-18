@@ -14,6 +14,8 @@ class etiquetaControlador extends etiquetaModelo{
         $etiqueta = new Etiqueta();
         $etiqueta->setDescripcion($_POST['descripcion_ins']);
         $etiqueta->setEstado(Utilidades::getIdEstado("ACTIVO"));
+        session_start(['name'=>'REPO']);
+        $etiqueta->setIdDocente($_SESSION['id_persona']);
 
         if($etiqueta->getDescripcion() == ""){
             $alerta=[
@@ -153,11 +155,15 @@ class etiquetaControlador extends etiquetaModelo{
      *
      * @return Object Lista de las etiquetas consultadas
      */
-    public function paginador_etiqueta_controlador(){
+    public function paginador_etiqueta_controlador($idPersona){
         $consulta = "SELECT * 
         FROM etiqueta 
-        WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") ." 
-        ORDER BY descripcion ASC";
+        WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") ." ";
+
+        if($idPersona != null)
+            $consulta .= " AND id_docente = " . $idPersona;
+
+        $consulta .= " ORDER BY descripcion ASC";
 
         $conexion = mainModel::conectar();
 

@@ -18,6 +18,8 @@ class autorControlador extends autorModelo{
         $autor->setNombre($_POST['nombre_ins']);
         $autor->setApellido($_POST['apellido_ins']);
         $autor->setEstado(Utilidades::getIdEstado("ACTIVO"));
+        session_start(['name'=>'REPO']);
+        $autor->setIdDocente($_SESSION['id_persona']);
 
         if($autor->getApellido() == ""){
             $alerta=[
@@ -157,11 +159,15 @@ class autorControlador extends autorModelo{
      *
      * @return Object Lista de los autores consultados
      */
-    public function paginador_autor_controlador(){
+    public function paginador_autor_controlador($idPersona){
         $consulta = "SELECT * 
         FROM autor 
-        WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") ." 
-        ORDER BY nombre ASC";
+        WHERE estado != ". Utilidades::getIdEstado("ELIMINADO"). " ";
+
+        if($idPersona != null)
+            $consulta .= " AND id_docente = " . $idPersona;
+
+        $consulta .= " ORDER BY nombre ASC";
 
         $conexion = mainModel::conectar();
 

@@ -51,8 +51,8 @@
         /*---------- Modelo para agregar Recurso ----------*/
         protected static function agregar_archivo_modelo(Recurso $recurso){
             try {
-                $sql = mainModel::conectar()->prepare("INSERT INTO archivo(ruta, tamano, nombre, isbn, editorial, estado, id_recurso, id_formato) VALUES(?, ?, ?, ?, ?, ?, ?, ?);");
-                $sql->execute([$recurso->getArchivo()->getRuta(), $recurso->getArchivo()->getTamano(), $recurso->getArchivo()->getNombre() ,$recurso->getArchivo()->getISBN(),$recurso->getArchivo()->getEditorial(),$recurso->getArchivo()->getEstado(), $recurso->getIdRecurso(), '1']);
+                $sql = mainModel::conectar()->prepare("INSERT INTO archivo(ruta, tamano, nombre, isbn, editorial, estado, id_recurso) VALUES(?, ?, ?, ?, ?, ?, ?);");
+                $sql->execute([$recurso->getArchivo()->getRuta(), $recurso->getArchivo()->getTamano(), $recurso->getArchivo()->getNombre() ,$recurso->getArchivo()->getISBN(),$recurso->getArchivo()->getEditorial(),$recurso->getArchivo()->getEstado(), $recurso->getIdRecurso()]);
 
                 return $sql->rowCount();
             } catch (Exception $e) {

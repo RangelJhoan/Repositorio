@@ -138,10 +138,6 @@
                 <td class="infoColVerRecurso"><?php echo $tamano; ?></td>
             </tr>
             <tr>
-                <th class="tituloColVerRecurso">Formato:</th>
-                <td class="infoColVerRecurso">PDF</td>
-            </tr>
-            <tr>
                 <th class="tituloColVerRecurso">Acción:</th>
                 <td class="infoColVerRecurso infoBotonesVerRec">
                     <div class="action-options-container">
