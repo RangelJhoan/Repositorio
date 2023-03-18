@@ -156,9 +156,10 @@ class etiquetaControlador extends etiquetaModelo{
      * @return Object Lista de las etiquetas consultadas
      */
     public function paginador_etiqueta_controlador($idPersona){
-        $consulta = "SELECT * 
-        FROM etiqueta 
-        WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") ." ";
+        $consulta = "SELECT e.id as idEtiqueta, e.descripcion, e.estado as estadoEtiqueta, e.fecha_creacion as fechaCreacionEtiqueta, p.nombre, p.apellido 
+        FROM etiqueta e
+        JOIN persona p ON p.id = e.id_docente
+        WHERE e.estado != ". Utilidades::getIdEstado("ELIMINADO") ." ";
 
         if($idPersona != null)
             $consulta .= " AND id_docente = " . $idPersona;
@@ -175,6 +176,59 @@ class etiquetaControlador extends etiquetaModelo{
     /*---------- Controlador etiquetas de un recurso en específico ----------*/
     public function etiquetasXRecursoControlador($id){
         return etiquetaModelo::etiquetasXRecursoModelo($id)->fetchAll();
+    }
+
+    /*---------- Controlador editar etiqueta desde el perfil del docente ----------*/
+    public function editar_docente_etiqueta_controlador(){
+        $etiqueta = new Etiqueta();
+        $etiqueta->setIdEtiqueta(mainModel::decryption($_POST['id_docente_etiqueta_edit']));
+
+        //Comprobar que la etiqueta exista en la BD
+        $check_etiqueta = mainModel::ejecutar_consulta_simple("SELECT * FROM etiqueta WHERE id = '". $etiqueta->getIdEtiqueta() ."'");
+
+        if($check_etiqueta->rowCount() <= 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrió un error",
+                "Texto"=>"No se encontró la etiqueta a editar",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $etiqueta->setDescripcion($_POST['descripcion_docente_edit']);
+        $etiqueta->setEstado($_POST['estado']);
+
+        if($etiqueta->getDescripcion() == ""){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"Por favor llene todos los campos requeridos",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+        $editarEtiqueta = etiquetaModelo::editar_etiqueta_modelo($etiqueta);
+
+        if($editarEtiqueta == 1){
+            $alerta=[
+                "Alerta"=>"redireccionar",
+                "Titulo"=>"Datos actualizados",
+                "URL"=>SERVER_URL."docenteMisPalabrasClave/",
+                "Texto"=>"Los datos han sido actualizados con éxito",
+                "Tipo"=>"success"
+            ];
+        }else{
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>$editarEtiqueta,
+                "Tipo"=>"error"
+            ];
+        }
+        echo json_encode($alerta);
     }
 }
 

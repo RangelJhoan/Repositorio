@@ -62,7 +62,7 @@
                             <td data-titulo="#"><?php echo $contador; ?></td>
                             <td data-titulo="NOMBRE" class="responsive-file"><?php echo $rows['nombre'] ?></td>
                             <td data-titulo="APELLIDO" class="responsive-file"><?php echo $rows['apellido'] ?></td>
-                            <td data-titulo="CREADO POR" class="responsive-file">¿Creado por?</td>
+                            <td data-titulo="CREADO POR" class="responsive-file"><?php echo $rows['nombreDocente'] . " " . $rows['apellidoDocente'] ?></td>
                             <td data-titulo="ESTADO" class="responsive-file"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
                             <td data-titulo="ACCIÓN" class="responsive-file">
                                 <div class="action-options-container">

@@ -37,8 +37,8 @@
                             <td data-titulo="#"><?php echo $contador; ?></td>
                             <td data-titulo="NOMBRE" class="responsive-file"><?php echo $rows['nombre'] ?></td>
                             <td data-titulo="APELLIDO" class="responsive-file"><?php echo $rows['apellido'] ?></td>
-                            <td data-titulo="CREADO POR" class="responsive-file">Creado por</td>
-                            <td data-titulo="FECHA CREACIÓN" class="responsive-file">2023-03-07 16:12:14</td>
+                            <td data-titulo="CREADO POR" class="responsive-file"><?php echo $rows['nombreDocente'] . " " . $rows['apellidoDocente'] ?></td>
+                            <td data-titulo="FECHA CREACIÓN" class="responsive-file"><?php echo $rows['fecha_creacion'] ?></td>
                         </tr>
                         <?php
                             $contador++;

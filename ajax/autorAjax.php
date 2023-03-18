@@ -4,7 +4,7 @@ $peticionAjax = true;
 
 require_once "../config/APP.php";
 
-if(isset($_POST['nombre_ins']) || isset($_POST['apellido_ins']) || isset($_POST['id_autor_del']) || isset($_POST['nombre_edit']) || isset($_POST['apellido_edit'])){
+if(isset($_POST['nombre_ins']) || isset($_POST['apellido_ins']) || isset($_POST['id_autor_del']) || isset($_POST['nombre_edit']) || isset($_POST['apellido_edit']) || isset($_POST['apellido_doc_edit'])){
     /*--- Instancia al controlador ---*/
     require_once "../controladores/autorControlador.php";
     $ins_autor = new autorControlador();
@@ -24,6 +24,12 @@ if(isset($_POST['nombre_ins']) || isset($_POST['apellido_ins']) || isset($_POST[
     /*--- Editar un autor ---*/
     if(isset($_POST['nombre_edit']) && isset($_POST['apellido_edit'])){
         echo $ins_autor->editar_autor_controlador();
+    }
+
+    /*--- DOCENTE ---*/
+    /*--- Editar un autor ---*/
+    if(isset($_POST['apellido_doc_edit'])){
+        echo $ins_autor->editar_docente_autor_controlador();
     }
 
 }else{

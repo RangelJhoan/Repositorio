@@ -62,7 +62,7 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
                                 <?php
                                 foreach($datos_etiquetas as $campos_etiqueta){
                                 ?>
-                                <option value="<?php echo $campos_etiqueta['id'] ?>"><?php echo $campos_etiqueta['descripcion'] ?></option>
+                                <option value="<?php echo $campos_etiqueta['idEtiqueta'] ?>"><?php echo $campos_etiqueta['descripcion'] ?></option>
                                 <?php
                                 }
                                 ?>

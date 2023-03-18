@@ -160,9 +160,10 @@ class autorControlador extends autorModelo{
      * @return Object Lista de los autores consultados
      */
     public function paginador_autor_controlador($idPersona){
-        $consulta = "SELECT * 
-        FROM autor 
-        WHERE estado != ". Utilidades::getIdEstado("ELIMINADO"). " ";
+        $consulta = "SELECT a.id, a.nombre, a.apellido, a.fecha_creacion, a.estado, p.nombre as nombreDocente, p.apellido as apellidoDocente 
+        FROM autor a
+        JOIN persona p ON p.id = a.id_docente
+        WHERE a.estado != ". Utilidades::getIdEstado("ELIMINADO"). " ";
 
         if($idPersona != null)
             $consulta .= " AND id_docente = " . $idPersona;
@@ -179,6 +180,60 @@ class autorControlador extends autorModelo{
     /*---------- Controlador datos autor ----------*/
     public function autoresXRecursoControlador($id){
         return autorModelo::autoresXRecursoModelo($id)->fetchAll();
+    }
+
+    /*---------- Controlador editar autor desde el perfil de docente ----------*/
+    public function editar_docente_autor_controlador(){
+        $autor = new autor();
+        $autor->setIdAutor(mainModel::decryption($_POST['id_autor_edit']));
+
+        //Comprobar que el autor exista en la BD
+        $check_autor = mainModel::ejecutar_consulta_simple("SELECT * FROM autor WHERE id = '". $autor->getIdAutor() ."'");
+        if($check_autor->rowCount() <= 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrió un error",
+                "Texto"=>"No se encontró el autor a editar",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $autor->setNombre($_POST['nombre_doc_edit']);
+        $autor->setApellido($_POST['apellido_doc_edit']);
+        $autor->setEstado($_POST['estado']);
+
+        if($autor->getApellido() == ""){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"Por favor llene todos los campos requeridos",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $editarAutor = autorModelo::editar_autor_modelo($autor);
+
+        if($editarAutor == 1){
+            $alerta=[
+                "Alerta"=>"redireccionar",
+                "Titulo"=>"Datos actualizados",
+                "URL"=>SERVER_URL."docenteMisAutores/",
+                "Texto"=>"Los datos han sido actualizados con éxito",
+                "Tipo"=>"success"
+            ];
+        }else{
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>$editarAutor,
+                "Tipo"=>"error"
+            ];
+        }
+        echo json_encode($alerta);
     }
 
 }

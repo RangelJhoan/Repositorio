@@ -87,12 +87,12 @@ if($consultaRecursos->rowCount() > 0){
                             foreach($listaEtiquetas as $datosEtiqueta){
                                 $selected = false;
                                 foreach ($etiquetasActuales as $datosEtiquetaActual) {
-                                    if($datosEtiqueta['id'] == $datosEtiquetaActual['id']){
+                                    if($datosEtiqueta['idEtiqueta'] == $datosEtiquetaActual['id']){
                                         $selected = true;
                                     }
                                 }
                             ?>
-                            <option <?php if($selected) echo "selected" ?> value="<?php echo $datosEtiqueta['id'] ?>"><?php echo $datosEtiqueta['descripcion']?></option>
+                            <option <?php if($selected) echo "selected" ?> value="<?php echo $datosEtiqueta['idEtiqueta'] ?>"><?php echo $datosEtiqueta['descripcion']?></option>
                             <?php
                             }
                             ?>

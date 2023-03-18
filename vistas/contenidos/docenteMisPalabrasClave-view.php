@@ -56,15 +56,15 @@
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
                             <td data-titulo="NOMBRE" class="responsive-file"><?php echo $rows['descripcion'] ?></td>
-                            <td data-titulo="ESTADO" class="responsive-file"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
+                            <td data-titulo="ESTADO" class="responsive-file"><?php echo Utilidades::getNombreEstado($rows['estadoEtiqueta']) ?></td>
                             <td data-titulo="ACCIÓN" class="responsive-file">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <a href="<?php echo SERVER_URL ?>editarPalabraClave/<?php echo $ins_etiqueta->encryption($rows['id'])?>/" class="btn-admin-edit-record" title="Editar palabra clave"><i class="uil uil-edit btn-admin-edit-record"></i></a>
+                                        <a href="<?php echo SERVER_URL ?>docenteEditarPalabraClave/<?php echo $ins_etiqueta->encryption($rows['idEtiqueta'])?>/" class="btn-admin-edit-record" title="Editar palabra clave"><i class="uil uil-edit btn-admin-edit-record"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/etiquetaAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
-                                            <input type="hidden" name="id_etiqueta_del" value="<?php echo $ins_etiqueta->encryption($rows['id']) ?>">
+                                            <input type="hidden" name="id_etiqueta_del" value="<?php echo $ins_etiqueta->encryption($rows['idEtiqueta']) ?>">
                                             <button type="submit" class="btn-delete-record" title="Eliminar palabra clave"><i class="uil uil-trash-alt"></i></button>
                                         </div>
                                     </form>
