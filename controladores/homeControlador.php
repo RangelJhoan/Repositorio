@@ -104,7 +104,7 @@ class homeControlador extends homeModelo{
             $alerta=[
                 "Alerta"=>"recargar",
                 "Titulo"=>"Exitoso",
-                "Texto"=>"Gracias por evaluar el recurso",
+                "Texto"=>"Gracias por evaluar el recurso y ayudar a mejorar su calidad. Su retroalimentación es muy valiosa y nos ayudará a identificar áreas de oportunidad para seguir mejorando y ofrecer recursos de gran utilidad.",
                 "Tipo"=>"success"
             ];
             echo json_encode($alerta);

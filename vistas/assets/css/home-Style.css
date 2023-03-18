@@ -31,9 +31,9 @@
     --phrgp-home-supertiny-font-size:0.7rem;
 
     /* Títulos preguntas frecuentes */
-    --question-homepq-normal-font-size: 1.1rem;
-    --question-homepq-medium-font-size:1rem;
-    --question-homepq-tiny-font-size:0.9rem;
+    --question-homepq-normal-font-size: 1rem;
+    --question-homepq-medium-font-size:0.9rem;
+    --question-homepq-tiny-font-size:0.6rem;
 
     /* Títulos campos filtros */
     --titleFilterHome-normal-fz:1.2rem;
@@ -44,7 +44,7 @@
     --normal-font-size-mainSectionHome:1.3rem;
     --medium-font-size-mainSectionHome:1.2rem;
     --tiny-font-size-mainSectionHome:1.1rem;
-    --supertiny-font-size-mainSectionHome:0.9rem;
+    --supertiny-font-size-mainSectionHome:0.7rem;
 
     /* Título páginas búsquedas*/
     --title-font-size: 2.2rem;
@@ -375,14 +375,27 @@ body{
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 1rem 0;
+    padding: 2rem 0;
     margin-top: 2rem;
+    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
 }
 /*Filtro uno por uno*/
 .filterHomeContainer .hexagonFilters:hover{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.filterHomeContainer .hexagonFilters.hxF1:hover{
+    filter: drop-shadow(0px 0px 35px var(--hexagonN1));
+}
+.filterHomeContainer .hexagonFilters.hxF2:hover{
+    filter: drop-shadow(0px 0px 35px var(--hexagonN2));
+}
+.filterHomeContainer .hexagonFilters.hxF3:hover{
+    filter: drop-shadow(0px 0px 35px var(--hexagonN3));
+}
+.filterHomeContainer .hexagonFilters.hxF4:hover{
+    filter: drop-shadow(0px 0px 35px var(--hexagonN4));
 }
 /*Forma hexagonal*/
 .filterHomeContainer .hexagonFilters .hexagonShape{
