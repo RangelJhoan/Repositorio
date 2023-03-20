@@ -63,10 +63,48 @@
 			return $output;
 		}
 
-        // Método para limpiar cadena y evitar inyección SQL o campos vacíos
-        protected static function limpiar_cadena($cadena){
+        /**
+         * Método para eliminar palabras claves de programación y otros caracteres dentro de una entrada por el usuario
+         * 
+         * @param string $cadena Input del usuario a limpiar
+         * @return string $cadena Cadena de texto sin caracteres o palabras claves especiales en programación
+         */
+        protected static function limpiarCadena($cadena){
+            $cadena = trim($cadena);
+            $cadena = stripslashes($cadena);
+            $cadena = str_ireplace("<script>", "", $cadena);
+            $cadena = str_ireplace("</script>", "", $cadena);
+            $cadena = str_ireplace("<script src", "", $cadena);
+            $cadena = str_ireplace("<script type=", "", $cadena);
+            $cadena = str_ireplace("SELECT * FROM", "", $cadena);
+            $cadena = str_ireplace("DELETE FROM", "", $cadena);
+            $cadena = str_ireplace("INSERT INTO", "", $cadena);
+            $cadena = str_ireplace("DROP TABLE", "", $cadena);
+            $cadena = str_ireplace("DROP DATABASE", "", $cadena);
+            $cadena = str_ireplace("TRUNCATE TABLE", "", $cadena);
+            $cadena = str_ireplace("SHOW TABLES", "", $cadena);
+            $cadena = str_ireplace("SHOW DATABASES", "", $cadena);
+            $cadena = str_ireplace("<?php", "", $cadena);
+            $cadena = str_ireplace("?>", "", $cadena);
+            $cadena = str_ireplace("--", "", $cadena);
+            $cadena = str_ireplace(">", "", $cadena);
+            $cadena = str_ireplace("<", "", $cadena);
+            $cadena = str_ireplace("[", "", $cadena);
+            $cadena = str_ireplace("]", "", $cadena);
+            $cadena = str_ireplace("^", "", $cadena);
+            $cadena = str_ireplace("==", "", $cadena);
+            $cadena = str_ireplace(";", "", $cadena);
+            $cadena = str_ireplace("::", "", $cadena);
+            $cadena = stripslashes($cadena);
             $cadena = trim($cadena);
             return $cadena;
+        }
+
+        protected static function verificarDatos($filtro, $cadena){
+            if(preg_match("/^".$filtro."$/", $cadena))
+                return true;
+            else
+                return false;
         }
 
     }

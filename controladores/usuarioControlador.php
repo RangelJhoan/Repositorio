@@ -17,32 +17,32 @@ class usuarioControlador extends usuarioModelo{
     /*---------- Controlador para agregar usuario ----------*/
     public function agregar_usuario_controlador(){
         $persona = new Persona();
-        $persona->setNombre($_POST['nombre']);
-        $persona->setApellido($_POST['apellido']);
-        $persona->setCorreo($_POST['correo']);
-        $persona->setDocumento($_POST['documento']);
-        $persona->setClave($_POST['clave']);
-        $persona->setIdTipoUsuario($_POST['tipoUsuario']);
-        $confirmarClave = $_POST['confirmarClave'];
+        $persona->setNombre(mainModel::limpiarCadena($_POST['nombre']));
+        $persona->setApellido(mainModel::limpiarCadena($_POST['apellido']));
+        $persona->setCorreo(mainModel::limpiarCadena($_POST['correo']));
+        $persona->setDocumento(mainModel::limpiarCadena($_POST['documento']));
+        $persona->setClave(mainModel::limpiarCadena($_POST['clave']));
+        $persona->setIdTipoUsuario(mainModel::limpiarCadena($_POST['tipoUsuario']));
+        $confirmarClave = mainModel::limpiarCadena($_POST['confirmarClave']);
 
-        $persona->setEstado($_POST['estado']);
-        $persona->setEstadoPersona($_POST['estado']);
+        $persona->setEstado(mainModel::limpiarCadena($_POST['estado']));
+        $persona->setEstadoPersona(mainModel::limpiarCadena($_POST['estado']));
 
         $tipoDocumento = new TipoDocumento();
-        $tipoDocumento->setIdTipoDocumento($_POST['tipoDocumento']);
+        $tipoDocumento->setIdTipoDocumento(mainModel::limpiarCadena($_POST['tipoDocumento']));
 
         $persona->setTipoDocumento($tipoDocumento);
 
-        if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getCorreo() == "" || $persona->getTipoDocumento() == "" ||
+        if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getCorreo() == "" || $persona->getTipoDocumento()->getIdTipoDocumento() == "" ||
             $persona->getDocumento() == "" || $persona->getClave() == "" || $persona->getIdTipoUsuario() == "" || $persona->getEstado() == ""){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor llene todos los campos requeridos",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
-            exit();
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Error",
+                    "Texto"=>"Por favor llene todos los campos requeridos",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
         }
 
         if($persona->getClave() != $confirmarClave){
@@ -50,6 +50,17 @@ class usuarioControlador extends usuarioModelo{
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
                 "Texto"=>"Las claves ingresadas no coinciden",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        if(!self::validarInputs($persona)){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"Ingresen información válida",
                 "Tipo"=>"error"
             ];
             echo json_encode($alerta);
@@ -548,6 +559,28 @@ class usuarioControlador extends usuarioModelo{
         $datos = $datos->fetchAll();
 
         return $datos;
+    }
+
+
+    // VALIDACIONES
+
+    private function validarInputs(Persona $persona){
+        if(!mainModel::verificarDatos("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}", $persona->getNombre()))
+            return false;
+
+        if(!mainModel::verificarDatos("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}", $persona->getApellido()))
+            return false;
+
+        if(!mainModel::verificarDatos("[^@]+@[^@]+\.[a-zA-Z]{2,}", $persona->getCorreo()))
+            return false;
+
+        if(!mainModel::verificarDatos("[0-9]+", $persona->getDocumento()))
+            return false;
+
+        if(!mainModel::verificarDatos("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}", $persona->getClave()))
+            return false;
+
+        return true;
     }
 
 }
