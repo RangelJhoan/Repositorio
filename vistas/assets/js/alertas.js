@@ -79,7 +79,7 @@ function enviar_formulario_ajax(e){
                 document.body.appendChild(capaCarga);
                 // agrega la capa al body
                 document.body.appendChild(capaCarga);
-                            fetch(action, config)
+            fetch(action, config)
             .then(respuesta =>{
                 capaCarga.remove();
                 capaCarga.style.zIndex = 'hidden'; // desactiva el scroll

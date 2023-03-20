@@ -25,8 +25,8 @@ class usuarioControlador extends usuarioModelo{
         $persona->setIdTipoUsuario($_POST['tipoUsuario']);
         $confirmarClave = $_POST['confirmarClave'];
 
-        $persona->setEstado(Utilidades::getIdEstado("ACTIVO"));
-        $persona->setEstadoPersona(Utilidades::getIdEstado("ACTIVO"));
+        $persona->setEstado($_POST['estado']);
+        $persona->setEstadoPersona($_POST['estado']);
 
         $tipoDocumento = new TipoDocumento();
         $tipoDocumento->setIdTipoDocumento($_POST['tipoDocumento']);
@@ -116,11 +116,11 @@ class usuarioControlador extends usuarioModelo{
 
         if($check_account->rowCount() > 0){
             $row = $check_account->fetch();
-            if($row['estado'] != Utilidades::getIdEstado("ACTIVO")){
+            if($row['estado'] == Utilidades::getIdEstado("INACTIVO")){
                 echo '<script>
                     Swal.fire({
                         title:"Error",
-                        text:"Cuenta inactiva. Por favor contacte a un administrador",
+                        text:"Cuenta inactiva. Por favor contacte a un administrador.",
                         icon:"error",
                         confirmButtonText: "Aceptar"
                     });
@@ -128,6 +128,29 @@ class usuarioControlador extends usuarioModelo{
                 exit();
             }
 
+            if($row['estado'] == Utilidades::getIdEstado("PENDIENTE ACTIVACION")){
+                echo '<script>
+                    Swal.fire({
+                        title:"Error",
+                        text:"Su cuenta se encuentra pendiente de activación.",
+                        icon:"error",
+                        confirmButtonText: "Aceptar"
+                    });
+                </script>';
+                exit();
+            }
+
+            if($row['estado'] == Utilidades::getIdEstado("ELIMINADO")){
+                echo '<script>
+                    Swal.fire({
+                        title:"Error",
+                        text:"Su cuenta se encuentra eliminada. Por favor contacte a un administrador.",
+                        icon:"error",
+                        confirmButtonText: "Aceptar"
+                    });
+                </script>';
+                exit();
+            }
 
             session_start(['name'=>'REPO']);
             $_SESSION['id_persona'] = $row['id'];

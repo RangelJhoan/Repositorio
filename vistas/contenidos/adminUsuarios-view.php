@@ -39,7 +39,7 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                                 </select>
                             </div>
                         </div>
-                        <input name="estado" type="hidden" value="1">
+                        <input name="estado" type="hidden" value="<?php echo Utilidades::getIdEstado("ACTIVO") ?>">
                         <div class="input-field">
                             <input name="nombre" type="text" placeholder="Nombres *" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}"  title="Por favor, complete el campo" required/>
                         </div>

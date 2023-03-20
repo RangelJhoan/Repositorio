@@ -1,19 +1,7 @@
-<?php 
-    require_once "./controladores/usuarioControlador.php";
-    require_once "./controladores/programaControlador.php";
-    require_once "./controladores/cursoControlador.php";
+<?php
     require_once "./controladores/autorControlador.php";
     require_once "./controladores/etiquetaControlador.php";
     require_once "./controladores/recursoControlador.php";
-
-    $ins_usuario = new usuarioControlador();
-    $total_usuarios = $ins_usuario->datos_usuario_controlador("Conteo", 0);
-
-    $ins_programa = new programaControlador();
-    $total_programas = $ins_programa->datos_programa_controlador("Conteo", 0);
-
-    $ins_curso = new cursoControlador();
-    $total_cursos = $ins_curso->datos_curso_controlador("Conteo", 0);
 
     $insRecurso = new recursoControlador();
     $totalRecursos = $insRecurso->datos_recurso_controlador("Conteo", 0);

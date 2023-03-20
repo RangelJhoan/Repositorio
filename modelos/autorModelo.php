@@ -56,7 +56,12 @@
             }
         }
 
-        /*---------- Modelo datos autor ----------*/
+        /**
+         * Retorna información de autores según el parámetro tipo ingresado
+         *
+         * @param $tipo Tipo de consulta (Unico -> Información de un autor en específico) (Conteo -> Retorna lista de autores con el fin de calcular el total de registros)
+         * @param $id Si el tipo de consulta es Conteo, no tiene funcionalidad. Si es Unico, condiciona el autor a consultar
+         */
         protected static function datos_autor_modelo($tipo, $id){
             if($tipo == "Unico"){
                 $sql = mainModel::conectar()->prepare("SELECT * 

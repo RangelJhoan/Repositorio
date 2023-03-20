@@ -120,7 +120,7 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                 <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                     <h2 class="title">Registrarse</h2>
                     <input name="tipoUsuario" type="hidden" value="3">
-                    <input name="estado" type="hidden" value="0">
+                    <input name="estado" type="hidden" value="<?php Utilidades::getIdEstado("PENDIENTE ACTIVACION") ?>">
                     <div class="input-field">
                         <i class="fas fa-user"></i>
                         <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Por favor, complete el campo" required/>
