@@ -98,14 +98,17 @@ class recursoControlador extends recursoModelo{
             }
 
             if(isset($_FILES["archivo"]["name"])){
-                $rutaCarpeta = "../recursos/".$_SESSION['documento_usuario'];
+                $rutaCarpeta = "recursos/".$_SESSION['documento_usuario'];
+                $rutaCarpetaGuardado = "../recursos/".$_SESSION['documento_usuario']; 
                 //Si la carpeta del usuario no existe, se crea
-                if(!file_exists($rutaCarpeta)){
-                    mkdir($rutaCarpeta, 0777, true);
+                if(!file_exists($rutaCarpetaGuardado)){
+                    mkdir($rutaCarpetaGuardado, 0777, true);
                 }
                 //El archivo se crea fechaactual_nombrearchivo.extension
-                $ruta = $rutaCarpeta."/".date('dmYHis')."_".$_FILES["archivo"]["name"];
-                move_uploaded_file($_FILES["archivo"]["tmp_name"], $ruta);
+                $nombreArchivo = date('dmYHis')."_".$_FILES["archivo"]["name"];
+                $rutaGuardado = $rutaCarpetaGuardado."/".$nombreArchivo; //Ruta donde se almacena físicamente el archivo
+                $ruta = $rutaCarpeta."/".$nombreArchivo; //Ruta que se almacena en la base de datos
+                move_uploaded_file($_FILES["archivo"]["tmp_name"], $rutaGuardado);
             }else{
                 $ruta = "null";
             }
@@ -301,14 +304,17 @@ class recursoControlador extends recursoModelo{
         //Revisamos si se subió un archivo a editar
         if(isset($_FILES["archivo"]["name"])){
             session_start(['name'=>"REPO"]);
-            $rutaCarpeta = "../recursos/".$_SESSION['documento_usuario'];
+            $rutaCarpeta = "recursos/".$_SESSION['documento_usuario'];
+            $rutaCarpetaGuardado = "../recursos/".$_SESSION['documento_usuario']; 
             //Si la carpeta del usuario no existe, se crea
-            if(!file_exists($rutaCarpeta)){
-                mkdir($rutaCarpeta, 0777, true);
+            if(!file_exists($rutaCarpetaGuardado)){
+                mkdir($rutaCarpetaGuardado, 0777, true);
             }
             //El archivo se crea fechaactual_nombrearchivo.extension
-            $ruta = $rutaCarpeta."/".date('dmYHis')."_".$_FILES["archivo"]["name"];
-            move_uploaded_file($_FILES["archivo"]["tmp_name"], $ruta);
+            $nombreArchivo = date('dmYHis')."_".$_FILES["archivo"]["name"];
+            $rutaGuardado = $rutaCarpetaGuardado."/".$nombreArchivo; //Ruta donde se almacena físicamente el archivo
+            $ruta = $rutaCarpeta."/".$nombreArchivo; //Ruta que se almacena en la base de datos
+            move_uploaded_file($_FILES["archivo"]["tmp_name"], $rutaGuardado);
         }else{
             $ruta = "null";
         }
@@ -477,14 +483,17 @@ class recursoControlador extends recursoModelo{
             }
 
             if(isset($_FILES["archivo"]["name"])){
-                $rutaCarpeta = "../recursos/".$_SESSION['documento_usuario'];
+                $rutaCarpeta = "recursos/".$_SESSION['documento_usuario'];
+                $rutaCarpetaGuardado = "../recursos/".$_SESSION['documento_usuario']; 
                 //Si la carpeta del usuario no existe, se crea
-                if(!file_exists($rutaCarpeta)){
-                    mkdir($rutaCarpeta, 0777, true);
+                if(!file_exists($rutaCarpetaGuardado)){
+                    mkdir($rutaCarpetaGuardado, 0777, true);
                 }
                 //El archivo se crea fechaactual_nombrearchivo.extension
-                $ruta = $rutaCarpeta."/".date('dmYHis')."_".$_FILES["archivo"]["name"];
-                move_uploaded_file($_FILES["archivo"]["tmp_name"], $ruta);
+                $nombreArchivo = date('dmYHis')."_".$_FILES["archivo"]["name"];
+                $rutaGuardado = $rutaCarpetaGuardado."/".$nombreArchivo; //Ruta donde se almacena físicamente el archivo
+                $ruta = $rutaCarpeta."/".$nombreArchivo; //Ruta que se almacena en la base de datos
+                move_uploaded_file($_FILES["archivo"]["tmp_name"], $rutaGuardado);
             }else{
                 $ruta = "null";
             }
@@ -617,14 +626,17 @@ class recursoControlador extends recursoModelo{
         //Revisamos si se subió un archivo a editar
         if(isset($_FILES["archivo"]["name"])){
             session_start(['name'=>"REPO"]);
-            $rutaCarpeta = "../recursos/".$_SESSION['documento_usuario'];
+            $rutaCarpeta = "recursos/".$_SESSION['documento_usuario'];
+            $rutaCarpetaGuardado = "../recursos/".$_SESSION['documento_usuario']; 
             //Si la carpeta del usuario no existe, se crea
-            if(!file_exists($rutaCarpeta)){
-                mkdir($rutaCarpeta, 0777, true);
+            if(!file_exists($rutaCarpetaGuardado)){
+                mkdir($rutaCarpetaGuardado, 0777, true);
             }
             //El archivo se crea fechaactual_nombrearchivo.extension
-            $ruta = $rutaCarpeta."/".date('dmYHis')."_".$_FILES["archivo"]["name"];
-            move_uploaded_file($_FILES["archivo"]["tmp_name"], $ruta);
+            $nombreArchivo = date('dmYHis')."_".$_FILES["archivo"]["name"];
+            $rutaGuardado = $rutaCarpetaGuardado."/".$nombreArchivo; //Ruta donde se almacena físicamente el archivo
+            $ruta = $rutaCarpeta."/".$nombreArchivo; //Ruta que se almacena en la base de datos
+            move_uploaded_file($_FILES["archivo"]["tmp_name"], $rutaGuardado);
         }else{
             $ruta = "null";
         }
