@@ -38,7 +38,7 @@ class usuarioControlador extends usuarioModelo{
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"Error",
-                    "Texto"=>"Por favor llene todos los campos requeridos",
+                    "Texto"=>"Por favor complete todos los campos requeridos",
                     "Tipo"=>"error"
                 ];
                 echo json_encode($alerta);
@@ -49,7 +49,7 @@ class usuarioControlador extends usuarioModelo{
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
-                "Texto"=>"Las claves ingresadas no coinciden",
+                "Texto"=>"Las contraseñas ingresadas no coinciden",
                 "Tipo"=>"error"
             ];
             echo json_encode($alerta);
@@ -60,7 +60,7 @@ class usuarioControlador extends usuarioModelo{
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
-                "Texto"=>"Ingresen información válida",
+                "Texto"=>"Por favor, ingrese información válida",
                 "Tipo"=>"error"
             ];
             echo json_encode($alerta);
@@ -73,7 +73,7 @@ class usuarioControlador extends usuarioModelo{
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
-                "Texto"=>"Documento de indentidad ya se encuentra registrado en el repositorio",
+                "Texto"=>"El número de documento de indentidad ya se encuentra registrado en el repositorio",
                 "Tipo"=>"error"
             ];
             echo json_encode($alerta);
@@ -112,7 +112,7 @@ class usuarioControlador extends usuarioModelo{
             echo '<script>
                     Swal.fire({
                         title: "Error",
-                        text: "Por favor llene todos los campos requeridos",
+                        text: "Por favor complete todos los campos requeridos",
                         icon: "error",
                         confirmButtonText: "Aceptar"
                     });
@@ -232,7 +232,7 @@ class usuarioControlador extends usuarioModelo{
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
-                "Texto"=>"No tienes los permisos necesarios para esta acción",
+                "Texto"=>"Usted no cuenta con los permisos necesarios para realizar esta acción",
                 "Tipo"=>"error"
             ];
             echo json_encode($alerta);
@@ -294,7 +294,7 @@ class usuarioControlador extends usuarioModelo{
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
-                "Texto"=>"No tienes los permisos necesarios para esta acción",
+                "Texto"=>"Usted no cuenta con los permisos necesarios para realizar esta acción",
                 "Tipo"=>"error"
             ];
             echo json_encode($alerta);
@@ -348,7 +348,7 @@ class usuarioControlador extends usuarioModelo{
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
-                "Texto"=>"Por favor llene todos los campos requeridos",
+                "Texto"=>"Por favor complete todos los campos requeridos",
                 "Tipo"=>"error"
             ];
             echo json_encode($alerta);
@@ -362,7 +362,7 @@ class usuarioControlador extends usuarioModelo{
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"Error",
-                    "Texto"=>"Las claves ingresadas no coinciden",
+                    "Texto"=>"Las contraseñas ingresadas no coinciden",
                     "Tipo"=>"error"
                 ];
                 echo json_encode($alerta);
@@ -401,7 +401,7 @@ class usuarioControlador extends usuarioModelo{
             "Alerta"=>"redireccionar",
             "Titulo"=>"Datos actualizados",
             "URL"=>SERVER_URL."adminUsuarios/",
-            "Texto"=>"Los datos han sido actualizados con éxito",
+            "Texto"=>"Los datos han sido actualizados exitosamente",
             "Tipo"=>"success"
         ];
         echo json_encode($alerta);
@@ -451,7 +451,7 @@ class usuarioControlador extends usuarioModelo{
             $alerta=[
                 "Alerta"=>"simple",
                 "Titulo"=>"Error",
-                "Texto"=>"Por favor llene todos los campos requeridos",
+                "Texto"=>"Por favor complete todos los campos requeridos",
                 "Tipo"=>"error"
             ];
             echo json_encode($alerta);
@@ -465,7 +465,7 @@ class usuarioControlador extends usuarioModelo{
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"Error",
-                    "Texto"=>"Las claves ingresadas no coinciden",
+                    "Texto"=>"Las contraseñas ingresadas no coinciden",
                     "Tipo"=>"error"
                 ];
                 echo json_encode($alerta);
@@ -513,7 +513,7 @@ class usuarioControlador extends usuarioModelo{
         $alerta=[
             "Alerta"=>"recargar",
             "Titulo"=>"Datos actualizados",
-            "Texto"=>"Los datos han sido actualizados con éxito",
+            "Texto"=>"Los datos han sido actualizados exitosamente",
             "Tipo"=>"success"
         ];
         echo json_encode($alerta);

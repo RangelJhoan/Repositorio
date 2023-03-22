@@ -40,11 +40,12 @@
                         $datos_filtro = $ins_home->listado_filtro_recursos($pagina[1],$pagina[2]);
                         foreach($datos_filtro as $vRecurso){
                             $recursos = $ins_home->cargar_recursos_curso($vRecurso['id']);
+                            if($recursos > 0){
                             ?>
                             <tr>
                                 <td data-titulo="NOMBRE"><a href="<?php echo SERVER_URL."recursosBusqueda/filtroCurso/".$vRecurso['id']; ?>" class="redireccionTable"><?php echo $vRecurso['nombre']; ?><span class="tableFilterCounter"><?php echo $recursos; ?></span></a></td>
                             </tr>
-                            <?php } ?>  
+                            <?php }} ?>  
                         </tbody>
                     </table>
                 </div>

@@ -15,12 +15,19 @@
         $nArchivo = $archivo['nombre'];
         $tamano = $archivo['tamano'];
         $ruta = $archivo['ruta'];
+        $vArray = explode(".",$nArchivo);
+        if(isset($vArray[1])){
+            $formato = $vArray[1];
+        }else{
+            $formato = "";
+        }
     }else{
         $editorial = "";
         $isbn = "";
         $nArchivo = "";
         $tamano = "";
         $ruta = "";
+        $formato = "";
     }
 
 ?>
@@ -120,7 +127,7 @@
             <tr>
                 <th class="tituloColVerRecurso">URL:</th>
                 <td class="infoColVerRecurso">
-                    <a href="<?php echo $inforecurso['enlace']; ?>" target="_blank" class="redireccionVerRecurso"><?php echo $inforecurso['enlace']; ?></a>
+                    <a href="<?php echo $inforecurso['enlace']; ?>" target="_blank" class="redireccionVerRecurso"><?php if (isset($inforecurso['enlace'])) echo $inforecurso['enlace']; ?></a>
                 </td>
             </tr>
     <!-- ARCHIVO DEL RECURSO -->
@@ -130,24 +137,30 @@
             <tr>
                 <th class="tituloColVerRecurso">Archivo:</th>
                 <td class="infoColVerRecurso">
-                    <a href="<?php echo SERVER_URL ?>#" target="_blank" class="redireccionVerRecurso"><?php echo $nArchivo; ?></a>
+                    <a href="<?php echo SERVER_URL.$ruta?>" target="_blank" class="redireccionVerRecurso"><?php echo $nArchivo; ?></a>
                 </td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Tamaño:</th>
-                <td class="infoColVerRecurso"><?php echo $tamano; ?></td>
+                <td class="infoColVerRecurso"><?php if($tamano!="") echo round($tamano / pow(1024,2),2)." MB"; ?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Formato:</th>
-                <td class="infoColVerRecurso">PDF</td>
+                <td class="infoColVerRecurso"><?php echo strtoupper($formato); ?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Acción:</th>
                 <td class="infoColVerRecurso infoBotonesVerRec">
                     <div class="action-options-container">
                         <div class="btn-group-action">
-                            <a href="" target="_blank" class="btn-admin-view-record" title="Visualizar archivo"><i class="uil uil-eye btnAccionesRecurso btnVisRec"></i></a>
+                            <?php 
+                                if($tamano!=""){
+                            ?>
+                            <a href="<?php echo SERVER_URL.$ruta?>" target="_blank" class="btn-admin-view-record" title="Visualizar archivo"><i class="uil uil-eye btnAccionesRecurso btnVisRec"></i></a>
                             <a href="" class="btn-admin-view-record" title="Descargar archivo"><i class="uil uil-cloud-download btnAccionesRecurso btnDescRec"></i></a>
+                            <?php 
+                                }
+                            ?>
                             <a href="#" class="btn-admin-view-record buttonFeedbackOpen" title="Calificar recurso"><i class="uil uil-feedback btnAccionesRecurso btnCalRec"></i></a>
                             <a href="" class="btn-admin-view-record" title="Agregar a favoritos el recurso"><i class="uil uil-heart btnAccionesRecurso btnFavRec"></i></a>
                         </div>

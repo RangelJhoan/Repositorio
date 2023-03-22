@@ -71,7 +71,7 @@ $datos = $ins_recurso->paginador_recurso_controlador($_SESSION['id_persona']);
                             <td data-titulo="ACCIÓN" class="responsive-file">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <a href="" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>
+                                        <a href="<?php echo SERVER_URL?>recursosVisualizacion/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>
                                     </div>
                                     <div class="btn-group-action">
                                         <a href="<?php echo SERVER_URL ?>docenteEditarRecurso/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" class="btn-admin-edit-record" title="Editar recurso"><i class="uil uil-edit btn-admin-edit-record"></i></a>

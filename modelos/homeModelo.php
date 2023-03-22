@@ -1,5 +1,12 @@
 <?php 
     require_once "mainModel.php";
+    if($peticionAjax){
+        //Modelo llamado desde el archivo Ajax
+        require_once "../utilidades/Utilidades.php";
+    }else{
+        //Modelo llamado desde la vista Index
+        require_once "./utilidades/Utilidades.php";
+    }
 
     class homeModelo extends mainModel{
 
@@ -19,40 +26,40 @@
                     $search .= $varDato;
                 }
                 $search = str_replace("~~","",$search);
-                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
-                ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor JOIN etiqueta_recurso er ON er.id_recurso = r.id JOIN etiqueta e ON er.id_etiqueta = e.id
+                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r LEFT JOIN autor_recurso ar 
+                ON r.id=ar.id_recurso LEFT JOIN autor a ON a.id = ar.id_autor LEFT JOIN etiqueta_recurso er ON er.id_recurso = r.id LEFT JOIN etiqueta e ON er.id_etiqueta = e.id
                 JOIN curso_recurso cr ON cr.id_recurso = r.id JOIN curso c ON c.id=cr.id_curso
-                WHERE r.titulo LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellido) LIKE '%".$search."%' OR CONCAT(a.apellido,' ',a.nombre) LIKE '%".$search."%' OR e.descripcion LIKE '%".$search."%' OR r.fecha_publicacion_recurso LIKE '%".$search."%' OR c.nombre LIKE '%".$search."%';");    
+                WHERE (r.titulo LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellido) LIKE '%".$search."%' OR CONCAT(a.apellido,' ',a.nombre) LIKE '%".$search."%' OR e.descripcion LIKE '%".$search."%' OR r.fecha_publicacion_recurso LIKE '%".$search."%' OR c.nombre LIKE '%".$search."%') AND r.estado='".Utilidades::getIdEstado("ACTIVO")."';");    
             }else if($pTipo=="Autor"){
-                $sql = mainModel::conectar()->prepare("SELECT nombre,apellido,id FROM autor ORDER BY apellido");
+                $sql = mainModel::conectar()->prepare("SELECT nombre,apellido,id FROM autor WHERE estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY apellido");
             }else if($pTipo=="Titulo"){
-                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
-                ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor ORDER BY r.titulo");
+                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r LEFT JOIN autor_recurso ar 
+                ON r.id=ar.id_recurso LEFT JOIN autor a ON a.id = ar.id_autor WHERE r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.titulo");
             }else if($pTipo=="Fecha"){
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
-                ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor ORDER BY r.fecha_publicacion_recurso");
+                ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor WHERE r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.fecha_publicacion_recurso");
             }else if($pTipo=="Curso"){
-                $sql = mainModel::conectar()->prepare("SELECT nombre,id FROM curso ORDER BY nombre");
+                $sql = mainModel::conectar()->prepare("SELECT nombre,id FROM curso WHERE estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY nombre");
             }else if($pTipo=="Cursofiltrar"){
-                $sql = mainModel::conectar()->prepare("SELECT nombre,id FROM curso WHERE nombre LIKE '".$pBuscar."%' ORDER BY nombre");
+                $sql = mainModel::conectar()->prepare("SELECT nombre,id FROM curso WHERE nombre LIKE '".$pBuscar."%' AND estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY nombre");
             }else if($pTipo=="Titulofiltrar"){
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
-                ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor WHERE r.titulo LIKE '".$pBuscar."%' ORDER BY r.titulo");            
+                ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor WHERE r.titulo LIKE '".$pBuscar."%' AND r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.titulo");            
             }else if($pTipo=="Autorfiltrar"){
-                $sql = mainModel::conectar()->prepare("SELECT nombre,apellido,id FROM autor WHERE apellido LIKE '".$pBuscar."%' ORDER BY apellido");
+                $sql = mainModel::conectar()->prepare("SELECT nombre,apellido,id FROM autor WHERE apellido LIKE '".$pBuscar."%' AND estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY apellido");
             }else if($pTipo=="Fechafiltrar"){
                 $pBuscar = mainModel::decryption($pBuscar);
-                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r WHERE r.fecha_publicacion_recurso LIKE '".$pBuscar."%' ORDER BY r.fecha_publicacion_recurso");
+                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r WHERE r.fecha_publicacion_recurso LIKE '".$pBuscar."%' AND r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.fecha_publicacion_recurso");
             }else if($pTipo == "Titulonumero"){
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id), r.titulo, r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar ON r.id = ar.id_recurso JOIN autor a ON a.id = ar.id_autor 
-                WHERE r.titulo REGEXP '^[0-9]' ORDER BY r.titulo;");
+                WHERE r.titulo REGEXP '^[0-9]' AND r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.titulo;");
             }else if($pTipo == "filtroAutor"){
-                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id), r.titulo, r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar ON r.id = ar.id_recurso JOIN autor a ON a.id = ar.id_autor 
-                WHERE a.id = '".$pBuscar."' ORDER BY r.titulo;");
+                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id), r.titulo, r.fecha_publicacion_recurso FROM recurso r LEFT JOIN autor_recurso ar ON r.id = ar.id_recurso LEFT JOIN autor a ON a.id = ar.id_autor 
+                WHERE a.id = '".$pBuscar."' AND r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.titulo;");
             }else if($pTipo == "filtroCurso"){
-                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id), r.titulo, r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar ON r.id = ar.id_recurso JOIN autor a ON a.id = ar.id_autor
+                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id), r.titulo, r.fecha_publicacion_recurso FROM recurso r LEFT JOIN autor_recurso ar ON r.id = ar.id_recurso LEFT JOIN autor a ON a.id = ar.id_autor
                     JOIN curso_recurso cr ON cr.id_recurso = r.id JOIN curso c ON c.id = cr.id_curso
-                WHERE c.id = '".$pBuscar."' ORDER BY r.titulo;");
+                WHERE c.id = '".$pBuscar."' AND r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.titulo;");
             }
             $sql->execute();
 
@@ -67,14 +74,14 @@
         }
 
         protected static function cargar_recursos($pId){
-            $sql = mainModel::conectar()->prepare("SELECT COUNT(*) AS recursos FROM autor_recurso WHERE id_autor = '".$pId."'");
+            $sql = mainModel::conectar()->prepare("SELECT COUNT(*) AS recursos FROM autor_recurso ar JOIN recurso r ON r.id=ar.id_recurso WHERE id_autor = '".$pId."' AND r.estado='".Utilidades::getIdEstado("ACTIVO")."'");
             $sql->execute();
 
             return $sql->fetchColumn();
         }
 
         protected static function cargar_curso($pId){
-            $sql = mainModel::conectar()->prepare("SELECT COUNT(*) AS recursos FROM curso_recurso WHERE id_curso = '".$pId."'");
+            $sql = mainModel::conectar()->prepare("SELECT COUNT(*) AS recursos FROM curso_recurso cr JOIN recurso r ON r.id=cr.id_recurso WHERE id_curso = '".$pId."' AND r.estado='".Utilidades::getIdEstado("ACTIVO")."'");
             $sql->execute();
 
             return $sql->fetchColumn();
@@ -132,6 +139,65 @@
                 return $e->getMessage();
             }
             
+        }
+
+        protected static function quitar_punto($pId, $pRespuesta){
+            try {
+                $recurso = mainModel::decryption($pId);
+                if($pRespuesta!="Si"){
+                    $sql = mainModel::conectar()->prepare("UPDATE recurso SET puntos_positivos = puntos_positivos - 1 WHERE id = '".$recurso."'");
+                }else{
+                    $sql = mainModel::conectar()->prepare("UPDATE recurso SET puntos_negativos = puntos_negativos - 1 WHERE id = '".$recurso."'");
+                }
+
+                $sql->execute();
+
+                return $sql->rowCount();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+            
+        }
+
+        protected static function registrar_voto($pId, $pRespuesta){
+            try {
+                $recurso = mainModel::decryption($pId);
+                if($pRespuesta=="Si"){
+                    $voto = 1;
+                }else{
+                    $voto = 0;
+                }
+                $sql = mainModel::conectar()->prepare("INSERT INTO puntuacion_recurso(tipo_voto, id_recurso, id_estudiante) VALUES(?,?,?)");
+                $sql->execute([$voto, $recurso, $_SESSION['id_persona']]);
+
+                return $sql->rowCount();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+
+        protected static function editar_voto($pId, $pRespuesta){
+            try {
+                if($pRespuesta=="Si"){
+                    $voto = 1;
+                }else{
+                    $voto = 0;
+                }
+                $sql = mainModel::conectar()->prepare("UPDATE puntuacion_recurso SET tipo_voto='".$voto."' WHERE id='".$pId."'");
+                $sql->execute();
+
+                return $sql->rowCount();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+
+        protected static function validar_registro_voto($pId){
+            $recurso = mainModel::decryption($pId);
+            $sql = mainModel::conectar()->prepare("SELECT id FROM puntuacion_recurso WHERE id_recurso = '".$recurso."' AND id_estudiante='".$_SESSION['id_persona']."'");
+            $sql->execute();
+
+            return $sql->fetch();
         }
         
     }

@@ -90,25 +90,48 @@ class homeControlador extends homeModelo{
     }
 
     public function calificar_recurso($pId, $pRespuesta){
-        $valorar = homeModelo::evaluar_recurso($pId, $pRespuesta);
-        if(is_string($valorar)){
+        session_start(['name'=>"REPO"]);
+        if(isset($_SESSION['id_persona'])){
+            $validar = homeModelo::validar_registro_voto($pId);
+            if(isset($validar['id'])){
+                $valorar = homeModelo::editar_voto($validar['id'],$pRespuesta);
+                if($valorar>0){
+                    $registrar = homeModelo::quitar_punto($pId, $pRespuesta);
+                    $valorar = homeModelo::evaluar_recurso($pId, $pRespuesta);
+                }
+            }else{
+                $valorar = homeModelo::evaluar_recurso($pId, $pRespuesta);
+                $registrar = homeModelo::registrar_voto($pId, $pRespuesta);
+            }
+            if(is_string($valorar)){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Error",
+                    "Texto"=>"Error: ".$valorar,
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }else{
+                $alerta=[
+                    "Alerta"=>"recargar",
+                    "Titulo"=>"Exitoso",
+                    "Texto"=>"Gracias por evaluar el recurso y ayudar a mejorar su calidad. Su retroalimentación es muy valiosa y nos ayudará a identificar áreas de oportunidad para seguir mejorando y ofrecer recursos de gran utilidad.",
+                    "Tipo"=>"success"
+                ];
+                echo json_encode($alerta);
+            }
+        }else{
             $alerta=[
-                "Alerta"=>"simple",
+                "Alerta"=>"recargar",
                 "Titulo"=>"Error",
-                "Texto"=>"Error: ".$valorar,
+                "Texto"=>"Para calificar este recurso, es necesario que inicie sesión.",
                 "Tipo"=>"error"
             ];
             echo json_encode($alerta);
             exit();
-        }else{
-            $alerta=[
-                "Alerta"=>"recargar",
-                "Titulo"=>"Exitoso",
-                "Texto"=>"Gracias por evaluar el recurso y ayudar a mejorar su calidad. Su retroalimentación es muy valiosa y nos ayudará a identificar áreas de oportunidad para seguir mejorando y ofrecer recursos de gran utilidad.",
-                "Tipo"=>"success"
-            ];
-            echo json_encode($alerta);
         }
+        
     }
 }
 
