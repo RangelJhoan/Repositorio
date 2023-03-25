@@ -6,17 +6,9 @@
             </div>
             <!--TABLA-->
             <?php
-                require_once "./controladores/cursoControlador.php";
-                $ins_curso = new cursoControlador();
-
-                $cantidadRegistros = 1000;
-                if(count($pagina) == 0){
-                    $paginaActual = $pagina[1];
-                    $datos = $ins_curso->paginador_curso_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
-                }else{
-                    $paginaActual = -1;
-                    $datos = $ins_curso->paginador_curso_controlador($paginaActual, $cantidadRegistros, 0, $pagina[0], "");
-                }
+                require_once "./controladores/recursoControlador.php";
+                $insRecurso = new recursoControlador();
+                $recursosCalificados = $insRecurso->obtenerListaCalificadosXPersona($_SESSION['id_persona']);
             ?>
             <div class="table-admin-container">
                 <table id="tablaUsuarios" class="tb-admin-records">
@@ -32,21 +24,20 @@
                     </thead>
                     <tbody>
                         <?php
-                        $inicio = ($paginaActual>0) ? (($paginaActual*$cantidadRegistros)-$cantidadRegistros) : 0;
-                        $contador = $inicio+1;
-                        if($datos != 0){
-                            foreach($datos as $rows){
+                        if($recursosCalificados != 0){
+                            $contador = 1;
+                            foreach($recursosCalificados as $recurso){
                         ?>
                         <tr>
-                            <td data-titulo="#">¿Id?</td>
-                            <td data-titulo="TÍTULO" class="responsive-file">¿Titulo?</td>
+                            <td data-titulo="#"><?php echo $contador ?></td>
+                            <td data-titulo="TÍTULO" class="responsive-file"><?php echo $recurso['titulo'] ?></td>
                             <td data-titulo="AUTOR(ES)" class="responsive-file">¿Autor?</td>
-                            <td data-titulo="ARCHIVO" class="responsive-file fileStyleResp">¿Archivo?</td>
-                            <td data-titulo="MI CALIFICACIÓN" class="responsive-file">¿Calificación? ¿Positiva o negativa?</td>
+                            <td data-titulo="ARCHIVO" class="responsive-file fileStyleResp"><?php echo $recurso['nombre'] ?></td>
+                            <td data-titulo="MI CALIFICACIÓN" class="responsive-file"><?php if($recurso['tipo_voto'] == 1) echo "Positivo";  else echo "Negativo"; ?></td>
                             <td data-titulo="ACCIÓN" class="responsive-file">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <a href="" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>
+                                        <a href="<?php echo SERVER_URL?>recursosVisualizacion/<?php echo $insRecurso->encryption($recurso['id_recurso'])?>/" target="_blank" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action=" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">

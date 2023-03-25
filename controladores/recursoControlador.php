@@ -721,6 +721,57 @@ class recursoControlador extends recursoModelo{
         echo json_encode($alerta);
     }
 
+    /**
+     * Retorna la lista de recursos marcados como favoritos por una persona
+     *
+     * @return Object Lista de recursos
+     */
+    public function obtenerListaFavoritosXPersona($idPersona){
+        $consulta = "SELECT r.id as id_recurso, r.titulo, a.nombre, pDoc.nombre as nombre_docente, pDoc.apellido as apellido_docente
+        FROM recurso r
+        LEFT JOIN archivo a ON a.id_recurso = r.id
+        JOIN recurso_favorito rf ON rf.id_recurso = r.id
+        JOIN persona p ON p.id = rf.id_persona
+        JOIN persona pDoc ON pDoc.id = r.id_docente
+        WHERE r.estado != " . Utilidades::getIdEstado("ELIMINADO") . " ";
+
+        if($idPersona != null)
+            $consulta .= " AND p.id = " . $idPersona;
+
+        $consulta .= " ORDER BY r.id;";
+
+        $conexion = mainModel::conectar();
+
+        $datos = $conexion->query($consulta);
+        $datos = $datos->fetchAll();
+        return $datos;
+    }
+
+    /**
+     * Retorna la lista de recursos calificados por una persona
+     *
+     * @return Object Lista de recursos
+     */
+    public function obtenerListaCalificadosXPersona($idPersona){
+        $consulta = "SELECT r.id as id_recurso, r.titulo, a.nombre, pr.tipo_voto
+        FROM recurso r
+        LEFT JOIN archivo a ON a.id_recurso = r.id
+        JOIN puntuacion_recurso pr ON pr.id_recurso = r.id
+        JOIN persona p ON p.id = pr.id_estudiante
+        WHERE r.estado != " . Utilidades::getIdEstado("ELIMINADO") . " ";
+
+        if($idPersona != null)
+            $consulta .= " AND p.id = " . $idPersona;
+
+        $consulta .= " ORDER BY r.id;";
+
+        $conexion = mainModel::conectar();
+
+        $datos = $conexion->query($consulta);
+        $datos = $datos->fetchAll();
+        return $datos;
+    }
+
 }
 
 ?>
