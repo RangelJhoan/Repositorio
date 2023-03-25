@@ -10,6 +10,8 @@
                 include("filtroFecha.php");
             }else if($pagina[1]=="Busqueda" || $pagina[1]=="filtroCurso" || $pagina[1]=="filtroAutor"){
                 include("filtroBusqueda.php");
+            }else if($pagina[1]=="Archivos"){
+                include("filtroArchivo.php");
             }
         ?>
     </section>
