@@ -91,7 +91,7 @@ class homeControlador extends homeModelo{
 
     public function calificar_recurso($pId, $pRespuesta){
         session_start(['name'=>"REPO"]);
-        if(isset($_SESSION['id_persona'])){
+        if(isset($_SESSION['id_persona']) && $_SESSION['tipo_usuario']=="Estudiante"){
             $validar = homeModelo::validar_registro_voto($pId);
             if(isset($validar['id'])){
                 $valorar = homeModelo::editar_voto($validar['id'],$pRespuesta);
@@ -133,6 +133,55 @@ class homeControlador extends homeModelo{
         }
         
     }
+
+    public function buscar_ruta_archivo($pId){
+        $informacion = homeModelo::ruta_archivo($pId);
+        
+        return $informacion;
+    }
+
+    public function agregar_favorito($pId){
+        session_start(['name'=>"REPO"]);
+        if(isset($_SESSION['id_persona']) && $_SESSION['tipo_usuario']=="Estudiante"){
+            $validar = homeModelo::validar_favorito($pId);
+            if(!isset($validar['id'])){
+                $favorito = homeModelo::registrar_favorito($pId);
+                $textoalert = "Recurso Agregado a Favoritos";
+            }else{
+                $favorito = homeModelo::eliminar_favorito($validar['id']);
+                $textoalert = "Recurso Eliminado de Favoritos";
+            }
+
+            if(is_string($favorito)){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Error",
+                    "Texto"=>"Error: ".$favorito,
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }else{
+                $alerta=[
+                    "Alerta"=>"recargar",
+                    "Titulo"=>"Exitoso",
+                    "Texto"=>$textoalert,
+                    "Tipo"=>"success"
+                ];
+                echo json_encode($alerta);
+            }
+        }else{
+            $alerta=[
+                "Alerta"=>"recargar",
+                "Titulo"=>"Error",
+                "Texto"=>"Para agregar este recurso a favoritos, es necesario que inicie sesión.",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+    }
+    
 }
 
 

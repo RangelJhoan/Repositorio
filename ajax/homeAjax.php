@@ -43,6 +43,9 @@ if(isset($_POST['barraBusqueda'])){
     $idRecurso = $_POST['codrecurso'];
     $respuesta = $_POST['respuestaFeedback'];
     echo $ins_home->calificar_recurso($idRecurso, $respuesta);
+}else if (isset($_POST['favorito'])) {
+    $idFavorito = $_POST['favorito'];
+    echo $ins_home->agregar_favorito($idFavorito);
 }
 
 ?>

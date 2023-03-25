@@ -60,6 +60,13 @@
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id), r.titulo, r.fecha_publicacion_recurso FROM recurso r LEFT JOIN autor_recurso ar ON r.id = ar.id_recurso LEFT JOIN autor a ON a.id = ar.id_autor
                     JOIN curso_recurso cr ON cr.id_recurso = r.id JOIN curso c ON c.id = cr.id_curso
                 WHERE c.id = '".$pBuscar."' AND r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.titulo;");
+            }else if($pTipo == "Archivos"){
+                if($pBuscar=="Si"){
+                    $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id), r.titulo, r.fecha_publicacion_recurso FROM recurso r JOIN archivo a ON r.id=a.id_recurso WHERE r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.titulo");
+                }else{
+                    
+                    $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id), r.titulo, r.fecha_publicacion_recurso,a.id_recurso FROM recurso r LEFT JOIN archivo a ON r.id=a.id_recurso WHERE a.id_recurso IS NULL AND r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.titulo;");
+                }
             }
             $sql->execute();
 
@@ -200,5 +207,53 @@
             return $sql->fetch();
         }
         
+        protected static function ruta_archivo($pId){
+            $recurso = mainModel::decryption($pId);
+            $sql = mainModel::conectar()->prepare("SELECT ruta,nombre FROM archivo WHERE id_recurso='".$recurso."'");
+            $sql->execute();
+
+            return $sql->fetch();
+        }
+
+        protected static function recursos_con_archivo(){
+            $listado = mainModel::conectar()->prepare("SELECT id_recurso FROM archivo");
+            $listado->execute();
+            $archivos = $listado->fetchAll();
+            $id_recursos = "";
+            foreach($archivos AS $id){
+                $id_recursos .= "'".$id."'";
+            }
+        }
+
+        protected static function validar_favorito($pId){
+            $recurso = mainModel::decryption($pId);
+            $sql = mainModel::conectar()->prepare("SELECT id FROM recurso_favorito WHERE id_recurso = '".$recurso."' AND id_persona='".$_SESSION['id_persona']."'");
+            $sql->execute();
+
+            return $sql->fetch();
+        }
+
+        protected static function registrar_favorito($pId){
+            try {
+                $recurso = mainModel::decryption($pId);
+                $sql = mainModel::conectar()->prepare("INSERT INTO recurso_favorito(id_recurso, id_persona) VALUES(?,?)");
+                $sql->execute([$recurso, $_SESSION['id_persona']]);
+
+                return $sql->rowCount();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+
+        protected static function eliminar_favorito($pId){
+            try {
+                $sql = mainModel::conectar()->prepare("DELETE FROM recurso_favorito WHERE id = '".$pId."'");
+                $sql->execute();
+
+                return $sql->rowCount();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
     }
 ?>

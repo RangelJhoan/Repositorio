@@ -157,12 +157,15 @@
                                 if($tamano!=""){
                             ?>
                             <a href="<?php echo SERVER_URL.$ruta?>" target="_blank" class="btn-admin-view-record" title="Visualizar archivo"><i class="uil uil-eye btnAccionesRecurso btnVisRec"></i></a>
-                            <a href="" class="btn-admin-view-record" title="Descargar archivo"><i class="uil uil-cloud-download btnAccionesRecurso btnDescRec"></i></a>
+                            <a href="<?php echo SERVER_URL."controladores/descargarArchivo.php?codigo=".$pagina[1];?>" class="btn-admin-view-record" title="Descargar archivo"><i class="uil uil-cloud-download btnAccionesRecurso btnDescRec"></i></a>
                             <?php 
                                 }
                             ?>
                             <a href="#" class="btn-admin-view-record buttonFeedbackOpen" title="Calificar recurso"><i class="uil uil-feedback btnAccionesRecurso btnCalRec"></i></a>
-                            <a href="" class="btn-admin-view-record" title="Agregar a favoritos el recurso"><i class="uil uil-heart btnAccionesRecurso btnFavRec"></i></a>
+                            <form action="<?php echo SERVER_URL."ajax/homeAjax.php";?>" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
+                                <input type="hidden" name="favorito" value="<?php echo $pagina[1]; ?>">
+                                <input type="submit" class="btn-admin-view-record" title="Agregar a favoritos el recurso" value="<3">
+                            </form>
                         </div>
                     </div>
                 </td>
