@@ -772,6 +772,60 @@ class recursoControlador extends recursoModelo{
         return $datos;
     }
 
+    public function eliminarRecursoFavoritoControlador(){
+        $idRecurso = mainModel::decryption($_POST['id_recurso_favorito_del']);
+        session_start(['name'=>"REPO"]);
+        $idPersona = $_SESSION['id_persona'];
+
+        $eliminarRecurso = recursoModelo::eliminarRecursoFavoritoModelo($idPersona, $idRecurso);
+
+        if(is_string($eliminarRecurso) || $eliminarRecurso < 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"No se pudo eliminar el recurso favorito",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $alerta=[
+            "Alerta"=>"recargar",
+            "Titulo"=>"Exitoso",
+            "Texto"=>"Recurso favorito eliminado exitosamente",
+            "Tipo"=>"success"
+        ];
+        echo json_encode($alerta);
+    }
+
+    public function eliminarCalificacionRecursoControlador(){
+        $idRecurso = mainModel::decryption($_POST['id_calificacion_recurso_del']);
+        session_start(['name'=>"REPO"]);
+        $idPersona = $_SESSION['id_persona'];
+
+        $eliminarRecurso = recursoModelo::eliminarCalificacionRecursoModelo($idPersona, $idRecurso);
+
+        if(is_string($eliminarRecurso) || $eliminarRecurso < 0){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Error",
+                "Texto"=>"No se pudo eliminar la calificación del recurso",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $alerta=[
+            "Alerta"=>"recargar",
+            "Titulo"=>"Exitoso",
+            "Texto"=>"Calificación eliminada exitosamente",
+            "Tipo"=>"success"
+        ];
+        echo json_encode($alerta);
+    }
+
 }
 
 ?>

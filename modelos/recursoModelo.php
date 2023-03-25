@@ -199,6 +199,28 @@
             }
         }
 
+        protected static function eliminarRecursoFavoritoModelo($idPersona, $idRecurso){
+            try {
+                $sql = mainModel::conectar()->prepare("DELETE FROM recurso_favorito WHERE id_persona = ? AND id_recurso = ?;");
+                $sql->execute([$idPersona, $idRecurso]);
+
+                return $sql->rowCount();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+
+        protected static function eliminarCalificacionRecursoModelo($idPersona, $idRecurso){
+            try {
+                $sql = mainModel::conectar()->prepare("DELETE FROM puntuacion_recurso WHERE id_estudiante = ? AND id_recurso = ?;");
+                $sql->execute([$idPersona, $idRecurso]);
+
+                return $sql->rowCount();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+
     }
 
 ?>

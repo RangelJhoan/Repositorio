@@ -25,13 +25,24 @@
                     <tbody>
                         <?php
                         if($recursosCalificados != 0){
+                            require_once "./controladores/autorControlador.php";
+                            $insAutor = new autorControlador();
                             $contador = 1;
                             foreach($recursosCalificados as $recurso){
+                                $autoresRecurso = $insAutor->autoresXRecursoControlador($recurso['id_recurso']);
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
                             <td data-titulo="TÍTULO" class="responsive-file"><?php echo $recurso['titulo'] ?></td>
-                            <td data-titulo="AUTOR(ES)" class="responsive-file">¿Autor?</td>
+                            <td data-titulo="AUTOR(ES)" class="responsive-file">
+                            <?php
+                                foreach($autoresRecurso as $campo){
+                                    ?>
+                                    <li><?php echo $campo['nombre'] . " " . $campo['apellido'] ?></li>
+                                    <?php
+                                }
+                            ?>
+                            </td>
                             <td data-titulo="ARCHIVO" class="responsive-file fileStyleResp"><?php echo $recurso['nombre'] ?></td>
                             <td data-titulo="MI CALIFICACIÓN" class="responsive-file"><?php if($recurso['tipo_voto'] == 1) echo "Positivo";  else echo "Negativo"; ?></td>
                             <td data-titulo="ACCIÓN" class="responsive-file">
@@ -39,9 +50,9 @@
                                     <div class="btn-group-action">
                                         <a href="<?php echo SERVER_URL?>recursosVisualizacion/<?php echo $insRecurso->encryption($recurso['id_recurso'])?>/" target="_blank" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>
                                     </div>
-                                    <form class="FormularioAjax" action=" method="POST" data-form="delete" autocomplete="off">
+                                    <form action="<?php echo SERVER_URL ?>ajax/recursoAjax.php" class="FormularioAjax" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">
-                                            <input type="hidden" name="id_curso_del" value="">
+                                        <input type="hidden" name="id_calificacion_recurso_del" value="<?php echo $insRecurso->encryption($recurso['id_recurso'])?>">
                                             <button type="submit" class="btn-delete-record" title="Eliminar calificación"><i class="uil uil-feedback"></i></button>
                                         </div>
                                     </form>

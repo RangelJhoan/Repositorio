@@ -30,4 +30,13 @@ if(isset($_POST['titulo_docente_ins'])){
 if(isset($_POST['titulo_docente_edit'])){
     echo $ins_recurso->editar_docente_recurso_controlador();
 }
+
+/*--- Estudiante ---*/
+if(isset($_POST['id_recurso_favorito_del'])){
+    echo $ins_recurso->eliminarRecursoFavoritoControlador();
+}
+
+if(isset($_POST['id_calificacion_recurso_del'])){
+    echo $ins_recurso->eliminarCalificacionRecursoControlador();
+}
 ?>
