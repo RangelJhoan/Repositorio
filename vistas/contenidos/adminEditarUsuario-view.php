@@ -78,7 +78,7 @@ if($datos_usuario->rowCount()>0){
                             <select name="estado" class="combobox-titulo" title="Estado del curso">
                                     <option disabled value="" class="combobox-opciones">Estado</option>
                                     <?php
-                                    foreach (Utilidades::getEstados() as $clave => $valor) {
+                                    foreach (Utilidades::getEstadosEdicion() as $clave => $valor) {
                                     ?>
                                     <option <?php if($campos['estado'] == $clave){echo "selected";} ?> value="<?php echo $clave; ?>"><?php echo $valor; ?></option>
                                     <?php
