@@ -16,6 +16,12 @@ class usuarioControlador extends usuarioModelo{
 
     /*---------- Controlador para agregar usuario ----------*/
     public function agregar_usuario_controlador(){
+        session_start(['name'=>'REPO']);
+        //Validamos que sólo el super admin pueda crear administradores
+        if($_POST['tipoUsuario'] == 1 && $_SESSION['correo_usuario'] != "admin.repositorioinstitucional@gmail.com"){
+            echo Utilidades::getAlertaErrorJSON("simple", "Usted no cuenta con los permisos necesarios para realizar esta acción");
+            exit();
+        }
         $persona = new Persona();
         $persona->setNombre(mainModel::limpiarCadena($_POST['nombre']));
         $persona->setApellido(mainModel::limpiarCadena($_POST['apellido']));
@@ -35,71 +41,35 @@ class usuarioControlador extends usuarioModelo{
 
         if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getCorreo() == "" || $persona->getTipoDocumento()->getIdTipoDocumento() == "" ||
             $persona->getDocumento() == "" || $persona->getClave() == "" || $persona->getIdTipoUsuario() == "" || $persona->getEstado() == ""){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Error",
-                    "Texto"=>"Por favor complete todos los campos requeridos",
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "Por favor complete todos los campos requeridos");
                 exit();
         }
 
         if($persona->getClave() != $confirmarClave){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Las contraseñas ingresadas no coinciden",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Las contraseñas ingresadas no coinciden");
             exit();
         }
 
         if(!self::validarInputs($persona)){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor, ingrese información válida",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor, ingrese información válida");
             exit();
         }
 
         $check_documento = mainModel::ejecutar_consulta_simple("SELECT documento FROM persona WHERE documento = '".$persona->getDocumento()."';");
 
         if($check_documento->rowCount() > 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"El número de documento de indentidad ya se encuentra registrado en el repositorio",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "El número de documento de indentidad ya se encuentra registrado en el repositorio");
             exit();
         }else{
             $persona->setClave(mainModel::encryption($persona->getClave()));
             $agregar_usuario = usuarioModelo::agregar_usuario_modelo($persona);
 
             if($agregar_usuario != 1){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Error",
-                    "Texto"=>"Error al crear el usuario",
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "Error al crear el usuario");
                 exit();
             }
 
-            $alerta=[
-                "Alerta"=>"recargar",
-                "Titulo"=>"Exitoso",
-                "Texto"=>"Usuario creado correctamente",
-                "Tipo"=>"success"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaExitosoJSON("recargar", "Usuario creado correctamente");
         }
     }
 
@@ -210,32 +180,17 @@ class usuarioControlador extends usuarioModelo{
             session_unset();
             session_destroy();
 
-            $alerta=[
-                "Alerta"=>"redireccionar",
-                "URL"=>SERVER_URL
-            ];
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "", SERVER_URL);
         }else{
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error inesperado",
-                "Texto"=>"No se pudo cerrar la sesión en el sistema",
-                "Tipo"=>"error"
-            ];
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo cerrar la sesión en el sistema");
         }
-        echo json_encode($alerta);
     }
 
     /*---------- Controlador para eliminar usuario ----------*/
     public function eliminar_usuario_controlador(){
         session_start(['name'=>'REPO']);
         if($_SESSION['correo_usuario'] != "admin.repositorioinstitucional@gmail.com"){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Usted no cuenta con los permisos necesarios para realizar esta acción",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Usted no cuenta con los permisos necesarios para realizar esta acción");
             exit();
         }
 
@@ -248,36 +203,18 @@ class usuarioControlador extends usuarioModelo{
         $editarPersona = usuarioModelo::editar_estado_persona_modelo($persona);
 
         if(is_string($editarPersona) || $editarPersona < 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"No se pudo eliminar la persona",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar la persona");
             exit();
         }
 
         $editarUsuario = usuarioModelo::editar_estado_usuario_modelo($persona);
 
         if(is_string($editarUsuario) || $editarUsuario < 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"No se pudo eliminar el usuario",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el usuario");
             exit();
         }
 
-        $alerta=[
-            "Alerta"=>"recargar",
-            "Titulo"=>"Exitoso",
-            "Texto"=>"Usuario eliminado exitosamente",
-            "Tipo"=>"success"
-        ];
-        echo json_encode($alerta);
+        echo Utilidades::getAlertaExitosoJSON("recargar", "Usuario eliminado exitosamente");
     }
 
     /*---------- Controlador datos usuario ----------*/
@@ -291,13 +228,7 @@ class usuarioControlador extends usuarioModelo{
     public function editar_usuario_controlador(){
         session_start(['name'=>'REPO']);
         if($_SESSION['correo_usuario'] != "admin.repositorioinstitucional@gmail.com" && $_POST['estado'] == Utilidades::getIdEstado("ELIMINADO")){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Usted no cuenta con los permisos necesarios para realizar esta acción",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Usted no cuenta con los permisos necesarios para realizar esta acción");
             exit();
         }
 
@@ -309,13 +240,7 @@ class usuarioControlador extends usuarioModelo{
         //Comprobar que el usuario exista en la BD
         $check_person = mainModel::ejecutar_consulta_simple("SELECT * FROM persona WHERE id = '". $persona->getIdPersona() ."'");
         if($check_person->rowCount() <= 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>"No se encontró el usuario a editar",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el usuario a editar");
             exit();
         }
         $datos_person = $check_person->fetch();
@@ -332,26 +257,14 @@ class usuarioControlador extends usuarioModelo{
         $check_user = mainModel::ejecutar_consulta_simple("SELECT * FROM usuario WHERE id = '". $persona->getIdUsuario() ."'");
 
         if($check_user->rowCount() <= 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>"No se encontró el usuario a editar",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el usuario a editar");
             exit();
         }
 
         $datos_user = $check_user->fetch();
 
         if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getTipoDocumento() == "" || $persona->getDocumento() == "" || $persona->getEstado() == ""){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor complete todos los campos requeridos",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor complete todos los campos requeridos");
             exit();
         }
 
@@ -359,13 +272,7 @@ class usuarioControlador extends usuarioModelo{
             $persona->setClave($_POST['clave']);
             $confirmarClave = $_POST['confirmarClave'];
             if($persona->getClave() != $confirmarClave){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Error",
-                    "Texto"=>"Las contraseñas ingresadas no coinciden",
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "Las contraseñas ingresadas no coinciden");
                 exit();
             }
             $persona->setClave(mainModel::encryption($persona->getClave()));
@@ -376,35 +283,16 @@ class usuarioControlador extends usuarioModelo{
         $editarPersona = usuarioModelo::editar_persona_modelo($persona);
 
         if(is_string($editarPersona) || $editarPersona < 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"No se pudo actualizar la información de la persona",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información de la persona");
             exit();
         }
         $editarUsuario = usuarioModelo::editar_usuario_modelo($persona);
         if(is_string($editarUsuario) || $editarUsuario < 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"No se pudo actualizar la información del usuario",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información del usuario");
             exit();
         }
 
-        $alerta=[
-            "Alerta"=>"redireccionar",
-            "Titulo"=>"Datos actualizados",
-            "URL"=>SERVER_URL."adminUsuarios/",
-            "Texto"=>"Los datos han sido actualizados exitosamente",
-            "Tipo"=>"success"
-        ];
-        echo json_encode($alerta);
+        echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados exitosamente", SERVER_URL."adminUsuarios/");
     }
 
     /*---------- Controlador editar usuario ----------*/
@@ -416,13 +304,7 @@ class usuarioControlador extends usuarioModelo{
         //Comprobar que el usuario exista en la BD
         $check_person = mainModel::ejecutar_consulta_simple("SELECT id_usuario FROM persona WHERE id = '". $persona->getIdPersona() ."'");
         if($check_person->rowCount() <= 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>"No se encontró el perfil a editar",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el perfil a editar");
             exit();
         }
 
@@ -435,26 +317,14 @@ class usuarioControlador extends usuarioModelo{
         $check_user = mainModel::ejecutar_consulta_simple("SELECT clave FROM usuario WHERE id = '". $persona->getIdUsuario() ."'");
 
         if($check_user->rowCount() <= 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>"No se encontró el usuario a editar",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el usuario a editar");
             exit();
         }
 
         $datos_user = $check_user->fetch();
 
         if($persona->getNombre() == "" || $persona->getApellido() == "" ){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor complete todos los campos requeridos",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor complete todos los campos requeridos");
             exit();
         }
 
@@ -462,13 +332,7 @@ class usuarioControlador extends usuarioModelo{
             $persona->setClave($_POST['clave_edit_perfil']);
             $confirmarClave = $_POST['confirmarClave_edit_perfil'];
             if($persona->getClave() != $confirmarClave){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Error",
-                    "Texto"=>"Las contraseñas ingresadas no coinciden",
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "Las contraseñas ingresadas no coinciden");
                 exit();
             }
             $persona->setClave(mainModel::encryption($persona->getClave()));
@@ -479,24 +343,12 @@ class usuarioControlador extends usuarioModelo{
         $editarPersona = usuarioModelo::editar_persona_perfil_modelo($persona);
 
         if(is_string($editarPersona) || $editarPersona < 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"No se pudo actualizar la información de perfil",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información de perfil");
             exit();
         }
         $editarUsuario = usuarioModelo::editar_usuario_perfil_modelo($persona);
         if(is_string($editarUsuario) || $editarUsuario < 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"No se pudo actualizar la contraseña",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la contraseña");
             exit();
         }
 
@@ -510,13 +362,7 @@ class usuarioControlador extends usuarioModelo{
         $_SESSION['nombre_usuario'] = $row['nombre'];
         $_SESSION['apellido_usuario'] = $row['apellido'];
 
-        $alerta=[
-            "Alerta"=>"recargar",
-            "Titulo"=>"Datos actualizados",
-            "Texto"=>"Los datos han sido actualizados exitosamente",
-            "Tipo"=>"success"
-        ];
-        echo json_encode($alerta);
+        echo Utilidades::getAlertaExitosoJSON("recargar", "Los datos han sido actualizados exitosamente");
     }
 
     /**

@@ -101,7 +101,7 @@ class programaControlador extends programaModelo{
     }
 
     /*---------- Controlador editar programa ----------*/
-    public function editar_usuario_controlador(){
+    public function editar_programa_controlador(){
         $programa = new Programa();
         //Recibiendo el ID del programa a editar
         $programa->setIdPrograma(mainModel::decryption($_POST['id_programa_edit']));
@@ -121,6 +121,7 @@ class programaControlador extends programaModelo{
 
         $programa->setNombre($_POST['nombre_edit']);
         $programa->setDescripcion($_POST['descripcion_edit']);
+        $programa->setEstado($_POST['estado']);
 
         if($programa->getNombre() == "" || $programa->getDescripcion() == ""){
             $alerta=[

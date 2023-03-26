@@ -57,9 +57,9 @@
 
         /*---------- Modelo editar programa ----------*/
         protected static function editar_programa_modelo(Programa $programa){
-            $sql = mainModel::conectar()->prepare("UPDATE programa SET nombre=?, descripcion=? WHERE id=?");
+            $sql = mainModel::conectar()->prepare("UPDATE programa SET nombre=?, descripcion=?, estado=? WHERE id=?");
 
-            $sql->execute([$programa->getNombre(), $programa->getDescripcion(), $programa->getIdPrograma()]);
+            $sql->execute([$programa->getNombre(), $programa->getDescripcion(), $programa->getEstado(), $programa->getIdPrograma()]);
 
             return $sql;
         }

@@ -21,7 +21,7 @@ if(isset($_POST['nombre_ins']) || isset($_POST['id_programa_del']) || isset($_PO
 
     /*--- Editar un programa ---*/
     if(isset($_POST['id_programa_edit'])){
-        echo $ins_programa->editar_usuario_controlador();
+        echo $ins_programa->editar_programa_controlador();
     }
 
 }else{
