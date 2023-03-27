@@ -35,13 +35,7 @@
                 $sql->execute();
                 return $sql;
             } catch (Exception $e) {
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Ocurrió un error",
-                    "Texto"=>"Error al conectarse con el servidor",
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "Error al conectarse con el servidor");
             }
         }
 

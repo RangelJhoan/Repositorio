@@ -27,13 +27,7 @@ class recursoControlador extends recursoModelo{
             $recurso->setAutor($_POST['autores_ins']);
 
         if(!isset($_POST['cursos_ins'])){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor seleccione un curso",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor seleccione un curso");
             exit();
         }
 
@@ -52,48 +46,24 @@ class recursoControlador extends recursoModelo{
         }
 
         if($recurso->getTitulo() == "" || $recurso->getResumen() == ""){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor llene todos los campos requeridos",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
         }else{
             if(!isset($_FILES["archivo"]["name"]) && $recurso->getEnlace() == ""){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Error",
-                    "Texto"=>"Por favor ingrese un enlace o seleccione un archivo",
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "Por favor ingrese un enlace o seleccione un archivo");
                 exit();
             }
 
             //El tamaño máximo permitido para almacenar un archivo son 100 megas = 104857600 bytes
             if(isset($_FILES["archivo"]["name"]) && $_FILES["archivo"]["size"] > 104857600){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Error",
-                    "Texto"=>"El tamaño del archivo excede el limite permitido (100MB)",
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "El tamaño del archivo excede el limite permitido (100MB)");
                 exit();
             }
 
             $agregar_recurso = recursoModelo::agregar_recurso_modelo($recurso);
 
             if(is_string($agregar_recurso) || $agregar_recurso < 0){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Error",
-                    "Texto"=>"Ups! Ups! Hubo un problema al cargar el recurso. Por favor intente nuevamente.",
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "Ups! Ups! Hubo un problema al cargar el recurso. Por favor intente nuevamente.");
                 exit();
             }
 
@@ -141,25 +111,12 @@ class recursoControlador extends recursoModelo{
                 $agregar_archivo = recursoModelo::agregar_archivo_modelo($recurso);
 
                 if(is_string($agregar_archivo)){
-                    $alerta=[
-                        "Alerta"=>"simple",
-                        "Titulo"=>"Error",
-                        "Texto"=>"Ups! Hubo un problema al cargar el archivo. Por favor intente nuevamente.",
-                        "Tipo"=>"error"
-                    ];
-                    echo json_encode($alerta);
+                    echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al cargar el archivo. Por favor intente nuevamente.");
                     exit();
                 }
             }
 
-            $alerta=[
-                "Alerta"=>"redireccionar",
-                "Titulo"=>"Exitoso",
-                "URL"=>SERVER_URL."adminRecursos/",
-                "Texto"=>"Recurso creado correctamente",
-                "Tipo"=>"success"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Recurso creado correctamente", SERVER_URL."adminRecursos/");
         }
 
     }
@@ -207,23 +164,11 @@ class recursoControlador extends recursoModelo{
         $eliminarRecurso = recursoModelo::editar_estado_recurso_modelo($recurso);
 
         if(is_string($eliminarRecurso) || $eliminarRecurso < 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"No se pudo eliminar el recurso",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el recurso");
             exit();
         }
 
-        $alerta=[
-            "Alerta"=>"recargar",
-            "Titulo"=>"Exitoso",
-            "Texto"=>"Recurso eliminado exitosamente",
-            "Tipo"=>"success"
-        ];
-        echo json_encode($alerta);
+        echo Utilidades::getAlertaExitosoJSON("recargar", "Recurso eliminado exitosamente");
 
     }
 
@@ -231,13 +176,7 @@ class recursoControlador extends recursoModelo{
         $recurso = new Recurso();
 
         if(!isset($_POST['cursos_edit'])){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor seleccione un curso",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor seleccione un curso");
             exit();
         }
 
@@ -246,13 +185,7 @@ class recursoControlador extends recursoModelo{
         //Comprobar que el recurso existe
         $checkRecurso = mainModel::ejecutar_consulta_simple("SELECT * FROM recurso WHERE id = '". $recurso->getIdRecurso() ."';");
         if($checkRecurso->rowCount() <= 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>"No se encontró el recurso a editar",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el recurso a editar");
             exit();
         }
 
@@ -349,13 +282,7 @@ class recursoControlador extends recursoModelo{
                 $agregar_archivo = recursoModelo::agregar_archivo_modelo($recurso);
 
                 if(is_string($agregar_archivo)){
-                    $alerta=[
-                        "Alerta"=>"simple",
-                        "Titulo"=>"Error",
-                        "Texto"=>"Ups! Hubo un problema al crear el archivo. Por favor intente nuevamente.",
-                        "Tipo"=>"error"
-                    ];
-                    echo json_encode($alerta);
+                    echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al crear el archivo. Por favor intente nuevamente.");
                     exit();
                 }
             }else{ //Si tiene archivo
@@ -368,35 +295,17 @@ class recursoControlador extends recursoModelo{
                 $agregar_archivo = recursoModelo::editar_archivo_modelo($recurso, $archivoAntiguo);
 
                 if(is_string($agregar_archivo)){
-                    $alerta=[
-                        "Alerta"=>"simple",
-                        "Titulo"=>"Error",
-                        "Texto"=>"Ups! Hubo un problema al editar el archivo. Por favor intente nuevamente.",
-                        "Tipo"=>"error"
-                    ];
-                    echo json_encode($alerta);
+                    echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al editar el archivo. Por favor intente nuevamente.");
                     exit();
                 }
             }
         }
 
         if(is_string($editarRecurso) || $editarRecurso->rowCount() < 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"No se pudo actualizar la información",
-                "Tipo"=>"error"
-            ];
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información");
         }else{
-            $alerta=[
-                "Alerta"=>"redireccionar",
-                "Titulo"=>"Datos actualizados",
-                "URL"=>SERVER_URL."adminRecursos/",
-                "Texto"=>"Los datos han sido actualizados con éxito",
-                "Tipo"=>"success"
-            ];
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."adminRecursos/");
         }
-        echo json_encode($alerta);
     }
 
     /*---------- Controlador para agregar recurso desde el perfil de docente ----------*/
@@ -412,13 +321,7 @@ class recursoControlador extends recursoModelo{
             $recurso->setAutor($_POST['autores_docente_ins']);
 
         if(!isset($_POST['cursos_docente_ins'])){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor seleccione un curso",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor seleccione un curso");
             exit();
         }
 
@@ -437,48 +340,24 @@ class recursoControlador extends recursoModelo{
         }
 
         if($recurso->getTitulo() == "" || $recurso->getResumen() == ""){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor llene todos los campos requeridos",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
         }else{
             if(!isset($_FILES["archivo"]["name"]) && $recurso->getEnlace() == ""){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Error",
-                    "Texto"=>"Por favor ingrese un enlace o seleccione un archivo",
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "Por favor ingrese un enlace o seleccione un archivo");
                 exit();
             }
 
             //El tamaño máximo permitido para almacenar un archivo son 100 megas = 104857600 bytes
             if(isset($_FILES["archivo"]["name"]) && $_FILES["archivo"]["size"] > 104857600){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Error",
-                    "Texto"=>"El tamaño del archivo excede el limite permitido (100MB)",
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "El tamaño del archivo excede el limite permitido (100MB)");
                 exit();
             }
 
             $agregar_recurso = recursoModelo::agregar_recurso_modelo($recurso);
 
             if(is_string($agregar_recurso) || $agregar_recurso < 0){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Error",
-                    "Texto"=>"Ups! Ups! Hubo un problema al cargar el recurso. Por favor intente nuevamente.",
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "Ups! Ups! Hubo un problema al cargar el recurso. Por favor intente nuevamente.");
                 exit();
             }
 
@@ -526,25 +405,12 @@ class recursoControlador extends recursoModelo{
                 $agregar_archivo = recursoModelo::agregar_archivo_modelo($recurso);
 
                 if(is_string($agregar_archivo)){
-                    $alerta=[
-                        "Alerta"=>"simple",
-                        "Titulo"=>"Error",
-                        "Texto"=>"Ups! Hubo un problema al cargar el archivo. Por favor intente nuevamente.",
-                        "Tipo"=>"error"
-                    ];
-                    echo json_encode($alerta);
+                    echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al cargar el archivo. Por favor intente nuevamente.");
                     exit();
                 }
             }
 
-            $alerta=[
-                "Alerta"=>"redireccionar",
-                "Titulo"=>"Exitoso",
-                "URL"=>SERVER_URL."docenteMisRecursos/",
-                "Texto"=>"Recurso creado correctamente",
-                "Tipo"=>"success"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Recurso creado correctamente", SERVER_URL."docenteMisRecursos/");
         }
 
     }
@@ -553,13 +419,7 @@ class recursoControlador extends recursoModelo{
         $recurso = new Recurso();
 
         if(!isset($_POST['cursos_docente_edit'])){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor seleccione un curso",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor seleccione un curso");
             exit();
         }
 
@@ -568,13 +428,7 @@ class recursoControlador extends recursoModelo{
         //Comprobar que el recurso existe
         $checkRecurso = mainModel::ejecutar_consulta_simple("SELECT * FROM recurso WHERE id = '". $recurso->getIdRecurso() ."';");
         if($checkRecurso->rowCount() <= 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>"No se encontró el recurso a editar",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el recurso a editar");
             exit();
         }
 
@@ -671,13 +525,7 @@ class recursoControlador extends recursoModelo{
                 $agregar_archivo = recursoModelo::agregar_archivo_modelo($recurso);
 
                 if(is_string($agregar_archivo)){
-                    $alerta=[
-                        "Alerta"=>"simple",
-                        "Titulo"=>"Error",
-                        "Texto"=>"Ups! Hubo un problema al crear el archivo. Por favor intente nuevamente.",
-                        "Tipo"=>"error"
-                    ];
-                    echo json_encode($alerta);
+                    echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al crear el archivo. Por favor intente nuevamente.");
                     exit();
                 }
             }else{ //Si tiene archivo
@@ -690,35 +538,17 @@ class recursoControlador extends recursoModelo{
                 $agregar_archivo = recursoModelo::editar_archivo_modelo($recurso, $archivoAntiguo);
 
                 if(is_string($agregar_archivo)){
-                    $alerta=[
-                        "Alerta"=>"simple",
-                        "Titulo"=>"Error",
-                        "Texto"=>"Ups! Hubo un problema al editar el archivo. Por favor intente nuevamente.",
-                        "Tipo"=>"error"
-                    ];
-                    echo json_encode($alerta);
+                    echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al editar el archivo. Por favor intente nuevamente.");
                     exit();
                 }
             }
         }
 
         if(is_string($editarRecurso) || $editarRecurso->rowCount() < 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"No se pudo actualizar la información",
-                "Tipo"=>"error"
-            ];
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información");
         }else{
-            $alerta=[
-                "Alerta"=>"redireccionar",
-                "Titulo"=>"Datos actualizados",
-                "URL"=>SERVER_URL."docenteMisRecursos/",
-                "Texto"=>"Los datos han sido actualizados con éxito",
-                "Tipo"=>"success"
-            ];
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."docenteMisRecursos/");
         }
-        echo json_encode($alerta);
     }
 
     /**
@@ -780,23 +610,11 @@ class recursoControlador extends recursoModelo{
         $eliminarRecurso = recursoModelo::eliminarRecursoFavoritoModelo($idPersona, $idRecurso);
 
         if(is_string($eliminarRecurso) || $eliminarRecurso < 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"No se pudo eliminar el recurso favorito",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el recurso favorito");
             exit();
         }
 
-        $alerta=[
-            "Alerta"=>"recargar",
-            "Titulo"=>"Exitoso",
-            "Texto"=>"Recurso favorito eliminado exitosamente",
-            "Tipo"=>"success"
-        ];
-        echo json_encode($alerta);
+        echo Utilidades::getAlertaExitosoJSON("recargar", "Recurso favorito eliminado exitosamente");
     }
 
     public function eliminarCalificacionRecursoControlador(){
@@ -807,23 +625,11 @@ class recursoControlador extends recursoModelo{
         $eliminarRecurso = recursoModelo::eliminarCalificacionRecursoModelo($idPersona, $idRecurso);
 
         if(is_string($eliminarRecurso) || $eliminarRecurso < 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"No se pudo eliminar la calificación del recurso",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar la calificación del recurso");
             exit();
         }
 
-        $alerta=[
-            "Alerta"=>"recargar",
-            "Titulo"=>"Exitoso",
-            "Texto"=>"Calificación eliminada exitosamente",
-            "Tipo"=>"success"
-        ];
-        echo json_encode($alerta);
+        echo Utilidades::getAlertaExitosoJSON("recargar", "Calificación eliminada exitosamente");
     }
 
 }
