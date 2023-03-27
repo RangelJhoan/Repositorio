@@ -18,37 +18,18 @@ class etiquetaControlador extends etiquetaModelo{
         $etiqueta->setIdDocente($_SESSION['id_persona']);
 
         if($etiqueta->getDescripcion() == ""){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor llene todos los campos requeridos",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
         }
 
         $agregar_etiqueta = etiquetaModelo::agregar_etiqueta_modelo($etiqueta);
 
         if(is_string($agregar_etiqueta) || $agregar_etiqueta < 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Error al crear la etiqueta",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Error al crear la etiqueta");
             exit();
         }
 
-        $alerta=[
-            "Alerta"=>"recargar",
-            "Titulo"=>"Exitoso",
-            "Texto"=>"Etiqueta creada correctamente",
-            "Tipo"=>"success"
-        ];
-        echo json_encode($alerta);
-        exit();
+        echo Utilidades::getAlertaExitosoJSON("recargar", "Etiqueta creada correctamente");
     }
 
     /*---------- Controlador editar etiqueta ----------*/
@@ -60,13 +41,7 @@ class etiquetaControlador extends etiquetaModelo{
         $check_etiqueta = mainModel::ejecutar_consulta_simple("SELECT * FROM etiqueta WHERE id = '". $etiqueta->getIdEtiqueta() ."'");
 
         if($check_etiqueta->rowCount() <= 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>"No se encontró la etiqueta a editar",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se encontró la etiqueta a editar");
             exit();
         }
 
@@ -74,34 +49,16 @@ class etiquetaControlador extends etiquetaModelo{
         $etiqueta->setEstado($_POST['estado']);
 
         if($etiqueta->getDescripcion() == ""){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor llene todos los campos requeridos",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
         }
         $editarEtiqueta = etiquetaModelo::editar_etiqueta_modelo($etiqueta);
 
         if($editarEtiqueta == 1){
-            $alerta=[
-                "Alerta"=>"redireccionar",
-                "Titulo"=>"Datos actualizados",
-                "URL"=>SERVER_URL."panelPalabrasClave/",
-                "Texto"=>"Los datos han sido actualizados con éxito",
-                "Tipo"=>"success"
-            ];
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."panelPalabrasClave/");
         }else{
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>$editarEtiqueta,
-                "Tipo"=>"error"
-            ];
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo editar la información de la etiqueta");
         }
-        echo json_encode($alerta);
     }
 
     public function eliminar_etiqueta_controlador(){
@@ -113,32 +70,13 @@ class etiquetaControlador extends etiquetaModelo{
             $eliminarEtiqueta = etiquetaModelo::eliminar_etiqueta_modelo($autor);
 
             if(is_string($eliminarEtiqueta) || $eliminarEtiqueta < 0){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Ocurrió un error",
-                    "Texto"=>$eliminarEtiqueta,
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar la palabra clave");
                 exit();
             }
 
-            $alerta=[
-                "Alerta"=>"recargar",
-                "Titulo"=>"Exitoso",
-                "Texto"=>"Etiqueta eliminada exitosamente",
-                "Tipo"=>"success"
-            ];
-            echo json_encode($alerta);
-            exit();
+            echo Utilidades::getAlertaExitosoJSON("recargar", "Etiqueta eliminada exitosamente");
         } catch (\Throwable $th) {
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>$th->getMessage(),
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", $th->getMessage());
             exit();
         }
     }
@@ -187,13 +125,7 @@ class etiquetaControlador extends etiquetaModelo{
         $check_etiqueta = mainModel::ejecutar_consulta_simple("SELECT * FROM etiqueta WHERE id = '". $etiqueta->getIdEtiqueta() ."'");
 
         if($check_etiqueta->rowCount() <= 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>"No se encontró la etiqueta a editar",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se encontró la etiqueta a editar");
             exit();
         }
 
@@ -201,34 +133,16 @@ class etiquetaControlador extends etiquetaModelo{
         $etiqueta->setEstado($_POST['estado']);
 
         if($etiqueta->getDescripcion() == ""){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor llene todos los campos requeridos",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
         }
         $editarEtiqueta = etiquetaModelo::editar_etiqueta_modelo($etiqueta);
 
         if($editarEtiqueta == 1){
-            $alerta=[
-                "Alerta"=>"redireccionar",
-                "Titulo"=>"Datos actualizados",
-                "URL"=>SERVER_URL."docenteMisPalabrasClave/",
-                "Texto"=>"Los datos han sido actualizados con éxito",
-                "Tipo"=>"success"
-            ];
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."docenteMisPalabrasClave/");
         }else{
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>$editarEtiqueta,
-                "Tipo"=>"error"
-            ];
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información de la palabra clave");
         }
-        echo json_encode($alerta);
     }
 }
 

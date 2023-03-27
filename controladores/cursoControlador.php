@@ -28,60 +28,28 @@ class cursoControlador extends cursoModelo{
         }
 
         if($curso->getNombre() == "" || $curso->getDescripcion() == "" || count($curso->getListaProgramas())<=0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor llene todos los campos requeridos",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
         }
 
         $agregar_curso = cursoModelo::agregar_curso_modelo($curso);
 
         if($agregar_curso->rowCount() == 1){
-            $alerta=[
-                "Alerta"=>"recargar",
-                "Titulo"=>"Exitoso",
-                "Texto"=>"Curso creado correctamente",
-                "Tipo"=>"success"
-            ];
-            echo json_encode($alerta);
-            exit();
+            echo Utilidades::getAlertaExitosoJSON("recargar", "Curso creado correctamente");
         }else{
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Error al crear el curso",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
-            exit();
+            echo Utilidades::getAlertaErrorJSON("simple", "Error al crear el curso");
         }
     }
 
     /*---------- Controlador para editar curso ----------*/
     public function editar_curso_controlador(){
         if(!isset($_POST['programas_edit'])){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor llene todos los campos",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos");
             exit();
         }
 
         if(!isset($_POST['docentes_edit'])){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor llene todos los campos",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos");
             exit();
         }
 
@@ -106,22 +74,10 @@ class cursoControlador extends cursoModelo{
         $editarCurso = cursoModelo::editar_curso_modelo($curso, $programasAgregados, $programasEliminados, $docentesAgregados, $docentesEliminados);
 
         if($editarCurso->rowCount()>0){
-            $alerta=[
-                "Alerta"=>"redireccionar",
-                "Titulo"=>"Datos actualizados",
-                "URL"=>SERVER_URL."/adminCursos/",
-                "Texto"=>"Los datos han sido actualizados con éxito",
-                "Tipo"=>"success"
-            ];
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."adminCursos/");
         }else{
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"No se pudo actualizar la información",
-                "Tipo"=>"error"
-            ];
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información");
         }
-        echo json_encode($alerta);
     }
 
     /*---------- Controlador para eliminar curso ----------*/
@@ -133,23 +89,11 @@ class cursoControlador extends cursoModelo{
         $eliminarCurso = cursoModelo::editar_estado_curso_modelo($curso);
 
         if(is_string($eliminarCurso) || $eliminarCurso < 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"No se pudo eliminar el curso",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el curso");
             exit();
         }
 
-        $alerta=[
-            "Alerta"=>"recargar",
-            "Titulo"=>"Exitoso",
-            "Texto"=>"Curso eliminado exitosamente",
-            "Tipo"=>"success"
-        ];
-        echo json_encode($alerta);
+        echo Utilidades::getAlertaExitosoJSON("recargar", "Curso eliminado exitosamente");
     }
 
     /**

@@ -104,31 +104,13 @@ class homeControlador extends homeModelo{
                 $registrar = homeModelo::registrar_voto($pId, $pRespuesta);
             }
             if(is_string($valorar)){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Error",
-                    "Texto"=>"Error: ".$valorar,
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "Error: ".$valorar);
                 exit();
             }else{
-                $alerta=[
-                    "Alerta"=>"recargar",
-                    "Titulo"=>"Exitoso",
-                    "Texto"=>"Gracias por evaluar el recurso y ayudar a mejorar su calidad. Su retroalimentación es muy valiosa y nos ayudará a identificar áreas de oportunidad para seguir mejorando y ofrecer recursos de gran utilidad.",
-                    "Tipo"=>"success"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaExitosoJSON("recargar", "Gracias por evaluar el recurso y ayudar a mejorar su calidad. Su retroalimentación es muy valiosa y nos ayudará a identificar áreas de oportunidad para seguir mejorando y ofrecer recursos de gran utilidad.");
             }
         }else{
-            $alerta=[
-                "Alerta"=>"recargar",
-                "Titulo"=>"Error",
-                "Texto"=>"Para calificar este recurso, es necesario que inicie sesión.",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("recargar", "Para calificar este recurso, es necesario que inicie sesión.");
             exit();
         }
         
@@ -153,32 +135,13 @@ class homeControlador extends homeModelo{
             }
 
             if(is_string($favorito)){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Error",
-                    "Texto"=>"Error: ".$favorito,
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "Error: ".$favorito);
                 exit();
             }else{
-                $alerta=[
-                    "Alerta"=>"recargar",
-                    "Titulo"=>"Exitoso",
-                    "Texto"=>$textoalert,
-                    "Tipo"=>"success"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaExitosoJSON("recargar", $textoalert);
             }
         }else{
-            $alerta=[
-                "Alerta"=>"recargar",
-                "Titulo"=>"Error",
-                "Texto"=>"Para agregar este recurso a favoritos, es necesario que inicie sesión.",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
-            exit();
+            echo Utilidades::getAlertaErrorJSON("recargar", "Para agregar este recurso a favoritos, es necesario que inicie sesión.");
         }
     }
     

@@ -22,35 +22,17 @@ class autorControlador extends autorModelo{
         $autor->setIdDocente($_SESSION['id_persona']);
 
         if($autor->getApellido() == ""){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor llene todos los campos requeridos",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
         }
 
         $agregar_autor = autorModelo::agregar_autor_modelo($autor);
 
         if($agregar_autor == 1){
-            $alerta=[
-                "Alerta"=>"recargar",
-                "Titulo"=>"Exitoso",
-                "Texto"=>"Autor creado correctamente",
-                "Tipo"=>"success"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaExitosoJSON("recargar", "Autor creado correctamente");
             exit();
         }else{
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Error al crear el autor",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Error al crear el autor");
             exit();
         }
     }
@@ -64,32 +46,14 @@ class autorControlador extends autorModelo{
             $eliminarAutor = autorModelo::eliminar_autor_modelo($autor);
 
             if(is_string($eliminarAutor) || $eliminarAutor < 0){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"Ocurrió un error",
-                    "Texto"=>$eliminarAutor,
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el autor");
                 exit();
             }else{
-                $alerta=[
-                    "Alerta"=>"recargar",
-                    "Titulo"=>"Exitoso",
-                    "Texto"=>"Autor eliminado exitosamente",
-                    "Tipo"=>"success"
-                ];
-                echo json_encode($alerta);
+                echo Utilidades::getAlertaExitosoJSON("recargar", "Autor eliminado exitosamente");
                 exit();
             }
         } catch (\Throwable $th) {
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>$th->getMessage(),
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", $th->getMessage());
             exit();
         }
     }
@@ -109,13 +73,7 @@ class autorControlador extends autorModelo{
         //Comprobar que el autor exista en la BD
         $check_autor = mainModel::ejecutar_consulta_simple("SELECT * FROM autor WHERE id = '". $autor->getIdAutor() ."'");
         if($check_autor->rowCount() <= 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>"No se encontró el autor a editar",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el autor a editar");
             exit();
         }
 
@@ -124,34 +82,16 @@ class autorControlador extends autorModelo{
         $autor->setEstado($_POST['estado']);
 
         if($autor->getApellido() == ""){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor llene todos los campos requeridos",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
         }
         $editarAutor = autorModelo::editar_autor_modelo($autor);
 
         if($editarAutor == 1){
-            $alerta=[
-                "Alerta"=>"redireccionar",
-                "Titulo"=>"Datos actualizados",
-                "URL"=>SERVER_URL."adminAutores/",
-                "Texto"=>"Los datos han sido actualizados con éxito",
-                "Tipo"=>"success"
-            ];
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."adminAutores/");
         }else{
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>$editarAutor,
-                "Tipo"=>"error"
-            ];
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo editar el autor");
         }
-        echo json_encode($alerta);
     }
 
     /**
@@ -190,13 +130,7 @@ class autorControlador extends autorModelo{
         //Comprobar que el autor exista en la BD
         $check_autor = mainModel::ejecutar_consulta_simple("SELECT * FROM autor WHERE id = '". $autor->getIdAutor() ."'");
         if($check_autor->rowCount() <= 0){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Ocurrió un error",
-                "Texto"=>"No se encontró el autor a editar",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el autor a editar");
             exit();
         }
 
@@ -205,35 +139,17 @@ class autorControlador extends autorModelo{
         $autor->setEstado($_POST['estado']);
 
         if($autor->getApellido() == ""){
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>"Por favor llene todos los campos requeridos",
-                "Tipo"=>"error"
-            ];
-            echo json_encode($alerta);
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
         }
 
         $editarAutor = autorModelo::editar_autor_modelo($autor);
 
         if($editarAutor == 1){
-            $alerta=[
-                "Alerta"=>"redireccionar",
-                "Titulo"=>"Datos actualizados",
-                "URL"=>SERVER_URL."docenteMisAutores/",
-                "Texto"=>"Los datos han sido actualizados con éxito",
-                "Tipo"=>"success"
-            ];
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."docenteMisAutores/");
         }else{
-            $alerta=[
-                "Alerta"=>"simple",
-                "Titulo"=>"Error",
-                "Texto"=>$editarAutor,
-                "Tipo"=>"error"
-            ];
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo editar la información del autor");
         }
-        echo json_encode($alerta);
     }
 
 }
