@@ -17,8 +17,8 @@ class recursoControlador extends recursoModelo{
     /*---------- Controlador para agregar programa ----------*/
     public function agregar_recurso_controlador(){
         $recurso = new Recurso();
-        $recurso->setTitulo($_POST['titulo_ins']);
-        $recurso->setResumen($_POST['resumen_ins']);
+        $recurso->setTitulo(mainModel::limpiarCadena($_POST['titulo_ins']));
+        $recurso->setResumen(mainModel::limpiarCadena($_POST['resumen_ins']));
         $recurso->setEstado(Utilidades::getIdEstado("ACTIVO"));
         $recurso->setEtiqueta(array());
         $recurso->setAutor(array());
@@ -36,13 +36,23 @@ class recursoControlador extends recursoModelo{
         if(isset($_POST['etiquetas_ins']))
             $recurso->setEtiqueta($_POST['etiquetas_ins']);
 
-        if(isset($_POST['link_ins']))
-            $recurso->setEnlace($_POST['link_ins']);
+        if(isset($_POST['link_ins'])){
+            $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_ins']));
+            if($recurso->getEnlace() != "" && !mainModel::verificarDatos("(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?", $recurso->getEnlace())){
+                echo Utilidades::getAlertaErrorJSON("simple", "El enlace ingresado no es válido");
+                exit();
+            }
+        }
 
         if($_POST['anioRecurso']!=""){
-            $recurso->setFecha($_POST['anioRecurso']);
+            $recurso->setFecha(mainModel::limpiarCadena($_POST['anioRecurso']));
         }else{
             $recurso->setFecha("s.f");
+        }
+
+        if ($recurso->getFecha() != "s.f" && !(is_numeric($recurso->getFecha()) && strlen($recurso->getFecha()) == 4 && $recurso->getFecha() >= 1000 && $recurso->getFecha() <= date('Y'))) {
+            echo Utilidades::getAlertaErrorJSON("simple", "La fecha ingresada no es válida");
+            exit();
         }
 
         if($recurso->getTitulo() == "" || $recurso->getResumen() == ""){
@@ -91,11 +101,11 @@ class recursoControlador extends recursoModelo{
                 $archivo->setNombre($_FILES["archivo"]["name"]);
 
                 if(isset($_POST['editorial_ins'])){
-                    $archivo->setEditorial($_POST['editorial_ins']);
+                    $archivo->setEditorial(mainModel::limpiarCadena($_POST['editorial_ins']));
                 }
 
                 if(isset($_POST['ISBN_ins'])){
-                    $archivo->setISBN($_POST['ISBN_ins']);
+                    $archivo->setISBN(mainModel::limpiarCadena($_POST['ISBN_ins']));
                 }
 
                 $archivo->setEstado(Utilidades::getIdEstado("ACTIVO"));
@@ -158,7 +168,7 @@ class recursoControlador extends recursoModelo{
 
     public function eliminar_recurso_controlador(){
         $recurso = new Recurso();
-        $recurso->setIdRecurso(mainModel::decryption($_POST['id_recurso_del']));
+        $recurso->setIdRecurso(mainModel::limpiarCadena(mainModel::decryption($_POST['id_recurso_del'])));
         $recurso->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
         $eliminarRecurso = recursoModelo::editar_estado_recurso_modelo($recurso);
@@ -180,7 +190,7 @@ class recursoControlador extends recursoModelo{
             exit();
         }
 
-        $recurso->setIdRecurso(mainModel::decryption($_POST['id_recurso_edit']));
+        $recurso->setIdRecurso(mainModel::limpiarCadena(mainModel::decryption($_POST['id_recurso_edit'])));
 
         //Comprobar que el recurso existe
         $checkRecurso = mainModel::ejecutar_consulta_simple("SELECT * FROM recurso WHERE id = '". $recurso->getIdRecurso() ."';");
@@ -190,18 +200,18 @@ class recursoControlador extends recursoModelo{
         }
 
         //Construimos el objeto de recurso con información actual o nueva
-        $recurso->setTitulo($_POST['titulo_edit']);
-        $recurso->setResumen($_POST['resumen_edit']);
+        $recurso->setTitulo(mainModel::limpiarCadena($_POST['titulo_edit']));
+        $recurso->setResumen(mainModel::limpiarCadena($_POST['resumen_edit']));
 
         if($_POST['anioRecurso_edit']!=""){
-            $recurso->setFecha($_POST['anioRecurso_edit']);
+            $recurso->setFecha(mainModel::limpiarCadena($_POST['anioRecurso_edit']));
         }else{
             $recurso->setFecha("s.f");
         }
 
-        $recurso->setEstado($_POST['estado_edit']);
+        $recurso->setEstado(mainModel::limpiarCadena($_POST['estado_edit']));
         $recurso->setCurso($_POST['cursos_edit']);
-        $recurso->setEnlace($_POST['link_edit']);
+        $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_edit']));
         $recurso->setAutor(array());
         $recurso->setEtiqueta(array());
 
@@ -226,7 +236,7 @@ class recursoControlador extends recursoModelo{
         recursoModelo::editar_recurso_autor_modelo($recurso, $autoresAgregados, $autoresEliminados);
 
         if(isset($_POST['link_ins']))
-            $recurso->setEnlace($_POST['link_ins']);
+            $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_ins']));
 
         //Obtener los cursos seleccionados (Agregar nuevos y Eliminar no seleccionados)
         $cursosActuales = recursoModelo::idCursosRecurso($recurso->getIdRecurso())->fetchAll(PDO::FETCH_COLUMN, 0);
@@ -264,11 +274,11 @@ class recursoControlador extends recursoModelo{
             $archivo->setNombre($_FILES["archivo"]["name"]);
 
             if(isset($_POST['editorial_edit'])){
-                $archivo->setEditorial($_POST['editorial_edit']);
+                $archivo->setEditorial(mainModel::limpiarCadena($_POST['editorial_edit']));
             }
 
             if(isset($_POST['ISBN_edit'])){
-                $archivo->setISBN($_POST['ISBN_edit']);
+                $archivo->setISBN(mainModel::limpiarCadena($_POST['ISBN_edit']));
             }
 
             $archivo->setEstado($recurso->getEstado());
@@ -311,8 +321,8 @@ class recursoControlador extends recursoModelo{
     /*---------- Controlador para agregar recurso desde el perfil de docente ----------*/
     public function agregar_docente_recurso_controlador(){
         $recurso = new Recurso();
-        $recurso->setTitulo($_POST['titulo_docente_ins']);
-        $recurso->setResumen($_POST['resumen_docente_ins']);
+        $recurso->setTitulo(mainModel::limpiarCadena($_POST['titulo_docente_ins']));
+        $recurso->setResumen(mainModel::limpiarCadena($_POST['resumen_docente_ins']));
         $recurso->setEstado(Utilidades::getIdEstado("ACTIVO"));
         $recurso->setEtiqueta(array());
         $recurso->setAutor(array());
@@ -331,10 +341,10 @@ class recursoControlador extends recursoModelo{
             $recurso->setEtiqueta($_POST['etiquetas_docente_ins']);
 
         if(isset($_POST['link_docente_ins']))
-            $recurso->setEnlace($_POST['link_docente_ins']);
+            $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_docente_ins']));
 
         if($_POST['anioRecurso_docente']!=""){
-            $recurso->setFecha($_POST['anioRecurso_docente']);
+            $recurso->setFecha(mainModel::limpiarCadena($_POST['anioRecurso_docente']));
         }else{
             $recurso->setFecha("s.f");
         }
@@ -385,11 +395,11 @@ class recursoControlador extends recursoModelo{
                 $archivo->setNombre($_FILES["archivo"]["name"]);
 
                 if(isset($_POST['editorial_docente_ins'])){
-                    $archivo->setEditorial($_POST['editorial_docente_ins']);
+                    $archivo->setEditorial(mainModel::limpiarCadena($_POST['editorial_docente_ins']));
                 }
 
                 if(isset($_POST['ISBN_docente_ins'])){
-                    $archivo->setISBN($_POST['ISBN_docente_ins']);
+                    $archivo->setISBN(mainModel::limpiarCadena($_POST['ISBN_docente_ins']));
                 }
 
                 $archivo->setEstado(Utilidades::getIdEstado("ACTIVO"));
@@ -423,7 +433,7 @@ class recursoControlador extends recursoModelo{
             exit();
         }
 
-        $recurso->setIdRecurso(mainModel::decryption($_POST['id_docente_recurso_edit']));
+        $recurso->setIdRecurso(mainModel::limpiarCadena(mainModel::decryption($_POST['id_docente_recurso_edit'])));
 
         //Comprobar que el recurso existe
         $checkRecurso = mainModel::ejecutar_consulta_simple("SELECT * FROM recurso WHERE id = '". $recurso->getIdRecurso() ."';");
@@ -433,18 +443,18 @@ class recursoControlador extends recursoModelo{
         }
 
         //Construimos el objeto de recurso con información actual o nueva
-        $recurso->setTitulo($_POST['titulo_docente_edit']);
-        $recurso->setResumen($_POST['resumen_docente_edit']);
+        $recurso->setTitulo(mainModel::limpiarCadena($_POST['titulo_docente_edit']));
+        $recurso->setResumen(mainModel::limpiarCadena($_POST['resumen_docente_edit']));
 
         if($_POST['anioRecurso_docente_edit']!=""){
-            $recurso->setFecha($_POST['anioRecurso_docente_edit']);
+            $recurso->setFecha(mainModel::limpiarCadena($_POST['anioRecurso_docente_edit']));
         }else{
             $recurso->setFecha("s.f");
         }
 
-        $recurso->setEstado($_POST['estado_docente_edit']);
+        $recurso->setEstado(mainModel::limpiarCadena($_POST['estado_docente_edit']));
         $recurso->setCurso($_POST['cursos_docente_edit']);
-        $recurso->setEnlace($_POST['link_docente_edit']);
+        $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_docente_edit']));
         $recurso->setAutor(array());
         $recurso->setEtiqueta(array());
 
@@ -469,7 +479,7 @@ class recursoControlador extends recursoModelo{
         recursoModelo::editar_recurso_autor_modelo($recurso, $autoresAgregados, $autoresEliminados);
 
         if(isset($_POST['link_docente_ins']))
-            $recurso->setEnlace($_POST['link_docente_ins']);
+            $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_docente_ins']));
 
         //Obtener los cursos seleccionados (Agregar nuevos y Eliminar no seleccionados)
         $cursosActuales = recursoModelo::idCursosRecurso($recurso->getIdRecurso())->fetchAll(PDO::FETCH_COLUMN, 0);
@@ -507,11 +517,11 @@ class recursoControlador extends recursoModelo{
             $archivo->setNombre($_FILES["archivo"]["name"]);
 
             if(isset($_POST['editorial_docente_edit'])){
-                $archivo->setEditorial($_POST['editorial_docente_edit']);
+                $archivo->setEditorial(mainModel::limpiarCadena($_POST['editorial_docente_edit']));
             }
 
             if(isset($_POST['ISBN_docente_edit'])){
-                $archivo->setISBN($_POST['ISBN_docente_edit']);
+                $archivo->setISBN(mainModel::limpiarCadena($_POST['ISBN_docente_edit']));
             }
 
             $archivo->setEstado($recurso->getEstado());
@@ -603,7 +613,7 @@ class recursoControlador extends recursoModelo{
     }
 
     public function eliminarRecursoFavoritoControlador(){
-        $idRecurso = mainModel::decryption($_POST['id_recurso_favorito_del']);
+        $idRecurso = mainModel::limpiarCadena(mainModel::decryption($_POST['id_recurso_favorito_del']));
         session_start(['name'=>"REPO"]);
         $idPersona = $_SESSION['id_persona'];
 
@@ -618,7 +628,7 @@ class recursoControlador extends recursoModelo{
     }
 
     public function eliminarCalificacionRecursoControlador(){
-        $idRecurso = mainModel::decryption($_POST['id_calificacion_recurso_del']);
+        $idRecurso = mainModel::limpiarCadena(mainModel::decryption($_POST['id_calificacion_recurso_del']));
         session_start(['name'=>"REPO"]);
         $idPersona = $_SESSION['id_persona'];
 

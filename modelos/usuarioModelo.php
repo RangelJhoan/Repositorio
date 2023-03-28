@@ -70,9 +70,9 @@
         /*---------- Modelo editar persona ----------*/
         protected static function editar_persona_modelo(Persona $persona){
             try {
-                $sql = mainModel::conectar()->prepare("UPDATE persona SET id_tipo_documento=?, documento=?, nombre=?, apellido=? WHERE id=?");
+                $sql = mainModel::conectar()->prepare("UPDATE persona SET id_tipo_documento=?, documento=?, nombre=?, apellido=?, estado=? WHERE id=?");
 
-                $sql->execute([$persona->getTipoDocumento()->getIdTipoDocumento(), $persona->getDocumento(), $persona->getNombre(), $persona->getApellido(), 
+                $sql->execute([$persona->getTipoDocumento()->getIdTipoDocumento(), $persona->getDocumento(), $persona->getNombre(), $persona->getApellido(), $persona->getEstado(),
                 $persona->getIdPersona()]);
 
                 return $sql->rowCount();

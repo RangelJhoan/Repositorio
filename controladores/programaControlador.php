@@ -15,8 +15,8 @@ class programaControlador extends programaModelo{
     /*---------- Controlador para agregar programa ----------*/
     public function agregar_programa_controlador(){
         $programa = new Programa();
-        $programa->setNombre($_POST['nombre_ins']);
-        $programa->setDescripcion($_POST['descripcion_ins']);
+        $programa->setNombre(mainModel::limpiarCadena($_POST['nombre_ins']));
+        $programa->setDescripcion(mainModel::limpiarCadena($_POST['descripcion_ins']));
         $programa->setEstado(Utilidades::getIdEstado("ACTIVO"));
 
         if($programa->getNombre() == "" || $programa->getDescripcion() == ""){
@@ -44,7 +44,7 @@ class programaControlador extends programaModelo{
 
     public function eliminar_programa_controlador(){
         $programa = new Programa();
-        $programa->setIdPrograma(mainModel::decryption($_POST['id_programa_del']));
+        $programa->setIdPrograma(mainModel::limpiarCadena(mainModel::decryption($_POST['id_programa_del'])));
         $programa->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
         $editarPrograma = programaModelo::editar_estado_programa_modelo($programa);
@@ -68,7 +68,7 @@ class programaControlador extends programaModelo{
     public function editar_programa_controlador(){
         $programa = new Programa();
         //Recibiendo el ID del programa a editar
-        $programa->setIdPrograma(mainModel::decryption($_POST['id_programa_edit']));
+        $programa->setIdPrograma(mainModel::limpiarCadena(mainModel::decryption($_POST['id_programa_edit'])));
 
         //Comprobar que el programa exista en la BD
         $check_program = mainModel::ejecutar_consulta_simple("SELECT * FROM programa WHERE id = '". $programa->getIdPrograma() ."'");
@@ -77,9 +77,9 @@ class programaControlador extends programaModelo{
             exit();
         }
 
-        $programa->setNombre($_POST['nombre_edit']);
-        $programa->setDescripcion($_POST['descripcion_edit']);
-        $programa->setEstado($_POST['estado']);
+        $programa->setNombre(mainModel::limpiarCadena($_POST['nombre_edit']));
+        $programa->setDescripcion(mainModel::limpiarCadena($_POST['descripcion_edit']));
+        $programa->setEstado(mainModel::limpiarCadena($_POST['estado']));
 
         if($programa->getNombre() == "" || $programa->getDescripcion() == ""){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");

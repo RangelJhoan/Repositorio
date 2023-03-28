@@ -12,7 +12,7 @@ class etiquetaControlador extends etiquetaModelo{
 
     public function agregar_etiqueta_controlador(){
         $etiqueta = new Etiqueta();
-        $etiqueta->setDescripcion($_POST['descripcion_ins']);
+        $etiqueta->setDescripcion(mainModel::limpiarCadena($_POST['descripcion_ins']));
         $etiqueta->setEstado(Utilidades::getIdEstado("ACTIVO"));
         session_start(['name'=>'REPO']);
         $etiqueta->setIdDocente($_SESSION['id_persona']);
@@ -35,7 +35,7 @@ class etiquetaControlador extends etiquetaModelo{
     /*---------- Controlador editar etiqueta ----------*/
     public function editar_etiqueta_controlador(){
         $etiqueta = new Etiqueta();
-        $etiqueta->setIdEtiqueta(mainModel::decryption($_POST['id_etiqueta_edit']));
+        $etiqueta->setIdEtiqueta(mainModel::limpiarCadena(mainModel::decryption($_POST['id_etiqueta_edit'])));
 
         //Comprobar que la etiqueta exista en la BD
         $check_etiqueta = mainModel::ejecutar_consulta_simple("SELECT * FROM etiqueta WHERE id = '". $etiqueta->getIdEtiqueta() ."'");
@@ -45,8 +45,8 @@ class etiquetaControlador extends etiquetaModelo{
             exit();
         }
 
-        $etiqueta->setDescripcion($_POST['descripcion_edit']);
-        $etiqueta->setEstado($_POST['estado']);
+        $etiqueta->setDescripcion(mainModel::limpiarCadena($_POST['descripcion_edit']));
+        $etiqueta->setEstado(mainModel::limpiarCadena($_POST['estado']));
 
         if($etiqueta->getDescripcion() == ""){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
@@ -64,7 +64,7 @@ class etiquetaControlador extends etiquetaModelo{
     public function eliminar_etiqueta_controlador(){
         try {
             $autor = new Etiqueta();
-            $autor->setIdEtiqueta(mainModel::decryption($_POST['id_etiqueta_del']));
+            $autor->setIdEtiqueta(mainModel::limpiarCadena(mainModel::decryption($_POST['id_etiqueta_del'])));
             $autor->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
             $eliminarEtiqueta = etiquetaModelo::eliminar_etiqueta_modelo($autor);
@@ -119,7 +119,7 @@ class etiquetaControlador extends etiquetaModelo{
     /*---------- Controlador editar etiqueta desde el perfil del docente ----------*/
     public function editar_docente_etiqueta_controlador(){
         $etiqueta = new Etiqueta();
-        $etiqueta->setIdEtiqueta(mainModel::decryption($_POST['id_docente_etiqueta_edit']));
+        $etiqueta->setIdEtiqueta(mainModel::limpiarCadena(mainModel::decryption($_POST['id_docente_etiqueta_edit'])));
 
         //Comprobar que la etiqueta exista en la BD
         $check_etiqueta = mainModel::ejecutar_consulta_simple("SELECT * FROM etiqueta WHERE id = '". $etiqueta->getIdEtiqueta() ."'");
@@ -129,8 +129,8 @@ class etiquetaControlador extends etiquetaModelo{
             exit();
         }
 
-        $etiqueta->setDescripcion($_POST['descripcion_docente_edit']);
-        $etiqueta->setEstado($_POST['estado']);
+        $etiqueta->setDescripcion(mainModel::limpiarCadena($_POST['descripcion_docente_edit']));
+        $etiqueta->setEstado(mainModel::limpiarCadena($_POST['estado']));
 
         if($etiqueta->getDescripcion() == ""){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");

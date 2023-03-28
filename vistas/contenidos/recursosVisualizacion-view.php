@@ -22,12 +22,8 @@
             $formato = "";
         }
     }else{
-        $editorial = "";
-        $isbn = "";
-        $nArchivo = "";
-        $tamano = "";
-        $ruta = "";
-        $formato = "";
+        header('Location: ' . SERVER_URL. '404');
+        exit();
     }
 
 ?>

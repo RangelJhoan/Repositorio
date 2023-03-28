@@ -80,15 +80,6 @@
             $cadena = str_ireplace("SHOW DATABASES", "", $cadena);
             $cadena = str_ireplace("<?php", "", $cadena);
             $cadena = str_ireplace("?>", "", $cadena);
-            $cadena = str_ireplace("--", "", $cadena);
-            $cadena = str_ireplace(">", "", $cadena);
-            $cadena = str_ireplace("<", "", $cadena);
-            $cadena = str_ireplace("[", "", $cadena);
-            $cadena = str_ireplace("]", "", $cadena);
-            $cadena = str_ireplace("^", "", $cadena);
-            $cadena = str_ireplace("==", "", $cadena);
-            $cadena = str_ireplace(";", "", $cadena);
-            $cadena = str_ireplace("::", "", $cadena);
             $cadena = stripslashes($cadena);
             $cadena = trim($cadena);
             return $cadena;

@@ -15,8 +15,8 @@ class autorControlador extends autorModelo{
     /*---------- Controlador para agregar autor ----------*/
     public function agregar_autor_controlador(){
         $autor = new Autor();
-        $autor->setNombre($_POST['nombre_ins']);
-        $autor->setApellido($_POST['apellido_ins']);
+        $autor->setNombre(mainModel::limpiarCadena($_POST['nombre_ins']));
+        $autor->setApellido(mainModel::limpiarCadena($_POST['apellido_ins']));
         $autor->setEstado(Utilidades::getIdEstado("ACTIVO"));
         session_start(['name'=>'REPO']);
         $autor->setIdDocente($_SESSION['id_persona']);
@@ -40,7 +40,7 @@ class autorControlador extends autorModelo{
     public function eliminar_autor_controlador(){
         try {
             $autor = new Autor();
-            $autor->setIdAutor(mainModel::decryption($_POST['id_autor_del']));
+            $autor->setIdAutor(mainModel::limpiarCadena(mainModel::decryption($_POST['id_autor_del'])));
             $autor->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
             $eliminarAutor = autorModelo::eliminar_autor_modelo($autor);
@@ -68,7 +68,7 @@ class autorControlador extends autorModelo{
     /*---------- Controlador editar autor ----------*/
     public function editar_autor_controlador(){
         $autor = new autor();
-        $autor->setIdAutor(mainModel::decryption($_POST['id_autor_edit']));
+        $autor->setIdAutor(mainModel::limpiarCadena(mainModel::decryption($_POST['id_autor_edit'])));
 
         //Comprobar que el autor exista en la BD
         $check_autor = mainModel::ejecutar_consulta_simple("SELECT * FROM autor WHERE id = '". $autor->getIdAutor() ."'");
@@ -77,9 +77,9 @@ class autorControlador extends autorModelo{
             exit();
         }
 
-        $autor->setNombre($_POST['nombre_edit']);
-        $autor->setApellido($_POST['apellido_edit']);
-        $autor->setEstado($_POST['estado']);
+        $autor->setNombre(mainModel::limpiarCadena($_POST['nombre_edit']));
+        $autor->setApellido(mainModel::limpiarCadena($_POST['apellido_edit']));
+        $autor->setEstado(mainModel::limpiarCadena($_POST['estado']));
 
         if($autor->getApellido() == ""){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
@@ -125,7 +125,7 @@ class autorControlador extends autorModelo{
     /*---------- Controlador editar autor desde el perfil de docente ----------*/
     public function editar_docente_autor_controlador(){
         $autor = new autor();
-        $autor->setIdAutor(mainModel::decryption($_POST['id_autor_edit']));
+        $autor->setIdAutor(mainModel::limpiarCadena(mainModel::decryption($_POST['id_autor_edit'])));
 
         //Comprobar que el autor exista en la BD
         $check_autor = mainModel::ejecutar_consulta_simple("SELECT * FROM autor WHERE id = '". $autor->getIdAutor() ."'");
@@ -134,9 +134,9 @@ class autorControlador extends autorModelo{
             exit();
         }
 
-        $autor->setNombre($_POST['nombre_doc_edit']);
-        $autor->setApellido($_POST['apellido_doc_edit']);
-        $autor->setEstado($_POST['estado']);
+        $autor->setNombre(mainModel::limpiarCadena($_POST['nombre_doc_edit']));
+        $autor->setApellido(mainModel::limpiarCadena($_POST['apellido_doc_edit']));
+        $autor->setEstado(mainModel::limpiarCadena($_POST['estado']));
 
         if($autor->getApellido() == ""){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");

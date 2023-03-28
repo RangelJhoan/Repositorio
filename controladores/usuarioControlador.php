@@ -50,7 +50,7 @@ class usuarioControlador extends usuarioModelo{
             exit();
         }
 
-        if(!self::validarInputs($persona)){
+        if(!self::validarInputsPersona($persona) || !self::validarInputsUsuario($persona)){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor, ingrese información válida");
             exit();
         }
@@ -75,8 +75,8 @@ class usuarioControlador extends usuarioModelo{
 
     /*---------- Controlador para iniciar sesion usuario ----------*/
     public function iniciarSesion_usuario_controlador(){
-        $correo = $_POST['correo'];
-        $clave = $_POST['clave'];
+        $correo = mainModel::limpiarCadena($_POST['correo']);
+        $clave = mainModel::limpiarCadena($_POST['clave']);
 
         if($correo == "" || $clave == ""){
             echo '<script>
@@ -173,8 +173,8 @@ class usuarioControlador extends usuarioModelo{
     /*---------- Controlador para cerrar sesión usuario ----------*/
     public function cerrar_sesion_controlador(){
         session_start(['name' => 'REPO']);
-        $id_persona = mainModel::decryption($_POST['id_persona']);
-        $correo = mainModel::decryption($_POST['correo_usuario']);
+        $id_persona = mainModel::limpiarCadena(mainModel::decryption($_POST['id_persona']));
+        $correo = mainModel::limpiarCadena(mainModel::decryption($_POST['correo_usuario']));
 
         if($id_persona == $_SESSION['id_persona'] && $correo == $_SESSION['correo_usuario']){
             session_unset();
@@ -195,8 +195,8 @@ class usuarioControlador extends usuarioModelo{
         }
 
         $persona = new Persona();
-        $persona->setIdPersona(mainModel::decryption($_POST['idPersona']));
-        $persona->setIdUsuario(mainModel::decryption($_POST['idUsuario']));
+        $persona->setIdPersona(mainModel::limpiarCadena(mainModel::decryption($_POST['idPersona'])));
+        $persona->setIdUsuario(mainModel::limpiarCadena(mainModel::decryption($_POST['idUsuario'])));
         $persona->setEstadoPersona(Utilidades::getIdEstado("ELIMINADO"));
         $persona->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
@@ -235,7 +235,7 @@ class usuarioControlador extends usuarioModelo{
         $persona = new Persona();
         $tipoDocumento = new TipoDocumento();
         //Recibiendo el ID del usuario a editar
-        $persona->setIdPersona(mainModel::decryption($_POST['id_usuario_editar']));
+        $persona->setIdPersona(mainModel::limpiarCadena(mainModel::decryption($_POST['id_usuario_editar'])));
 
         //Comprobar que el usuario exista en la BD
         $check_person = mainModel::ejecutar_consulta_simple("SELECT * FROM persona WHERE id = '". $persona->getIdPersona() ."'");
@@ -246,12 +246,12 @@ class usuarioControlador extends usuarioModelo{
         $datos_person = $check_person->fetch();
 
         $persona->setIdUsuario($datos_person['id_usuario']);
-        $persona->setNombre($_POST['nombre']);
-        $persona->setApellido($_POST['apellido']);
-        $persona->setDocumento($_POST['documento']);
-        $persona->setEstado($_POST['estado']);
+        $persona->setNombre(mainModel::limpiarCadena($_POST['nombre']));
+        $persona->setApellido(mainModel::limpiarCadena($_POST['apellido']));
+        $persona->setDocumento(mainModel::limpiarCadena($_POST['documento']));
+        $persona->setEstado(mainModel::limpiarCadena($_POST['estado']));
 
-        $tipoDocumento->setIdTipoDocumento($_POST['tipoDocumento']);
+        $tipoDocumento->setIdTipoDocumento(mainModel::limpiarCadena($_POST['tipoDocumento']));
         $persona->setTipoDocumento($tipoDocumento);
 
         $check_user = mainModel::ejecutar_consulta_simple("SELECT * FROM usuario WHERE id = '". $persona->getIdUsuario() ."'");
@@ -269,8 +269,8 @@ class usuarioControlador extends usuarioModelo{
         }
 
         if($_POST['clave'] != "" && $_POST['confirmarClave'] != ""){
-            $persona->setClave($_POST['clave']);
-            $confirmarClave = $_POST['confirmarClave'];
+            $persona->setClave(mainModel::limpiarCadena($_POST['clave']));
+            $confirmarClave = mainModel::limpiarCadena($_POST['confirmarClave']);
             if($persona->getClave() != $confirmarClave){
                 echo Utilidades::getAlertaErrorJSON("simple", "Las contraseñas ingresadas no coinciden");
                 exit();
@@ -299,7 +299,7 @@ class usuarioControlador extends usuarioModelo{
     public function editar_perfil_controlador(){
         $persona = new Persona();
         //Recibiendo el ID del usuario a editar
-        $persona->setIdPersona(mainModel::decryption($_POST['id_usuario_edit_perfil']));
+        $persona->setIdPersona(mainModel::limpiarCadena(mainModel::decryption($_POST['id_usuario_edit_perfil'])));
 
         //Comprobar que el usuario exista en la BD
         $check_person = mainModel::ejecutar_consulta_simple("SELECT id_usuario FROM persona WHERE id = '". $persona->getIdPersona() ."'");
@@ -311,8 +311,8 @@ class usuarioControlador extends usuarioModelo{
         $datos_person = $check_person->fetch();
 
         $persona->setIdUsuario($datos_person['id_usuario']);
-        $persona->setNombre($_POST['nombre_edit_perfil']);
-        $persona->setApellido($_POST['apellido_edit_perfil']);
+        $persona->setNombre(mainModel::limpiarCadena($_POST['nombre_edit_perfil']));
+        $persona->setApellido(mainModel::limpiarCadena($_POST['apellido_edit_perfil']));
 
         $check_user = mainModel::ejecutar_consulta_simple("SELECT clave FROM usuario WHERE id = '". $persona->getIdUsuario() ."'");
 
@@ -329,8 +329,8 @@ class usuarioControlador extends usuarioModelo{
         }
 
         if($_POST['clave_edit_perfil'] != "" && $_POST['confirmarClave_edit_perfil'] != ""){
-            $persona->setClave($_POST['clave_edit_perfil']);
-            $confirmarClave = $_POST['confirmarClave_edit_perfil'];
+            $persona->setClave(mainModel::limpiarCadena($_POST['clave_edit_perfil']));
+            $confirmarClave = mainModel::limpiarCadena($_POST['confirmarClave_edit_perfil']);
             if($persona->getClave() != $confirmarClave){
                 echo Utilidades::getAlertaErrorJSON("simple", "Las contraseñas ingresadas no coinciden");
                 exit();
@@ -410,20 +410,24 @@ class usuarioControlador extends usuarioModelo{
 
     // VALIDACIONES
 
-    private function validarInputs(Persona $persona){
+    private function validarInputsPersona(Persona $persona){
         if(!mainModel::verificarDatos("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}", $persona->getNombre()))
             return false;
 
         if(!mainModel::verificarDatos("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}", $persona->getApellido()))
             return false;
 
-        if(!mainModel::verificarDatos("[^@]+@[^@]+\.[a-zA-Z]{2,}", $persona->getCorreo()))
-            return false;
-
         if(!mainModel::verificarDatos("[0-9]+", $persona->getDocumento()))
             return false;
 
+        return true;
+    }
+
+    private function validarInputsUsuario(Persona $persona){
         if(!mainModel::verificarDatos("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}", $persona->getClave()))
+            return false;
+
+        if(!mainModel::verificarDatos("[^@]+@[^@]+\.[a-zA-Z]{2,}", $persona->getCorreo()))
             return false;
 
         return true;
