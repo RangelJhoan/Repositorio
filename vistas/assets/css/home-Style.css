@@ -4,6 +4,7 @@
 :root{
     /* Colores */
     --main-home-color:#506591;
+    --main-home-color2:#50659160;
     --home-text-color:#464646;
     --home-background-color: #e9e9e9;
     --white-home-color:#fff;
@@ -386,16 +387,16 @@ body{
     align-items: center;
 }
 .filterHomeContainer .hexagonFilters.hxF1:hover{
-    filter: drop-shadow(0px 0px 35px var(--hexagonN1));
+    filter: drop-shadow(0px 0px 12px var(--hexagonN1));
 }
 .filterHomeContainer .hexagonFilters.hxF2:hover{
-    filter: drop-shadow(0px 0px 35px var(--hexagonN2));
+    filter: drop-shadow(0px 0px 12px var(--hexagonN2));
 }
 .filterHomeContainer .hexagonFilters.hxF3:hover{
-    filter: drop-shadow(0px 0px 35px var(--hexagonN3));
+    filter: drop-shadow(0px 0px 12px var(--hexagonN3));
 }
 .filterHomeContainer .hexagonFilters.hxF4:hover{
-    filter: drop-shadow(0px 0px 35px var(--hexagonN4));
+    filter: drop-shadow(0px 0px 12px var(--hexagonN4));
 }
 /*Forma hexagonal*/
 .filterHomeContainer .hexagonFilters .hexagonShape{
@@ -668,13 +669,9 @@ body{
 .mainContarinerFilters{
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     flex-direction: row;
     flex-wrap: wrap;
-    /* padding: 0 25rem; */
     gap: 10px;
-    /* margin-left: 10rem;
-    margin-right: 10rem; */
     max-width: 70vw;
     margin:0 auto;
     padding-top: 1rem;
@@ -690,20 +687,20 @@ body{
     height: fit-content;
     padding-top: 7px;
     border-radius: 5%;
-    border: 1px solid rgb(51,143,142);
+    border: 1px solid var(--colorTableN4);
 }
 /**Títuloi de tabla "Listar"*/
 .asideFiltersTitle{
     text-align: center;
     font-weight: 500;
     font-size: 0.9rem;
-    color: rgb(34, 66, 95);
+    color: var(--home-text-color);
     user-select: none;
     margin-top: 6px;
     padding-bottom: 5px;
 }
 .hasFile{
-    border-top: 1px solid rgb(51,143,142);
+    border-top: 1px solid var(--colorTableN4);
     padding-top:7px;
     padding-bottom: 10px;
 
@@ -714,17 +711,18 @@ body{
     padding: 10px;
     border-top: 1px solid var(--gray-home-color);
     font-size: 0.9rem;
+    font-weight: 500;
 }
 /**Estilo para la etiqueta <a> que enlaza la búsqueda*/
 .aAsideFilters{
-    color:var(--hover-navBarHome1);
+    color:var(--colorTableN1);
     transition: all .1s ease;
     display: flex;
     justify-content: space-between;
 }
 .aAsideFilters:hover{
     text-decoration:underline;
-    color:var(--hover-navBarHome1);
+    color:var(--colorTableN2);
     font-weight: 600;
 }
 /**Evitar link <a> como "visitado"*/
@@ -735,16 +733,17 @@ body{
     text-decoration: none;
 }
 .asideFilters > .asideFiltersTitle{
-    background: rgb(51,143,142);
-    background: linear-gradient(360deg, rgba(51,143,142,1) 3%, var(--white-home-color) 100%);
+    background: var(--colorTableN1);
+    background: linear-gradient(360deg, var(--colorTableN1) 3%, var(--white-home-color) 100%);
 }
 /**Estilo número contador de cada uno de los filtros. Total Counter */
 .asideFilterCounter{
     border-radius: 10px;
     padding-left: 5px;
     padding-right: 5px;
-    background-color: var(--main-home-color);
+    background-color: var(--colorTableN1);
     color: var(--home-background-color);
+    font-weight: 500;
 }
 
 
@@ -786,13 +785,13 @@ body{
     font-size: var(--question-homepq-normal-font-size);
     font-weight: 600;
     color: var(--white-home-color);
-    background-color: var(--colorTableN4);
+    background-color: var(--main-home-color);
     margin-left: 10px;
     text-transform: uppercase;
     transition: .2s all ease-in;
 }
 .titleTableFilterSearch:hover{
-    color: var(--colorTableN2);
+    color: #202020cb;
 }
 /**TABLA GENERAL RESPONSIVE*/
 /*Tabla general*/
@@ -808,7 +807,7 @@ body{
 .table-dataJQ-container .tb-admin-records th,
 .table-dataJQ-container .tb-admin-records td{
     padding:5px 10px;
-    border: 1px solid var(--colorTableN3);
+    border: 1px solid var(--main-home-color2);
 }
 /*Título de columna*/
 .table-dataJQ-container .tb-admin-records th{
@@ -838,7 +837,7 @@ body{
 .noRESPtable-dataJQ-container .noRESPtb-admin-records th,
 .noRESPtable-dataJQ-container .noRESPtb-admin-records td{
     padding:5px 10px;
-    border: 1px solid var(--colorTableN3);
+    border: 1px solid var(--main-home-color2);
 }
 /*Título de columna*/
 .noRESPtable-dataJQ-container .noRESPtb-admin-records th{
@@ -943,7 +942,7 @@ select {
 }
 .pagination li a:hover {
     font-weight: 500;
-    color: var(--colorTableN4);
+    color: var(--main-home-color);
 }
 
 /*? -----------------ESTILOS ESPECIALES DE LA TABLA*/
@@ -965,20 +964,20 @@ select {
 .redireccionTable{
     font-weight: 500;
     text-decoration: none;
-    color:var(--colorTableN4);
+    color:var(--main-home-color);
     transition: .5s all ease;
     display: flex;
     justify-content: space-between;
     gap:5px;
 }
 .redireccionTable:hover{
-    color:var(--colorTableN2);
+    color:var(--hover-navBarHome1);
 }
 .tableFilterCounter{
     border-radius: 10px;
     padding-left: 5px;
     padding-right: 5px;
-    background-color: var(--colorTableN1);
+    background-color: var(--main-home-color);
     color: var(--home-background-color);
     height: fit-content;
 }
@@ -1135,6 +1134,7 @@ select {
     flex-wrap: wrap;
     justify-content:flex-start;
     gap:10px;
+    align-items: center;
 }
 
 .btn-group-action i{
@@ -1182,10 +1182,16 @@ select {
 /*Botón favoritos*/
 .btnFavRec{
     background-color: #e24b45;
+    border-radius: 5px;
+    border-style: none;
+    transition: all .5s;
+    text-decoration: none;
+    padding: 2px 0;
 }
 .btnFavRec:hover{
     background-color: #882c27;
 }
+
 
 /**?--------------MODAL FEEDBACK-------------*/
 /*Contenedor principal del modal (externo)*/
@@ -1466,7 +1472,7 @@ select {
         max-width: 90%;
     }  
     .footer-Box .mainText-Footer{
-        font-size: var(--phrgp-home-medium-font-size);
+        font-size: var(--phrgp-home-super-font-size);
         max-width: 30rem;
     }
     .footer-Box .mainText-Footer{
@@ -1490,7 +1496,7 @@ select {
         font-size: var(--question-homepq-medium-font-size);
     }
     .wrapperFAQ .parentTabFAQ .contentFAQ .answerFAQ{
-        font-size: var(--phrgp-home-medium-font-size);
+        font-size: var(--phrgp-home-tiny-font-size);
     }
     .wrapperFAQ{
         max-width:85%;
@@ -1587,8 +1593,6 @@ select {
     .buttonSearchYear{
         font-size: var(--phrgp-home-medium-font-size);
     }
-    
-    
     /**DATATABLE RESPONSIVE*/
     .table-dataJQ-container .tb-admin-records{
         width: 100%!important;
@@ -1596,20 +1600,18 @@ select {
     .table-dataJQ-container .tb-admin-records tr{
         display: flex !important;
         flex-direction:column !important;
-        border:1px solid rgba(160, 211, 190, 0.692)!important;
+        border:1px solid var(--main-home-color2)!important;
         padding:1em !important;
         margin-bottom: 1em !important;
         font-size: var(--phrgp-home-tiny-font-size)!important;
         /* pointer-events: none!important; */
     }
-
     .noRESPtable-dataJQ-container .noRESPtb-admin-records tr{
         font-size: var(--phrgp-home-tiny-font-size);
     }
     .titleTableFilterSearch {
         font-size: var(--question-homepq-medium-font-size);
     }
-
     .table-dataJQ-container .tb-admin-records td[data-titulo]{
         display: flex!important;
         justify-content: space-between!important;
@@ -1619,7 +1621,7 @@ select {
     }
     .table-dataJQ-container .tb-admin-records td[data-titulo]::before{
         content: attr(data-titulo)!important;
-        color:rgb(57, 109, 87)!important;
+        color:var(--main-home-color)!important;
         font-weight: bolder!important;
     }
     .table-dataJQ-container .tb-admin-records thead{
@@ -1639,6 +1641,9 @@ select {
     .tituloColVerRecurso, .infoColVerRecurso{
     font-size: var(--phrgp-home-tiny-font-size);
     }
+    .footer-Box .mainText-Footer{
+        font-size: var(--phrgp-home-supertiny-font-size);
+    }
 }
 
 @media all and (max-width:430px){
@@ -1655,9 +1660,6 @@ select {
         height: 35px;
     }
     .searchBar-Container .input-SearchBar{
-        font-size: var(--phrgp-home-tiny-font-size);
-    }
-    .footer-Box .mainText-Footer{
         font-size: var(--phrgp-home-tiny-font-size);
     }
     .footer-Box .logoFooter-Home .logo-RI-footerHome{
@@ -1682,7 +1684,7 @@ select {
         margin-bottom: 5px;
     }
     .wrapperFAQ .parentTabFAQ .contentFAQ .answerFAQ{
-        font-size: var(--phrgp-home-tiny-font-size);
+        font-size: var(--phrgp-home-supertiny-font-size);
         padding: 10px;
         text-align: justify;
     }
@@ -1711,7 +1713,10 @@ select {
         width: 140px;
         height: 170px;
         margin:5px;
-        }
+    }
+    .btn-group-action {
+        justify-content: space-between;
+    }
 }
 
 @media all and (max-width:370px){

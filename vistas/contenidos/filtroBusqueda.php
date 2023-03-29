@@ -7,7 +7,7 @@
                 <!--TÍTULO-->
                 <div class="title">
                     <i class="uil uil-search search-iconHome"></i>
-                    <h1 class="panel-title-name">Búsqueda...</h1>
+                    <h1 class="panel-title-name">Resultados obtenidos</h1>
                 </div>
                 
                 <div class="panel-title-name table-dataJQ-container">

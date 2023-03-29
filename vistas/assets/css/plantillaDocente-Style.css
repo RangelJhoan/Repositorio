@@ -89,7 +89,6 @@ body.dark .activity-data::-webkit-scrollbar-thumb:hover{
     border-right: 1px solid var(--border-color);
     transition: var(--trans-05);
     overflow:hidden;
-    overflow-y: auto;
 }
 .lateralNavBar.close{
     width: 73px;

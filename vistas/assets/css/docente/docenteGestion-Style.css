@@ -1122,6 +1122,7 @@ select::-ms-expand{
     -moz-border-radius:.25rem;
     -ms-border-radius:.25rem;
     -o-border-radius:.25rem;
+    overflow-x: hidden;
 }
 .mult-select-tag ul{
     list-style-type:none;
@@ -1324,6 +1325,14 @@ select::-ms-expand{
         }
         .mult-select-tag button:first-child{
             width:1.1rem;
+        }
+        .graphBox{
+            display: none;
+            opacity: 0;
+            user-select: none;
+        }
+        .dashboard-container .cards-container {
+            padding-bottom: 20px;
         }
     }
 

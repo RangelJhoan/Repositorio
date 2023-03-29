@@ -160,7 +160,8 @@
                             <a href="#" class="btn-admin-view-record buttonFeedbackOpen" title="Calificar recurso"><i class="uil uil-feedback btnAccionesRecurso btnCalRec"></i></a>
                             <form action="<?php echo SERVER_URL."ajax/homeAjax.php";?>" class="FormularioAjax" method="POST" data-form="save" autocomplete="off">
                                 <input type="hidden" name="favorito" value="<?php echo $pagina[1]; ?>">
-                                <input type="submit" class="btn-admin-view-record" title="Agregar a favoritos el recurso" value="<3">
+                                <!-- <input type="submit" class="btn-admin-view-record" title="Agregar a favoritos el recurso" value="HOLAAA"> -->
+                                <button type="submit" class="btnFavRec" title="Agregar a favoritos el recurso"><i class='uil uil-heart'></i></button>
                             </form>
                         </div>
                     </div>
