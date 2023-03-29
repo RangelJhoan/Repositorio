@@ -9,6 +9,8 @@ class Recurso {
     private $resumen;
     private $fecha;
     private $enlace;
+    private $isbn;
+    private $editorial;
     private $archivo;
     private $estado;
 
@@ -95,6 +97,22 @@ class Recurso {
 
     public function setEstado($estado){
         $this->estado = $estado;
+    }
+
+    public function getISBN(){
+        return $this->isbn;
+    }
+
+    public function setISBN($isbn){
+        $this->isbn = $isbn;
+    }
+
+    public function getEditorial(){
+        return $this->editorial;
+    }
+
+    public function setEditorial($editorial){
+        $this->editorial = $editorial;
     }
 }
 

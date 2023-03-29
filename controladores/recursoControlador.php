@@ -23,6 +23,14 @@ class recursoControlador extends recursoModelo{
         $recurso->setEtiqueta(array());
         $recurso->setAutor(array());
 
+        if(isset($_POST['editorial_ins'])){
+            $recurso->setEditorial(mainModel::limpiarCadena($_POST['editorial_ins']));
+        }
+
+        if(isset($_POST['ISBN_ins'])){
+            $recurso->setISBN(mainModel::limpiarCadena($_POST['ISBN_ins']));
+        }
+
         if(isset($_POST['autores_ins']))
             $recurso->setAutor($_POST['autores_ins']);
 
@@ -99,14 +107,6 @@ class recursoControlador extends recursoModelo{
                 $archivo->setRuta($ruta);
                 $archivo->setTamano($_FILES["archivo"]["size"]);
                 $archivo->setNombre($_FILES["archivo"]["name"]);
-
-                if(isset($_POST['editorial_ins'])){
-                    $archivo->setEditorial(mainModel::limpiarCadena($_POST['editorial_ins']));
-                }
-
-                if(isset($_POST['ISBN_ins'])){
-                    $archivo->setISBN(mainModel::limpiarCadena($_POST['ISBN_ins']));
-                }
 
                 $archivo->setEstado(Utilidades::getIdEstado("ACTIVO"));
 
@@ -209,6 +209,14 @@ class recursoControlador extends recursoModelo{
             $recurso->setFecha("s.f");
         }
 
+        if(isset($_POST['editorial_edit'])){
+            $recurso->setEditorial(mainModel::limpiarCadena($_POST['editorial_edit']));
+        }
+
+        if(isset($_POST['ISBN_edit'])){
+            $recurso->setISBN(mainModel::limpiarCadena($_POST['ISBN_edit']));
+        }
+
         $recurso->setEstado(mainModel::limpiarCadena($_POST['estado_edit']));
         $recurso->setCurso($_POST['cursos_edit']);
         $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_edit']));
@@ -273,14 +281,6 @@ class recursoControlador extends recursoModelo{
             $archivo->setTamano($_FILES["archivo"]["size"]);
             $archivo->setNombre($_FILES["archivo"]["name"]);
 
-            if(isset($_POST['editorial_edit'])){
-                $archivo->setEditorial(mainModel::limpiarCadena($_POST['editorial_edit']));
-            }
-
-            if(isset($_POST['ISBN_edit'])){
-                $archivo->setISBN(mainModel::limpiarCadena($_POST['ISBN_edit']));
-            }
-
             $archivo->setEstado($recurso->getEstado());
 
             $recurso->setArchivo($archivo);
@@ -333,6 +333,14 @@ class recursoControlador extends recursoModelo{
         if(!isset($_POST['cursos_docente_ins'])){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor seleccione un curso");
             exit();
+        }
+
+        if(isset($_POST['editorial_docente_ins'])){
+            $recurso->setEditorial(mainModel::limpiarCadena($_POST['editorial_docente_ins']));
+        }
+
+        if(isset($_POST['ISBN_docente_ins'])){
+            $recurso->setISBN(mainModel::limpiarCadena($_POST['ISBN_docente_ins']));
         }
 
         $recurso->setCurso($_POST['cursos_docente_ins']);
@@ -394,14 +402,6 @@ class recursoControlador extends recursoModelo{
                 $archivo->setTamano($_FILES["archivo"]["size"]);
                 $archivo->setNombre($_FILES["archivo"]["name"]);
 
-                if(isset($_POST['editorial_docente_ins'])){
-                    $archivo->setEditorial(mainModel::limpiarCadena($_POST['editorial_docente_ins']));
-                }
-
-                if(isset($_POST['ISBN_docente_ins'])){
-                    $archivo->setISBN(mainModel::limpiarCadena($_POST['ISBN_docente_ins']));
-                }
-
                 $archivo->setEstado(Utilidades::getIdEstado("ACTIVO"));
 
                 $recurso->setArchivo($archivo);
@@ -457,6 +457,14 @@ class recursoControlador extends recursoModelo{
         $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_docente_edit']));
         $recurso->setAutor(array());
         $recurso->setEtiqueta(array());
+
+        if(isset($_POST['editorial_docente_edit'])){
+            $recurso->setEditorial(mainModel::limpiarCadena($_POST['editorial_docente_edit']));
+        }
+
+        if(isset($_POST['ISBN_docente_edit'])){
+            $recurso->setISBN(mainModel::limpiarCadena($_POST['ISBN_docente_edit']));
+        }
 
         if(isset($_POST['etiquetas_docente_edit']))
             $recurso->setEtiqueta($_POST['etiquetas_docente_edit']);
@@ -515,14 +523,6 @@ class recursoControlador extends recursoModelo{
             $archivo->setRuta($ruta);
             $archivo->setTamano($_FILES["archivo"]["size"]);
             $archivo->setNombre($_FILES["archivo"]["name"]);
-
-            if(isset($_POST['editorial_docente_edit'])){
-                $archivo->setEditorial(mainModel::limpiarCadena($_POST['editorial_docente_edit']));
-            }
-
-            if(isset($_POST['ISBN_docente_edit'])){
-                $archivo->setISBN(mainModel::limpiarCadena($_POST['ISBN_docente_edit']));
-            }
 
             $archivo->setEstado($recurso->getEstado());
 

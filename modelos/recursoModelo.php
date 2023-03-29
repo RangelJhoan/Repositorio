@@ -17,8 +17,8 @@
         protected static function agregar_recurso_modelo(Recurso $recurso){
             try{
                 session_start(['name'=>"REPO"]);
-                $sql = mainModel::conectar()->prepare("INSERT INTO recurso(titulo, fecha_publicacion_profesor, fecha_publicacion_recurso, resumen, puntos_positivos, puntos_negativos, estado, enlace, id_docente) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);");
-                $sql->execute([$recurso->getTitulo(), date("Y-m-d H:i:s"), $recurso->getFecha(), $recurso->getResumen(), 0, 0, $recurso->getEstado(), $recurso->getEnlace(), $_SESSION['id_persona']]);
+                $sql = mainModel::conectar()->prepare("INSERT INTO recurso(titulo, fecha_publicacion_profesor, fecha_publicacion_recurso, resumen, puntos_positivos, puntos_negativos, estado, enlace, isbn, editorial, id_docente) VALUES(?, ?, ?, ?, ?, ?, ?,  ?, ?, ?, ?);");
+                $sql->execute([$recurso->getTitulo(), date("Y-m-d H:i:s"), $recurso->getFecha(), $recurso->getResumen(), 0, 0, $recurso->getEstado(), $recurso->getEnlace(), $recurso->getISBN(),$recurso->getEditorial(),$_SESSION['id_persona']]);
 
                 $sqlQuery = mainModel::conectar()->prepare("SELECT id FROM recurso WHERE titulo = ?;");
                 $sqlQuery->execute([$recurso->getTitulo()]);
@@ -51,8 +51,8 @@
         /*---------- Modelo para agregar Recurso ----------*/
         protected static function agregar_archivo_modelo(Recurso $recurso){
             try {
-                $sql = mainModel::conectar()->prepare("INSERT INTO archivo(ruta, tamano, nombre, isbn, editorial, estado, id_recurso) VALUES(?, ?, ?, ?, ?, ?, ?);");
-                $sql->execute([$recurso->getArchivo()->getRuta(), $recurso->getArchivo()->getTamano(), $recurso->getArchivo()->getNombre() ,$recurso->getArchivo()->getISBN(),$recurso->getArchivo()->getEditorial(),$recurso->getArchivo()->getEstado(), $recurso->getIdRecurso()]);
+                $sql = mainModel::conectar()->prepare("INSERT INTO archivo(ruta, tamano, nombre, estado, id_recurso) VALUES(?, ?, ?, ?, ?);");
+                $sql->execute([$recurso->getArchivo()->getRuta(), $recurso->getArchivo()->getTamano(), $recurso->getArchivo()->getNombre(), $recurso->getArchivo()->getEstado(), $recurso->getIdRecurso()]);
 
                 return $sql->rowCount();
             } catch (Exception $e) {
@@ -63,7 +63,7 @@
         /*---------- Modelo datos recurso ----------*/
         protected static function datos_recurso_modelo($tipo, $id){
             if($tipo == "Unico"){
-                $sql = mainModel::conectar()->prepare("SELECT r.id as idRecurso, r.*, a.* 
+                $sql = mainModel::conectar()->prepare("SELECT r.id as idRecurso, r.*, r.estado estado_recurso, a.* 
                 FROM recurso r
                 LEFT JOIN archivo a ON a.id_recurso = r.id
                 WHERE r.estado != ". Utilidades::getIdEstado("ELIMINADO") ." AND r.id = :ID;");
@@ -134,8 +134,8 @@
         /*---------- Modelo para editar información de recurso ----------*/
         protected static function editar_recurso_modelo($recurso, $cursosAgregados, $cursosEliminados){
             try {
-                $sql = mainModel::conectar()->prepare("UPDATE recurso SET titulo=?, fecha_publicacion_recurso=?, resumen=?, estado=?, enlace=? WHERE id=?");
-                $sql->execute([$recurso->getTitulo(), $recurso->getFecha(), $recurso->getResumen(), $recurso->getEstado(), $recurso->getEnlace(), $recurso->getIdRecurso()]);
+                $sql = mainModel::conectar()->prepare("UPDATE recurso SET titulo=?, fecha_publicacion_recurso=?, resumen=?, estado=?, enlace=?, isbn=?, editorial=? WHERE id=?");
+                $sql->execute([$recurso->getTitulo(), $recurso->getFecha(), $recurso->getResumen(), $recurso->getEstado(), $recurso->getEnlace(), $recurso->getISBN(), $recurso->getEditorial(), $recurso->getIdRecurso()]);
 
                 foreach ($cursosAgregados as $cursoNuevo) {
                     $sql = mainModel::conectar()->prepare("INSERT INTO curso_recurso(id_recurso, id_curso) VALUES(?, ?);");
@@ -190,8 +190,8 @@
         /*---------- Modelo para editar el archivo del Recurso ----------*/
         protected static function editar_archivo_modelo(Recurso $recurso, Archivo $archivo){
             try {
-                $sql = mainModel::conectar()->prepare("UPDATE archivo SET ruta=?, tamano=?, nombre=?, isbn=?, editorial=?, estado=? WHERE id=?;");
-                $sql->execute([$recurso->getArchivo()->getRuta(), $recurso->getArchivo()->getTamano(), $recurso->getArchivo()->getNombre() ,$recurso->getArchivo()->getISBN(),$recurso->getArchivo()->getEditorial(),$recurso->getArchivo()->getEstado(), $archivo->getIdArchivo()]);
+                $sql = mainModel::conectar()->prepare("UPDATE archivo SET ruta=?, tamano=?, nombre=?, estado=? WHERE id=?;");
+                $sql->execute([$recurso->getArchivo()->getRuta(), $recurso->getArchivo()->getTamano(), $recurso->getArchivo()->getNombre(), $recurso->getArchivo()->getEstado(), $archivo->getIdArchivo()]);
 
                 return $sql->rowCount();
             } catch (Exception $e) {

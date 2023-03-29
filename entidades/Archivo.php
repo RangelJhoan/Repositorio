@@ -5,8 +5,6 @@ class Archivo{
     private $ruta;
     private $tamano;
     private $nombre;
-    private $isbn;
-    private $editorial;
     private $estado;
 
 
@@ -40,22 +38,6 @@ class Archivo{
 
     public function setNombre($nombre){
         $this->nombre = $nombre;
-    }
-
-    public function getISBN(){
-        return $this->isbn;
-    }
-
-    public function setISBN($isbn){
-        $this->isbn = $isbn;
-    }
-
-    public function getEditorial(){
-        return $this->editorial;
-    }
-
-    public function setEditorial($editorial){
-        $this->editorial = $editorial;
     }
 
     public function getEstado(){

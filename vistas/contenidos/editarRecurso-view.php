@@ -117,7 +117,7 @@ if($consultaRecursos->rowCount() > 0){
                                 <?php
                                 foreach (Utilidades::getEstadosEdicion() as $clave => $valor) {
                                 ?>
-                                <option <?php if($datosRecurso['estado'] == $clave){echo "selected";} ?> value="<?php echo $clave; ?>"><?php echo $valor; ?></option>
+                                <option <?php if($datosRecurso['estado_recurso'] == $clave){echo "selected";} ?> value="<?php echo $clave; ?>"><?php echo $valor; ?></option>
                                 <?php
                                 }
                                 ?>
