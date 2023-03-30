@@ -66,6 +66,8 @@ class vistasModelo{
             }
         }elseif($vistas == "home"){
             $contenido = "home";
+        }elseif($vistas == "404"){
+            $contenido = "404";
         }else{
             $contenido = "login";
         }

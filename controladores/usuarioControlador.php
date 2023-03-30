@@ -180,7 +180,11 @@ class usuarioControlador extends usuarioModelo{
             session_unset();
             session_destroy();
 
-            echo Utilidades::getAlertaExitosoJSON("redireccionar", "", SERVER_URL);
+            $alerta = [
+                "Alerta" => "redireccionar",
+                "URL" => SERVER_URL
+            ];
+            echo json_encode($alerta);
         }else{
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo cerrar la sesión en el sistema");
         }

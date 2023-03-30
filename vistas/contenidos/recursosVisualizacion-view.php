@@ -4,14 +4,25 @@
     $ins_main = new mainModel();
     $ins_home = new homeControlador();
 
+    //No hay información de recurso en la URL
+    if(!isset($pagina[1]) || $pagina[1] == ""){
+        header('Location: ' . SERVER_URL. '404');
+        exit();
+    }
+
     $inforecurso = $ins_home->buscar_info_recurso($pagina[1]);
+
+    //El ID del recurso es incorrecto (No existe)
+    if($inforecurso == ""){
+        header('Location: ' . SERVER_URL. '404');
+        exit();
+    }
+
     $autores = $ins_home->autores_recurso($inforecurso['id']);
     $cursos = $ins_home->curso_recurso($inforecurso['id']);
     $etiquetas = $ins_home->etiquetas_recurso($inforecurso['id']);
     $archivo = $ins_home->archivo_recurso($inforecurso['id']);
-    if(isset($archivo['editorial'])){
-        $editorial = $archivo['editorial'];
-        $isbn = $archivo['isbn'];
+    if(isset($archivo['ruta'])){
         $nArchivo = $archivo['nombre'];
         $tamano = $archivo['tamano'];
         $ruta = $archivo['ruta'];
@@ -22,8 +33,10 @@
             $formato = "";
         }
     }else{
-        header('Location: ' . SERVER_URL. '404');
-        exit();
+        $nArchivo = "";
+        $tamano = "";
+        $ruta = "";
+        $formato = "";
     }
 
 ?>
@@ -100,11 +113,11 @@
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Editorial:</th>
-                <td class="infoColVerRecurso"><?php echo $editorial; ?></td>
+                <td class="infoColVerRecurso"><?php echo $inforecurso['editorial']; ?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">ISBN:</th>
-                <td class="infoColVerRecurso"><?php echo $isbn; ?></td>
+                <td class="infoColVerRecurso"><?php echo $inforecurso['isbn']; ?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">URI:</th>

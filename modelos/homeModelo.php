@@ -102,7 +102,7 @@
         }
 
         protected static function detalles_recurso($pId){
-            $sql = mainModel::conectar()->prepare("SELECT r.id,r.titulo,r.fecha_publicacion_recurso,r.resumen,d.nombre,d.apellido,r.fecha_publicacion_profesor,r.enlace FROM recurso r JOIN persona d ON d.id = r.id_docente
+            $sql = mainModel::conectar()->prepare("SELECT r.id,r.titulo,r.fecha_publicacion_recurso,r.resumen,d.nombre,d.apellido,r.fecha_publicacion_profesor,r.enlace, r.editorial, r.isbn FROM recurso r JOIN persona d ON d.id = r.id_docente
             WHERE r.id='".$pId."'");
             $sql->execute();
 
@@ -124,7 +124,7 @@
         }
 
         protected static function cargar_archivos($pId){
-            $sql = mainModel::conectar()->prepare("SELECT ruta,tamano,nombre,isbn,editorial FROM archivo WHERE id_recurso = '".$pId."'");
+            $sql = mainModel::conectar()->prepare("SELECT ruta,tamano,nombre FROM archivo WHERE id_recurso = '".$pId."'");
             $sql->execute();
 
             return $sql->fetch();
