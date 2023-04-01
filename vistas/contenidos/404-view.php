@@ -13,7 +13,7 @@
             <div class="wrapper">
                 <h1>404 :(</h1>
             </div>
-            <p>¡Ups! La página a la que intenta acceder no se encuentra disponible.</p>
+            <p>¡Ups! La página a la que intenta acceder del repositorio institucional no se encuentra disponible.</p>
             <div class="buttons-Section">
                 <a href="<?php echo SERVER_URL; ?>home/" class="button-404" title="Repositorio Institucional">Ir a inicio</a>
                 <a href="javascript:history.back()" class="button-404 btn404Back" title="Volver">Volver atrás</a>

@@ -207,10 +207,10 @@ body{
 }
 /*Logo*/
 .nav-Home-Main .logo-image-Home .logo-ri-home{
-    width: 40px;
+    width: 65px;
     object-fit: cover;
     border-radius: 50%;
-    margin-top: 3%;
+    /* margin-top: 3%; */
 }
 /*Nombre*/
 .nav-Home-Main .logo-section-Home .logo-name{
@@ -479,7 +479,7 @@ body{
 }
 
 .footer-Box .logoFooter-Home .logo-RI-footerHome{
-    width: 150px;
+    width: 220px;
 }
 
 .footer-Box .mainText-Footer{
