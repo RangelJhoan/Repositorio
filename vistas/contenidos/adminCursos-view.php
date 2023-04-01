@@ -80,7 +80,6 @@ $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
                             <th>Nombre</th>
                             <th>Programa(s)</th>
                             <th>Docente(s)</th>
-                            <th>Creado por</th>
                             <th>Estado</th>
                             <th>Acción</th>
                         </tr>
@@ -91,19 +90,29 @@ $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
                             $contador = 1;
                             foreach($datos as $rows){
                                 $programas_curso =  $ins_curso->programas_curso_controlador($rows['id']);
+                                $docentesXCurso = $ins_curso->docentes_curso_controlador($rows['id']);
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $contador; ?></td>
                             <td data-titulo="NOMBRE" class="responsive-file"><?php echo $rows['nombre'] ?></td>
-                            <td data-titulo="PROGRAMA(S)" class="responsive-file"><?php
+                            <td data-titulo="PROGRAMA(S)" class="responsive-file">
+                            <?php
                                 foreach($programas_curso as $campos){
                                     ?>
                                     <li><?php echo $campos['programa_nombre'] ?></li>
                                     <?php
                                 }
-                            ?></td>
-                            <td data-titulo="DOCENTE(S)" class="responsive-file">¿Nombre del docente?</td>
-                            <td data-titulo="CREADO POR" class="responsive-file">¿Creado por?</td>
+                            ?>
+                            </td>
+                            <td data-titulo="DOCENTE(S)" class="responsive-file">
+                            <?php
+                                foreach($docentesXCurso as $camposDocente){
+                                    ?>
+                                    <li><?php echo $camposDocente['nombrePersona'] . " " . $camposDocente['apeliidoDocente'] ?></li>
+                                    <?php
+                                }
+                            ?>
+                            </td>
                             <td data-titulo="ESTADO" class="responsive-file"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
                             <td data-titulo="ACCIÓN" class="responsive-file">
                                 <div class="action-options-container">
