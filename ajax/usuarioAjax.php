@@ -4,7 +4,7 @@ $peticionAjax = true;
 
 require_once "../config/APP.php";
 
-if(isset($_POST['correo']) || isset($_POST['idUsuario']) || isset($_POST['id_usuario_editar']) || isset($_POST['id_persona']) || isset($_POST['id_usuario_edit_perfil'])){
+if(isset($_POST['correo']) || isset($_POST['idUsuario']) || isset($_POST['id_usuario_editar']) || isset($_POST['id_persona']) || isset($_POST['id_usuario_edit_perfil']) || isset($_POST['correo_recuperar_clave'])){
     /*--- Instancia al controlador ---*/
     require_once "../controladores/usuarioControlador.php";
     $ins_usuario = new usuarioControlador();
@@ -32,6 +32,11 @@ if(isset($_POST['correo']) || isset($_POST['idUsuario']) || isset($_POST['id_usu
     /*--- Editar perfil ---*/
     if(isset($_POST['id_usuario_edit_perfil']) && isset($_POST['correo_edit_perfil'])){
         echo $ins_usuario->editar_perfil_controlador();
+    }
+
+    /*--- Recuperar contraseña ---*/
+    if(isset($_POST['correo_recuperar_clave'])){
+        echo $ins_usuario->recuperarClaveControlador();
     }
 
 }else{

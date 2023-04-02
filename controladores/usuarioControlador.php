@@ -411,6 +411,35 @@ class usuarioControlador extends usuarioModelo{
         return $datos;
     }
 
+    public function recuperarClaveControlador(){
+        $asunto = "Cambio de contraseña (Repositorio Institucional)";
+        $msg    =   '<html>'.
+                    '<head>'.
+                    '<title>Recuperar contraseña</title>'.
+                    '</head>'.
+                    '<meta charset="UTF-8">'.
+                    '<body>'.
+                    '<p><b>¿Has solicitado cambiar tu contraseña?</b></p>'.
+                    '<p>Hemos recibido una solicitud para recuperar la contraseña de su usuario. Ingresa al siguiente enlace para hacer el cambio.</p>'.
+                    '<p style="background-color: #506591;"><a href="'. SERVER_URL .'recuperar-clave" style="background-color: #506591; color: white; font-weight: bold;">CAMBIAR CONTRASEÑA</a></p>'.
+                    '<br><br><br>'.
+                    '<p>Si no realizó la solicitud de cambio de contraseña o no desea realizar esta acción, por favor ignore este mensaje.</p>'.
+                    '</body>'.
+                    '</html>';
+        $email = $_POST['correo_recuperar_clave'];
+        $header = "From: noreply@example.com". "\r\n";
+        $header .= "Reply-To: noreply@example.com" . "\r\n";
+        $header .= "MIME-Version: 1.0\r\n";
+		$header .= "Content-Type: text/html; charset=UTF-8\r\n";
+        $mail = @mail($email, $asunto, $msg, $header);
+
+        if($mail){
+            echo Utilidades::getAlertaExitosoJSON("recargar", "Correo enviado correctamente a la dirección de correo ingresada");
+        }else{
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo realizar el envío del correo de recuperación");
+        }
+    }
+
 
     // VALIDACIONES
 
