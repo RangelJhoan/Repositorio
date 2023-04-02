@@ -411,7 +411,25 @@ class usuarioControlador extends usuarioModelo{
         return $datos;
     }
 
+    /**
+     * Envia al correo del usuario la nueva clave para autorizar el inicio de sesión
+     */
     public function recuperarClaveControlador(){
+        if(!isset($_POST['correo_recuperar_clave']) || $_POST['correo_recuperar_clave'] == ""){
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene la información requerida");
+            exit();
+        }
+
+        $validarCorreo = mainModel::ejecutar_consulta_simple("SELECT id FROM usuario WHERE correo = '" . $_POST['correo_recuperar_clave'] . "'");
+        if($validarCorreo->rowCount() < 1){
+            echo Utilidades::getAlertaErrorJSON("simple", "No se ha encontrado un usuario relacionado al correo electrónico ingresado");
+            exit();
+        }
+
+        $persona = new Persona();
+        $persona->setIdUsuario($validarCorreo->fetch()['id']);
+        $claveNueva = Utilidades::generarClaveAleatoria();
+
         $asunto = "Cambio de contraseña (Repositorio Institucional)";
         $msg    =   '<html>'.
                     '<head>'.
@@ -420,10 +438,9 @@ class usuarioControlador extends usuarioModelo{
                     '<meta charset="UTF-8">'.
                     '<body>'.
                     '<p><b>¿Has solicitado cambiar tu contraseña?</b></p>'.
-                    '<p>Hemos recibido una solicitud para recuperar la contraseña de su usuario. Ingresa al siguiente enlace para hacer el cambio.</p>'.
-                    '<p style="background-color: #506591;"><a href="'. SERVER_URL .'recuperar-clave" style="background-color: #506591; color: white; font-weight: bold;">CAMBIAR CONTRASEÑA</a></p>'.
+                    '<p>Hemos recibido una solicitud para recuperar la contraseña de su usuario.</p>'.
+                    '<p>Su nueva clave es: ' . $claveNueva . '</p>'.
                     '<br><br><br>'.
-                    '<p>Si no realizó la solicitud de cambio de contraseña o no desea realizar esta acción, por favor ignore este mensaje.</p>'.
                     '</body>'.
                     '</html>';
         $email = $_POST['correo_recuperar_clave'];
@@ -433,11 +450,19 @@ class usuarioControlador extends usuarioModelo{
 		$header .= "Content-Type: text/html; charset=UTF-8\r\n";
         $mail = @mail($email, $asunto, $msg, $header);
 
-        if($mail){
-            echo Utilidades::getAlertaExitosoJSON("recargar", "Correo enviado correctamente a la dirección de correo ingresada");
-        }else{
+        if(!$mail){
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo realizar el envío del correo de recuperación");
+            exit();
         }
+
+        $persona->setClave(mainModel::encryption($claveNueva));
+        $editarUsuario = usuarioModelo::editar_usuario_perfil_modelo($persona);
+        if(is_string($editarUsuario) || $editarUsuario < 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "Hubo un error inesperado al restablecer la contraseña");
+            exit();
+        }
+
+        echo Utilidades::getAlertaExitosoJSON("simple", "Contraseña restablecida. Por favor revisar el correo electrónico donde se envió la nueva clave");
     }
 
 

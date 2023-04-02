@@ -85,7 +85,7 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                     <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="FormularioAjax" method="POST" data-form="update" autocomplete="off">
                         <div class="input-field">
                             <i class="fas fa-envelope"></i>
-                            <input name="correo_recuperar_clave" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60" title="Por favor, ingrese el correo electrónico" required />
+                            <input name="correo_recuperar_clave" type="email" placeholder="Correo electrónico*" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60" title="Por favor, ingrese el correo electrónico" required />
                         </div>
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-submit-add-record" value="Recuperar" title="Enviar"/>

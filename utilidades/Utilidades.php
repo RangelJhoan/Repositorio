@@ -55,6 +55,26 @@ class Utilidades {
         return json_encode($alerta);
     }
 
+    public static function generarClaveAleatoria(){
+        // Genera una cadena de bytes aleatorios
+        $bytes = random_bytes(4);
+
+        // Convierte la cadena de bytes en una cadena de caracteres segura
+        $key = bin2hex($bytes);
+
+        // Agrega caracteres especiales a la clave
+        $catacteresEspeciales = array('*', '-', '+', '=', '<', '>', '?');
+        $key .= $catacteresEspeciales[rand(0, count($catacteresEspeciales)-1)];
+
+        // Mezcla la clave para que tenga una combinación aleatoria de mayúsculas, minúsculas y números
+        $key = str_shuffle(strtolower($key) . strtoupper($key) . rand(0, 999));
+
+        // Limita la clave a 12 caracteres
+        $key = substr($key, 0, 12);
+
+        return $key;
+    }
+
 }
 
 ?>
