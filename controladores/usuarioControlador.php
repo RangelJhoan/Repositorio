@@ -18,7 +18,7 @@ class usuarioControlador extends usuarioModelo{
     public function agregar_usuario_controlador(){
         session_start(['name'=>'REPO']);
         //Validamos que sólo el super admin pueda crear administradores
-        if($_POST['tipoUsuario'] == 1 && $_SESSION['correo_usuario'] != "admin.repositorioinstitucional@gmail.com"){
+        if($_POST['tipoUsuario'] == 1 && $_SESSION['correo_usuario'] != SUPER_ADMIN_EMAIL){
             echo Utilidades::getAlertaErrorJSON("simple", "Usted no cuenta con los permisos necesarios para realizar esta acción");
             exit();
         }
@@ -27,12 +27,60 @@ class usuarioControlador extends usuarioModelo{
         $persona->setApellido(mainModel::limpiarCadena($_POST['apellido']));
         $persona->setCorreo(mainModel::limpiarCadena($_POST['correo']));
         $persona->setDocumento(mainModel::limpiarCadena($_POST['documento']));
-        $persona->setClave(mainModel::limpiarCadena($_POST['clave']));
+        $persona->setClave($persona->getDocumento());
         $persona->setIdTipoUsuario(mainModel::limpiarCadena($_POST['tipoUsuario']));
-        $confirmarClave = mainModel::limpiarCadena($_POST['confirmarClave']);
 
         $persona->setEstado(mainModel::limpiarCadena($_POST['estado']));
         $persona->setEstadoPersona(mainModel::limpiarCadena($_POST['estado']));
+
+        $tipoDocumento = new TipoDocumento();
+        $tipoDocumento->setIdTipoDocumento(mainModel::limpiarCadena($_POST['tipoDocumento']));
+
+        $persona->setTipoDocumento($tipoDocumento);
+
+        if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getCorreo() == "" || $persona->getTipoDocumento()->getIdTipoDocumento() == "" ||
+            $persona->getDocumento() == "" || $persona->getClave() == "" || $persona->getIdTipoUsuario() == "" || $persona->getEstado() == ""){
+                echo Utilidades::getAlertaErrorJSON("simple", "Por favor complete todos los campos requeridos");
+                exit();
+        }
+
+        if(!self::validarInputsPersona($persona) || !mainModel::verificarDatos("[^@]+@[^@]+\.[a-zA-Z]{2,}", $persona->getCorreo())){
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor, ingrese información válida");
+            exit();
+        }
+
+        $check_documento = mainModel::ejecutar_consulta_simple("SELECT documento FROM persona WHERE documento = '".$persona->getDocumento()."';");
+
+        if($check_documento->rowCount() > 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "El número de documento de indentidad ya se encuentra registrado en el repositorio");
+            exit();
+        }else{
+            $persona->setClave(mainModel::encryption($persona->getClave()));
+            $agregar_usuario = usuarioModelo::agregar_usuario_modelo($persona);
+
+            if($agregar_usuario != 1){
+                echo Utilidades::getAlertaErrorJSON("simple", "Error al crear el usuario");
+                exit();
+            }
+
+            echo Utilidades::getAlertaExitosoJSON("recargar", "Usuario creado correctamente");
+        }
+    }
+
+    /*---------- Controlador para crear estudiante desde el loguin (registrarme) ----------*/
+    public function agregarEstudianteControlador(){
+        session_start(['name'=>'REPO']);
+        $persona = new Persona();
+        $persona->setNombre(mainModel::limpiarCadena($_POST['nombre']));
+        $persona->setApellido(mainModel::limpiarCadena($_POST['apellido']));
+        $persona->setCorreo(mainModel::limpiarCadena($_POST['correo_registrarme']));
+        $persona->setDocumento(mainModel::limpiarCadena($_POST['documento_registrarme']));
+        $persona->setClave(mainModel::limpiarCadena($_POST['clave']));
+        $persona->setIdTipoUsuario(3);
+        $confirmarClave = mainModel::limpiarCadena($_POST['confirmarClave']);
+
+        $persona->setEstado(Utilidades::getIdEstado("PENDIENTE ACTIVACION"));
+        $persona->setEstadoPersona(Utilidades::getIdEstado("PENDIENTE ACTIVACION"));
 
         $tipoDocumento = new TipoDocumento();
         $tipoDocumento->setIdTipoDocumento(mainModel::limpiarCadena($_POST['tipoDocumento']));
@@ -193,7 +241,7 @@ class usuarioControlador extends usuarioModelo{
     /*---------- Controlador para eliminar usuario ----------*/
     public function eliminar_usuario_controlador(){
         session_start(['name'=>'REPO']);
-        if($_SESSION['correo_usuario'] != "admin.repositorioinstitucional@gmail.com"){
+        if($_SESSION['correo_usuario'] != SUPER_ADMIN_EMAIL){
             echo Utilidades::getAlertaErrorJSON("simple", "Usted no cuenta con los permisos necesarios para realizar esta acción");
             exit();
         }
@@ -231,7 +279,7 @@ class usuarioControlador extends usuarioModelo{
     /*---------- Controlador editar usuario ----------*/
     public function editar_usuario_controlador(){
         session_start(['name'=>'REPO']);
-        if($_SESSION['correo_usuario'] != "admin.repositorioinstitucional@gmail.com" && $_POST['estado'] == Utilidades::getIdEstado("ELIMINADO")){
+        if($_SESSION['correo_usuario'] != SUPER_ADMIN_EMAIL && $_POST['estado'] == Utilidades::getIdEstado("ELIMINADO")){
             echo Utilidades::getAlertaErrorJSON("simple", "Usted no cuenta con los permisos necesarios para realizar esta acción");
             exit();
         }
@@ -378,7 +426,7 @@ class usuarioControlador extends usuarioModelo{
 
         $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, p.documento as numeroDocumento, td.descripcion as documento, tu.descripcion as tipoUsuario, p.id_usuario, u.estado, tu.descripcion 
         FROM persona p JOIN tipo_documento td ON td.id = p.id_tipo_documento JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
-        WHERE u.correo != 'admin.repositorioinstitucional@gmail.com' and u.correo != '". $_SESSION['correo_usuario'] ."' and u.estado != ". Utilidades::getIdEstado("ELIMINADO") ." 
+        WHERE u.correo != '" . SUPER_ADMIN_EMAIL . "' and u.correo != '". $_SESSION['correo_usuario'] ."' and u.estado != ". Utilidades::getIdEstado("ELIMINADO") ." 
         ORDER BY p.nombre ASC";
 
         $conexion = mainModel::conectar();
@@ -400,7 +448,7 @@ class usuarioControlador extends usuarioModelo{
         FROM persona p 
         JOIN usuario u ON u.id = p.id_usuario 
         JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
-        WHERE u.correo != 'admin.repositorioinstitucional@gmail.com' and u.estado != ". Utilidades::getIdEstado("ELIMINADO") ." and UPPER(tu.descripcion) = UPPER('". $tipoUsuario ."') 
+        WHERE u.correo != '" . SUPER_ADMIN_EMAIL . "' and u.estado != ". Utilidades::getIdEstado("ELIMINADO") ." and UPPER(tu.descripcion) = UPPER('". $tipoUsuario ."') 
         ORDER BY p.nombre ASC";
 
         $conexion = mainModel::conectar();
@@ -409,6 +457,60 @@ class usuarioControlador extends usuarioModelo{
         $datos = $datos->fetchAll();
 
         return $datos;
+    }
+
+    /**
+     * Envia al correo del usuario la nueva clave para autorizar el inicio de sesión
+     */
+    public function recuperarClaveControlador(){
+        if(!isset($_POST['correo_recuperar_clave']) || $_POST['correo_recuperar_clave'] == ""){
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene la información requerida");
+            exit();
+        }
+
+        $validarCorreo = mainModel::ejecutar_consulta_simple("SELECT id FROM usuario WHERE correo = '" . $_POST['correo_recuperar_clave'] . "'");
+        if($validarCorreo->rowCount() < 1){
+            echo Utilidades::getAlertaErrorJSON("simple", "No se ha encontrado un usuario relacionado al correo electrónico ingresado");
+            exit();
+        }
+
+        $persona = new Persona();
+        $persona->setIdUsuario($validarCorreo->fetch()['id']);
+        $claveNueva = Utilidades::generarClaveAleatoria();
+
+        $asunto = "Cambio de contraseña (Repositorio Institucional)";
+        $msg    =   '<html>'.
+                    '<head>'.
+                    '<title>Recuperar contraseña</title>'.
+                    '</head>'.
+                    '<meta charset="UTF-8">'.
+                    '<body>'.
+                    '<p><b>¿Has solicitado cambiar tu contraseña?</b></p>'.
+                    '<p>Hemos recibido una solicitud para recuperar la contraseña de su usuario.</p>'.
+                    '<p>Su nueva clave es: ' . $claveNueva . '</p>'.
+                    '<br><br><br>'.
+                    '</body>'.
+                    '</html>';
+        $email = $_POST['correo_recuperar_clave'];
+        $header = "From: noreply@example.com". "\r\n";
+        $header .= "Reply-To: noreply@example.com" . "\r\n";
+        $header .= "MIME-Version: 1.0\r\n";
+		$header .= "Content-Type: text/html; charset=UTF-8\r\n";
+        $mail = @mail($email, $asunto, $msg, $header);
+
+        if(!$mail){
+            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo realizar el envío del correo de recuperación");
+            exit();
+        }
+
+        $persona->setClave(mainModel::encryption($claveNueva));
+        $editarUsuario = usuarioModelo::editar_usuario_perfil_modelo($persona);
+        if(is_string($editarUsuario) || $editarUsuario < 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "Hubo un error inesperado al restablecer la contraseña");
+            exit();
+        }
+
+        echo Utilidades::getAlertaExitosoJSON("simple", "Contraseña restablecida. Por favor revisar el correo electrónico donde se envió la nueva clave");
     }
 
 

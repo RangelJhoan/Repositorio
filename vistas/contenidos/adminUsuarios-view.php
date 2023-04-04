@@ -33,7 +33,7 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                             <div class="select-option">
                                 <select name="tipoUsuario" class="combobox-titulo" title="Por favor, seleccione un tipo de usuario" required>
                                     <option selected disabled value="" class="combobox-opciones">Tipo de usuario *</option>
-                                    <option value="1">Administrador</option>
+                                    <?php if($_SESSION['correo_usuario'] == SUPER_ADMIN_EMAIL) {?><option value="1">Administrador</option><?php } ?>
                                     <option value="2">Docente</option>
                                     <option value="3">Estudiante</option>
                                 </select>
@@ -66,12 +66,6 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                         </div>
                         <div class="input-field">
                             <input name="correo" type="email" placeholder="Correo electrónico *" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60" title="Por favor, ingrese el correo electrónico" required  />
-                        </div>
-                        <div class="input-field">
-                            <input name="clave" type="password" placeholder="Contraseña *" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="La contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres." required/>
-                        </div>
-                        <div class="input-field">
-                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña *" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}"  title="Por favor, complete el campo" required />
                         </div>
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-submit-add-record" value="Crear" />
@@ -107,6 +101,7 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                             <td data-titulo="TIPO USUARIO" class="responsive-file"><?php echo $rows['tipoUsuario'] ?></td>
                             <td data-titulo="ESTADO" class="responsive-file"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
                             <td data-titulo="ACCIÓN" class="responsive-file">
+                                <?php if($_SESSION['correo_usuario'] == SUPER_ADMIN_EMAIL || $rows['tipoUsuario'] != "Administrador") {?>
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
                                         <a href="<?php echo SERVER_URL ?>adminEditarUsuario/<?php echo $ins_usuario->encryption($rows['id'])?>/" class="btn-admin-edit-record" title="Editar usuario"><i class="uil uil-edit btn-admin-edit-record"></i></a>
@@ -119,6 +114,7 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                                         </div>
                                     </form>
                                 </div>
+                                <?php } ?>
                             </td>
                         </tr>
                         <?php

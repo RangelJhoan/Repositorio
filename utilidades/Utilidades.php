@@ -11,6 +11,8 @@ class Utilidades {
 
     private static $estadosEdicion = array(0, 1);
 
+    private static $estadosUsuario = array(0, 1, 2);
+
     public static function getEstados(){
         return self::$estados;
     }
@@ -20,6 +22,15 @@ class Utilidades {
         foreach(self::$estadosEdicion as $estadoEdicion){
             if(isset(self::$estados[$estadoEdicion]))
                 $estadosFiltrados[$estadoEdicion] = self::$estados[$estadoEdicion];
+        }
+        return $estadosFiltrados;
+    }
+
+    public static function getEstadosUsuario(){
+        $estadosFiltrados = array();
+        foreach(self::$estadosUsuario as $estado){
+            if(isset(self::$estados[$estado]))
+                $estadosFiltrados[$estado] = self::$estados[$estado];
         }
         return $estadosFiltrados;
     }
@@ -53,6 +64,26 @@ class Utilidades {
             "Tipo"=>"error"
         ];
         return json_encode($alerta);
+    }
+
+    public static function generarClaveAleatoria(){
+        // Genera una cadena de bytes aleatorios
+        $bytes = random_bytes(4);
+
+        // Convierte la cadena de bytes en una cadena de caracteres segura
+        $key = bin2hex($bytes);
+
+        // Agrega caracteres especiales a la clave
+        $catacteresEspeciales = array('*', '-', '+', '=', '<', '>', '?');
+        $key .= $catacteresEspeciales[rand(0, count($catacteresEspeciales)-1)];
+
+        // Mezcla la clave para que tenga una combinación aleatoria de mayúsculas, minúsculas y números
+        $key = str_shuffle(strtolower($key) . strtoupper($key) . rand(0, 999));
+
+        // Limita la clave a 12 caracteres
+        $key = substr($key, 0, 12);
+
+        return $key;
     }
 
 }

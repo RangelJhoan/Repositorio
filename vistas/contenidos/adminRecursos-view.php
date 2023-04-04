@@ -16,9 +16,6 @@ $datos = $ins_recurso->paginador_recurso_controlador(null);
             </div>
             <!--BOTÓN CREAR-->
             <div class="new-record-container">
-                <a class="btn-add-record" title="Crear recurso" href="<?php echo SERVER_URL ?>crearRecurso/">
-                <i class="uil uil-plus-circle"></i>Nuevo
-                </a>
                 <a class="btn-add-record" title="Ir a autores" href="<?php echo SERVER_URL ?>adminAutores/">
                 <i class="uil uil-pen"></i>Autores
                 </a>

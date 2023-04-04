@@ -35,7 +35,8 @@
                 $sql->execute();
                 return $sql;
             } catch (Exception $e) {
-                echo Utilidades::getAlertaErrorJSON("simple", "Error al conectarse con el servidor");
+                echo Utilidades::getAlertaErrorJSON("simple", "Error al conectarse con el servidor " . $e);
+                exit();
             }
         }
 
