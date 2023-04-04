@@ -11,6 +11,8 @@ class Utilidades {
 
     private static $estadosEdicion = array(0, 1);
 
+    private static $estadosUsuario = array(0, 1, 2);
+
     public static function getEstados(){
         return self::$estados;
     }
@@ -20,6 +22,15 @@ class Utilidades {
         foreach(self::$estadosEdicion as $estadoEdicion){
             if(isset(self::$estados[$estadoEdicion]))
                 $estadosFiltrados[$estadoEdicion] = self::$estados[$estadoEdicion];
+        }
+        return $estadosFiltrados;
+    }
+
+    public static function getEstadosUsuario(){
+        $estadosFiltrados = array();
+        foreach(self::$estadosUsuario as $estado){
+            if(isset(self::$estados[$estado]))
+                $estadosFiltrados[$estado] = self::$estados[$estado];
         }
         return $estadosFiltrados;
     }

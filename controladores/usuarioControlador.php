@@ -27,12 +27,60 @@ class usuarioControlador extends usuarioModelo{
         $persona->setApellido(mainModel::limpiarCadena($_POST['apellido']));
         $persona->setCorreo(mainModel::limpiarCadena($_POST['correo']));
         $persona->setDocumento(mainModel::limpiarCadena($_POST['documento']));
-        $persona->setClave(mainModel::limpiarCadena($_POST['clave']));
+        $persona->setClave($persona->getDocumento());
         $persona->setIdTipoUsuario(mainModel::limpiarCadena($_POST['tipoUsuario']));
-        $confirmarClave = mainModel::limpiarCadena($_POST['confirmarClave']);
 
         $persona->setEstado(mainModel::limpiarCadena($_POST['estado']));
         $persona->setEstadoPersona(mainModel::limpiarCadena($_POST['estado']));
+
+        $tipoDocumento = new TipoDocumento();
+        $tipoDocumento->setIdTipoDocumento(mainModel::limpiarCadena($_POST['tipoDocumento']));
+
+        $persona->setTipoDocumento($tipoDocumento);
+
+        if($persona->getNombre() == "" || $persona->getApellido() == "" || $persona->getCorreo() == "" || $persona->getTipoDocumento()->getIdTipoDocumento() == "" ||
+            $persona->getDocumento() == "" || $persona->getClave() == "" || $persona->getIdTipoUsuario() == "" || $persona->getEstado() == ""){
+                echo Utilidades::getAlertaErrorJSON("simple", "Por favor complete todos los campos requeridos");
+                exit();
+        }
+
+        if(!self::validarInputsPersona($persona) || !mainModel::verificarDatos("[^@]+@[^@]+\.[a-zA-Z]{2,}", $persona->getCorreo())){
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor, ingrese información válida");
+            exit();
+        }
+
+        $check_documento = mainModel::ejecutar_consulta_simple("SELECT documento FROM persona WHERE documento = '".$persona->getDocumento()."';");
+
+        if($check_documento->rowCount() > 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "El número de documento de indentidad ya se encuentra registrado en el repositorio");
+            exit();
+        }else{
+            $persona->setClave(mainModel::encryption($persona->getClave()));
+            $agregar_usuario = usuarioModelo::agregar_usuario_modelo($persona);
+
+            if($agregar_usuario != 1){
+                echo Utilidades::getAlertaErrorJSON("simple", "Error al crear el usuario");
+                exit();
+            }
+
+            echo Utilidades::getAlertaExitosoJSON("recargar", "Usuario creado correctamente");
+        }
+    }
+
+    /*---------- Controlador para crear estudiante desde el loguin (registrarme) ----------*/
+    public function agregarEstudianteControlador(){
+        session_start(['name'=>'REPO']);
+        $persona = new Persona();
+        $persona->setNombre(mainModel::limpiarCadena($_POST['nombre']));
+        $persona->setApellido(mainModel::limpiarCadena($_POST['apellido']));
+        $persona->setCorreo(mainModel::limpiarCadena($_POST['correo_registrarme']));
+        $persona->setDocumento(mainModel::limpiarCadena($_POST['documento_registrarme']));
+        $persona->setClave(mainModel::limpiarCadena($_POST['clave']));
+        $persona->setIdTipoUsuario(3);
+        $confirmarClave = mainModel::limpiarCadena($_POST['confirmarClave']);
+
+        $persona->setEstado(Utilidades::getIdEstado("PENDIENTE ACTIVACION"));
+        $persona->setEstadoPersona(Utilidades::getIdEstado("PENDIENTE ACTIVACION"));
 
         $tipoDocumento = new TipoDocumento();
         $tipoDocumento->setIdTipoDocumento(mainModel::limpiarCadena($_POST['tipoDocumento']));

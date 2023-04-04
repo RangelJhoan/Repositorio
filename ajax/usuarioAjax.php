@@ -4,7 +4,7 @@ $peticionAjax = true;
 
 require_once "../config/APP.php";
 
-if(isset($_POST['correo']) || isset($_POST['idUsuario']) || isset($_POST['id_usuario_editar']) || isset($_POST['id_persona']) || isset($_POST['id_usuario_edit_perfil']) || isset($_POST['correo_recuperar_clave'])){
+if(isset($_POST['correo']) || isset($_POST['idUsuario']) || isset($_POST['id_usuario_editar']) || isset($_POST['id_persona']) || isset($_POST['id_usuario_edit_perfil']) || isset($_POST['correo_recuperar_clave']) || isset($_POST['correo_registrarme'])){
     /*--- Instancia al controlador ---*/
     require_once "../controladores/usuarioControlador.php";
     $ins_usuario = new usuarioControlador();
@@ -12,6 +12,11 @@ if(isset($_POST['correo']) || isset($_POST['idUsuario']) || isset($_POST['id_usu
     /*--- Agregar un usuario ---*/
     if(isset($_POST['correo']) && isset($_POST['documento'])){
         echo $ins_usuario->agregar_usuario_controlador();
+    }
+
+    /*--- Agregar un estudiante desde la vista del loguin ---*/
+    if(isset($_POST['correo_registrarme']) && isset($_POST['documento_registrarme'])){
+        echo $ins_usuario->agregarEstudianteControlador();
     }
 
     /*--- Eliminar un usuario ---*/

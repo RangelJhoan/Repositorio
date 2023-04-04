@@ -67,12 +67,6 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                         <div class="input-field">
                             <input name="correo" type="email" placeholder="Correo electrónico *" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60" title="Por favor, ingrese el correo electrónico" required  />
                         </div>
-                        <div class="input-field">
-                            <input name="clave" type="password" placeholder="Contraseña *" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="La contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres." required/>
-                        </div>
-                        <div class="input-field">
-                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña *" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}"  title="Por favor, complete el campo" required />
-                        </div>
                         <div class="botones-accion-modal">
                             <input type="submit" class="btn-submit-add-record" value="Crear" />
                             <label for="btn-modal-admin-add-record" class="btn-close-add-record">Cerrar</label>

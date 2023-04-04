@@ -110,7 +110,7 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="clave" type="password" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Por favor, ingrese la contraseña" required/>
+                        <input name="clave" type="password" placeholder="Contraseña" title="Por favor, ingrese la contraseña" required/>
                     </div>
 
                     <input type="submit" value="Acceder" class="btn solid" />
@@ -119,8 +119,6 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                 <!--Formulario 2: Crear cuenta-->
                 <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                     <h2 class="title">Registrarse</h2>
-                    <input name="tipoUsuario" type="hidden" value="3">
-                    <input name="estado" type="hidden" value="<?php echo Utilidades::getIdEstado("PENDIENTE ACTIVACION") ?>">
                     <div class="input-field">
                         <i class="fas fa-user"></i>
                         <input name="nombre" type="text" placeholder="Nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}" title="Por favor, complete el campo" required/>
@@ -131,7 +129,7 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                     </div>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input name="correo" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60" title="Por favor, complete el campo" required />
+                        <input name="correo_registrarme" type="email" placeholder="Correo electrónico" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="8" maxlength="60" title="Por favor, complete el campo" required />
                     </div>
                     <!--Select tag-->
                     <div class="input-field ">
@@ -151,7 +149,7 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                     </div>
                     <div class="input-field">
                         <i class="fas fa-solid fa-address-card"></i>
-                        <input name="documento" type="number" placeholder="Número de documento" min="1000" max="100000000000"  pattern="[0-9]+" title="Por favor, complete el campo" required />
+                        <input name="documento_registrarme" type="number" placeholder="Número de documento" min="1000" max="100000000000"  pattern="[0-9]+" title="Por favor, complete el campo" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
