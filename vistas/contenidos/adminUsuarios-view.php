@@ -33,7 +33,7 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                             <div class="select-option">
                                 <select name="tipoUsuario" class="combobox-titulo" title="Por favor, seleccione un tipo de usuario" required>
                                     <option selected disabled value="" class="combobox-opciones">Tipo de usuario *</option>
-                                    <option value="1">Administrador</option>
+                                    <?php if($_SESSION['correo_usuario'] == SUPER_ADMIN_EMAIL) {?><option value="1">Administrador</option><?php } ?>
                                     <option value="2">Docente</option>
                                     <option value="3">Estudiante</option>
                                 </select>
@@ -101,6 +101,7 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                             <td data-titulo="TIPO USUARIO" class="responsive-file"><?php echo $rows['tipoUsuario'] ?></td>
                             <td data-titulo="ESTADO" class="responsive-file"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
                             <td data-titulo="ACCIÓN" class="responsive-file">
+                                <?php if($_SESSION['correo_usuario'] == SUPER_ADMIN_EMAIL || $rows['tipoUsuario'] != "Administrador") {?>
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
                                         <a href="<?php echo SERVER_URL ?>adminEditarUsuario/<?php echo $ins_usuario->encryption($rows['id'])?>/" class="btn-admin-edit-record" title="Editar usuario"><i class="uil uil-edit btn-admin-edit-record"></i></a>
@@ -113,6 +114,7 @@ $datos = $ins_usuario->paginador_usuario_controlador();
                                         </div>
                                     </form>
                                 </div>
+                                <?php } ?>
                             </td>
                         </tr>
                         <?php

@@ -74,7 +74,7 @@
                 </div>
             </label>
             <div class="contentFAQ">
-                <p class="answerFAQ">Las únicas personas autorizadas para poder publicar recursos en el repositorio institucional son los docentes y administradores. Si usted es un usuario particular, por favor póngase en contacto al correo <a href = "mailto: admin.repositorioinstitucional@gmail.com">admin.repositorioinstitucional@gmail.com</a></p>
+                <p class="answerFAQ">Las únicas personas autorizadas para poder publicar recursos en el repositorio institucional son los docentes. Si usted es un usuario particular, por favor póngase en contacto al correo <a href="mailto:"<?php echo SUPER_ADMIN_EMAIL ?>><?php echo SUPER_ADMIN_EMAIL ?></a></p>
             </div>
         </div>
         <!-- Pregunta #6 -->

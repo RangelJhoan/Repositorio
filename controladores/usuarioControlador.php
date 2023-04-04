@@ -18,7 +18,7 @@ class usuarioControlador extends usuarioModelo{
     public function agregar_usuario_controlador(){
         session_start(['name'=>'REPO']);
         //Validamos que sólo el super admin pueda crear administradores
-        if($_POST['tipoUsuario'] == 1 && $_SESSION['correo_usuario'] != "admin.repositorioinstitucional@gmail.com"){
+        if($_POST['tipoUsuario'] == 1 && $_SESSION['correo_usuario'] != SUPER_ADMIN_EMAIL){
             echo Utilidades::getAlertaErrorJSON("simple", "Usted no cuenta con los permisos necesarios para realizar esta acción");
             exit();
         }
@@ -241,7 +241,7 @@ class usuarioControlador extends usuarioModelo{
     /*---------- Controlador para eliminar usuario ----------*/
     public function eliminar_usuario_controlador(){
         session_start(['name'=>'REPO']);
-        if($_SESSION['correo_usuario'] != "admin.repositorioinstitucional@gmail.com"){
+        if($_SESSION['correo_usuario'] != SUPER_ADMIN_EMAIL){
             echo Utilidades::getAlertaErrorJSON("simple", "Usted no cuenta con los permisos necesarios para realizar esta acción");
             exit();
         }
@@ -279,7 +279,7 @@ class usuarioControlador extends usuarioModelo{
     /*---------- Controlador editar usuario ----------*/
     public function editar_usuario_controlador(){
         session_start(['name'=>'REPO']);
-        if($_SESSION['correo_usuario'] != "admin.repositorioinstitucional@gmail.com" && $_POST['estado'] == Utilidades::getIdEstado("ELIMINADO")){
+        if($_SESSION['correo_usuario'] != SUPER_ADMIN_EMAIL && $_POST['estado'] == Utilidades::getIdEstado("ELIMINADO")){
             echo Utilidades::getAlertaErrorJSON("simple", "Usted no cuenta con los permisos necesarios para realizar esta acción");
             exit();
         }
@@ -426,7 +426,7 @@ class usuarioControlador extends usuarioModelo{
 
         $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, p.documento as numeroDocumento, td.descripcion as documento, tu.descripcion as tipoUsuario, p.id_usuario, u.estado, tu.descripcion 
         FROM persona p JOIN tipo_documento td ON td.id = p.id_tipo_documento JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
-        WHERE u.correo != 'admin.repositorioinstitucional@gmail.com' and u.correo != '". $_SESSION['correo_usuario'] ."' and u.estado != ". Utilidades::getIdEstado("ELIMINADO") ." 
+        WHERE u.correo != '" . SUPER_ADMIN_EMAIL . "' and u.correo != '". $_SESSION['correo_usuario'] ."' and u.estado != ". Utilidades::getIdEstado("ELIMINADO") ." 
         ORDER BY p.nombre ASC";
 
         $conexion = mainModel::conectar();
@@ -448,7 +448,7 @@ class usuarioControlador extends usuarioModelo{
         FROM persona p 
         JOIN usuario u ON u.id = p.id_usuario 
         JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
-        WHERE u.correo != 'admin.repositorioinstitucional@gmail.com' and u.estado != ". Utilidades::getIdEstado("ELIMINADO") ." and UPPER(tu.descripcion) = UPPER('". $tipoUsuario ."') 
+        WHERE u.correo != '" . SUPER_ADMIN_EMAIL . "' and u.estado != ". Utilidades::getIdEstado("ELIMINADO") ." and UPPER(tu.descripcion) = UPPER('". $tipoUsuario ."') 
         ORDER BY p.nombre ASC";
 
         $conexion = mainModel::conectar();

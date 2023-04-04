@@ -14,7 +14,7 @@
                 <div class="centerInfoFooter">
                     <a class="link-a-footer" href="#">Ubicación IES</a>
                     <a class="link-a-footer" href="#">Teléfono IES</a>
-                    <a class="link-a-footer" href="mailto:admin.repositorioinstitucional@gmail.com">admin.repositorioinstitucional@gmail.com</a>
+                    <a class="link-a-footer" href="mailto:"<?php echo SUPER_ADMIN_EMAIL ?>><?php echo SUPER_ADMIN_EMAIL ?></a>
                 </div>
             </div>
         </div>
