@@ -5,33 +5,6 @@
                 <i class="uil uil-pen"></i>
                 <h1 class="panel-title-name">Autores</h1>
             </div>
-            <!--BOTÓN CREAR-->
-            <div class="new-record-container">
-                <label for="btn-modal-admin-add-record" class="btn-add-record" title="Crear autor">
-                    <i class="uil uil-plus-circle"></i>Nuevo
-                </label>
-            </div>
-            <!--MODAL CREAR AUTOR-->
-            <input type="checkbox" id="btn-modal-admin-add-record">
-                <div class="container-modal-add-record">
-                <div class="content-modal-add-record">
-                    <h3 class="content-modal-titulo">Nuevo autor</h3>
-                    <p class="content-modal-recordatorio">Recuerde que * indica que el campo es obligatorio.</p>
-                    <form action="<?php echo SERVER_URL ?>ajax/autorAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
-                        <div class="input-field">
-                            <input name="nombre_ins" type="text" placeholder="Nombres" title="Por favor, complete el campo"/>
-                        </div>
-                        <div class="input-field">
-                            <input name="apellido_ins" type="text" placeholder="Apellidos *" title="Por favor, complete el campo" required/>
-                        </div>
-                        <div class="botones-accion-modal">
-                            <input type="submit" class="btn-submit-add-record" value="Crear" />
-                            <label for="btn-modal-admin-add-record" class="btn-close-add-record">Cerrar</label>
-                        </div>
-                    </form>
-                </div>
-                <label for="btn-modal-admin-add-record" class="cerrar-modal"></label>
-            </div>
 
             <!--TABLA-->
             <?php
