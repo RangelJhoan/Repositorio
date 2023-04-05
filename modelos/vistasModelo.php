@@ -15,8 +15,6 @@ class vistasModelo{
                 //*Puede acceder a las siguientes rutas: contenidos, etiquetas
                 if(is_file("./vistas/contenidos/".$vistas."-view.php")){
                     $contenido = "./vistas/contenidos/".$vistas."-view.php";
-                }else if(is_file("./vistas/contenidos/palabrasClave/".$vistas."-view.php")){
-                    $contenido = "./vistas/contenidos/palabrasClave/".$vistas."-view.php";
                 }else{
                     $contenido = "404";
                 }
@@ -33,8 +31,6 @@ class vistasModelo{
                 //*Puede acceder a las siguientes rutas: contenidos
                 if(is_file("./vistas/contenidos/".$vistas."-view.php")){
                     $contenido = "./vistas/contenidos/".$vistas."-view.php";
-                }else if(is_file("./vistas/contenidos/palabrasClave/".$vistas."-view.php")){
-                    $contenido = "./vistas/contenidos/palabrasClave/".$vistas."-view.php";
                 }else{
                     $contenido = "404";
                 }
