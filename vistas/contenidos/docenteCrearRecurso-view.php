@@ -15,9 +15,15 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
         <div class="overview-general-admin">
             <!--TÍTULO-->
             <div class="title">
-            <i class="uil uil-file-blank"></i>
-                <h1 class="panel-title-name">Nuevo Recurso</h1>
+                <i class="uil uil-file-blank"></i>
+                <h1 class="panel-title-name">Editar Recurso</h1>
+                <div class="icon-container">
+                    <span class="question-Info qInfoNew" aria-label="Mostrar información"><i class="uil uil-question-circle"></i></span>
+                    <div class="message-box">
+                    <p>Para poder cargar más de un archivo en un recurso, es necesario comprimirlos en un formato específico.</p>
+                </div>
             </div>
+        </div>
 
             <div class="container-modal-edit-record" id="modal-container-add-record">
                 <div class="content-modal-add-record">

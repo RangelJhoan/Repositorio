@@ -66,7 +66,7 @@ if($datos_usuario->rowCount()>0){
                             <input name="documento" value="<?php echo $campos['documento']; ?>" type="number" placeholder="Número de documento" min="1000" max="100000000000"  pattern="[0-9]+" title="Número de documento"/>
                         </div>
 
-                        <div class="input-field" title="No se permite editar el correo electrónico">
+                        <div class="input-field" title="No se permite editar el correo <?php echo $campos['correo']; ?>">
                                 <div class="icon-locked">
                                     <i class="uil uil-lock icon-no-edit-allowed"></i>
                                 </div>
@@ -88,10 +88,12 @@ if($datos_usuario->rowCount()>0){
                             </div>
                         </div>
                         <div class="input-field">
-                            <input name="clave" type="password" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Recuerde que la contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres."/>
+                            <input class="input-psswd-editUser" name="clave" type="password" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Recuerde que la contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres."/>
+                            <span class="toggle-password" aria-label="Mostrar/Ocultar contraseña"><i class="uil uil-eye-slash"></i></span>
                         </div>
                         <div class="input-field">
-                            <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Confirmar contraseña"/>
+                            <input class="input-psswd-editUser" name="confirmarClave" type="password" placeholder="Confirmar contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="Confirmar contraseña"/>
+                            <span class="toggle-password" aria-label="Mostrar/Ocultar contraseña"><i class="uil uil-eye-slash"></i></span>
                         </div>
                         <div class="botones-accion-modal">
                             <button type="submit" class="btn-admin-edit-record" title="Actualizar">Guardar cambios</button>

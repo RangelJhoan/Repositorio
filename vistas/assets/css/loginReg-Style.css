@@ -372,11 +372,59 @@ select::-ms-expand{
 .btn:hover {
   background-color: var(--altern-main-color);
 }
+
 /**OJO DE PASSWORD. CAMPO PASSWORD*/
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
-  display: block !important;
-  font-size: 1rem;
+display: none !important;
+font-size: 0;
+opacity: 0;
+}
+
+/* Estilos para el ícono */
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    display: none;
+    cursor: pointer;
+}
+
+.toggle-password i {
+    font-size: var(--normal-font-size);
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+  /* Estilos para el ícono en su estado activo */
+.toggle-password.active i {
+    color: var(--main-color);
+}
+
+  /* Estilos para el ícono en su estado activo */
+.toggle-password:hover i {
+    color: var(--main-color);
+}
+
+  /* Estilos para el ícono en su estado activo */
+.toggle-password.active:hover i {
+    color: var(--main-color);
+}
+
+.input-field input[type="password"] {
+    margin-right: 40px; /* el valor dependerá del ancho del icono */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: calc(100% - 40px); /* ajusta el ancho del campo según el ancho del icono */
+}
+
+.input-psswd-loginReg{
+    margin-right: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 /*? PANELES - CAMBIO DE ACCIÖN*/

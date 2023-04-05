@@ -53,7 +53,7 @@
         align-items: center;
         margin: 25px 0 30px 0;
     }
-    .general-admin-container .title i{
+    .general-admin-container .title > i{
         position: relative;
         height: 40px;
         width: 40px;
@@ -74,6 +74,13 @@
         text-transform: uppercase;
     }
 
+    .dashboard-container .title .panel-title-name {
+        font-size: var(--title-font-size);
+        font-weight: 600;
+        color: var(--text-color);
+        margin-left: 10px;
+        text-transform: uppercase;
+    }
 /*?-------------------PANEL DASHBOARD----------------------*/
 /**Título*/
 .dashboard-container .title {
@@ -93,14 +100,10 @@
     justify-content: center;
     font-size: var(--title-font-size);
 }
-.dashboard-container .title .panel-title-name {
-    font-size: var(--title-font-size);
-    font-weight: 600;
-    color: var(--text-color);
-    margin-left: 10px;
-    text-transform: uppercase;
-}
 
+.dashboard-container .title .icon-container .questionIcon {
+    background-color: red;
+}
 
 /*?--------------TARJETAS PANEL-------------------*/
 .dashboard-container .cards-container {
@@ -367,15 +370,16 @@ label{
     font-weight: 500;
 }
 .table-admin-container .tb-admin-records tbody tr .active::after{
-    content: 'Activo';
+    content: 'ACTIVO';
     color:var(--active-status-color);
     font-weight: 500;
 }
 .table-admin-container .tb-admin-records tbody tr .inactive::after{
-    content: 'Inactivo';
+    content: 'INACTIVO';
     color:var(--inactive-status-color);
     font-weight: 500;
 }
+
 /*?BOTONES TABLA: EDITAR Y ELIMINAR*/
 /*Contenedor de los dos botones*/
 .action-options-container{
@@ -551,20 +555,71 @@ label{
     background-color: var(--modal-container-color);
     border-radius: 4px;
 }
+
+/*?Título con question informativo*/
+/**Centra el título y el ícono*/
+.title-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+/** Muestra el mouse como puntero*/
+.question-Info {
+    cursor: pointer;
+    font-size: 1.2rem;
+    color:var(--main-color);
+}
+/**Espacio entre título e ícono*/
+.title-container {
+    margin-right: 20px;
+}
+/**Propiedad necesaria para que el ícono se pueda mostrar*/
+.icon-container {
+    position: relative;
+}
+/**Estilo del título*/
 .content-modal-titulo{
-    margin-bottom: 15px;
     text-align: center;
     font-size: 1.875em;
     font-weight: 600;
     color:var(--text-color);
 }
+.message-box {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    background-color: var(--background-color);
+    border: 1px solid var(--modal-container-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    font-size: 0.7rem;
+    color:var(--text-color);
+    user-select: none;
+    width: 250px; /* ajustar el valor según el ancho deseado */
+}
+
+.icon-container:hover .message-box,
+.icon-container:focus-within .message-box,
+.icon-container:active .message-box,
+.icon-container:focus .message-box
+{
+    display: block;
+}
+
+.qInfoNew{
+    padding-left: 10px;
+}
+
 /*Párrafo recordatorio*/
 .content-modal-recordatorio{
     color:var(--text-color);
     font-size: 0.7rem;
     text-align: center;
-    margin-top: -15px;
-    
+    margin-top: 5px;
 }
 /*Contenedor botones*/
 .botones-accion-modal{
@@ -667,6 +722,7 @@ input[type=number]{
     box-sizing: border-box;
     overflow-x: auto;
     white-space: nowrap;
+    text-overflow: ellipsis; /* agrega puntos suspensivos al final */
 }
 /**Íconos bloqueados*/
 .icon-locked{
@@ -676,6 +732,7 @@ input[type=number]{
     width: 95%;
     position: absolute;
     flex-direction: row;
+    margin-right: 10px;
 }
 
 .icon-no-edit-allowed {
@@ -687,7 +744,6 @@ input[type=number]{
     color:var(--main-color);
     z-index: 1;
     padding-left: 20px;
-    background-color:  var(--input-modify-info);
 }
 
 /**Estilo al placeholder del input*/
@@ -697,8 +753,12 @@ input[type=number]{
 }
 /*PROHIBIDO EDITAR (EDITAR PERFIL)*/
 .input-disabledEdit{
-    color:var(--main-color)!important;
+    color: var(--main-color)!important;
     font-style: italic!important;
+    display: block;
+    width: calc(100% - 40px);
+    height: 100%;
+    border: none;
 }
 /**Estilos del SELECT TAG (Tipo de documento)*/
 select{
@@ -756,7 +816,7 @@ select::-ms-expand{
     position:relative;
     display: flex;
     max-width: 380px;
-    width: 100%;
+    width: 85%;
     line-height: 3;
     background: var(--input-modify-info);
     overflow: hidden;
@@ -1321,6 +1381,10 @@ select::-ms-expand{
         .dashboard-container .cards-container {
             padding-bottom: 20px;
         }
+        .message-box {
+            left: 70%;
+            transform: translateX(-70%);
+        }
     }
 
     @media (max-width:500px) {
@@ -1396,6 +1460,12 @@ select::-ms-expand{
             padding-top: 5rem;
             padding-bottom: 10%;
         }
+        .message-box {
+            left: 90%;
+            transform: translateX(-90%);
+            width: 150px;
+            margin: 10px;
+        }
     }
 
     @media (max-width:400px) {
@@ -1406,6 +1476,15 @@ select::-ms-expand{
             padding-top: 2.5rem;
             margin-bottom: 3rem;
         }
+        .general-admin-container .title .panel-title-name {
+            font-size: 1.5rem;
+        }
+        .form-control.form-control-sm{
+            width: 150px;
+        }
+        .message-box {
+            width: 120px;
+        }
     }
 
     @media (max-width:350px) {
@@ -1415,5 +1494,11 @@ select::-ms-expand{
     .container-modal-add-record{
             padding-top: 10rem;
             padding-bottom: 4rem;
+        }
+        .form-control.form-control-sm{
+            width: 100px;
+        }
+        .message-box {
+            width: 100px;
         }
     }

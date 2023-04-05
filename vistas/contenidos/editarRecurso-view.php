@@ -30,8 +30,14 @@ if($consultaRecursos->rowCount() > 0){
         <!--TÍTULO-->
         <div class="title">
             <i class="uil uil-file-blank"></i>
-                <h1 class="panel-title-name">Editar Recurso</h1>
+            <h1 class="panel-title-name">Editar Recurso</h1>
+            <div class="icon-container">
+                <span class="question-Info qInfoNew" aria-label="Mostrar información"><i class="uil uil-question-circle"></i></span>
+                <div class="message-box">
+                <p>Para poder cargar más de un archivo en un recurso, es necesario comprimirlos en un formato específico.</p>
+                </div>
             </div>
+        </div>
             <div class="container-modal-edit-record" id="modal-container-edit-user">
                 <div class="content-modal-edit-record">
                 <form action="<?php echo SERVER_URL ?>ajax/recursoAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save_resource" autocomplete="off" enctype="multipart/form-data">

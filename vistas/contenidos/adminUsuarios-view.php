@@ -26,7 +26,17 @@ $datos = $ins_usuario->paginador_usuario_controlador();
             <input type="checkbox" id="btn-modal-admin-add-record">
                 <div class="container-modal-add-record">
                 <div class="content-modal-add-record">
-                    <h3 class="content-modal-titulo">Nuevo usuario</h3>
+                <div class="title-info">
+                    <div class="title-container">
+                        <h3 class="content-modal-titulo">Nuevo usuario</h3>
+                    </div>
+                    <div class="icon-container">
+                        <span class="question-Info" aria-label="Mostrar información"><i class="uil uil-question-circle"></i></span>
+                        <div class="message-box">
+                        <p>No es necesario ingresar ninguna información para establecer una contraseña, ya que inicialmente será el número de documento del usuario. </p>
+                        </div>
+                    </div>
+                </div>
                     <p class="content-modal-recordatorio">Recuerde que * indica que el campo es obligatorio.</p>
                     <form action="<?php echo SERVER_URL ?>ajax/usuarioAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save" autocomplete="off">
                         <div class="input-field ">

@@ -110,7 +110,8 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="clave" type="password" placeholder="Contraseña" title="Por favor, ingrese la contraseña" required/>
+                        <input class="input-psswd-loginReg" name="clave" type="password" placeholder="Contraseña" title="Por favor, ingrese la contraseña" required/>
+                        <span class="toggle-password" aria-label="Mostrar/Ocultar contraseña"><i class="uil uil-eye-slash"></i></span>
                     </div>
 
                     <input type="submit" value="Acceder" class="btn solid" />
@@ -153,11 +154,13 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="clave" type="password" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="La contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres." required />
+                        <input class="input-psswd-loginReg" name="clave" type="password" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}" title="La contraseña debe contener al menos un número, una letra en mayúscula y minúscula, y como mínimo 8 caracteres." required />
+                        <span class="toggle-password" aria-label="Mostrar/Ocultar contraseña"><i class="uil uil-eye-slash"></i></span>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="confirmarClave" type="password" placeholder="Confirmar contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}"  title="Por favor, complete el campo" required />
+                        <input class="input-psswd-loginReg" name="confirmarClave" type="password" placeholder="Confirmar contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,80}"  title="Por favor, complete el campo" required />
+                        <span class="toggle-password" aria-label="Mostrar/Ocultar contraseña"><i class="uil uil-eye-slash"></i></span>
                     </div>
                     <input type="submit" class="btn" value="Crear cuenta" />
                 </form>

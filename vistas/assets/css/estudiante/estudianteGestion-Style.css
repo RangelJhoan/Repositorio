@@ -525,6 +525,10 @@ input[type=number]{
     font-size: var(--normal-font-size);
     color:var(--text-color);
     padding-left: 5px;
+    box-sizing: border-box;
+    overflow-x: auto;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* agrega puntos suspensivos al final */
 }
 /**Íconos bloqueados*/
 .icon-locked{
@@ -534,6 +538,7 @@ input[type=number]{
     width: 95%;
     position: absolute;
     flex-direction: row;
+    margin-right: 10px;
 }
 
 .icon-no-edit-allowed {
@@ -544,6 +549,7 @@ input[type=number]{
     font-size: var(--normal-font-size);
     color:var(--main-color);
     z-index: 1;
+    padding-left: 20px;
 }
 
 /**Estilo al placeholder del input*/
@@ -553,8 +559,12 @@ input[type=number]{
 }
 /*PROHIBIDO EDITAR (EDITAR PERFIL)*/
 .input-disabledEdit{
-    color:var(--main-color)!important;
+    color: var(--main-color)!important;
     font-style: italic!important;
+    display: block;
+    width: calc(100% - 40px);
+    height: 100%;
+    border: none;
 }
 /**Estilos del SELECT TAG (Tipo de documento)*/
 select{
@@ -611,7 +621,7 @@ select::-ms-expand{
     position:relative;
     display: flex;
     max-width: 380px;
-    width: 100%;
+    width: 85%;
     line-height: 3;
     background: var(--input-modify-info);
     overflow: hidden;
@@ -899,5 +909,17 @@ select::-ms-expand{
         .container-modal-add-record{
             padding-top: 2.5rem;
             margin-bottom: 3rem;
+        }
+        .general-admin-container .title .panel-title-name {
+            font-size: 1.5rem;
+        }
+        .form-control.form-control-sm{
+            width: 150px;
+        }
+    }
+
+    @media (max-width:350px) {
+        .form-control.form-control-sm{
+            width: 100px;
         }
     }
