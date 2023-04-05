@@ -11,8 +11,6 @@
     class homeModelo extends mainModel{
 
         protected static function filtrar_recursos($pTipo, $pBuscar){
-            
-            
             if($pTipo == "Busqueda"){
                 $arrayParametro = explode("¡", $pBuscar);
                 $search = "";
@@ -36,8 +34,8 @@
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r LEFT JOIN autor_recurso ar 
                 ON r.id=ar.id_recurso LEFT JOIN autor a ON a.id = ar.id_autor WHERE r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.titulo");
             }else if($pTipo=="Fecha"){
-                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r JOIN autor_recurso ar 
-                ON r.id=ar.id_recurso JOIN autor a ON a.id = ar.id_autor WHERE r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.fecha_publicacion_recurso");
+                $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r LEFT JOIN autor_recurso ar 
+                ON r.id=ar.id_recurso LEFT JOIN autor a ON a.id = ar.id_autor WHERE r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.fecha_publicacion_recurso");
             }else if($pTipo=="Curso"){
                 $sql = mainModel::conectar()->prepare("SELECT nombre,id FROM curso WHERE estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY nombre");
             }else if($pTipo=="Cursofiltrar"){
@@ -64,7 +62,6 @@
                 if($pBuscar=="Si"){
                     $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id), r.titulo, r.fecha_publicacion_recurso FROM recurso r JOIN archivo a ON r.id=a.id_recurso WHERE r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.titulo");
                 }else{
-                    
                     $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id), r.titulo, r.fecha_publicacion_recurso,a.id_recurso FROM recurso r LEFT JOIN archivo a ON r.id=a.id_recurso WHERE a.id_recurso IS NULL AND r.estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY r.titulo;");
                 }
             }
@@ -163,7 +160,6 @@
             } catch (Exception $e) {
                 return $e->getMessage();
             }
-            
         }
 
         protected static function registrar_voto($pId, $pRespuesta){
