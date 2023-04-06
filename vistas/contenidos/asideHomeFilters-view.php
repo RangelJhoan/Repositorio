@@ -1,10 +1,10 @@
 <?php
 require_once "./controladores/homeControlador.php";
 $insHome = new homeControlador();
-$listaAutores = $insHome->listado_filtro_recursos("Autor","");
+$listaAutores = $insHome->contarAutoresConRecursos();
 $listaTitulo = $insHome->listado_filtro_recursos("Titulo","");
 $listaFecha = $insHome->listado_filtro_recursos("Fecha","");
-$listaCurso = $insHome->listado_filtro_recursos("Curso","");
+$listaCurso = $insHome->contarAutoresConRecursos();
 $listaArchivosSi = $insHome->listado_filtro_recursos("Archivos","Si");
 $listaArchivosNo = $insHome->listado_filtro_recursos("Archivos","No");
 ?>

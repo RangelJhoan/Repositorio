@@ -144,6 +144,22 @@ class homeControlador extends homeModelo{
             echo Utilidades::getAlertaErrorJSON("recargar", "Para agregar este recurso a favoritos, es necesario que inicie sesión.");
         }
     }
+
+    /**
+     * Consulta la lista de autores que hayan sido seleccionados en uno o más recursos
+     */
+    public function contarAutoresConRecursos(){
+        $lista = mainModel::ejecutar_consulta_simple("SELECT DISTINCT a.id FROM autor a JOIN autor_recurso ar ON ar.id_autor = a.id;");
+        return $lista->fetchAll();
+    }
+
+    /**
+     * Consulta la lista de cursos que hayan sido seleccionados en uno o más recursos
+     */
+    public function contarCursosConRecursos(){
+        $lista = mainModel::ejecutar_consulta_simple("SELECT DISTINCT c.id FROM curso c JOIN curso_recurso cr ON cr.id_curso = c.id;");
+        return $lista->fetchAll();
+    }
     
 }
 

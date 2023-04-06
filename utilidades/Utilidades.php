@@ -9,6 +9,20 @@ class Utilidades {
             3 => "ELIMINADO"
             );
 
+    // Tipo de MIME permitidos para navegadores
+    private static $tiposMimePermitidos = array(
+        'application/pdf',
+        'image/jpeg',
+        'image/jpg',
+        'image/png',
+        'image/gif',
+        'audio/mpeg',
+        'audio/wav', 
+        'audio/ogg',
+        'video/mp4',
+        'video/webm'
+    );
+
     private static $estadosEdicion = array(0, 1);
 
     private static $estadosUsuario = array(0, 1, 2);
@@ -84,6 +98,10 @@ class Utilidades {
         $key = substr($key, 0, 12);
 
         return $key;
+    }
+
+    public static function getTiposMimePermitidos(){
+        return self::$tiposMimePermitidos;
     }
 
 }

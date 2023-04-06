@@ -256,7 +256,7 @@ class recursoControlador extends recursoModelo{
 
         if(isset($_POST['link_docente_ins'])){
             $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_docente_ins']));
-            if($recurso->getEnlace() != "" && !mainModel::verificarDatos("(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?", $recurso->getEnlace())){
+            if($recurso->getEnlace() != "" && !mainModel::verificarDatos('(http(s)?:\/\/)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?(\/[a-zA-Z0-9\-\._\?\,\'\/\\\+&%\$#\=~]*)?', $recurso->getEnlace())){
                 echo Utilidades::getAlertaErrorJSON("simple", "El enlace ingresado no es válido");
                 exit();
             }
@@ -349,8 +349,17 @@ class recursoControlador extends recursoModelo{
         if(isset($_POST['autores_docente_edit']))
             $recurso->setAutor($_POST['autores_docente_edit']);
 
-        if(isset($_POST['link_docente_ins']))
-            $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_docente_ins']));
+        if(isset($_POST['link_docente_edit'])){
+            $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_docente_edit']));
+
+            if(isset($_POST['link_docente_edit'])){
+                $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_docente_edit']));
+                if($recurso->getEnlace() != "" && !mainModel::verificarDatos('(http(s)?:\/\/)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?(\/[a-zA-Z0-9\-\._\?\,\'\/\\\+&%\$#\=~]*)?', $recurso->getEnlace())){
+                    echo Utilidades::getAlertaErrorJSON("simple", "El enlace ingresado no es válido");
+                    exit();
+                }
+            }
+        }
 
         //Obtener las etiquetas seleccionadas (Agregar nuevas y Eliminar no seleccionadas)
         $etiquetasActuales = recursoModelo::idEtiquetasRecurso($recurso->getIdRecurso())->fetchAll(PDO::FETCH_COLUMN, 0);

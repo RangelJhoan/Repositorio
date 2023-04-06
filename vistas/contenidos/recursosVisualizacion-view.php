@@ -32,6 +32,8 @@
         }else{
             $formato = "";
         }
+        // Obtener el tipo de MIME del archivo
+        $tipoMimeArchivo = mime_content_type($ruta);
     }else{
         $nArchivo = "";
         $tamano = "";
@@ -163,9 +165,14 @@
                     <div class="action-options-container">
                         <div class="btn-group-action">
                             <?php 
-                                if($tamano!=""){
+                                if($ruta!=""){
+                                    // Validar si el tipo de MIME del archivo está permitido para navegadores
+                                    if (in_array($tipoMimeArchivo, Utilidades::getTiposMimePermitidos())) {
                             ?>
                             <a href="<?php echo SERVER_URL.$ruta?>" target="_blank" class="btn-admin-view-record" title="Visualizar archivo"><i class="uil uil-eye btnAccionesRecurso btnVisRec"></i></a>
+                            <?php 
+                                    }
+                            ?>
                             <a href="<?php echo SERVER_URL."controladores/descargarArchivo.php?codigo=".$pagina[1];?>" class="btn-admin-view-record" title="Descargar archivo"><i class="uil uil-cloud-download btnAccionesRecurso btnDescRec"></i></a>
                             <?php 
                                 }
