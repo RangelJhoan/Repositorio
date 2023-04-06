@@ -91,7 +91,7 @@ class homeControlador extends homeModelo{
 
     public function calificar_recurso($pId, $pRespuesta){
         session_start(['name'=>"REPO"]);
-        if(isset($_SESSION['id_persona']) && $_SESSION['tipo_usuario']=="Estudiante"){
+        if(isset($_SESSION['id_persona']) && ($_SESSION['tipo_usuario']=="Estudiante" || $_SESSION['tipo_usuario']=="Docente")){
             $validar = homeModelo::validar_registro_voto($pId);
             if(isset($validar['id'])){
                 $valorar = homeModelo::editar_voto($validar['id'],$pRespuesta);
@@ -110,7 +110,7 @@ class homeControlador extends homeModelo{
                 echo Utilidades::getAlertaExitosoJSON("recargar", "Gracias por evaluar el recurso y ayudar a mejorar su calidad. Su retroalimentación es muy valiosa y nos ayudará a identificar áreas de oportunidad para seguir mejorando y ofrecer recursos de gran utilidad.");
             }
         }else{
-            echo Utilidades::getAlertaErrorJSON("recargar", "Para calificar este recurso, es necesario que inicie sesión.");
+            echo Utilidades::getAlertaErrorJSON("recargar", "Usted no cuenta con los permisos para calificar el recurso.");
             exit();
         }
         
@@ -141,7 +141,7 @@ class homeControlador extends homeModelo{
                 echo Utilidades::getAlertaExitosoJSON("recargar", $textoalert);
             }
         }else{
-            echo Utilidades::getAlertaErrorJSON("recargar", "Para agregar este recurso a favoritos, es necesario que inicie sesión.");
+            echo Utilidades::getAlertaErrorJSON("recargar", "Usted no cuenta con los permisos para agregar a favoritos este recurso.");
         }
     }
 

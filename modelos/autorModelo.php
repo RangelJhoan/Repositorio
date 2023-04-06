@@ -83,7 +83,7 @@
             FROM autor a 
             JOIN autor_recurso ar ON a.id = ar.id_autor 
             JOIN recurso r ON r.id = ar.id_recurso 
-            WHERE r.id = :ID;");
+            WHERE a.estado != ". Utilidades::getIdEstado("ELIMINADO"). " and r.id = :ID;");
             $sql->bindParam(":ID", $id);
             $sql->execute();
             return $sql;

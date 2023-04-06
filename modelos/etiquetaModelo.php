@@ -67,7 +67,7 @@ class etiquetaModelo extends mainModel{
         FROM etiqueta e 
         JOIN etiqueta_recurso er ON e.id = er.id_etiqueta 
         JOIN recurso r ON r.id = er.id_recurso 
-        WHERE r.id = :ID;");
+        WHERE e.estado != ". Utilidades::getIdEstado("ELIMINADO"). " and r.id = :ID;");
         $sql->bindParam(":ID", $id);
         $sql->execute();
         return $sql;

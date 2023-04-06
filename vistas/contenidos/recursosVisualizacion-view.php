@@ -148,7 +148,17 @@
             <tr>
                 <th class="tituloColVerRecurso">Archivo:</th>
                 <td class="infoColVerRecurso">
+                    <?php
+                        if (in_array($tipoMimeArchivo, Utilidades::getTiposMimePermitidos())){
+                    ?>
                     <a href="<?php echo SERVER_URL.$ruta?>" target="_blank" class="redireccionVerRecurso"><?php echo $nArchivo; ?></a>
+                    <?php
+                        }else{
+                    ?>
+                    <?php echo $nArchivo; ?>
+                    <?php
+                        }
+                    ?>
                 </td>
             </tr>
             <tr>

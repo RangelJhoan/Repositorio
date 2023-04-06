@@ -109,7 +109,7 @@
         protected static function programas_curso_modelo($id){
             $sql = mainModel::conectar()->prepare("SELECT c.id curso_id, c.nombre curso_nombre, c.descripcion curso_desc, cp.id curpro_id, p.id programa_id, p.nombre programa_nombre, p.descripcion programa_desc 
             FROM curso c JOIN curso_programa cp ON c.id = cp.id_curso JOIN programa p ON p.id = cp.id_programa 
-            WHERE c.id = :ID;");
+            WHERE p.estado != ". Utilidades::getIdEstado("ELIMINADO"). " and c.id = :ID;");
             $sql->bindParam(":ID", $id);
             $sql->execute();
             return $sql;
@@ -121,7 +121,7 @@
             FROM curso c 
             JOIN docente_curso dc ON c.id = dc.id_curso 
             JOIN persona p ON p.id = dc.id_docente 
-            WHERE c.id = :ID;");
+            WHERE p.estado != ". Utilidades::getIdEstado("ELIMINADO"). " and c.id = :ID;");
             $sql->bindParam(":ID", $id);
             $sql->execute();
             return $sql;
@@ -154,7 +154,7 @@
             FROM curso c 
             JOIN curso_recurso cr ON c.id = cr.id_curso 
             JOIN recurso r ON r.id = cr.id_recurso 
-            WHERE r.id = :ID;");
+            WHERE c.estado != ". Utilidades::getIdEstado("ELIMINADO"). " and r.id = :ID;");
             $sql->bindParam(":ID", $id);
             $sql->execute();
             return $sql;

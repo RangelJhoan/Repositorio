@@ -120,7 +120,7 @@ class programaControlador extends programaModelo{
     }
 
     public function listar_programas_controlador(){
-        $sql = mainModel::ejecutar_consulta_simple("SELECT * FROM programa;");
+        $sql = mainModel::ejecutar_consulta_simple("SELECT * FROM programa WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") .";");
         return $sql->fetchAll();
     }
 
