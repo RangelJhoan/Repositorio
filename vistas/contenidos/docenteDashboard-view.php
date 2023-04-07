@@ -35,6 +35,11 @@
                     <i class="uil uil-file-blank"></i>
                     <span class="cards-total-count"><?php echo $totalRecursos->rowCount(); ?></span>
                 </a>
+                <a href="<?php echo SERVER_URL ?>estudianteFeedbacks/" class="card">
+                    <span class="cards-title-name">Feedbacks</span>
+                    <i class="uil uil-feedback"></i>
+                    <span class="cards-total-count">Meter contador</span>
+                </a>
             </div>
         </div>
         <section class="graphics">
