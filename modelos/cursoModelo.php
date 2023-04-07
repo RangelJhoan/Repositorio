@@ -13,26 +13,30 @@
 
         /*---------- Modelo para agregar curso ----------*/
         protected static function agregar_curso_modelo(Curso $curso){
-            $sql = mainModel::conectar()->prepare("INSERT INTO curso(nombre, descripcion, estado) VALUES(?, ?, ?);");
-            $sql->execute([$curso->getNombre(), $curso->getDescripcion(), $curso->getEstado()]);
-            $sqlQuery = mainModel::conectar()->prepare("SELECT id FROM curso WHERE nombre = ?;");
-            $sqlQuery->execute([$curso->getNombre()]);
-            $row = $sqlQuery->fetch();
-            $idCurso = $row['id'];
+            try{
+                $sql = mainModel::conectar()->prepare("INSERT INTO curso(nombre, descripcion, estado) VALUES(?, ?, ?);");
+                $sql->execute([$curso->getNombre(), $curso->getDescripcion(), $curso->getEstado()]);
+                $sqlQuery = mainModel::conectar()->prepare("SELECT id FROM curso WHERE nombre = ?;");
+                $sqlQuery->execute([$curso->getNombre()]);
+                $row = $sqlQuery->fetch();
+                $idCurso = $row['id'];
 
-            if($sql->rowCount() == 1){
-                foreach($curso->getListaProgramas() as $programaID){
-                    $sql = mainModel::conectar()->prepare("INSERT INTO curso_programa(id_curso, id_programa) VALUES(?, ?)");
-                    $sql->execute([$idCurso, $programaID]);
-                }
+                if($sql->rowCount() == 1){
+                    foreach($curso->getListaProgramas() as $programaID){
+                        $sql = mainModel::conectar()->prepare("INSERT INTO curso_programa(id_curso, id_programa) VALUES(?, ?)");
+                        $sql->execute([$idCurso, $programaID]);
+                    }
 
-                foreach($curso->getListaDocente() as $docenteID){
-                    $sql = mainModel::conectar()->prepare("INSERT INTO docente_curso(id_curso, id_docente) VALUES(?, ?)");
-                    $sql->execute([$idCurso, $docenteID]);
+                    foreach($curso->getListaDocente() as $docenteID){
+                        $sql = mainModel::conectar()->prepare("INSERT INTO docente_curso(id_curso, id_docente) VALUES(?, ?)");
+                        $sql->execute([$idCurso, $docenteID]);
+                    }
+                    return $sql;
                 }
                 return $sql;
+            }catch(Exception $e){
+                return $e->getMessage();
             }
-            return $sql;
         }
 
         /*---------- Modelo para eliminar curso ----------*/

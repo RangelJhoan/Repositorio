@@ -27,6 +27,12 @@ class cursoControlador extends cursoModelo{
             $curso->setListaDocentes($_POST['docentes_ins']);
         }
 
+        $checkCurso = mainModel::ejecutar_consulta_simple("SELECT id FROM curso WHERE nombre = '{$curso->getNombre()}'");
+        if($checkCurso->rowCount() > 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "El curso a crear ya está registrado en el repositorio");
+            exit();
+        }
+
         if($curso->getNombre() == "" || $curso->getDescripcion() == "" || count($curso->getListaProgramas())<=0){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
@@ -34,11 +40,12 @@ class cursoControlador extends cursoModelo{
 
         $agregar_curso = cursoModelo::agregar_curso_modelo($curso);
 
-        if($agregar_curso->rowCount() == 1){
-            echo Utilidades::getAlertaExitosoJSON("recargar", "Curso creado correctamente");
-        }else{
-            echo Utilidades::getAlertaErrorJSON("simple", "Error al crear el curso");
+        if(is_string($agregar_curso) || $agregar_curso < 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "Error al crear el curso " . $agregar_curso);
+            exit();
         }
+
+        echo Utilidades::getAlertaExitosoJSON("recargar", "Curso creado correctamente");
     }
 
     /*---------- Controlador para editar curso ----------*/
@@ -60,6 +67,12 @@ class cursoControlador extends cursoModelo{
         $curso->setEstado(mainModel::limpiarCadena($_POST['estado']));
         $curso->setListaProgramas($_POST['programas_edit']);
         $curso->setListaDocentes($_POST['docentes_edit']);
+
+        $checkCurso = mainModel::ejecutar_consulta_simple("SELECT id FROM curso WHERE nombre = '{$curso->getNombre()}' AND id != {$curso->getIdCurso()}");
+        if($checkCurso->rowCount() > 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "El curso a crear ya está registrado en el repositorio");
+            exit();
+        }
 
         //Obtener los programas seleccionados (agregar nuevos y eliminar no seleccionados)
         $programasActuales = cursoModelo::id_programas_curso_modelo($curso->getIdCurso())->fetchAll(PDO::FETCH_COLUMN, 0);

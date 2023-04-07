@@ -53,10 +53,12 @@
                 <td class="infoColVerRecurso">          
                     <ul class="ulVerRecurso">
                         <?php 
+                        if(count($autores) != 0){
                             foreach($autores AS $autor){
                         ?>
-                        <a href="<?php echo SERVER_URL."recursosBusqueda/filtroAutor/".$autor['id'] ?>" class="redireccionVerRecurso"><li class="liVerRecurso"><?php echo $autor['nombre']." ".$autor['apellido']; ?></li></a>
-                        <?php } ?>
+                            <a href="<?php echo SERVER_URL."recursosBusqueda/filtroAutor/".$autor['id'] ?>" class="redireccionVerRecurso"><li class="liVerRecurso"><?php echo $autor['nombre']." ".$autor['apellido']; ?></li></a>
+                        <?php } 
+                        }else{ echo "Autor Desconocido"; }?>
                     </ul>
                 </td>
             </tr>

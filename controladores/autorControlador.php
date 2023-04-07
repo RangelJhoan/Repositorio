@@ -18,6 +18,13 @@ class autorControlador extends autorModelo{
         $autor->setNombre(mainModel::limpiarCadena($_POST['nombre_ins']));
         $autor->setApellido(mainModel::limpiarCadena($_POST['apellido_ins']));
         $autor->setEstado(Utilidades::getIdEstado("ACTIVO"));
+
+        $checkAutor = mainModel::ejecutar_consulta_simple("SELECT id FROM autor WHERE nombre = '{$autor->getNombre()}' AND apellido = '{$autor->getApellido()}'");
+        if($checkAutor->rowCount() > 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "El autor a crear ya está registrado en el repositorio");
+            exit();
+        }
+
         session_start(['name'=>'REPO']);
         $autor->setIdDocente($_SESSION['id_persona']);
 
@@ -137,6 +144,12 @@ class autorControlador extends autorModelo{
         $autor->setNombre(mainModel::limpiarCadena($_POST['nombre_doc_edit']));
         $autor->setApellido(mainModel::limpiarCadena($_POST['apellido_doc_edit']));
         $autor->setEstado(mainModel::limpiarCadena($_POST['estado']));
+
+        $checkAutor = mainModel::ejecutar_consulta_simple("SELECT id FROM autor WHERE nombre = '{$autor->getNombre()}' AND apellido = '{$autor->getApellido()}' AND id != '{$autor->getIdAutor()}'");
+        if($checkAutor->rowCount() > 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "El autor a crear ya está registrado en el repositorio");
+            exit();
+        }
 
         if($autor->getApellido() == ""){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
