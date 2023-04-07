@@ -478,19 +478,77 @@ class usuarioControlador extends usuarioModelo{
         $persona->setIdUsuario($validarCorreo->fetch()['id']);
         $claveNueva = Utilidades::generarClaveAleatoria();
 
-        $asunto = "Cambio de contraseña (Repositorio Institucional)";
-        $msg    =   '<html>'.
-                    '<head>'.
-                    '<title>Recuperar contraseña</title>'.
-                    '</head>'.
-                    '<meta charset="UTF-8">'.
-                    '<body>'.
-                    '<p><b>¿Has solicitado cambiar tu contraseña?</b></p>'.
-                    '<p>Hemos recibido una solicitud para recuperar la contraseña de su usuario.</p>'.
-                    '<p>Su nueva clave es: ' . $claveNueva . '</p>'.
-                    '<br><br><br>'.
-                    '</body>'.
-                    '</html>';
+        $asunto = "Recuperación de contraseña (Repositorio Institucional)";
+        $puede_contactar = "Si aún sigue teniendo problemas para ingresar a su cuenta, por favor póngase en contacto con nosotros al correo <a href='mailto:" . SUPER_ADMIN_EMAIL . "'>" . SUPER_ADMIN_EMAIL . "</a>";
+        $msg = '<html>'.
+        '<head>'.
+        '<title>Recuperación de contraseña (Repositorio Institucional)</title>'.
+        '<style>'.
+            'body {'.
+                'font-family: "Poppins", sans-serif;'.
+                'text-align: center;'.
+                'background-color: #f2f2f2;'.
+                'padding: 20px;'.
+            '}'.
+            '.container {'.
+                'max-width: 600px;'.
+                'margin: 0 auto;'.
+                'background-color: #fff;'.
+                'padding: 20px;'.
+                'border-radius: 10px;'.
+            '}'.
+            'h2 {'.
+                'color: #506591;'.
+            '}'.
+            'p {'.
+                'margin-bottom: 20px;'.
+            '}'.
+            '.btn {'.
+                'display: inline-block;'.
+                'padding: 12px 24px;'.
+                'background-color: #506591;'.
+                'color: #fff;'.
+                'font-size: 16px;'.
+                'text-decoration: none;'.
+                'border-radius: 4px;'.
+            '}'.
+            '.btn:hover {'.
+                'background-color: #29425E;'.
+            '}'.
+            'span {'.
+                'color: #506591;'.
+                'font-weight: 700;'.
+                'padding-left: 10px;'.
+            '}'.
+            'contact{'.
+                'font-size:small;'.
+                'color:gray;'.
+            '}'.
+            '.img-container {'.
+                'margin: 0 auto;'.
+                'max-width: 300px;'.
+            '}'.
+            'img {'.
+                'width:100px;'.
+            '}'.
+        '</style>'.
+        '</head>'.
+        '<body>'.
+        '<div class="container">'.
+        '<h2>¡Hola! La contraseña ha sido restablecida</h2>'.
+        '<div class=""img-container>'.
+        '<img src="<?php echo SERVER_URL ?>vistas/assets/img/dashboard-ri-logo.png" alt="Logo del Repositorio Institucional">'.
+        '</div>'.
+        '<p>Hemos recibido una solicitud para recuperar la contraseña de su usuario con correo ' . $email . '.</p>'.
+        '<p>Su nueva contraseña es: <span>' . $claveNueva . '</span></p>'.
+        '<a href="https://repositorioinstitucional.000webhostapp.com/login/" class="btn">Iniciar sesión</a>'.
+        '<p>Se recomienda que una vez haya ingresado a su cuenta, modifique la contraseña de forma que esta sea segura y fácil de ser recordada.</p>'.
+        '<p>Muchas gracias por usar el Repositorio Institucional.</p>'.
+        '<hr>'.
+        '<p class="contact">' . $puede_contactar . '</p>'.
+        '</div>'.
+        '</body>'.
+        '</html>';
         $email = $_POST['correo_recuperar_clave'];
         $header = "From: noreply@example.com". "\r\n";
         $header .= "Reply-To: noreply@example.com" . "\r\n";
