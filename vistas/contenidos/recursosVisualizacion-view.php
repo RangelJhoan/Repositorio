@@ -26,12 +26,7 @@
         $nArchivo = $archivo['nombre'];
         $tamano = $archivo['tamano'];
         $ruta = $archivo['ruta'];
-        $vArray = explode(".",$nArchivo);
-        if(isset($vArray[1])){
-            $formato = $vArray[1];
-        }else{
-            $formato = "";
-        }
+        $formato = pathinfo($nArchivo, PATHINFO_EXTENSION);
         // Obtener el tipo de MIME del archivo
         $tipoMimeArchivo = mime_content_type($ruta);
     }else{
@@ -149,7 +144,7 @@
                 <th class="tituloColVerRecurso">Archivo:</th>
                 <td class="infoColVerRecurso">
                     <?php
-                        if (in_array($tipoMimeArchivo, Utilidades::getTiposMimePermitidos())){
+                        if ($ruta!="" && in_array($tipoMimeArchivo, Utilidades::getTiposMimePermitidos())){
                     ?>
                     <a href="<?php echo SERVER_URL.$ruta?>" target="_blank" class="redireccionVerRecurso"><?php echo $nArchivo; ?></a>
                     <?php
@@ -167,7 +162,7 @@
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Formato:</th>
-                <td class="infoColVerRecurso"><?php echo strtoupper($formato); ?></td>
+                <td class="infoColVerRecurso"><?php echo $formato; ?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Acción:</th>

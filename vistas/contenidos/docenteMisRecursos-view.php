@@ -31,6 +31,7 @@ $datos = $ins_recurso->paginador_recurso_controlador($_SESSION['id_persona']);
                             <th>Título</th>
                             <th>Autor(es)</th>
                             <th>Archivo</th>
+                            <th>Feedback</th>
                             <th>Curso</th>
                             <th>Estado</th>
                             <th>Acción</th>
@@ -58,6 +59,10 @@ $datos = $ins_recurso->paginador_recurso_controlador($_SESSION['id_persona']);
                             ?>
                             </td>
                             <td data-titulo="ARCHIVO" class="responsive-file fileStyleResp"><?php if($archivo != false) echo $archivo['nombre'] ?></td>
+                            <td data-titulo="FEEDBACK" class="responsive-file listFeedback">
+                                <li title="Calificación positiva"><i class="uil uil-thumbs-up iconFeedback plus"></i>: <?php echo $rows['puntos_positivos'] ?> </li>
+                                <li title="Calificación negativa"><i class="uil uil-thumbs-down iconFeedback minus"></i>: <?php echo $rows['puntos_negativos'] ?> </li>
+                            </td>
                             <td data-titulo="CURSO" class="responsive-file">
                             <?php
                                 foreach($cursosRecurso as $camposCurso){

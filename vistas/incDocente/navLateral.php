@@ -38,12 +38,12 @@
                         <span class="option-name">Recursos</span>
                     </a>
                 </li>
-                <!-- <li class="li-plantilla" title="Reportes">
-                <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminReportes/">
-                        <i class="uil uil-analytics"></i>
-                        <span class="option-name">Reportes</span>
+                <li class="li-plantilla" title="Feedbacks">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>estudianteFeedbacks/">
+                    <i class="uil uil-feedback"></i>
+                    <span class="option-name">Feedbacks</span>
                     </a>
-                </li> -->
+                </li>
             </ul>
 
             <!--Demás opciones-->
