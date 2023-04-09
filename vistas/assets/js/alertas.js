@@ -152,5 +152,16 @@ function alertas_ajax(alerta){
         }else{
             window.location.href = alerta.URL
         }
+    }else if(alerta.Alerta === "retroceder"){
+        Swal.fire({
+            title: alerta.Titulo,
+            text: alerta.Texto,
+            icon: alerta.Tipo,
+            confirmButtonText: 'Aceptar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.history.back()
+            }
+        });
     }
 }

@@ -414,7 +414,7 @@ class usuarioControlador extends usuarioModelo{
         $_SESSION['nombre_usuario'] = $row['nombre'];
         $_SESSION['apellido_usuario'] = $row['apellido'];
 
-        echo Utilidades::getAlertaExitosoJSON("recargar", "Los datos han sido actualizados exitosamente");
+        echo Utilidades::getAlertaExitosoJSON("retroceder", "Los datos han sido actualizados exitosamente");
     }
 
     /**
@@ -478,6 +478,7 @@ class usuarioControlador extends usuarioModelo{
         $persona->setIdUsuario($validarCorreo->fetch()['id']);
         $claveNueva = Utilidades::generarClaveAleatoria();
 
+        $email = $_POST['correo_recuperar_clave'];
         $asunto = "Recuperación de contraseña (Repositorio Institucional)";
         $puede_contactar = "Si aún sigue teniendo problemas para ingresar a su cuenta, por favor póngase en contacto con nosotros al correo <a href='mailto:" . SUPER_ADMIN_EMAIL . "'>" . SUPER_ADMIN_EMAIL . "</a>";
         $msg = '<html>'.
@@ -537,7 +538,7 @@ class usuarioControlador extends usuarioModelo{
         '<div class="container">'.
         '<h2>¡Hola! La contraseña ha sido restablecida</h2>'.
         '<div class=""img-container>'.
-        '<img src="<?php echo SERVER_URL ?>vistas/assets/img/dashboard-ri-logo.png" alt="Logo del Repositorio Institucional">'.
+        '<img src="<?php echo '.SERVER_URL.' ?>vistas/assets/img/dashboard-ri-logo.png" alt="Logo del Repositorio Institucional">'.
         '</div>'.
         '<p>Hemos recibido una solicitud para recuperar la contraseña de su usuario con correo ' . $email . '.</p>'.
         '<p>Su nueva contraseña es: <span>' . $claveNueva . '</span></p>'.
@@ -549,7 +550,6 @@ class usuarioControlador extends usuarioModelo{
         '</div>'.
         '</body>'.
         '</html>';
-        $email = $_POST['correo_recuperar_clave'];
         $header = "From: noreply@example.com". "\r\n";
         $header .= "Reply-To: noreply@example.com" . "\r\n";
         $header .= "MIME-Version: 1.0\r\n";
@@ -568,7 +568,7 @@ class usuarioControlador extends usuarioModelo{
             exit();
         }
 
-        echo Utilidades::getAlertaExitosoJSON("simple", "Contraseña restablecida. Por favor revisar el correo electrónico donde se envió la nueva clave");
+        echo Utilidades::getAlertaExitosoJSON("recargar", "Contraseña restablecida. Por favor revisar el correo electrónico donde se envió la nueva clave");
     }
 
 
