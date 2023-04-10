@@ -16,7 +16,7 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
             <!--TÍTULO-->
             <div class="title">
                 <i class="uil uil-file-blank"></i>
-                <h1 class="panel-title-name">Editar Recurso</h1>
+                <h1 class="panel-title-name">Nuevo Recurso</h1>
                 <div class="icon-container">
                     <span class="question-Info qInfoNew" aria-label="Mostrar información"><i class="uil uil-question-circle"></i></span>
                     <div class="message-box">
