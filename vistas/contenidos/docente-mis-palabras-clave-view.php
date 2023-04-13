@@ -2,18 +2,20 @@
     require_once "./controladores/etiquetaControlador.php";
     require_once "./utilidades/Utilidades.php";
     $ins_etiqueta = new etiquetaControlador();
-    $datos = $ins_etiqueta->paginador_etiqueta_controlador(null);
+    $datos = $ins_etiqueta->paginador_etiqueta_controlador($_SESSION['id_persona']);
 ?>
     <section class="general-admin-container">
         <div class="overview-general-admin">
             <!--TÍTULO-->
             <div class="title">
                 <i class="uil uil-tag"></i>
-                <h1 class="panel-title-name">Palabras Clave</h1>
+                <h1 class="panel-title-name">Mis Palabras Clave</h1>
             </div>
-            <!--BOTÓN MIS ETIQUETAS-->
+            <!--BOTÓN CREAR-->
             <div class="new-record-container">
-                <a class="btn-add-record btnDocenteMis" title="Mis palabras clave" href="<?php echo SERVER_URL ?>docenteMisPalabrasClave/">Mis palabras clave</a>
+                <label for="btn-modal-admin-add-record" class="btn-add-record" title="Crear palabra clave">
+                    <i class="uil uil-plus-circle"></i>Nuevo
+                </label>
             </div>
             <!--MODAL CREAR AUTOR-->
             <input type="checkbox" id="btn-modal-admin-add-record">
@@ -41,8 +43,8 @@
                         <tr>
                             <th>Id</th>
                             <th>Nombre</th>
-                            <th>Creado por</th>
-                            <th>Fecha creación</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,8 +56,20 @@
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
                             <td data-titulo="NOMBRE" class="responsive-file"><?php echo $rows['descripcion'] ?></td>
-                            <td data-titulo="CREADO POR" class="responsive-file"><?php echo $rows['nombre'] . " " . $rows['apellido'] ?></td>
-                            <td data-titulo="FECHA CREACIÓN" class="responsive-file"><?php echo $rows['fechaCreacionEtiqueta'] ?></td>
+                            <td data-titulo="ESTADO" class="responsive-file"><?php echo Utilidades::getNombreEstado($rows['estadoEtiqueta']) ?></td>
+                            <td data-titulo="ACCIÓN" class="responsive-file">
+                                <div class="action-options-container">
+                                    <div class="btn-group-action">
+                                        <a href="<?php echo SERVER_URL ?>docente-editar-palabra-clave/<?php echo $ins_etiqueta->encryption($rows['idEtiqueta'])?>/" class="btn-admin-edit-record" title="Editar palabra clave"><i class="uil uil-edit btn-admin-edit-record"></i></a>
+                                    </div>
+                                    <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/etiquetaAjax.php" method="POST" data-form="delete" autocomplete="off">
+                                        <div class="btn-group-action">
+                                            <input type="hidden" name="id_etiqueta_del" value="<?php echo $ins_etiqueta->encryption($rows['idEtiqueta']) ?>">
+                                            <button type="submit" class="btn-delete-record" title="Eliminar palabra clave"><i class="uil uil-trash-alt"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                         <?php
                             $contador++;

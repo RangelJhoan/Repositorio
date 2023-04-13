@@ -15,12 +15,12 @@ $recursosCalificados = $insRecurso->obtenerListaCalificadosXPersona($_SESSION['i
             <h1 class="panel-title-name">Dashboard</h1>
         </div>
         <div class="cards-container" id="cards">
-            <a href="<?php echo SERVER_URL ?>estudianteFavoritos/" class="card">
+            <a href="<?php echo SERVER_URL ?>estudiante-favoritos/" class="card">
                 <span class="cards-title-name">Favoritos</span>
                 <i class="uil uil-heart-alt"></i>
                 <span class="cards-total-count"><?php echo count($recursosFavoritos); ?></span>
             </a>
-            <a href="<?php echo SERVER_URL ?>estudianteFeedbacks/" class="card">
+            <a href="<?php echo SERVER_URL ?>estudiante-feedbacks/" class="card">
                 <span class="cards-title-name">Feedbacks</span>
                 <i class="uil uil-feedback"></i>
                 <span class="cards-total-count"><?php echo count($recursosCalificados); ?></span>

@@ -18,7 +18,7 @@
                 ?> 
                 <ul class="dataTables_length">
                     <li class="liLetraFilto">
-                        <a class="aLetraFiltro" href="<?php echo SERVER_URL."recursosBusqueda/Cursofiltrar/".$letra; ?>">
+                        <a class="aLetraFiltro" href="<?php echo SERVER_URL."busqueda/Cursofiltrar/".$letra; ?>">
                             <?php echo $letra?>
                         </a>
                     </li>
@@ -43,7 +43,7 @@
                             if($recursos > 0){
                             ?>
                             <tr>
-                                <td data-titulo="NOMBRE"><a href="<?php echo SERVER_URL."recursosBusqueda/filtroCurso/".$vRecurso['id']; ?>" class="redireccionTable"><?php echo $vRecurso['nombre']; ?><span class="tableFilterCounter"><?php echo $recursos; ?></span></a></td>
+                                <td data-titulo="NOMBRE"><a href="<?php echo SERVER_URL."busqueda/filtroCurso/".$vRecurso['id']; ?>" class="redireccionTable"><?php echo $vRecurso['nombre']; ?><span class="tableFilterCounter"><?php echo $recursos; ?></span></a></td>
                             </tr>
                             <?php }} ?>  
                         </tbody>

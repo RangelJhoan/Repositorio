@@ -16,7 +16,7 @@
                     <a class="link-a-footer" href="#">Teléfono IES</a>
                     <a class="link-a-footer" href="mailto:"<?php echo SUPER_ADMIN_EMAIL ?>><?php echo SUPER_ADMIN_EMAIL ?></a>
                     <hr>
-                    <a  class="link-a-footer" href="<?php echo SERVER_URL; ?>preguntasFreq/">Políticas de uso</a>
+                    <a  class="link-a-footer" href="<?php echo SERVER_URL; ?>preguntas-frecuentes/">Políticas de uso</a>
                 </div>
             </div>
         </div>

@@ -16,7 +16,7 @@
         <ul class="ul-Home">
             <li class="li-Home">
                 <a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>home/">Inicio</a></li>
-            <li class="li-Home"><a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>preguntasFreq/">Preguntas frecuentes</a></li>
+            <li class="li-Home"><a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>preguntas-frecuentes/">Preguntas frecuentes</a></li>
             <li class="li-Home">
                 <input class="input-HamburguerHome" type="checkbox" id="btn-Perfil-Label" class="input-Navbar">
                 <a  class="a-HomeNav homeHideListMin" href="#">Perfil</a>
@@ -27,9 +27,9 @@
                             if($_SESSION['tipo_usuario'] == "Administrador"){
                                 echo '<a  class="a-HomeNav" href="'.SERVER_URL.'admin-dashboard/">Cuenta</a>';
                             }elseif($_SESSION['tipo_usuario'] == "Docente"){
-                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'docenteDashboard/">Cuenta</a>';
+                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'docente-dashboard/">Cuenta</a>';
                             }elseif($_SESSION['tipo_usuario'] == "Estudiante"){
-                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'estudianteDashboard/">Cuenta</a>';
+                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'estudiante-dashboard/">Cuenta</a>';
                             }
                         }else{
                             echo '<a  class="a-HomeNav" href="'.SERVER_URL.'login/">Acceder</a>';
@@ -47,9 +47,9 @@
                     if($_SESSION['tipo_usuario'] == "Administrador"){
                         echo '<a  class="a-HomeNav" href="'.SERVER_URL.'admin-dashboard/">Cuenta</a>';
                     }elseif($_SESSION['tipo_usuario'] == "Docente"){
-                        echo '<a  class="a-HomeNav" href="'.SERVER_URL.'docenteDashboard/">Cuenta</a>';
+                        echo '<a  class="a-HomeNav" href="'.SERVER_URL.'docente-dashboard/">Cuenta</a>';
                     }elseif($_SESSION['tipo_usuario'] == "Estudiante"){
-                        echo '<a  class="a-HomeNav" href="'.SERVER_URL.'estudianteDashboard/">Cuenta</a>';
+                        echo '<a  class="a-HomeNav" href="'.SERVER_URL.'estudiante-dashboard/">Cuenta</a>';
                     }
                 }else{
                     echo '<a  class="a-HomeNav" href="'.SERVER_URL.'login/">Acceder</a>';

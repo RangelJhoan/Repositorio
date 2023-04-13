@@ -159,7 +159,7 @@ class autorControlador extends autorModelo{
         $editarAutor = autorModelo::editar_autor_modelo($autor);
 
         if($editarAutor == 1){
-            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."docenteMisAutores/");
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."docente-mis-autores/");
         }else{
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo editar la información del autor");
         }

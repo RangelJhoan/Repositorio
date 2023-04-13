@@ -35,10 +35,10 @@ if(isset($_POST['barraBusqueda'])){
     //     echo $info;
     // }
 
-    header("Location:".SERVER_URL."recursosBusqueda/Busqueda/".$parametro);
+    header("Location:".SERVER_URL."busqueda/Busqueda/".$parametro);
 }else if(isset($_POST['codano'])){
     $parametro .= $ins_main->encryption($_POST['codano']);
-    header("Location:".SERVER_URL."recursosBusqueda/Fechafiltrar/".$parametro);
+    header("Location:".SERVER_URL."busqueda/Fechafiltrar/".$parametro);
 }else if(isset($_POST['respuestaFeedback'])){
     $idRecurso = $_POST['codrecurso'];
     $respuesta = $_POST['respuestaFeedback'];

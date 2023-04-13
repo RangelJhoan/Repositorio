@@ -15,31 +15,31 @@
             <!--Opciones principales-->
             <ul class="nav-links">
                 <li class="li-plantilla" title="Dashboard">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docenteDashboard/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docente-dashboard/">
                         <i class="uil uil-dashboard"></i>
                         <span class="option-name">Dashboard</span>
                     </a>
                 </li>
                 <li class="li-plantilla" title="Autores">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docenteAutores/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docente-autores/">
                         <i class="uil uil-pen"></i>
                         <span class="option-name">Autores</span>
                     </a>
                 </li>
                 <li class="li-plantilla" title="Palabras Clave">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docentePalabrasClave/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docente-palabras-clave/">
                         <i class="uil uil-tag"></i>
                         <span class="option-name">Palabras clave</span>
                     </a>
                 </li>
                 <li class="li-plantilla" title="Recursos">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docenteRecursos/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>docente-recursos/">
                         <i class="uil uil-file-blank"></i>
                         <span class="option-name">Recursos</span>
                     </a>
                 </li>
                 <li class="li-plantilla" title="Feedbacks">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>estudianteFeedbacks/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>estudiante-feedbacks/">
                     <i class="uil uil-feedback"></i>
                     <span class="option-name">Feedbacks</span>
                     </a>

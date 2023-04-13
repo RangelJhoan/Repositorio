@@ -16,7 +16,7 @@ $datos = $ins_recurso->paginador_recurso_controlador(null);
             </div>
             <!--BOTÓN MIS RECURSOS-->
             <div class="new-record-container">
-                <a class="btn-add-record btnDocenteMis" title="Mis recursos" href="<?php echo SERVER_URL ?>docenteMisRecursos/">Mis recursos</a>
+                <a class="btn-add-record btnDocenteMis" title="Mis recursos" href="<?php echo SERVER_URL ?>docente-mis-recursos/">Mis recursos</a>
             </div>
             <!--TABLA-->
             <div class="table-admin-container">

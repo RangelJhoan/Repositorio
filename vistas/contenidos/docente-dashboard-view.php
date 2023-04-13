@@ -20,22 +20,22 @@
                 <h1 class="panel-title-name">Dashboard</h1>
             </div>
             <div class="cards-container" id="cards">
-                <a href="<?php echo SERVER_URL ?>docenteAutores/" class="card">
+                <a href="<?php echo SERVER_URL ?>docente-autores/" class="card">
                     <span class="cards-title-name">Autores</span>
                     <i class="uil uil-pen"></i>
                     <span class="cards-total-count"><?php echo $total_autores->rowCount(); ?></span>
                 </a>
-                <a href="<?php echo SERVER_URL ?>docentePalabrasClave/" class="card">
+                <a href="<?php echo SERVER_URL ?>docente-palabras-clave/" class="card">
                     <span class="cards-title-name">Palabras Clave</span>
                     <i class="uil uil-tag"></i>
                     <span class="cards-total-count"><?php echo $total_etiquetas->rowCount(); ?></span>
                 </a>
-                <a href="<?php echo SERVER_URL ?>docenteRecursos/" class="card">
+                <a href="<?php echo SERVER_URL ?>docente-recursos/" class="card">
                     <span class="cards-title-name">Recursos</span>
                     <i class="uil uil-file-blank"></i>
                     <span class="cards-total-count"><?php echo $totalRecursos->rowCount(); ?></span>
                 </a>
-                <a href="<?php echo SERVER_URL ?>estudianteFeedbacks/" class="card">
+                <a href="<?php echo SERVER_URL ?>estudiante-feedbacks/" class="card">
                     <span class="cards-title-name">Feedbacks</span>
                     <i class="uil uil-feedback"></i>
                     <span class="cards-total-count">Meter contador</span>

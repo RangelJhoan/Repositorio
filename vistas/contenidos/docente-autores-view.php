@@ -7,7 +7,7 @@
             </div>
             <!--BOTÓN MIS AUTORES-->
             <div class="new-record-container">
-                <a class="btn-add-record btnDocenteMis" title="Mis autores" href="<?php echo SERVER_URL ?>docenteMisAutores/">Mis autores</a>
+                <a class="btn-add-record btnDocenteMis" title="Mis autores" href="<?php echo SERVER_URL ?>docente-mis-autores/">Mis autores</a>
             </div>
             <!--TABLA-->
             <?php

@@ -18,7 +18,7 @@ $datos = $ins_recurso->paginador_recurso_controlador($_SESSION['id_persona']);
             </div>
             <!--BOTÓN CREAR-->
             <div class="new-record-container">
-                <a class="btn-add-record" title="Crear recurso" href="<?php echo SERVER_URL ?>docenteCrearRecurso/">
+                <a class="btn-add-record" title="Crear recurso" href="<?php echo SERVER_URL ?>docente-crear-recurso/">
                 <i class="uil uil-plus-circle"></i></i></i>Nuevo
                 </a>
             </div>
@@ -79,7 +79,7 @@ $datos = $ins_recurso->paginador_recurso_controlador($_SESSION['id_persona']);
                                         <a href="<?php echo SERVER_URL?>handle/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" target="_blank" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>
                                     </div>
                                     <div class="btn-group-action">
-                                        <a href="<?php echo SERVER_URL ?>docenteEditarRecurso/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" class="btn-admin-edit-record" title="Editar recurso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
+                                        <a href="<?php echo SERVER_URL ?>docente-editar-recurso/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" class="btn-admin-edit-record" title="Editar recurso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/recursoAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">

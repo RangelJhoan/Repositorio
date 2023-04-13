@@ -15,12 +15,12 @@
                 <p class="dataTables_length">Títulos que empiecen por:</p>
                 <ul class="dataTables_length">
                     <li class="liLetraFilto">
-                        <a class="aLetraFiltro" href="<?php echo SERVER_URL."recursosBusqueda/Titulonumero/"; ?>">0-9</a>
+                        <a class="aLetraFiltro" href="<?php echo SERVER_URL."busqueda/Titulonumero/"; ?>">0-9</a>
                 <?php
                     $abecedario = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
                     foreach($abecedario as $letra){
                 ?> 
-                        <a class="aLetraFiltro" href="<?php echo SERVER_URL."recursosBusqueda/Titulofiltrar/".$letra; ?>">
+                        <a class="aLetraFiltro" href="<?php echo SERVER_URL."busqueda/Titulofiltrar/".$letra; ?>">
                             <?php echo $letra?>
                         </a>
                     </li>

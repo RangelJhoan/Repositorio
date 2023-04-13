@@ -56,7 +56,7 @@
                         if(count($autores) != 0){
                             foreach($autores AS $autor){
                         ?>
-                            <a href="<?php echo SERVER_URL."recursosBusqueda/filtroAutor/".$autor['id'] ?>" class="redireccionVerRecurso"><li class="liVerRecurso"><?php echo $autor['nombre']." ".$autor['apellido']; ?></li></a>
+                            <a href="<?php echo SERVER_URL."busqueda/filtroAutor/".$autor['id'] ?>" class="redireccionVerRecurso"><li class="liVerRecurso"><?php echo $autor['nombre']." ".$autor['apellido']; ?></li></a>
                         <?php } 
                         }else{ echo "Autor Desconocido"; }?>
                     </ul>
@@ -85,7 +85,7 @@
                         <?php 
                             foreach($cursos AS $curso){
                         ?>
-                        <a href="<?php echo SERVER_URL."recursosBusqueda/filtroCurso/".$curso['id'] ?>" class="redireccionVerRecurso"><li class="liVerRecurso"><?php echo $curso['nombre']; ?></li></a>
+                        <a href="<?php echo SERVER_URL."busqueda/filtroCurso/".$curso['id'] ?>" class="redireccionVerRecurso"><li class="liVerRecurso"><?php echo $curso['nombre']; ?></li></a>
                         <?php } ?>
                     </ul>
                 </td>    
@@ -105,7 +105,7 @@
                                     $parametro .= $ins_main->encryption($dato);
                                 }
                         ?>
-                        <a href="<?php echo SERVER_URL."recursosBusqueda/Busqueda/".$parametro; ?>" class="redireccionVerRecurso"><li class="liVerRecurso"><?php echo $etiqueta['descripcion']; ?></li></a>
+                        <a href="<?php echo SERVER_URL."busqueda/Busqueda/".$parametro; ?>" class="redireccionVerRecurso"><li class="liVerRecurso"><?php echo $etiqueta['descripcion']; ?></li></a>
                         <?php } ?>
                     </ul>
                 </td>

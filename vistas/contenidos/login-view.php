@@ -32,7 +32,7 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
         <ul class="ul-Home">
             <li class="li-Home">
                 <a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>home/">Inicio</a></li>
-            <li class="li-Home"><a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>preguntasFreq/">Preguntas frecuentes</a></li>
+            <li class="li-Home"><a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>preguntas-frecuentes/">Preguntas frecuentes</a></li>
             <li class="li-Home">
                 <input class="input-HamburguerHome" type="checkbox" id="btn-Perfil-Label" class="input-Navbar">
                 <a  class="a-HomeNav homeHideListMin" href="#">Perfil</a>
@@ -43,9 +43,9 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                             if($_SESSION['tipo_usuario'] == "Administrador"){
                                 echo '<a  class="a-HomeNav" href="'.SERVER_URL.'admin-dashboard/">Cuenta</a>';
                             }elseif($_SESSION['tipo_usuario'] == "Docente"){
-                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'docenteDashboard/">Cuenta</a>';
+                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'docente-dashboard/">Cuenta</a>';
                             }elseif($_SESSION['tipo_usuario'] == "Estudiante"){
-                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'estudianteDashboard/">Cuenta</a>';
+                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'estudiante-dashboard/">Cuenta</a>';
                             }
                         }else{
                             echo '<a  class="a-HomeNav" href="'.SERVER_URL.'login/">Acceder</a>';
@@ -63,9 +63,9 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                     if($_SESSION['tipo_usuario'] == "Administrador"){
                         echo '<a  class="a-HomeNav" href="'.SERVER_URL.'admin-dashboard/">Cuenta</a>';
                     }elseif($_SESSION['tipo_usuario'] == "Docente"){
-                        echo '<a  class="a-HomeNav" href="'.SERVER_URL.'docenteDashboard/">Cuenta</a>';
+                        echo '<a  class="a-HomeNav" href="'.SERVER_URL.'docente-dashboard/">Cuenta</a>';
                     }elseif($_SESSION['tipo_usuario'] == "Estudiante"){
-                        echo '<a  class="a-HomeNav" href="'.SERVER_URL.'estudianteDashboard/">Cuenta</a>';
+                        echo '<a  class="a-HomeNav" href="'.SERVER_URL.'estudiante-dashboard/">Cuenta</a>';
                     }
                 }else{
                     echo '<a  class="a-HomeNav" href="'.SERVER_URL.'login/">Acceder</a>';
@@ -208,7 +208,7 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                     <a class="link-a-footer" href="#">Teléfono IES</a>
                     <a class="link-a-footer" href="mailto:"<?php echo SUPER_ADMIN_EMAIL ?>><?php echo SUPER_ADMIN_EMAIL ?></a>
                     <hr>
-                    <a  class="link-a-footer" href="<?php echo SERVER_URL; ?>preguntasFreq/">Políticas de uso</a>
+                    <a  class="link-a-footer" href="<?php echo SERVER_URL; ?>preguntas-frecuentes/">Políticas de uso</a>
                 </div>
             </div>
         </div>

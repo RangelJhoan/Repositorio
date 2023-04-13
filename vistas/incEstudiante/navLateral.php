@@ -16,19 +16,19 @@
             <!--Opciones principales-->
             <ul class="nav-links">
                 <li class="li-plantilla" title="Dashboard">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>estudianteDashboard/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>estudiante-dashboard/">
                         <i class="uil uil-dashboard"></i>
                         <span class="option-name">Dashboard</span>
                     </a>
                 </li>
                 <li class="li-plantilla" title="Favoritos">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>estudianteFavoritos/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>estudiante-favoritos/">
                         <i class="uil uil-heart"></i>
                         <span class="option-name">Favoritos</span>
                     </a>
                 </li>
                 <li class="li-plantilla" title="Feedbacks">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>estudianteFeedbacks/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>estudiante-feedbacks/">
                     <i class="uil uil-feedback"></i>
                     <span class="option-name">Feedbacks</span>
                     </a>

@@ -195,9 +195,9 @@ class usuarioControlador extends usuarioModelo{
             if($row['descripcion'] == "Administrador"){
                 echo "<script>window.location.href='".SERVER_URL."admin-dashboard/';</script>";
             }elseif($row['descripcion'] == "Docente"){
-                echo "<script>window.location.href='".SERVER_URL."docenteDashboard/';</script>";
+                echo "<script>window.location.href='".SERVER_URL."docente-dashboard/';</script>";
             }elseif($row['descripcion'] == "Estudiante"){
-                echo "<script>window.location.href='".SERVER_URL."estudianteDashboard/';</script>";
+                echo "<script>window.location.href='".SERVER_URL."estudiante-dashboard/';</script>";
             }
         }else{
             echo '<script>

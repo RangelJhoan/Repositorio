@@ -139,7 +139,7 @@ class etiquetaControlador extends etiquetaModelo{
         $editarEtiqueta = etiquetaModelo::editar_etiqueta_modelo($etiqueta);
 
         if($editarEtiqueta == 1){
-            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."docenteMisPalabrasClave/");
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."docente-mis-palabras-clave/");
         }else{
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información de la palabra clave");
         }
