@@ -253,12 +253,13 @@ body.dark .switch:before{
     width: calc(100% - 250px);
     background-color: var(--white-color);
     transition:var(--trans-05);
-    z-index: 999999;
+    z-index: 99!important;
 }
 
 .lateralNavBar.close ~.top-navbar .top-container{
     left:73px;
     width: calc(100% - 73px);
+    z-index: 99!important;
 }
 .top-navbar .top-container .sidebar-toggle{
     font-size: 26px;

@@ -507,8 +507,8 @@ class usuarioControlador extends usuarioModelo{
             '.btn {'.
                 'display: inline-block;'.
                 'padding: 12px 24px;'.
-                'background-color: #506591;'.
-                'color: #fff;'.
+                'border: 2px solid #506591;'.
+                'color: #506591;'.
                 'font-size: 16px;'.
                 'text-decoration: none;'.
                 'border-radius: 4px;'.
@@ -538,7 +538,6 @@ class usuarioControlador extends usuarioModelo{
         '<div class="container">'.
         '<h2>¡Hola! La contraseña ha sido restablecida</h2>'.
         '<div class=""img-container>'.
-        '<img src="<?php echo '.SERVER_URL.' ?>vistas/assets/img/dashboard-ri-logo.png" alt="Logo del Repositorio Institucional">'.
         '</div>'.
         '<p>Hemos recibido una solicitud para recuperar la contraseña de su usuario con correo ' . $email . '.</p>'.
         '<p>Su nueva contraseña es: <span>' . $claveNueva . '</span></p>'.

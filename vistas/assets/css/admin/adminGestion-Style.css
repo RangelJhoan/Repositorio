@@ -769,7 +769,7 @@ select{
     background:  var(--input-modify-info);
     background-image: none;
     flex:1;
-    color:var(--input-text-for-write);
+    color: var(--text-color);
     cursor:pointer;
     font-size: var(--normal-font-size);
     text-align: start;
@@ -793,17 +793,22 @@ select::-ms-expand{
     border-radius: 55px;
     font-family: "Poppins", sans-serif;
 }
+.select-option select option:not([disabled]):checked {
+    color: var(--main-color);
+}
 .select-option::after{
     content: '\25BC';
     position: absolute;
-    top:0;
+    top: 50%;
     right: 0;
-    padding:0 -2em;
+    padding: 0 0.5em;
     background-color: transparent;
-    cursor:pointer;
+    cursor: pointer;
     pointer-events: none;
     transition: .25s all ease;
-    color:var(--input-text-for-write);
+    color: var(--input-text-for-write);
+    font-size: 0.5em; /* ajusta el tamaño de la fuente para cambiar el tamaño de la flecha */
+    transform: translateY(-50%); /* centra la flecha verticalmente */
 }
 
 .select-option:hover::after{
