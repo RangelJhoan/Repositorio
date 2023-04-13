@@ -15,31 +15,31 @@
             <!--Opciones principales-->
             <ul class="nav-links">
                 <li class="li-plantilla" title="Dashboard">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminDashboard/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>admin-dashboard/">
                         <i class="uil uil-dashboard"></i>
                         <span class="option-name">Dashboard</span>
                     </a>
                 </li>
                 <li class="li-plantilla" title="Usuarios">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminUsuarios/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>admin-usuarios/">
                         <i class="uil uil-users-alt"></i>
                         <span class="option-name">Usuarios</span>
                     </a>
                 </li>
                 <li class="li-plantilla" title="Programas">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminProgramas/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>admin-programas/">
                         <i class="uil uil-graduation-cap"></i>
                         <span class="option-name">Programas</span>
                     </a>
                 </li>
                 <li class="li-plantilla" title="Cursos">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminCursos/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>admin-cursos/">
                         <i class="uil uil-book-open"></i>
                         <span class="option-name">Cursos</span>
                     </a>
                 </li>
                 <li class="li-plantilla" title="Recursos">
-                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>adminRecursos/">
+                    <a class="li-plantilla" href="<?php echo SERVER_URL ?>admin-recursos/">
                         <i class="uil uil-file-blank"></i>
                         <span class="option-name">Recursos</span>
                     </a>

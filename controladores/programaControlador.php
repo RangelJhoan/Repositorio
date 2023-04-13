@@ -94,7 +94,7 @@ class programaControlador extends programaModelo{
         }else{
             $editarPrograma = programaModelo::editar_programa_modelo($programa);
             if($editarPrograma->rowCount() > 0){
-                echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."adminProgramas/");
+                echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."admin-programas/");
             }else{
                 echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información");
             }

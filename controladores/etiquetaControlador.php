@@ -55,7 +55,7 @@ class etiquetaControlador extends etiquetaModelo{
         $editarEtiqueta = etiquetaModelo::editar_etiqueta_modelo($etiqueta);
 
         if($editarEtiqueta == 1){
-            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."panelPalabrasClave/");
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."panel-palabras-clave/");
         }else{
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo editar la información de la etiqueta");
         }

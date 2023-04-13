@@ -3,10 +3,10 @@
 class vistasModelo{
     /*----- Modelo para obtener vistas -----*/
     protected static function obtener_vistas_modelo($vistas){
-        $listaBlancaAdmin = ["adminDashboard","adminUsuarios","adminEditarUsuario","editarPerfil","adminProgramas","adminEditarPrograma","adminCursos","adminEditarCurso","adminRecursos","adminAutores","adminEditarAutor","adminReportes","panelPalabrasClave","editarPalabraClave","editarRecurso"];
-        $listaBlancaDocente = ["docenteDashboard","docenteRecursos","docenteMisRecursos","docenteCrearRecurso","docenteEditarRecurso","docenteAutores","docenteMisAutores","docenteEditarAutor","docentePalabrasClave","docenteMisPalabrasClave","docenteEditarPalabraClave","editarPerfil", "estudianteFeedbacks"];
-        $listaBlancaEstudiante = ["estudianteDashboard","estudianteFavoritos","editarPerfil","estudianteFeedbacks"];
-        $listaBlancaHome = ["preguntasFreq","recursosBusqueda","asideHomeFilters","recursosVisualizacion"];
+        $listaBlancaAdmin = ["admin-dashboard","admin-usuarios","admin-editar-usuario","editar-perfil","admin-programas","admin-editar-programa","admin-cursos","admin-editar-curso","admin-recursos","admin-autores","admin-editar-autor","adminReportes","panel-palabras-clave","editar-palabra-clave","editar-recurso"];
+        $listaBlancaDocente = ["docenteDashboard","docenteRecursos","docenteMisRecursos","docenteCrearRecurso","docenteEditarRecurso","docenteAutores","docenteMisAutores","docenteEditarAutor","docentePalabrasClave","docenteMisPalabrasClave","docenteEditarPalabraClave","editar-perfil", "estudianteFeedbacks"];
+        $listaBlancaEstudiante = ["estudianteDashboard","estudianteFavoritos","editar-perfil","estudianteFeedbacks"];
+        $listaBlancaHome = ["preguntasFreq","recursosBusqueda","asideHomeFilters","handle"];
 
         //?VERIFICACIÓN TIPO DE USUARIO
         if(isset($_SESSION['tipo_usuario'])){

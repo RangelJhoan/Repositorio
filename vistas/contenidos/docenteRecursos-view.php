@@ -43,7 +43,7 @@ $datos = $ins_recurso->paginador_recurso_controlador(null);
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
                             <td data-titulo="TÍTULO" class="responsive-file">
-                                <a href="<?php echo SERVER_URL?>recursosVisualizacion/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" target="_blank" class="irAlRecurso" title="Ir al recurso"><?php echo $rows['titulo'] ?></a></td>
+                                <a href="<?php echo SERVER_URL?>handle/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" target="_blank" class="irAlRecurso" title="Ir al recurso"><?php echo $rows['titulo'] ?></a></td>
                             </td>
                             <td data-titulo="AUTOR(ES)" class="responsive-file">
                             <?php

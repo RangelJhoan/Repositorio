@@ -97,7 +97,7 @@ if($datos_usuario->rowCount()>0){
                         </div>
                         <div class="botones-accion-modal">
                             <button type="submit" class="btn-admin-edit-record" title="Actualizar">Guardar cambios</button>
-                            <a href="<?php echo SERVER_URL ?>adminUsuarios/" class="btn-close-edit-record" title="Usuarios">Volver atrás</a>
+                            <a href="<?php echo SERVER_URL ?>admin-usuarios/" class="btn-close-edit-record" title="Usuarios">Volver atrás</a>
                         </div>
                     </form>
                 </div>
@@ -112,7 +112,7 @@ if($datos_usuario->rowCount()>0){
         </section>
         <section class="img-section">
             <img class="image-errorEditRecord"src="<?php echo SERVER_URL; ?>vistas/assets/img/errorEditarRegistro.svg" alt="Error al intentar editar usuario.">
-            <a href="<?php echo SERVER_URL; ?>adminUsuarios/" class="btn-UserNotFound" title="Ir a usuarios">Volver atrás</a>
+            <a href="<?php echo SERVER_URL; ?>admin-usuarios/" class="btn-UserNotFound" title="Ir a usuarios">Volver atrás</a>
         </section>
     </div>
 <?php } ?>

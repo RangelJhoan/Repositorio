@@ -41,7 +41,7 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                         <?php
                         if(isset($_SESSION['tipo_usuario'])){
                             if($_SESSION['tipo_usuario'] == "Administrador"){
-                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'adminDashboard/">Cuenta</a>';
+                                echo '<a  class="a-HomeNav" href="'.SERVER_URL.'admin-dashboard/">Cuenta</a>';
                             }elseif($_SESSION['tipo_usuario'] == "Docente"){
                                 echo '<a  class="a-HomeNav" href="'.SERVER_URL.'docenteDashboard/">Cuenta</a>';
                             }elseif($_SESSION['tipo_usuario'] == "Estudiante"){
@@ -61,7 +61,7 @@ $datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador()
                     
                 if(isset($_SESSION['tipo_usuario'])){
                     if($_SESSION['tipo_usuario'] == "Administrador"){
-                        echo '<a  class="a-HomeNav" href="'.SERVER_URL.'adminDashboard/">Cuenta</a>';
+                        echo '<a  class="a-HomeNav" href="'.SERVER_URL.'admin-dashboard/">Cuenta</a>';
                     }elseif($_SESSION['tipo_usuario'] == "Docente"){
                         echo '<a  class="a-HomeNav" href="'.SERVER_URL.'docenteDashboard/">Cuenta</a>';
                     }elseif($_SESSION['tipo_usuario'] == "Estudiante"){

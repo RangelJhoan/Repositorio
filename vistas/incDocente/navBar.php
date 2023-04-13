@@ -20,7 +20,7 @@
 
                 <ul>
                     <li class="li-plantilla">
-                    <a href="<?php echo SERVER_URL ?>editarPerfil/<?php echo $ins_usuario->encryption($_SESSION['id_persona'])?>" class="submenu-link">
+                    <a href="<?php echo SERVER_URL ?>editar-perfil/<?php echo $ins_usuario->encryption($_SESSION['id_persona'])?>" class="submenu-link">
                         <i class="uil uil-user"></i>
                         <p class="option-name">Mi perfil</p>
                     </a>

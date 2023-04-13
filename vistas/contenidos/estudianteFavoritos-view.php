@@ -49,7 +49,7 @@
                             <td data-titulo="ACCIÓN" class="responsive-file">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <a href="<?php echo SERVER_URL?>recursosVisualizacion/<?php echo $insRecurso->encryption($recurso['id_recurso'])?>/" target="_blank" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>
+                                        <a href="<?php echo SERVER_URL?>handle/<?php echo $insRecurso->encryption($recurso['id_recurso'])?>/" target="_blank" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>
                                     </div>
                                     <form action="<?php echo SERVER_URL ?>ajax/recursoAjax.php" class="FormularioAjax" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">

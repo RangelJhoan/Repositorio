@@ -16,10 +16,10 @@ $datos = $ins_recurso->paginador_recurso_controlador(null);
             </div>
             <!--BOTÓN CREAR-->
             <div class="new-record-container">
-                <a class="btn-add-record" title="Ir a autores" href="<?php echo SERVER_URL ?>adminAutores/">
+                <a class="btn-add-record" title="Ir a autores" href="<?php echo SERVER_URL ?>admin-autores/">
                 <i class="uil uil-pen"></i>Autores
                 </a>
-                <a class="btn-add-record" title="Ir a palabras clave" href="<?php echo SERVER_URL ?>panelPalabrasClave/">
+                <a class="btn-add-record" title="Ir a palabras clave" href="<?php echo SERVER_URL ?>panel-palabras-clave/">
                 <i class="uil uil-tag"></i>Palabras clave
                 </a>
             </div>
@@ -66,10 +66,10 @@ $datos = $ins_recurso->paginador_recurso_controlador(null);
                             <td data-titulo="ACCIÓN" class="responsive-file">
                                 <div class="action-options-container">
                                     <div class="btn-group-action">
-                                        <a href="<?php echo SERVER_URL?>recursosVisualizacion/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" target="_blank" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>
+                                        <a href="<?php echo SERVER_URL?>handle/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" target="_blank" class="btn-admin-view-record" title="Ir al recurso"><i class="uil uil-eye btn-admin-view-record"></i></a>
                                     </div>
                                     <div class="btn-group-action">
-                                        <a href="<?php echo SERVER_URL ?>editarRecurso/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" class="btn-admin-edit-record" title="Editar recurso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
+                                        <a href="<?php echo SERVER_URL ?>editar-recurso/<?php echo $ins_recurso->encryption($rows['idRecurso'])?>/" class="btn-admin-edit-record" title="Editar recurso"><i class="uil uil-edit btn-admin-edit-record"></i></a>
                                     </div>
                                     <form class="FormularioAjax" action="<?php echo SERVER_URL?>ajax/recursoAjax.php" method="POST" data-form="delete" autocomplete="off">
                                         <div class="btn-group-action">

@@ -121,7 +121,7 @@
             <tr>
                 <th class="tituloColVerRecurso">URI:</th>
                 <td class="infoColVerRecurso">
-                    <a href="<?php echo SERVER_URL."recursosVisualizacion/".$pagina[1]; ?>" class="redireccionVerRecurso"><?php echo SERVER_URL."recursosVisualizacion/".$pagina[1]; ?></a>
+                    <a href="<?php echo SERVER_URL."handle/".$pagina[1]; ?>" class="redireccionVerRecurso"><?php echo SERVER_URL."handle/".$pagina[1]; ?></a>
                 </td>
             </tr>
             <tr>

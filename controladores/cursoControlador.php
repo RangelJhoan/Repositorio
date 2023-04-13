@@ -87,7 +87,7 @@ class cursoControlador extends cursoModelo{
         $editarCurso = cursoModelo::editar_curso_modelo($curso, $programasAgregados, $programasEliminados, $docentesAgregados, $docentesEliminados);
 
         if($editarCurso->rowCount()>0){
-            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."adminCursos/");
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."admin-cursos/");
         }else{
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información");
         }

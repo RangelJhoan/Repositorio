@@ -193,7 +193,7 @@ class usuarioControlador extends usuarioModelo{
             $_SESSION['tipo_usuario'] = $row['descripcion'];
 
             if($row['descripcion'] == "Administrador"){
-                echo "<script>window.location.href='".SERVER_URL."adminDashboard/';</script>";
+                echo "<script>window.location.href='".SERVER_URL."admin-dashboard/';</script>";
             }elseif($row['descripcion'] == "Docente"){
                 echo "<script>window.location.href='".SERVER_URL."docenteDashboard/';</script>";
             }elseif($row['descripcion'] == "Estudiante"){
@@ -344,7 +344,7 @@ class usuarioControlador extends usuarioModelo{
             exit();
         }
 
-        echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados exitosamente", SERVER_URL."adminUsuarios/");
+        echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados exitosamente", SERVER_URL."admin-usuarios/");
     }
 
     /*---------- Controlador editar usuario ----------*/

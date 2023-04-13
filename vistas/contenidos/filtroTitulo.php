@@ -49,7 +49,7 @@
                                 ?>
                                 <tr>
                                     <td data-titulo="FECHA"><a href="#" class="deleteRedireccionTable"><?php echo $vRecurso['fecha_publicacion_recurso'];?></a></td>
-                                    <td data-titulo="TITULO"><a href="<?php echo SERVER_URL."recursosVisualizacion/".$ins_main->encryption($vRecurso['id']); ?>" class="redireccionTable"><?php echo $vRecurso['titulo']; ?> </a></td>
+                                    <td data-titulo="TITULO"><a href="<?php echo SERVER_URL."handle/".$ins_main->encryption($vRecurso['id']); ?>" class="redireccionTable"><?php echo $vRecurso['titulo']; ?> </a></td>
                                     <td data-titulo="AUTOR(ES)"><a href="#" class="deleteRedireccionTable italicTableStyle"><?php echo $autores; ?></a></td>
                                 </tr>
                                 <?php } ?>  

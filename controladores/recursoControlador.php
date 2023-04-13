@@ -87,7 +87,7 @@ class recursoControlador extends recursoModelo{
 
             self::crearArchivo($recurso);
 
-            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Recurso creado correctamente", SERVER_URL."adminRecursos/");
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Recurso creado correctamente", SERVER_URL."admin-recursos/");
         }
 
     }
@@ -220,7 +220,7 @@ class recursoControlador extends recursoModelo{
         if(is_string($editarRecurso) || $editarRecurso->rowCount() < 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información");
         }else{
-            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."adminRecursos/");
+            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."admin-recursos/");
         }
     }
 

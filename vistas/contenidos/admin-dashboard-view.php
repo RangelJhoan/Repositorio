@@ -32,32 +32,32 @@
                 <h1 class="panel-title-name">Dashboard</h1>
             </div>
             <div class="cards-container" id="cards">
-                <a href="<?php echo SERVER_URL ?>adminUsuarios/" class="card">
+                <a href="<?php echo SERVER_URL ?>admin-usuarios/" class="card">
                     <span class="cards-title-name">Usuarios</span>
                     <i class="uil uil-users-alt"></i>
                     <span class="cards-total-count"><?php echo $total_usuarios->rowCount(); ?></span>
                 </a>
-                <a href="<?php echo SERVER_URL ?>adminProgramas/" class="card">
+                <a href="<?php echo SERVER_URL ?>admin-programas/" class="card">
                     <span class="cards-title-name">Programas</span>
                     <i class="uil uil-graduation-cap"></i>
                     <span class="cards-total-count"><?php echo $total_programas->rowCount(); ?></span>
                 </a>
-                <a href="<?php echo SERVER_URL ?>adminCursos/" class="card">
+                <a href="<?php echo SERVER_URL ?>admin-cursos/" class="card">
                     <span class="cards-title-name">Cursos</span>
                     <i class="uil uil-book-open"></i>
                     <span class="cards-total-count"><?php echo $total_cursos->rowCount(); ?></span>
                 </a>
-                <a href="<?php echo SERVER_URL ?>adminRecursos/" class="card">
+                <a href="<?php echo SERVER_URL ?>admin-recursos/" class="card">
                     <span class="cards-title-name">Recursos</span>
                     <i class="uil uil-file-blank"></i>
                     <span class="cards-total-count"><?php echo $totalRecursos->rowCount(); ?></span>
                 </a>
-                <a href="<?php echo SERVER_URL ?>adminAutores/" class="card">
+                <a href="<?php echo SERVER_URL ?>admin-autores/" class="card">
                     <span class="cards-title-name">Autores</span>
                     <i class="uil uil-pen"></i>
                     <span class="cards-total-count"><?php echo $total_autores->rowCount(); ?></span>
                 </a>
-                <a href="<?php echo SERVER_URL ?>panelPalabrasClave/" class="card">
+                <a href="<?php echo SERVER_URL ?>panel-palabras-clave/" class="card">
                     <span class="cards-title-name">Palabras Clave</span>
                     <i class="uil uil-tag"></i>
                     <span class="cards-total-count"><?php echo $total_etiquetas->rowCount(); ?></span>
