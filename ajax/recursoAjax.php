@@ -39,4 +39,9 @@ if(isset($_POST['id_recurso_favorito_del'])){
 if(isset($_POST['id_calificacion_recurso_del'])){
     echo $ins_recurso->eliminarCalificacionRecursoControlador();
 }
+
+/*--- Llamado de la función para cargar las gráficas del dashboard del docente ---*/
+if(isset($_POST['graficar_docente_calificaciones_totales'])){
+    echo $ins_recurso->calificacionesTotalesXPublicador();
+}
 ?>

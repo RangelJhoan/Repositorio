@@ -1,8 +1,6 @@
 <?php 
 require_once "./controladores/recursoControlador.php";
-require_once "./controladores/recursoControlador.php";
 
-$insRecurso = new recursoControlador();
 $insRecurso = new recursoControlador();
 
 $recursosFavoritos = $insRecurso->obtenerListaFavoritosXPersona($_SESSION['id_persona']);
@@ -28,4 +26,3 @@ $recursosCalificados = $insRecurso->obtenerListaCalificadosXPersona($_SESSION['i
         </div>
     </div>
 </section>
-<script src="<?php echo SERVER_URL ?>vistas/assets/js/dashboard.js"></script> 

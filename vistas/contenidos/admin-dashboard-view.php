@@ -69,9 +69,6 @@
                 <div class="box">
                     <canvas id="myChart"></canvas>
                 </div>
-                <div class="box">
-                    <canvas id="earnings"></canvas>
-                </div>
             </div>
         </section>
     </section>
@@ -79,5 +76,6 @@
 <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.umd.js"></script>
-<script src="<?php echo SERVER_URL ?>vistas/assets/js/dashboard.js"></script> 
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="<?php echo SERVER_URL ?>vistas/assets/js/admin_dashboard.js"></script> 
 

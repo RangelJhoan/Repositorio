@@ -589,6 +589,26 @@ class recursoControlador extends recursoModelo{
         }
     }
 
+    /**
+     * Obtiene las calificaciones (puntos positivos y negativos) totales que tiene un publicador en sus recursos y las imprime en pantalla
+     * para ser recibidas por medio de AJAX
+     * 
+     * @return void
+     */
+    public function calificacionesTotalesXPublicador(){
+        session_start(['name'=>"REPO"]);
+        $consulta = mainModel::ejecutar_consulta_simple("SELECT SUM(r.puntos_positivos) total_positivos, SUM(r.puntos_negativos) total_negativos
+                                                        FROM recurso r
+                                                        WHERE r.id_docente = " . $_SESSION['id_persona']);
+
+        $consulta = $consulta->fetch();
+        $puntosPositivosTotales = $consulta['total_positivos'];
+        $puntosNegativosTotales = $consulta['total_negativos'];
+
+        $puntuacionTotal = array($puntosPositivosTotales, $puntosNegativosTotales);
+        echo json_encode($puntuacionTotal);
+    }
+
 }
 
 ?>

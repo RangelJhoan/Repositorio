@@ -468,9 +468,9 @@ class usuarioControlador extends usuarioModelo{
             exit();
         }
 
-        $validarCorreo = mainModel::ejecutar_consulta_simple("SELECT id FROM usuario WHERE correo = '" . $_POST['correo_recuperar_clave'] . "'");
+        $validarCorreo = mainModel::ejecutar_consulta_simple("SELECT id FROM usuario WHERE correo = '" . $_POST['correo_recuperar_clave'] . "' AND estado = " . Utilidades::getIdEstado("ACTIVO") . " AND correo != '" . SUPER_ADMIN_EMAIL . "'");
         if($validarCorreo->rowCount() < 1){
-            echo Utilidades::getAlertaErrorJSON("simple", "No se ha encontrado un usuario relacionado al correo electrónico ingresado");
+            echo Utilidades::getAlertaErrorJSON("simple", "No se ha encontrado un usuario relacionado al correo electrónico ingresado o su cuenta no está activa");
             exit();
         }
 
@@ -541,7 +541,7 @@ class usuarioControlador extends usuarioModelo{
         '</div>'.
         '<p>Hemos recibido una solicitud para recuperar la contraseña de su usuario con correo ' . $email . '.</p>'.
         '<p>Su nueva contraseña es: <span>' . $claveNueva . '</span></p>'.
-        '<a href="https://repositorioinstitucional.000webhostapp.com/login/" class="btn">Iniciar sesión</a>'.
+        '<a href="' . SERVER_URL . 'login/" class="btn">Iniciar sesión</a>'.
         '<p>Se recomienda que una vez haya ingresado a su cuenta, modifique la contraseña de forma que esta sea segura y fácil de ser recordada.</p>'.
         '<p>Muchas gracias por usar el Repositorio Institucional.</p>'.
         '<hr>'.
@@ -570,6 +570,20 @@ class usuarioControlador extends usuarioModelo{
         echo Utilidades::getAlertaExitosoJSON("recargar", "Contraseña restablecida. Por favor revisar el correo electrónico donde se envió la nueva clave");
     }
 
+    /**
+     * Obtiene la cantidad total de usuarios por tipo de usuario e imprime en pantalla un array con estas cantidades
+     * para ser recibidas por medio de AJAX
+     * 
+     * @return void
+     */
+    public function contarCantidadUsuariosXTipo(){
+        $cantidadEstudiantes = count(self::obtenerPersonasXTipoUsuario("Estudiante"));
+        $cantidadDocentes = count(self::obtenerPersonasXTipoUsuario("Docente"));
+        $cantidadAdmins = count(self::obtenerPersonasXTipoUsuario("Administrador"));
+
+        $miArray = array($cantidadEstudiantes, $cantidadDocentes, $cantidadAdmins);
+        echo json_encode($miArray);
+    }
 
     // VALIDACIONES
 
