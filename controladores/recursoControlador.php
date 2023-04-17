@@ -81,7 +81,7 @@ class recursoControlador extends recursoModelo{
             $agregar_recurso = recursoModelo::agregar_recurso_modelo($recurso);
 
             if(is_string($agregar_recurso) || $agregar_recurso < 0){
-                echo Utilidades::getAlertaErrorJSON("simple", "Ups! Ups! Hubo un problema al cargar el recurso. Por favor intente nuevamente.");
+                echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al cargar el recurso. Por favor intente nuevamente.");
                 exit();
             }
 
@@ -291,7 +291,7 @@ class recursoControlador extends recursoModelo{
             $agregar_recurso = recursoModelo::agregar_recurso_modelo($recurso);
 
             if(is_string($agregar_recurso) || $agregar_recurso < 0){
-                echo Utilidades::getAlertaErrorJSON("simple", "Ups! Ups! Hubo un problema al cargar el recurso. Por favor intente nuevamente.");
+                echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al cargar el recurso. Por favor intente nuevamente.");
                 exit();
             }
 

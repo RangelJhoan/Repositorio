@@ -1,9 +1,11 @@
 <?php
 require_once "./controladores/recursoControlador.php";
 require_once "./controladores/autorControlador.php";
+require_once "./controladores/cursoControlador.php";
 
 $ins_recurso = new recursoControlador();
 $insAutor = new autorControlador();
+$insCurso = new cursoControlador();
 
 $datos = $ins_recurso->paginador_recurso_controlador(null);
 ?>
@@ -39,6 +41,7 @@ $datos = $ins_recurso->paginador_recurso_controlador(null);
                             foreach($datos as $rows){
                                 $autoresRecurso = $insAutor->autoresXRecursoControlador($rows['idRecurso']);
                                 $archivo = $ins_recurso->archivoXRecursoControlador($rows['idRecurso']);
+                                $cursosRecurso = $insCurso->cursosXRecursoControlador($rows['idRecurso']);
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $contador ?></td>
@@ -56,9 +59,9 @@ $datos = $ins_recurso->paginador_recurso_controlador(null);
                             </td>
                             <td data-titulo="CURSO(S)" class="responsive-file">
                             <?php
-                                foreach($autoresRecurso as $campo){
+                                foreach($cursosRecurso as $camposCurso){
                                     ?>
-                                    <li><?php echo $campo['nombre'] . " " . $campo['apellido'] ?></li>
+                                    <li><?php echo $camposCurso['nombre'] ?></li>
                                     <?php
                                 }
                             ?>

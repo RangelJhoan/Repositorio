@@ -44,7 +44,7 @@ if($consultaRecursos->rowCount() > 0){
                     <input type="hidden" name="id_recurso_edit" value="<?php echo $pagina[1] ?>">
                     <!--Título recurso-->
                     <div class="input-field">
-                        <input name="titulo_edit" type="text" value="<?php echo $datosRecurso['titulo']?>" placeholder="Título *" title="Por favor, complete el campo" required/>
+                        <input name="titulo_edit" type="text" maxlength="250" value="<?php echo $datosRecurso['titulo']?>" placeholder="Título *" title="Por favor, complete el campo" required/>
                     </div>
                     <!--Lista de autores-->
                     <label for="autorSeleccion" class="titleComboMultiple">Autor(es)</label>
@@ -64,7 +64,7 @@ if($consultaRecursos->rowCount() > 0){
                             ?>
                         </select>
                     <!--Resumen-->
-                    <textarea class="textAreaStl" name="resumen_edit" type="text" placeholder="Resumen *" title="Por favor, complete el campo" required><?php echo $datosRecurso['resumen'] ?></textarea>
+                    <textarea class="textAreaStl" name="resumen_edit" maxlength="1500" type="text" placeholder="Resumen *" title="Por favor, complete el campo" required><?php echo $datosRecurso['resumen'] ?></textarea>
                     <!--Año recurso-->
                     <div class="input-field">
                         <input name="anioRecurso_edit" type="number" value="<?php echo $datosRecurso['fecha_publicacion_recurso'] ?>" placeholder="Año de creación" min="1700" pattern="[0-9]+" title="Por favor, complete el campo"/>
@@ -105,15 +105,15 @@ if($consultaRecursos->rowCount() > 0){
                         </select>
                     <!--Editorial-->
                     <div class="input-field">
-                        <input name="editorial_edit" type="text" placeholder="Editorial " value="<?php echo $datosRecurso['editorial'] ?>" title="Por favor, complete el campo"/>
+                        <input name="editorial_edit" maxlength="80" type="text" placeholder="Editorial " value="<?php echo $datosRecurso['editorial'] ?>" title="Por favor, complete el campo"/>
                     </div>
                     <!--ISBN-->
                     <div class="input-field">
-                        <input name="ISBN_edit" type="number" placeholder="ISBN" value="<?php echo $datosRecurso['isbn'] ?>" title="Por favor, complete el campo"/>
+                        <input name="ISBN_edit" type="number" maxlength="20" placeholder="ISBN" value="<?php echo $datosRecurso['isbn'] ?>" title="Por favor, complete el campo"/>
                     </div>
                     <!--Link del recurso-->
                     <div class="input-field">
-                        <input name="link_edit" type="text" placeholder="Enlace" value="<?php echo $datosRecurso['enlace'] ?>" title="Por favor, complete el campo"/>
+                        <input name="link_edit" type="text" maxlength="300" placeholder="Enlace" value="<?php echo $datosRecurso['enlace'] ?>" title="Por favor, complete el campo"/>
                     </div>
                     <!--Estados-->
                     <div class="input-field ">

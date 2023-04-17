@@ -149,7 +149,7 @@ class homeControlador extends homeModelo{
      * Consulta la lista de autores que hayan sido seleccionados en uno o más recursos
      */
     public function contarAutoresConRecursos(){
-        $lista = mainModel::ejecutar_consulta_simple("SELECT DISTINCT a.id FROM autor a JOIN autor_recurso ar ON ar.id_autor = a.id;");
+        $lista = mainModel::ejecutar_consulta_simple("SELECT DISTINCT a.id FROM autor a JOIN autor_recurso ar ON ar.id_autor = a.id WHERE a.estado = " . Utilidades::getIdEstado("ACTIVO"));
         return $lista->fetchAll();
     }
 
@@ -157,7 +157,7 @@ class homeControlador extends homeModelo{
      * Consulta la lista de cursos que hayan sido seleccionados en uno o más recursos
      */
     public function contarCursosConRecursos(){
-        $lista = mainModel::ejecutar_consulta_simple("SELECT DISTINCT c.id FROM curso c JOIN curso_recurso cr ON cr.id_curso = c.id;");
+        $lista = mainModel::ejecutar_consulta_simple("SELECT DISTINCT c.id FROM curso c JOIN curso_recurso cr ON cr.id_curso = c.id WHERE c.estado = " . Utilidades::getIdEstado("ACTIVO"));
         return $lista->fetchAll();
     }
     

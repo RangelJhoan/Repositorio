@@ -32,7 +32,7 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
                 <form action="<?php echo SERVER_URL ?>ajax/recursoAjax.php" class="sign-up-form FormularioAjax" method="POST" data-form="save_resource" autocomplete="off" enctype="multipart/form-data">
                         <!--Título recurso-->
                         <div class="input-field">
-                            <input name="titulo_docente_ins" type="text" placeholder="Título *" title="Por favor, complete el campo" required/>
+                            <input name="titulo_docente_ins" type="text" maxlength="250" placeholder="Título *" title="Por favor, complete el campo" required/>
                         </div>
                         <!--Lista de autores-->
                         <label for="autorSeleccion" class="titleComboMultiple">Autor(es)</label>
@@ -46,7 +46,7 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
                                 ?>
                             </select>
                         <!--Resumen-->
-                        <textarea class="textAreaStl" name="resumen_docente_ins" type="text" placeholder="Resumen *" title="Por favor, complete el campo" required></textarea>
+                        <textarea class="textAreaStl" name="resumen_docente_ins" type="text" maxlength="1500" placeholder="Resumen *" title="Por favor, complete el campo" required></textarea>
                         <!--Año recurso-->
                         <div class="input-field">
                             <input name="anioRecurso_docente" type="number" placeholder="Año de creación" min="1700" pattern="[0-9]+" title="Por favor, complete el campo"/>
@@ -75,15 +75,15 @@ $datos_cursos = $ins_curso->paginador_curso_controlador();
                             </select>
                         <!--Editorial-->
                         <div class="input-field">
-                            <input name="editorial_docente_ins" type="text" placeholder="Editorial " title="Por favor, complete el campo"/>
+                            <input name="editorial_docente_ins" type="text" maxlength="80" placeholder="Editorial " title="Por favor, complete el campo"/>
                         </div>
                         <!--ISBN-->
                         <div class="input-field">
-                            <input name="ISBN_docente_ins" type="number" placeholder="ISBN" title="Por favor, complete el campo"/>
+                            <input name="ISBN_docente_ins" type="number" maxlength="20" placeholder="ISBN" title="Por favor, complete el campo"/>
                         </div>
                         <!--Link del recurso-->
                         <div class="input-field">
-                            <input name="link_docente_ins" type="text" placeholder="Enlace" title="Por favor, complete el campo"/>
+                            <input name="link_docente_ins" type="text" maxlength="300" placeholder="Enlace" title="Por favor, complete el campo"/>
                         </div>
                         <!--Cargue del archivo-->
                         <div class="fileUploadContainer">
