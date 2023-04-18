@@ -27,7 +27,7 @@ class cursoControlador extends cursoModelo{
             $curso->setListaDocentes($_POST['docentes_ins']);
         }
 
-        $checkCurso = mainModel::ejecutar_consulta_simple("SELECT id FROM curso WHERE nombre = '{$curso->getNombre()}'");
+        $checkCurso = mainModel::ejecutar_consulta_simple("SELECT id FROM curso WHERE nombre = '{$curso->getNombre()}' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($checkCurso->rowCount() > 0){
             echo Utilidades::getAlertaErrorJSON("simple", "El curso a crear ya está registrado en el repositorio");
             exit();
@@ -68,7 +68,7 @@ class cursoControlador extends cursoModelo{
         $curso->setListaProgramas($_POST['programas_edit']);
         $curso->setListaDocentes($_POST['docentes_edit']);
 
-        $checkCurso = mainModel::ejecutar_consulta_simple("SELECT id FROM curso WHERE nombre = '{$curso->getNombre()}' AND id != {$curso->getIdCurso()}");
+        $checkCurso = mainModel::ejecutar_consulta_simple("SELECT id FROM curso WHERE nombre = '{$curso->getNombre()}' AND id != {$curso->getIdCurso()} AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($checkCurso->rowCount() > 0){
             echo Utilidades::getAlertaErrorJSON("simple", "El curso a crear ya está registrado en el repositorio");
             exit();

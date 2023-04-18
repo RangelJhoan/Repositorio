@@ -19,7 +19,7 @@ class autorControlador extends autorModelo{
         $autor->setApellido(mainModel::limpiarCadena($_POST['apellido_ins']));
         $autor->setEstado(Utilidades::getIdEstado("ACTIVO"));
 
-        $checkAutor = mainModel::ejecutar_consulta_simple("SELECT id FROM autor WHERE nombre = '{$autor->getNombre()}' AND apellido = '{$autor->getApellido()}'");
+        $checkAutor = mainModel::ejecutar_consulta_simple("SELECT id FROM autor WHERE nombre = '{$autor->getNombre()}' AND apellido = '{$autor->getApellido()}' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($checkAutor->rowCount() > 0){
             echo Utilidades::getAlertaErrorJSON("simple", "El autor a crear ya está registrado en el repositorio");
             exit();
@@ -88,6 +88,12 @@ class autorControlador extends autorModelo{
         $autor->setApellido(mainModel::limpiarCadena($_POST['apellido_edit']));
         $autor->setEstado(mainModel::limpiarCadena($_POST['estado']));
 
+        $checkAutor = mainModel::ejecutar_consulta_simple("SELECT id FROM autor WHERE nombre = '{$autor->getNombre()}' AND apellido = '{$autor->getApellido()}' AND id != '{$autor->getIdAutor()}' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
+        if($checkAutor->rowCount() > 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "El autor a crear ya está registrado en el repositorio");
+            exit();
+        }
+
         if($autor->getApellido() == ""){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
@@ -148,7 +154,7 @@ class autorControlador extends autorModelo{
         $autor->setApellido(mainModel::limpiarCadena($_POST['apellido_doc_edit']));
         $autor->setEstado(mainModel::limpiarCadena($_POST['estado']));
 
-        $checkAutor = mainModel::ejecutar_consulta_simple("SELECT id FROM autor WHERE nombre = '{$autor->getNombre()}' AND apellido = '{$autor->getApellido()}' AND id != '{$autor->getIdAutor()}'");
+        $checkAutor = mainModel::ejecutar_consulta_simple("SELECT id FROM autor WHERE nombre = '{$autor->getNombre()}' AND apellido = '{$autor->getApellido()}' AND id != '{$autor->getIdAutor()}' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($checkAutor->rowCount() > 0){
             echo Utilidades::getAlertaErrorJSON("simple", "El autor a crear ya está registrado en el repositorio");
             exit();

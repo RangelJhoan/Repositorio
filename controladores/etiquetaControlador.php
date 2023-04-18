@@ -17,6 +17,12 @@ class etiquetaControlador extends etiquetaModelo{
         session_start(['name'=>'REPO']);
         $etiqueta->setIdDocente($_SESSION['id_persona']);
 
+        $checkEtiqueta = mainModel::ejecutar_consulta_simple("SELECT id FROM etiqueta WHERE descripcion = '{$etiqueta->getDescripcion()}' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
+        if($checkEtiqueta->rowCount() > 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "La palabra clave a crear ya está registrada en el repositorio");
+            exit();
+        }
+
         if($etiqueta->getDescripcion() == ""){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
@@ -48,6 +54,12 @@ class etiquetaControlador extends etiquetaModelo{
         $etiqueta->setDescripcion(mainModel::limpiarCadena($_POST['descripcion_edit']));
         $etiqueta->setEstado(mainModel::limpiarCadena($_POST['estado']));
 
+        $checkEtiqueta = mainModel::ejecutar_consulta_simple("SELECT id FROM etiqueta WHERE descripcion = '{$etiqueta->getDescripcion()}' AND id != {$etiqueta->getIdEtiqueta()} AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
+        if($checkEtiqueta->rowCount() > 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "La palabra clave a crear ya está registrada en el repositorio");
+            exit();
+        }
+
         if($etiqueta->getDescripcion() == ""){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
@@ -63,11 +75,11 @@ class etiquetaControlador extends etiquetaModelo{
 
     public function eliminar_etiqueta_controlador(){
         try {
-            $autor = new Etiqueta();
-            $autor->setIdEtiqueta(mainModel::limpiarCadena(mainModel::decryption($_POST['id_etiqueta_del'])));
-            $autor->setEstado(Utilidades::getIdEstado("ELIMINADO"));
+            $etiqueta = new Etiqueta();
+            $etiqueta->setIdEtiqueta(mainModel::limpiarCadena(mainModel::decryption($_POST['id_etiqueta_del'])));
+            $etiqueta->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
-            $eliminarEtiqueta = etiquetaModelo::eliminar_etiqueta_modelo($autor);
+            $eliminarEtiqueta = etiquetaModelo::eliminar_etiqueta_modelo($etiqueta);
 
             if(is_string($eliminarEtiqueta) || $eliminarEtiqueta < 0){
                 echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar la palabra clave");
@@ -134,6 +146,12 @@ class etiquetaControlador extends etiquetaModelo{
 
         $etiqueta->setDescripcion(mainModel::limpiarCadena($_POST['descripcion_docente_edit']));
         $etiqueta->setEstado(mainModel::limpiarCadena($_POST['estado']));
+
+        $checkEtiqueta = mainModel::ejecutar_consulta_simple("SELECT id FROM etiqueta WHERE descripcion = '{$etiqueta->getDescripcion()}' AND id != {$etiqueta->getIdEtiqueta()} AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
+        if($checkEtiqueta->rowCount() > 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "La palabra clave a crear ya está registrado en el repositorio");
+            exit();
+        }
 
         if($etiqueta->getDescripcion() == ""){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");

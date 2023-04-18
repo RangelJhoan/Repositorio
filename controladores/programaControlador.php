@@ -24,7 +24,7 @@ class programaControlador extends programaModelo{
             exit();
         }
 
-        $check_programa = mainModel::ejecutar_consulta_simple("SELECT id FROM programa WHERE nombre = '".$programa->getNombre()."';");
+        $check_programa = mainModel::ejecutar_consulta_simple("SELECT id FROM programa WHERE nombre = '".$programa->getNombre()."' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
 
         if($check_programa->rowCount() > 0){
             echo Utilidades::getAlertaErrorJSON("simple", "El programa ya se encuentra registrado en el repositorio");
@@ -86,7 +86,7 @@ class programaControlador extends programaModelo{
             exit();
         }
 
-        $check_programa = mainModel::ejecutar_consulta_simple("SELECT id FROM programa WHERE nombre = '".$programa->getNombre()."' and id != '".$programa->getIdPrograma()."';");
+        $check_programa = mainModel::ejecutar_consulta_simple("SELECT id FROM programa WHERE nombre = '".$programa->getNombre()."' and id != '".$programa->getIdPrograma()."' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
 
         if($check_programa->rowCount() > 0){
             echo Utilidades::getAlertaErrorJSON("simple", "El programa ya se encuentra registrado en el repositorio");
