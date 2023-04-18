@@ -12,14 +12,30 @@ $(document).ready(function() {
             /*Script para gráficas*/
             const ctx = document.getElementById('myChart');
             new Chart(ctx, {
-                type: 'polarArea',
+                type: 'bar',
                 data: {
-                labels: ['Estudiantes', 'Docentes', 'Administradores'],
-                datasets: [{
-                    label: 'Número de usuarios',
-                    data: data,
-                    borderWidth: 1
-                }]
+                    labels: ['Estudiantes', 'Docentes', 'Administradores'],
+                    datasets: [{
+                        label: 'Estudiantes',
+                        data: [Math.abs(Math.round(data[0])), 0, 0],
+                        backgroundColor: '#008640',
+                        borderColor: '#008640',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Docentes',
+                        data: [0, Math.abs(Math.round(data[1])), 0],
+                        backgroundColor: '#506591',
+                        borderColor: '#506591',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Administradores',
+                        data: [0, 0, Math.abs(Math.round(data[2]))],
+                        backgroundColor: '#DBA034',
+                        borderColor: '#DBA034',
+                        borderWidth: 1
+                    }]
                 },
                 options: {
                     plugins:{
@@ -29,14 +45,26 @@ $(document).ready(function() {
                             font:{
                                 size:18,
                                 weight:'bold'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    return value % 2 === 0 ? value : '';
                                 }
                             }
                         }
-                    }
-                });
+                    },
+                    barPercentage: 1.5, // ajusta el ancho de las barras
+                    barThickness: 'flex' // establece el grosor de las barras
+                }
+            });
         }
     });
-});
+    });
+    
 
 /** SCRIPT PARA LAS CARDS DEL DASHBOARD*/
 document.getElementById("cards").onmousemove = e => {
