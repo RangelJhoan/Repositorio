@@ -448,7 +448,7 @@ class usuarioControlador extends usuarioModelo{
         FROM persona p 
         JOIN usuario u ON u.id = p.id_usuario 
         JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
-        WHERE u.correo != '" . SUPER_ADMIN_EMAIL . "' and u.estado != ". Utilidades::getIdEstado("ELIMINADO") ." and UPPER(tu.descripcion) = UPPER('". $tipoUsuario ."') 
+        WHERE u.correo != '" . SUPER_ADMIN_EMAIL . "' and u.estado = ". Utilidades::getIdEstado("ACTIVO") ." and UPPER(tu.descripcion) = UPPER('". $tipoUsuario ."') 
         ORDER BY p.nombre ASC";
 
         $conexion = mainModel::conectar();

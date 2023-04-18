@@ -93,7 +93,7 @@ class etiquetaControlador extends etiquetaModelo{
      *
      * @return Object Lista de las etiquetas consultadas
      */
-    public function paginador_etiqueta_controlador($idPersona){
+    public function paginador_etiqueta_controlador($idPersona, $isActivo = false){
         $consulta = "SELECT e.id as idEtiqueta, e.descripcion, e.estado as estadoEtiqueta, e.fecha_creacion as fechaCreacionEtiqueta, p.nombre, p.apellido 
         FROM etiqueta e
         JOIN persona p ON p.id = e.id_docente
@@ -101,6 +101,9 @@ class etiquetaControlador extends etiquetaModelo{
 
         if($idPersona != null)
             $consulta .= " AND id_docente = " . $idPersona;
+
+        if($isActivo)
+            $consulta .= " AND e.estado = " . Utilidades::getIdEstado("ACTIVO");
 
         $consulta .= " ORDER BY descripcion ASC";
 

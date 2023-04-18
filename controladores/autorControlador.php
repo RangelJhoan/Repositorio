@@ -106,7 +106,7 @@ class autorControlador extends autorModelo{
      *
      * @return Object Lista de los autores consultados
      */
-    public function paginador_autor_controlador($idPersona){
+    public function paginador_autor_controlador($idPersona, $isActivo = false){
         $consulta = "SELECT a.id, a.nombre, a.apellido, a.fecha_creacion, a.estado, p.nombre as nombreDocente, p.apellido as apellidoDocente 
         FROM autor a
         JOIN persona p ON p.id = a.id_docente
@@ -114,6 +114,9 @@ class autorControlador extends autorModelo{
 
         if($idPersona != null)
             $consulta .= " AND id_docente = " . $idPersona;
+
+        if($isActivo)
+            $consulta .= " AND a.estado = ". Utilidades::getIdEstado("ACTIVO");
 
         $consulta .= " ORDER BY nombre ASC";
 

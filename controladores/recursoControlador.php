@@ -97,7 +97,7 @@ class recursoControlador extends recursoModelo{
      *
      * @return Object Lista de los recursos consultados
      */
-    public function paginador_recurso_controlador($idPersona){
+    public function paginador_recurso_controlador($idPersona, $isActivo = false){
         $consulta = "SELECT r.id as idRecurso, r.titulo, r.puntos_positivos, r.puntos_negativos, r.estado, r.fecha_publicacion_profesor, p.nombre, p.apellido 
         FROM recurso r 
         JOIN persona p ON p.id = r.id_docente 
@@ -105,6 +105,9 @@ class recursoControlador extends recursoModelo{
 
         if($idPersona != null)
             $consulta .= " AND p.id = " . $idPersona;
+
+        if($isActivo)
+            $consulta .= " AND r.estado = " . Utilidades::getIdEstado("ACTIVO");
 
         $consulta .= " ORDER BY r.id;";
 

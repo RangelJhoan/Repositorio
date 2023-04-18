@@ -12,8 +12,8 @@
 
     $inforecurso = $ins_home->buscar_info_recurso($pagina[1]);
 
-    //El ID del recurso es incorrecto (No existe)
-    if($inforecurso == ""){
+    //El ID del recurso es incorrecto (No existe) o el recurso no está activo
+    if($inforecurso == "" || $inforecurso['estado'] != Utilidades::getIdEstado("ACTIVO")){
         header('Location: ' . SERVER_URL. '404');
         exit();
     }
