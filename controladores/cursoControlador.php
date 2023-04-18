@@ -114,11 +114,15 @@ class cursoControlador extends cursoModelo{
      *
      * @return Object código HTML con la lista de cursos en una tabla
      */
-    public function paginador_curso_controlador(){
+    public function paginador_curso_controlador($isActivo = false){
         $consulta = "SELECT SQL_CALC_FOUND_ROWS * 
         FROM curso
-        WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") ." 
-        ORDER BY nombre ASC";
+        WHERE estado != ". Utilidades::getIdEstado("ELIMINADO");
+
+        if($isActivo)
+            $consulta .= " AND estado = ". Utilidades::getIdEstado("ACTIVO");
+
+        $consulta .= " ORDER BY nombre ASC";
 
         $conexion = mainModel::conectar();
 
