@@ -252,7 +252,9 @@ body{
     margin-bottom: 20px;
 }
 
-
+.bannerImgSM{
+    display: none;
+}
 /*?--------------SECCIÓN BARRA BÚSQUEDA ---------------*/
 /*Contenedor de la barra de búsqueda*/
 .form-BarraBusquedaHome{
@@ -1649,6 +1651,13 @@ select {
     }
     .footer-Box .mainText-Footer{
         font-size: var(--phrgp-home-supertiny-font-size);
+    }
+    .bannerSearchHome-Section .bannerImg{
+        display:none;
+    }
+    
+    .bannerSearchHome-Section .bannerImgSM{
+        display: block;
     }
 }
 

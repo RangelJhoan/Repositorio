@@ -18,22 +18,22 @@ $(document).ready(function() {
                     datasets: [{
                         label: 'Estudiantes',
                         data: [Math.abs(Math.round(data[0])), 0, 0],
-                        backgroundColor: '#008640',
-                        borderColor: '#008640',
+                        backgroundColor: '#008640ef',
+                        borderColor: '#008640ef',
                         borderWidth: 1
                     },
                     {
                         label: 'Docentes',
                         data: [0, Math.abs(Math.round(data[1])), 0],
-                        backgroundColor: '#506591',
-                        borderColor: '#506591',
+                        backgroundColor: '#506591ef',
+                        borderColor: '#506591ef',
                         borderWidth: 1
                     },
                     {
                         label: 'Administradores',
                         data: [0, 0, Math.abs(Math.round(data[2]))],
-                        backgroundColor: '#DBA034',
-                        borderColor: '#DBA034',
+                        backgroundColor: '#DBA034ef',
+                        borderColor: '#DBA034ef',
                         borderWidth: 1
                     }]
                 },

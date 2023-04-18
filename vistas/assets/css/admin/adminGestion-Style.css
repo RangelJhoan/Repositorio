@@ -1378,11 +1378,7 @@ select::-ms-expand{
         .mult-select-tag button:first-child{
             width:1.1rem;
         }
-        .graphBox{
-            display: none;
-            opacity: 0;
-            user-select: none;
-        }
+
         .dashboard-container .cards-container {
             padding-bottom: 20px;
         }
@@ -1392,6 +1388,14 @@ select::-ms-expand{
         }
     }
 
+    @media(max-width:600px){
+        .graphBox{
+            display: none;
+            opacity: 0;
+            user-select: none;
+        }
+    }
+    
     @media (max-width:500px) {
         .general-admin-container .title .panel-title-name {
             font-size: var(--title-mobile-font-size);

@@ -15,18 +15,22 @@ $(document).ready(function() {
             new Chart(ctx, {
                 type: 'pie',
                 data: {
-                labels: ['Puntos Positivos', 'Puntos Negativos'],
+                labels: ['Puntos positivos', 'Puntos negativos'],
                 datasets: [{
-                    label: 'Número de calificaciones',
+                    label: 'Calificaciones ',
                     data: data,
-                    borderWidth: 1
+                    borderWidth: 1,
+                    backgroundColor: [
+                        '#65ca65', // Para "Puntos positivos"
+                        'rgb(241, 95, 95)' // Para "Puntos Negativos"
+                    ]
                 }]
                 },
                 options: {
                     plugins:{
                         title:{
                             display:true,
-                            text: 'Calificación de mis recursos',
+                            text: 'Feedbacks generales de mis recursos',
                             font:{
                                 size:18,
                                 weight:'bold'
@@ -34,7 +38,7 @@ $(document).ready(function() {
                             }
                         }
                     }
-                });
+            });
         }
     });
 });

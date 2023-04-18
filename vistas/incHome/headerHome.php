@@ -63,6 +63,7 @@
         <section class="bannerSearchHome-Section">
         <!-- Banner -->
         <img class="bannerImg" src="<?php echo SERVER_URL ?>vistas/assets/img/bannerHome.png" alt="Banner Repositorio Institucional">
+        <img class="bannerImg bannerImgSM" src="<?php echo SERVER_URL ?>vistas/assets/img/bannerHome-sm.png" alt="Banner Repositorio Institucional">
         <!-- Barra búsqueda -->
         <form class="form-BarraBusquedaHome" action="<?php echo SERVER_URL ?>ajax/homeAjax.php" method="POST" data-form="save" autocomplete="off">
             <div class="searchBar-Container">

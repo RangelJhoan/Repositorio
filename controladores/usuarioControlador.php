@@ -504,22 +504,11 @@ class usuarioControlador extends usuarioModelo{
             'p {'.
                 'margin-bottom: 20px;'.
             '}'.
-            '.btn {'.
-                'display: inline-block;'.
-                'padding: 12px 24px;'.
-                'border: 2px solid #506591;'.
-                'color: #506591;'.
-                'font-size: 16px;'.
-                'text-decoration: none;'.
-                'border-radius: 4px;'.
-            '}'.
-            '.btn:hover {'.
-                'background-color: #29425E;'.
-            '}'.
             'span {'.
                 'color: #506591;'.
                 'font-weight: 700;'.
                 'padding-left: 10px;'.
+                'font-size: 18px;'.
             '}'.
             'contact{'.
                 'font-size:small;'.
@@ -537,11 +526,8 @@ class usuarioControlador extends usuarioModelo{
         '<body>'.
         '<div class="container">'.
         '<h2>¡Hola! La contraseña ha sido restablecida</h2>'.
-        '<div class=""img-container>'.
-        '</div>'.
         '<p>Hemos recibido una solicitud para recuperar la contraseña de su usuario con correo ' . $email . '.</p>'.
         '<p>Su nueva contraseña es: <span>' . $claveNueva . '</span></p>'.
-        '<a href="' . SERVER_URL . 'login/" class="btn">Iniciar sesión</a>'.
         '<p>Se recomienda que una vez haya ingresado a su cuenta, modifique la contraseña de forma que esta sea segura y fácil de ser recordada.</p>'.
         '<p>Muchas gracias por usar el Repositorio Institucional.</p>'.
         '<hr>'.
