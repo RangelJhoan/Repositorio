@@ -447,6 +447,7 @@ label{
     list-style: none;
     user-select: none;
 }
+
 .iconFeedback {
     font-size: var(--normal-font-size);
     transform: scale(1,1);
@@ -457,7 +458,9 @@ label{
 .iconFeedback.minus {
     color:var(--delete-button);
 }
-
+.liFeedback{
+    list-style: none;
+}
 
 /*?---------------------MOSTRANDO DE X 1 X DE X ENTRADAS----------------------*/
 .dataTables_info{

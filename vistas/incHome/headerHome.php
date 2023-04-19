@@ -18,7 +18,7 @@
                 <a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>home/">Inicio</a></li>
             <li class="li-Home"><a  class="a-HomeNav" href="<?php echo SERVER_URL; ?>preguntas-frecuentes/">Preguntas frecuentes</a></li>
             <li class="li-Home">
-                <input class="input-HamburguerHome" type="checkbox" id="btn-Perfil-Label" class="input-Navbar">
+                <input class="input-HamburguerHome" type="checkbox" id="btn-Perfil-Label" class="input-Navbar" title="Perfil">
                 <a  class="a-HomeNav homeHideListMin" href="#">Perfil</a>
                 <ul class="ul-Home ul-SubMenu">
                     <li class="li-Home">

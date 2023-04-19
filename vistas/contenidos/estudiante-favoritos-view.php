@@ -38,8 +38,9 @@
                             <td data-titulo="AUTOR(ES)" class="responsive-file">
                             <?php
                                 foreach($autoresRecurso as $campo){
-                                    ?>
-                                    <li><?php echo $campo['nombre'] . " " . $campo['apellido'] ?></li>
+                                    ?><ul>
+                                        <li><?php echo $campo['nombre'] . " " . $campo['apellido'] ?></li>
+                                    </ul>
                                     <?php
                                 }
                             ?>

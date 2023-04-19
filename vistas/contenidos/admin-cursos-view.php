@@ -99,7 +99,10 @@ $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
                             <?php
                                 foreach($programas_curso as $campos){
                                     ?>
-                                    <li><?php echo $campos['programa_nombre'] ?></li>
+                                    <ul>
+                                        <li><?php echo $campos['programa_nombre'] ?></li>
+
+                                    </ul>
                                     <?php
                                 }
                             ?>
@@ -108,7 +111,9 @@ $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
                             <?php
                                 foreach($docentesXCurso as $camposDocente){
                                     ?>
-                                    <li><?php echo $camposDocente['nombrePersona'] . " " . $camposDocente['apeliidoDocente'] ?></li>
+                                    <ul>
+                                        <li><?php echo $camposDocente['nombrePersona'] . " " . $camposDocente['apeliidoDocente'] ?></li>
+                                    </ul>
                                     <?php
                                 }
                             ?>

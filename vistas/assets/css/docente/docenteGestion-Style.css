@@ -466,7 +466,9 @@ label{
 .iconFeedback.minus {
     color:var(--delete-button);
 }
-
+.liFeedback{
+    list-style: none;
+}
 
 /*?---------------------MOSTRANDO DE X 1 X DE X ENTRADAS----------------------*/
 .dataTables_info{
@@ -530,7 +532,7 @@ label{
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 999999;
+    z-index: 999;
 }
 .container-modal-add-record-resource{
     width: 100%;

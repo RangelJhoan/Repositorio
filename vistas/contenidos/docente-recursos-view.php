@@ -52,7 +52,9 @@ $datos = $ins_recurso->paginador_recurso_controlador(null, true);
                             <?php
                                 foreach($autoresRecurso as $campo){
                                     ?>
-                                    <li><?php echo $campo['nombre'] . " " . $campo['apellido'] ?></li>
+                                    <ul>
+                                        <li><?php echo $campo['nombre'] . " " . $campo['apellido'] ?></li>
+                                    </ul>
                                     <?php
                                 }
                             ?>
@@ -61,7 +63,9 @@ $datos = $ins_recurso->paginador_recurso_controlador(null, true);
                             <?php
                                 foreach($cursosRecurso as $camposCurso){
                                     ?>
-                                    <li><?php echo $camposCurso['nombre'] ?></li>
+                                    <ul>
+                                        <li><?php echo $camposCurso['nombre'] ?></li>
+                                    </ul>
                                     <?php
                                 }
                             ?>

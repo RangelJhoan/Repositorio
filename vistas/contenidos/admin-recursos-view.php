@@ -52,15 +52,19 @@ $datos = $ins_recurso->paginador_recurso_controlador(null);
                             <?php
                                 foreach($autoresRecurso as $campo){
                                     ?>
-                                    <li><?php echo $campo['nombre'] . " " . $campo['apellido'] ?></li>
+                                    <ul>
+                                        <li><?php echo $campo['nombre'] . " " . $campo['apellido'] ?></li>
+                                    </ul>
                                     <?php
                                 }
                             ?>
                             </td>
                             <td data-titulo="ARCHIVO" class="responsive-file fileStyleResp"><?php if($archivo != false) echo $archivo['nombre'] ?></td>
                             <td data-titulo="FEEDBACK" class="responsive-file listFeedback">
-                                <li title="Calificación positiva"><i class="uil uil-thumbs-up iconFeedback plus"></i>: <?php echo $rows['puntos_positivos'] ?> </li>
-                                <li title="Calificación negativa"><i class="uil uil-thumbs-down iconFeedback minus"></i>: <?php echo $rows['puntos_negativos'] ?> </li>
+                                <ul>
+                                    <li title="Calificación positiva" class="liFeedback"><i class="uil uil-thumbs-up iconFeedback plus"></i>: <?php echo $rows['puntos_positivos'] ?> </li>
+                                    <li title="Calificación negativa" class="liFeedback"><i class="uil uil-thumbs-down iconFeedback minus"></i>: <?php echo $rows['puntos_negativos'] ?> </li>
+                                </ul>
                             </td>
                             <td data-titulo="ESTADO" class="responsive-file"><?php echo Utilidades::getNombreEstado($rows['estado']) ?></td>
                             <td data-titulo="ACCIÓN" class="responsive-file">
