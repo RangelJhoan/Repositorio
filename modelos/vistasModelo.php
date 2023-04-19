@@ -6,7 +6,7 @@ class vistasModelo{
         $listaBlancaAdmin = ["admin-dashboard","admin-usuarios","admin-editar-usuario","editar-perfil","admin-programas","admin-editar-programa","admin-cursos","admin-editar-curso","admin-recursos","admin-autores","admin-editar-autor","adminReportes","panel-palabras-clave","editar-palabra-clave","editar-recurso"];
         $listaBlancaDocente = ["docente-dashboard","docente-recursos","docente-mis-recursos","docente-crear-recurso","docente-editar-recurso","docente-autores","docente-mis-autores","docente-editar-autor","docente-palabras-clave","docente-mis-palabras-clave","docente-editar-palabra-clave","editar-perfil", "estudiante-feedbacks"];
         $listaBlancaEstudiante = ["estudiante-dashboard","estudiante-favoritos","editar-perfil","estudiante-feedbacks"];
-        $listaBlancaHome = ["preguntas-frecuentes","busqueda","asideHomeFilters","handle"];
+        $listaBlancaHome = ["preguntas-frecuentes","busqueda","asideHomeFilters","handle","politicas-uso"];
 
         //?VERIFICACIÓN TIPO DE USUARIO
         if(isset($_SESSION['tipo_usuario'])){

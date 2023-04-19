@@ -1,0 +1,14 @@
+<body class="bodyPol">
+<h2 class="pol-main-Title">Políticas de Uso</h2>
+    <section class="wrapperPol">
+        <p class="phPol phPolMain">
+            Las políticas de uso del Banco de Recursos Digitales Audiovisuales se presentan a continuación.
+        </p>
+        <p class="phPol"><span class="enumPol">1. Propiedad intelectual: </span>Los materiales publicados en el Repositorio Institucional son propiedad intelectual de sus respectivos autores y/o instituciones. Cualquier uso no autorizado de los mismos puede estar sujeto a acciones legales.</p>        
+        <p class="phPol"><span class="enumPol">2. Acceso al Repositorio: </span>El Repositorio Institucional ofrece acceso libre y gratuito a todos los recursos publicados para cualquier persona interesada en consultarlos. No obstante, el acceso a las cuentas se limita exclusivamente a los miembros de la comunidad académica de la institución, incluyendo estudiantes, docentes y personal administrativo. Cabe destacar que algunos recursos en el Repositorio pueden ser temporalmente inactivados por motivos técnicos o de mantenimiento.</p>        
+        <p class="phPol"><span class="enumPol">3. Uso de los recursos: </span>Los recursos publicados en el Repositorio Institucional pueden ser utilizados con fines académicos, de investigación y de difusión, siempre y cuando se respeten los derechos de autor. La reproducción, distribución o venta de los materiales sin el consentimiento de sus autores y/o instituciones es ilegal.</p>        
+        <p class="phPol"><span class="enumPol">4. Contentido inapropiado: </span>El personal administrativo a cargo del Repositorio Institucional se reserva el derecho de remover cualquier material que se considere inapropiado, ilegal o que viole los derechos de autor. Los docentes que publiquen dichos materiales pueden estar sujetos a acciones legales y a la restricción de su cuenta. Además, se sugiere a los usuarios calificar los recursos para contribuir a la depuración y mejorar la calidad del contenido del Repositorio.</p>        
+        <p class="phPol"><span class="enumPol">5. Privacidad: </span>El Repositorio Institucional respeta la privacidad de sus usuarios y se compromete a proteger sus datos personales. Cualquier uso no autorizado de los datos personales de los usuarios será considerado una violación de la privacidad.</p>           
+        <p class="phPol"><span class="enumPol">6. Cambios en las políticas de uso: </span>El Repositorio Institucional se reserva el derecho de modificar o actualizar estos términos y condiciones en cualquier momento, sin necesidad de previo aviso. Los usuarios deberán revisar periódicamente las políticas de uso para estar al tanto de los cambios realizados.</p>          
+        <p class="phPol lastModif"><span class="enumPol">Última modificación: </span>2023 - 1</p>          
+    </section>

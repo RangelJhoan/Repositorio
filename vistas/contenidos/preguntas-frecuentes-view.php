@@ -28,7 +28,7 @@
                 </div>
             </label>
             <div class="contentFAQ">
-                <p class="answerFAQ">El repositorio va dirigido principalmente a usuarios con énfasis en contenidos de Ingeniería de Sistemas. Sin embargo, existe la posibilidad de poder publicar y encontrar recursos enfocados en otros programas académicos.</p>
+                <p class="answerFAQ">La finalidad principal del repositorio es proporcionar recursos relevantes para los usuarios interesados en Ingeniería de Sistemas. No obstante, también se permite la publicación y búsqueda de materiales centrados en otros programas académicos.</p>
             </div>
         </div>
         <!-- Pregunta #3 -->
@@ -43,7 +43,7 @@
                 </div>
             </label>
             <div class="contentFAQ">
-                <p class="answerFAQ">En este repositorio institucional se pueden encontrar libros, vídeos, imágenes, audios, diapositivas, enlaces, entre otros. 
+                <p class="answerFAQ">Este repositorio institucional permite diversos recursos, tales como libros, vídeos, imágenes, audios, diapositivas, enlaces y otros materiales similares.
                 </p>
             </div>
         </div>
@@ -59,7 +59,7 @@
                 </div>
             </label>
             <div class="contentFAQ">
-                <p class="answerFAQ">Los contenidos que se encuentren disponibles en el repositorio pueden ser accedidos por todos los usuarios que deseen, tengan o no tengan una cuenta asociada. Esto es así, ya que se tiene la premisa del acceso abierto libre para todos, de forma que se tenga una visibilidad total y una completa difusión de los documentos publicados.</p>
+                <p class="answerFAQ">Todos estos recursos están disponibles para ser accedidos por cualquier persona interesada, sin importar si tienen o no una cuenta asociada, de forma que se mantenga la premisa del 'conocimiento para todos'. Sin embargo, es importante mencionar que para poder vincular una cuenta es necesario ser parte de la institución superior, ya sea como estudiante, docente o personal administrativo. De esta forma, se asegura que los usuarios autorizados tengan acceso a funciones adicionales dependiendo del tipo de usuario.</p>
             </div>
         </div>
         <!-- Pregunta #5 -->
@@ -74,7 +74,7 @@
                 </div>
             </label>
             <div class="contentFAQ">
-                <p class="answerFAQ">Las únicas personas autorizadas para poder publicar recursos en el repositorio institucional son los docentes. Si usted es un usuario particular, por favor póngase en contacto al correo <a href="mailto:"<?php echo SUPER_ADMIN_EMAIL ?>><?php echo SUPER_ADMIN_EMAIL ?></a></p>
+                <p class="answerFAQ">La publicación de recursos en el repositorio institucional está restringida exclusivamente a los usuarios (docentes). Si usted es un usuario particular y desea contribuir con algún recurso, por favor contáctenos a través del correo electrónico <a class="answerFAQ-a" href="mailto:"<?php echo SUPER_ADMIN_EMAIL ?>><?php echo SUPER_ADMIN_EMAIL ?></a></p>
             </div>
         </div>
         <!-- Pregunta #6 -->
@@ -89,7 +89,22 @@
                 </div>
             </label>
             <div class="contentFAQ">
-                <p class="answerFAQ">Con el ánimo de poder contar con un repositorio con contenidos de valor para la comunidad, se le permite al usuario aportar por medio de calificaciones a los recursos, marcando si estos han sido útiles o no. De esta manera, en el repositorio se puede realizar depuración, dejando así únicamente los contenidos que mayor aporte han tenido para los usuarios.</p>
+                <p class="answerFAQ">Con el ánimo de poder contar con un repositorio con contenidos de valor para la comunidad, se le permite al usuario autorizado aportar por medio de calificaciones a los recursos, marcando si estos han sido útiles o no. De esta forma, se realiza una depuración constante del repositorio y se promueve la calidad del contenido para los usuarios.</p>
+            </div>
+        </div>
+        <!-- Pregunta #7 -->
+        <div class="parentTabFAQ">
+            <input type="radio" name="tab" id="tab-7" class="inputFAQ">
+            <label for="tab-7" class="labelFAQ">
+                <span class="questionFAQ">¿Existen políticas de uso para el repositorio institucional?</span>
+                <div class="iconContainer">
+                    <div class="iconFAQ">
+                        <i class="uil uil-angle-down"></i>
+                    </div>
+                </div>
+            </label>
+            <div class="contentFAQ">
+                <p class="answerFAQ">Sí, el repositorio institucional cuenta con un conjunto de políticas que es recomendable revisar antes de su uso. Es importante que los usuarios conozcan estas políticas para garantizar el uso adecuado del repositorio. Puede encontrar más información sobre las políticas de uso <a class="answerFAQ-a" href="<?php echo SERVER_URL; ?>politicas-uso/">aquí</a>.</p>
             </div>
         </div>
     </section>

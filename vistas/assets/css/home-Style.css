@@ -555,6 +555,7 @@ hr{
     color: var(--main-home-color);
     text-align: center;
     font-size: var(--normal-font-size-mainSectionHome);
+    margin-top: 1.8rem;
 }
 .wrapperFAQ{
     max-width:60%;
@@ -668,9 +669,52 @@ hr{
 .wrapperFAQ .inputFAQ{
     display: none;
 }
+.answerFAQ-a{
+    color:var(--secondary-main-homeColor);
+    font-weight: 500;
+}
 
 
 
+
+
+/*! ************ SECCIÓN POLITICAS USO************/
+.bodyPol{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.bodyPol .pol-main-Title {
+    color: var(--main-home-color);
+    text-align: center;
+    font-size: var(--normal-font-size-mainSectionHome);
+    margin-top: 1.8rem;
+}
+.wrapperPol{
+    max-width:60%;
+    padding: 20px 0 40px 0;
+}
+.phPolMain{
+    padding-bottom: 10px;
+}
+.phPol{
+    text-align: justify;
+    color:var(--home-text-color);
+    padding-bottom: 5px;
+    font-size: var(--phrgp-home-normal-font-size);
+}
+.enumPol{
+    font-weight: 600;
+    color:var(--main-home-color);
+    text-transform: uppercase;
+}
+.lastModif{
+    font-size: small;
+    padding-top:5px;
+    text-align: right;
+}
 
 /*! ******************** SECCIÓN FILTROS ASIDE ******************/
 /**Contenedor principal dividir tabla y filtrado*/
@@ -1112,6 +1156,10 @@ select {
     font-size: var(--phrgp-home-medium-font-size);
     color: var(--home-text-color);
 }
+.infoColVerRecursoTitleA{
+    word-wrap: break-word; 
+    word-break: break-all;
+}
 /**Listas para redirigir. ENLACE DEL RECURSO*/
 .redireccionVerRecurso{
     font-weight: 500;
@@ -1480,7 +1528,7 @@ select {
         max-width: 90%;
     }  
     .footer-Box .mainText-Footer{
-        font-size: var(--phrgp-home-super-font-size);
+        font-size: var(--phrgp-home-supertiny-font-size);
         max-width: 30rem;
     }
     .footer-Box .mainText-Footer{
@@ -1494,6 +1542,9 @@ select {
     .bodyFQ .fq-main-Title{
         font-size: var(--medium-font-size-mainSectionHome);
     }
+    .bodyPol .pol-main-Title{
+        font-size: var(--medium-font-size-mainSectionHome);
+    }
     .list-Title-Table{
         font-size: var(--titleFilterHome-normal-fz);
     }
@@ -1503,10 +1554,13 @@ select {
     .wrapperFAQ .labelFAQ .questionFAQ{
         font-size: var(--question-homepq-medium-font-size);
     }
+    .phPol{
+        font-size: var(--phrgp-home-medium-font-size);
+    }
     .wrapperFAQ .parentTabFAQ .contentFAQ .answerFAQ{
         font-size: var(--phrgp-home-tiny-font-size);
     }
-    .wrapperFAQ{
+    .wrapperFAQ, .wrapperPol{
         max-width:85%;
     }
     .wrapperFAQ .labelFAQ .iconFAQ{
@@ -1584,12 +1638,15 @@ select {
     .filters-main-container .containerFor-Filters{
         grid-auto-rows:12rem;
     }
-    .wrapperFAQ{
+    .wrapperFAQ,.wrapperPol{
         max-width:80%;
     }
     .wrapperFAQ .labelFAQ .iconFAQ{
         height: 1.7rem;
         width: 1.7rem;
+    }
+    .phPol{
+        font-size: var(--phrgp-home-tiny-font-size);
     }
     .asideFilters {
         margin-left: 40px;
@@ -1684,6 +1741,9 @@ select {
     .bodyFQ .fq-main-Title{
         font-size: var(--tiny-font-size-mainSectionHome);
     }
+    .bodyPol .pol-main-Title{
+        font-size: var(--tiny-font-size-mainSectionHome);
+    }
     .list-Title-Table{
         font-size: var(--titleFilterHome-medium-fz);
     }
@@ -1703,7 +1763,7 @@ select {
         padding: 10px;
         text-align: justify;
     }
-    .wrapperFAQ{
+    .wrapperFAQ,.wrapperPol{
         max-width:85%;
     }
     .wrapperFAQ .labelFAQ .iconFAQ{

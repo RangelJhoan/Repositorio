@@ -46,7 +46,7 @@
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Título:</th>
-                <td class="infoColVerRecurso"><?php echo $inforecurso['titulo']; ?></td>
+                <td class="infoColVerRecurso infoColVerRecursoTitleA"><?php echo $inforecurso['titulo']; ?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Autor(es):</th>
@@ -64,7 +64,7 @@
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Resumen:</th>
-                <td class="infoColVerRecurso"><?php echo $inforecurso['resumen']; ?></td>
+                <td class="infoColVerRecurso infoColVerRecursoTitleA"><?php echo $inforecurso['resumen']; ?></td>
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Año de creación:</th>
