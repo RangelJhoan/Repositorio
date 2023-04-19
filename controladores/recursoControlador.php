@@ -237,7 +237,7 @@ class recursoControlador extends recursoModelo{
         $recurso->setTitulo(mainModel::limpiarCadena($_POST['titulo_docente_ins']));
         $recurso->setResumen(mainModel::limpiarCadena($_POST['resumen_docente_ins']));
         $recurso->setEstado(Utilidades::getIdEstado("ACTIVO"));
-        $recurso->setInternalID(Utilidades::generarClaveAleatoria());
+        $recurso->setInternalID(Utilidades::generarCodigo());
         $recurso->setEtiqueta(array());
         $recurso->setAutor(array());
 

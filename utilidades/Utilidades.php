@@ -111,7 +111,7 @@ class Utilidades {
      * 
      * @return string Secuencia aleatoria de longitud dinámica de longitud 5, concatenado con la fecha actual y otra secuencia aleatoria de longitud 3
      */
-    public function generarCodigo() {
+    public static function generarCodigo() {
         $fechaHora = date('dmYHis');
         $codigo = self::generarAleatorio(5) . $fechaHora . self::generarAleatorio(3);
         return $codigo;
@@ -122,7 +122,7 @@ class Utilidades {
      * @param mixed $longitud Tamaño de la secuencia aleatoria
      * @return string Secuencia aleatoria de longitud dinámica
      */
-    public function generarAleatorio($longitud) {
+    public static function generarAleatorio($longitud) {
         $bytes = random_bytes(ceil($longitud / 2));
         return substr(bin2hex($bytes), 0, $longitud);
     }
