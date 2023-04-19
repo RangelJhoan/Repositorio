@@ -183,7 +183,6 @@ class recursoControlador extends recursoModelo{
 
         $recurso->setEstado(mainModel::limpiarCadena($_POST['estado_edit']));
         $recurso->setCurso($_POST['cursos_edit']);
-        $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_edit']));
         $recurso->setAutor(array());
         $recurso->setEtiqueta(array());
 
@@ -193,9 +192,14 @@ class recursoControlador extends recursoModelo{
         if(isset($_POST['autores_edit']))
             $recurso->setAutor($_POST['autores_edit']);
 
-        if(isset($_POST['link_ins']))
-            $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_ins']));
 
+        if(isset($_POST['link_edit'])){
+            $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_edit']));
+            if($recurso->getEnlace() != "" && !mainModel::verificarDatos('(https?:\/\/)+(([a-zA-Z0-9\-\.]*)|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:[0-9]+)?([^\s]*)', $recurso->getEnlace())){
+                echo Utilidades::getAlertaErrorJSON("simple", "El enlace ingresado no es válido");
+                exit();
+            }
+        }
 
         //Obtener las etiquetas seleccionadas (Agregar nuevas y Eliminar no seleccionadas)
         $etiquetasActuales = recursoModelo::idEtiquetasRecurso($recurso->getIdRecurso())->fetchAll(PDO::FETCH_COLUMN, 0);
@@ -233,6 +237,7 @@ class recursoControlador extends recursoModelo{
         $recurso->setTitulo(mainModel::limpiarCadena($_POST['titulo_docente_ins']));
         $recurso->setResumen(mainModel::limpiarCadena($_POST['resumen_docente_ins']));
         $recurso->setEstado(Utilidades::getIdEstado("ACTIVO"));
+        $recurso->setInternalID(Utilidades::generarClaveAleatoria());
         $recurso->setEtiqueta(array());
         $recurso->setAutor(array());
 
@@ -259,7 +264,7 @@ class recursoControlador extends recursoModelo{
 
         if(isset($_POST['link_docente_ins'])){
             $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_docente_ins']));
-            if($recurso->getEnlace() != "" && !mainModel::verificarDatos('(http(s)?:\/\/)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?(\/[a-zA-Z0-9\-\._\?\,\'\/\\\+&%\$#\=~]*)?', $recurso->getEnlace())){
+            if($recurso->getEnlace() != "" && !mainModel::verificarDatos('(https?:\/\/)+(([a-zA-Z0-9\-\.]*)|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:[0-9]+)?([^\s]*)', $recurso->getEnlace())){
                 echo Utilidades::getAlertaErrorJSON("simple", "El enlace ingresado no es válido");
                 exit();
             }
@@ -357,7 +362,7 @@ class recursoControlador extends recursoModelo{
 
             if(isset($_POST['link_docente_edit'])){
                 $recurso->setEnlace(mainModel::limpiarCadena($_POST['link_docente_edit']));
-                if($recurso->getEnlace() != "" && !mainModel::verificarDatos('(http(s)?:\/\/)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?(\/[a-zA-Z0-9\-\._\?\,\'\/\\\+&%\$#\=~]*)?', $recurso->getEnlace())){
+                if($recurso->getEnlace() != "" && !mainModel::verificarDatos('(https?:\/\/)+(([a-zA-Z0-9\-\.]*)|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:[0-9]+)?([^\s]*)', $recurso->getEnlace())){
                     echo Utilidades::getAlertaErrorJSON("simple", "El enlace ingresado no es válido");
                     exit();
                 }

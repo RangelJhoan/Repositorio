@@ -104,6 +104,29 @@ class Utilidades {
         return self::$tiposMimePermitidos;
     }
 
+    // Generar código aleatorio
+
+    /**
+     * Genera un código apartir de una secuencia aleatoria, la fecha actual y otra secuencia aleatoria
+     * 
+     * @return string Secuencia aleatoria de longitud dinámica de longitud 5, concatenado con la fecha actual y otra secuencia aleatoria de longitud 3
+     */
+    public function generarCodigo() {
+        $fechaHora = date('dmYHis');
+        $codigo = self::generarAleatorio(5) . $fechaHora . self::generarAleatorio(3);
+        return $codigo;
+    }
+    
+    /**
+     * Genera una secuencia aleatoria con la longitud recibida por parámetro
+     * @param mixed $longitud Tamaño de la secuencia aleatoria
+     * @return string Secuencia aleatoria de longitud dinámica
+     */
+    public function generarAleatorio($longitud) {
+        $bytes = random_bytes(ceil($longitud / 2));
+        return substr(bin2hex($bytes), 0, $longitud);
+    }
+
 }
 
 ?>

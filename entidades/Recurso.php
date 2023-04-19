@@ -2,6 +2,7 @@
 
 class Recurso {
     private $idRecurso;
+    private $internalID;
     private $titulo;
     private $autor;
     private $etiqueta;
@@ -20,6 +21,10 @@ class Recurso {
 
     public function getIdRecurso(){
         return $this->idRecurso;
+    }
+
+    public function getInternalID(){
+        return $this->internalID;
     }
 
     public function getTitulo(){
@@ -61,6 +66,10 @@ class Recurso {
     //Setters
     public function setIdRecurso($idRecurso){
         $this->idRecurso = $idRecurso;
+    }
+    
+    public function setInternalID($internalID){
+        $this->internalID = $internalID;
     }
 
     public function setTitulo($titulo){

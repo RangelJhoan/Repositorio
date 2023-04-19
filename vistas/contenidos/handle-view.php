@@ -126,7 +126,7 @@
             </tr>
             <tr>
                 <th class="tituloColVerRecurso">Identificador:</th>
-                <td class="infoColVerRecurso">REC-090320231106</td>
+                <td class="infoColVerRecurso"><?php echo $inforecurso['internal_id']; ?></td>
             </tr>
     <!-- ENLACE DEL RECURSO -->
             <tr>

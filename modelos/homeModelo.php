@@ -27,7 +27,7 @@
                 $sql = mainModel::conectar()->prepare("SELECT DISTINCT (r.id),r.titulo,r.fecha_publicacion_recurso FROM recurso r LEFT JOIN autor_recurso ar 
                 ON r.id=ar.id_recurso LEFT JOIN autor a ON a.id = ar.id_autor LEFT JOIN etiqueta_recurso er ON er.id_recurso = r.id LEFT JOIN etiqueta e ON er.id_etiqueta = e.id
                 JOIN curso_recurso cr ON cr.id_recurso = r.id JOIN curso c ON c.id=cr.id_curso
-                WHERE (r.titulo LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellido) LIKE '%".$search."%' OR CONCAT(a.apellido,' ',a.nombre) LIKE '%".$search."%' OR e.descripcion LIKE '%".$search."%' OR r.fecha_publicacion_recurso LIKE '%".$search."%' OR c.nombre LIKE '%".$search."%') AND r.estado='".Utilidades::getIdEstado("ACTIVO")."';");    
+                WHERE (r.titulo LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellido) LIKE '%".$search."%' OR CONCAT(a.apellido,' ',a.nombre) LIKE '%".$search."%' OR e.descripcion LIKE '%".$search."%' OR r.fecha_publicacion_recurso LIKE '%".$search."%' OR c.nombre LIKE '%".$search."%' OR r.internal_id LIKE '%".$search."%') AND r.estado='".Utilidades::getIdEstado("ACTIVO")."';");    
             }else if($pTipo=="Autor"){
                 $sql = mainModel::conectar()->prepare("SELECT nombre,apellido,id FROM autor WHERE estado='".Utilidades::getIdEstado("ACTIVO")."' ORDER BY apellido");
             }else if($pTipo=="Titulo"){
@@ -71,7 +71,7 @@
         }
 
         protected static function cargar_autores($pId){
-            $sql = mainModel::conectar()->prepare("SELECT a.nombre,a.apellido,a.id FROM autor a JOIN autor_recurso ar ON a.id = ar.id_autor WHERE ar.id_recurso = '".$pId."'ORDER BY a.apellido");
+            $sql = mainModel::conectar()->prepare("SELECT a.nombre,a.apellido,a.id FROM autor a JOIN autor_recurso ar ON a.id = ar.id_autor WHERE ar.id_recurso = '".$pId."' AND a.estado = " . Utilidades::getIdEstado("ACTIVO") . " ORDER BY a.apellido");
             $sql->execute();
 
             return $sql->fetchAll();
@@ -99,7 +99,7 @@
         }
 
         protected static function detalles_recurso($pId){
-            $sql = mainModel::conectar()->prepare("SELECT r.id, r.titulo, r.fecha_publicacion_recurso, r.resumen, d.nombre, d.apellido, r.fecha_publicacion_profesor, r.enlace, r.editorial, r.isbn, r.estado FROM recurso r JOIN persona d ON d.id = r.id_docente
+            $sql = mainModel::conectar()->prepare("SELECT r.id, r.internal_id, r.titulo, r.fecha_publicacion_recurso, r.resumen, d.nombre, d.apellido, r.fecha_publicacion_profesor, r.enlace, r.editorial, r.isbn, r.estado FROM recurso r JOIN persona d ON d.id = r.id_docente
             WHERE r.id='".$pId."'");
             $sql->execute();
 
@@ -107,14 +107,14 @@
         }
 
         protected static function cursos_recurso($pId){
-            $sql = mainModel::conectar()->prepare("SELECT c.id,c.nombre FROM recurso r JOIN curso_recurso cr ON r.id = cr.id_recurso JOIN curso c ON c.id = cr.id_curso WHERE r.id = '".$pId."'");
+            $sql = mainModel::conectar()->prepare("SELECT c.id,c.nombre FROM recurso r JOIN curso_recurso cr ON r.id = cr.id_recurso JOIN curso c ON c.id = cr.id_curso WHERE r.id = '".$pId."' AND c.estado = " . Utilidades::getIdEstado("ACTIVO"));
             $sql->execute();
 
             return $sql->fetchAll();
         }
 
         protected static function cargar_etiquetas($pId){
-            $sql = mainModel::conectar()->prepare("SELECT e.descripcion FROM etiqueta e JOIN etiqueta_recurso r ON e.id = r.id_etiqueta WHERE r.id_recurso = '".$pId."'");
+            $sql = mainModel::conectar()->prepare("SELECT e.descripcion FROM etiqueta e JOIN etiqueta_recurso r ON e.id = r.id_etiqueta WHERE r.id_recurso = '".$pId."' AND e.estado = " . Utilidades::getIdEstado("ACTIVO"));
             $sql->execute();
 
             return $sql->fetchAll();
