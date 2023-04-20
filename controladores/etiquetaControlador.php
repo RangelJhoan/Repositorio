@@ -56,7 +56,7 @@ class etiquetaControlador extends etiquetaModelo{
 
         $checkEtiqueta = mainModel::ejecutar_consulta_simple("SELECT id FROM etiqueta WHERE descripcion = '{$etiqueta->getDescripcion()}' AND id != {$etiqueta->getIdEtiqueta()} AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($checkEtiqueta->rowCount() > 0){
-            echo Utilidades::getAlertaErrorJSON("simple", "La palabra clave a crear ya está registrada en el repositorio");
+            echo Utilidades::getAlertaErrorJSON("simple", "La palabra clave ya está registrada en el repositorio");
             exit();
         }
 
@@ -149,7 +149,7 @@ class etiquetaControlador extends etiquetaModelo{
 
         $checkEtiqueta = mainModel::ejecutar_consulta_simple("SELECT id FROM etiqueta WHERE descripcion = '{$etiqueta->getDescripcion()}' AND id != {$etiqueta->getIdEtiqueta()} AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($checkEtiqueta->rowCount() > 0){
-            echo Utilidades::getAlertaErrorJSON("simple", "La palabra clave a crear ya está registrado en el repositorio");
+            echo Utilidades::getAlertaErrorJSON("simple", "La palabra clave ya está registrado en el repositorio");
             exit();
         }
 

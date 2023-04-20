@@ -70,7 +70,7 @@ class cursoControlador extends cursoModelo{
 
         $checkCurso = mainModel::ejecutar_consulta_simple("SELECT id FROM curso WHERE nombre = '{$curso->getNombre()}' AND id != {$curso->getIdCurso()} AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($checkCurso->rowCount() > 0){
-            echo Utilidades::getAlertaErrorJSON("simple", "El curso a crear ya está registrado en el repositorio");
+            echo Utilidades::getAlertaErrorJSON("simple", "El curso ya está registrado en el repositorio");
             exit();
         }
 

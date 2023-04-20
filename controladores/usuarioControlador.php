@@ -240,12 +240,6 @@ class usuarioControlador extends usuarioModelo{
 
     /*---------- Controlador para eliminar usuario ----------*/
     public function eliminar_usuario_controlador(){
-        session_start(['name'=>'REPO']);
-        if($_SESSION['correo_usuario'] != SUPER_ADMIN_EMAIL){
-            echo Utilidades::getAlertaErrorJSON("simple", "Usted no cuenta con los permisos necesarios para realizar esta acción");
-            exit();
-        }
-
         $persona = new Persona();
         $persona->setIdPersona(mainModel::limpiarCadena(mainModel::decryption($_POST['idPersona'])));
         $persona->setIdUsuario(mainModel::limpiarCadena(mainModel::decryption($_POST['idUsuario'])));

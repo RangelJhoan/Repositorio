@@ -90,7 +90,7 @@ class autorControlador extends autorModelo{
 
         $checkAutor = mainModel::ejecutar_consulta_simple("SELECT id FROM autor WHERE nombre = '{$autor->getNombre()}' AND apellido = '{$autor->getApellido()}' AND id != '{$autor->getIdAutor()}' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($checkAutor->rowCount() > 0){
-            echo Utilidades::getAlertaErrorJSON("simple", "El autor a crear ya está registrado en el repositorio");
+            echo Utilidades::getAlertaErrorJSON("simple", "El autor ya está registrado en el repositorio");
             exit();
         }
 
@@ -156,7 +156,7 @@ class autorControlador extends autorModelo{
 
         $checkAutor = mainModel::ejecutar_consulta_simple("SELECT id FROM autor WHERE nombre = '{$autor->getNombre()}' AND apellido = '{$autor->getApellido()}' AND id != '{$autor->getIdAutor()}' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($checkAutor->rowCount() > 0){
-            echo Utilidades::getAlertaErrorJSON("simple", "El autor a crear ya está registrado en el repositorio");
+            echo Utilidades::getAlertaErrorJSON("simple", "El autor ya está registrado en el repositorio");
             exit();
         }
 

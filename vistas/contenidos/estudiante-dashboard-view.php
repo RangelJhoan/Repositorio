@@ -26,3 +26,4 @@ $recursosCalificados = $insRecurso->obtenerListaCalificadosXPersona($_SESSION['i
         </div>
     </div>
 </section>
+<script src="<?php echo SERVER_URL ?>vistas/assets/js/estudiante_dashboard.js"></script> 
