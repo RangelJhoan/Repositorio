@@ -20,8 +20,8 @@
                 $sql = mainModel::conectar()->prepare("INSERT INTO recurso(internal_id, titulo, fecha_publicacion_profesor, fecha_publicacion_recurso, resumen, puntos_positivos, puntos_negativos, estado, enlace, isbn, editorial, id_docente) VALUES(?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?, ?);");
                 $sql->execute([$recurso->getInternalID(), $recurso->getTitulo(), date("Y-m-d H:i:s"), $recurso->getFecha(), $recurso->getResumen(), 0, 0, $recurso->getEstado(), $recurso->getEnlace(), $recurso->getISBN(),$recurso->getEditorial(),$_SESSION['id_persona']]);
 
-                $sqlQuery = mainModel::conectar()->prepare("SELECT id FROM recurso WHERE titulo = ?;");
-                $sqlQuery->execute([$recurso->getTitulo()]);
+                $sqlQuery = mainModel::conectar()->prepare("SELECT id FROM recurso WHERE titulo = ? AND internal_id = ? AND estado = " . Utilidades::getIdEstado("ACTIVO"));
+                $sqlQuery->execute([$recurso->getTitulo(), $recurso->getInternalID()]);
                 $row = $sqlQuery->fetch();
                 $idRecurso = $row['id'];
 

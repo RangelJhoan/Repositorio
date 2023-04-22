@@ -16,8 +16,8 @@
             try{
                 $sql = mainModel::conectar()->prepare("INSERT INTO curso(nombre, descripcion, estado) VALUES(?, ?, ?);");
                 $sql->execute([$curso->getNombre(), $curso->getDescripcion(), $curso->getEstado()]);
-                $sqlQuery = mainModel::conectar()->prepare("SELECT id FROM curso WHERE nombre = ?;");
-                $sqlQuery->execute([$curso->getNombre()]);
+                $sqlQuery = mainModel::conectar()->prepare("SELECT id FROM curso WHERE nombre = ? AND descripcion = ? AND estado = " . Utilidades::getIdEstado("ACTIVO"));
+                $sqlQuery->execute([$curso->getNombre(), $curso->getDescripcion()]);
                 $row = $sqlQuery->fetch();
                 $idCurso = $row['id'];
 

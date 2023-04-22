@@ -18,6 +18,7 @@ class cursoControlador extends cursoModelo{
         $curso->setNombre(mainModel::limpiarCadena($_POST['nombre_ins']));
         $curso->setDescripcion(mainModel::limpiarCadena($_POST['descripcion_ins']));
         $curso->setListaProgramas([]);
+        $curso->setListaDocentes([]);
         $curso->setEstado(Utilidades::getIdEstado("ACTIVO"));
         if(isset($_POST['programas_ins'])){
             $curso->setListaProgramas($_POST['programas_ins']);
@@ -33,7 +34,7 @@ class cursoControlador extends cursoModelo{
             exit();
         }
 
-        if($curso->getNombre() == "" || $curso->getDescripcion() == "" || count($curso->getListaProgramas())<=0){
+        if($curso->getNombre() == "" || $curso->getDescripcion() == "" || count($curso->getListaProgramas())<=0 || count($curso->getListaDocente())<=0){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
         }
