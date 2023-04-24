@@ -78,7 +78,7 @@ class autorControlador extends autorModelo{
         $autor->setIdAutor(mainModel::limpiarCadena(mainModel::decryption($_POST['id_autor_edit'])));
 
         //Comprobar que el autor exista en la BD
-        $check_autor = mainModel::ejecutar_consulta_simple("SELECT * FROM autor WHERE id = '". $autor->getIdAutor() ."'");
+        $check_autor = mainModel::ejecutar_consulta_simple("SELECT * FROM autor WHERE id = '". $autor->getIdAutor() ."' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($check_autor->rowCount() <= 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el autor a editar");
             exit();
@@ -144,7 +144,7 @@ class autorControlador extends autorModelo{
         $autor->setIdAutor(mainModel::limpiarCadena(mainModel::decryption($_POST['id_autor_edit'])));
 
         //Comprobar que el autor exista en la BD
-        $check_autor = mainModel::ejecutar_consulta_simple("SELECT * FROM autor WHERE id = '". $autor->getIdAutor() ."'");
+        $check_autor = mainModel::ejecutar_consulta_simple("SELECT * FROM autor WHERE id = '". $autor->getIdAutor() ."' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($check_autor->rowCount() <= 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el autor a editar");
             exit();

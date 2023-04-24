@@ -47,6 +47,13 @@ class programaControlador extends programaModelo{
         $programa->setIdPrograma(mainModel::limpiarCadena(mainModel::decryption($_POST['id_programa_del'])));
         $programa->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
+        //Comprobar que el programa exista en la BD
+        $check_program = mainModel::ejecutar_consulta_simple("SELECT id FROM programa WHERE id = '". $programa->getIdPrograma() ."' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
+        if($check_program->rowCount() <= 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el programa a editar");
+            exit();
+        }
+
         $editarPrograma = programaModelo::editar_estado_programa_modelo($programa);
 
         if(is_string($editarPrograma) || $editarPrograma < 0){
@@ -71,7 +78,7 @@ class programaControlador extends programaModelo{
         $programa->setIdPrograma(mainModel::limpiarCadena(mainModel::decryption($_POST['id_programa_edit'])));
 
         //Comprobar que el programa exista en la BD
-        $check_program = mainModel::ejecutar_consulta_simple("SELECT * FROM programa WHERE id = '". $programa->getIdPrograma() ."'");
+        $check_program = mainModel::ejecutar_consulta_simple("SELECT * FROM programa WHERE id = '". $programa->getIdPrograma() ."' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($check_program->rowCount() <= 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el programa a editar");
             exit();

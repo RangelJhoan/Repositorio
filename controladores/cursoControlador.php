@@ -51,6 +51,16 @@ class cursoControlador extends cursoModelo{
 
     /*---------- Controlador para editar curso ----------*/
     public function editar_curso_controlador(){
+        $curso = new Curso();
+        $curso->setIdCurso(mainModel::limpiarCadena(mainModel::decryption($_POST['id_curso_edit'])));
+
+        //Comprobar que el curso exista en la BD
+        $checkCurso = mainModel::ejecutar_consulta_simple("SELECT id FROM curso WHERE id = '". $curso->getIdCurso() ."' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
+        if($checkCurso->rowCount() <= 0){
+            echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el curso a editar");
+            exit();
+        }
+
         if(!isset($_POST['programas_edit'])){
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos");
             exit();
@@ -61,8 +71,6 @@ class cursoControlador extends cursoModelo{
             exit();
         }
 
-        $curso = new Curso();
-        $curso->setIdCurso(mainModel::limpiarCadena(mainModel::decryption($_POST['id_curso_edit'])));
         $curso->setNombre(mainModel::limpiarCadena($_POST['nombre_edit']));
         $curso->setDescripcion(mainModel::limpiarCadena($_POST['descripcion_edit']));
         $curso->setEstado(mainModel::limpiarCadena($_POST['estado']));

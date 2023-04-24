@@ -148,18 +148,17 @@ class recursoControlador extends recursoModelo{
 
     public function editar_recurso_controlador(){
         $recurso = new Recurso();
-
-        if(!isset($_POST['cursos_edit'])){
-            echo Utilidades::getAlertaErrorJSON("simple", "Por favor seleccione un curso");
-            exit();
-        }
-
         $recurso->setIdRecurso(mainModel::limpiarCadena(mainModel::decryption($_POST['id_recurso_edit'])));
 
         //Comprobar que el recurso existe
-        $checkRecurso = mainModel::ejecutar_consulta_simple("SELECT * FROM recurso WHERE id = '". $recurso->getIdRecurso() ."';");
+        $checkRecurso = mainModel::ejecutar_consulta_simple("SELECT * FROM recurso WHERE id = '". $recurso->getIdRecurso() ."' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($checkRecurso->rowCount() <= 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el recurso a editar");
+            exit();
+        }
+
+        if(!isset($_POST['cursos_edit'])){
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor seleccione un curso");
             exit();
         }
 
@@ -312,18 +311,17 @@ class recursoControlador extends recursoModelo{
 
     public function editar_docente_recurso_controlador(){
         $recurso = new Recurso();
-
-        if(!isset($_POST['cursos_docente_edit'])){
-            echo Utilidades::getAlertaErrorJSON("simple", "Por favor seleccione un curso");
-            exit();
-        }
-
         $recurso->setIdRecurso(mainModel::limpiarCadena(mainModel::decryption($_POST['id_docente_recurso_edit'])));
 
         //Comprobar que el recurso existe
-        $checkRecurso = mainModel::ejecutar_consulta_simple("SELECT * FROM recurso WHERE id = '". $recurso->getIdRecurso() ."';");
+        $checkRecurso = mainModel::ejecutar_consulta_simple("SELECT * FROM recurso WHERE id = '". $recurso->getIdRecurso() ."' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($checkRecurso->rowCount() <= 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el recurso a editar");
+            exit();
+        }
+
+        if(!isset($_POST['cursos_docente_edit'])){
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor seleccione un curso");
             exit();
         }
 

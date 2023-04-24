@@ -284,7 +284,7 @@ class usuarioControlador extends usuarioModelo{
         $persona->setIdPersona(mainModel::limpiarCadena(mainModel::decryption($_POST['id_usuario_editar'])));
 
         //Comprobar que el usuario exista en la BD
-        $check_person = mainModel::ejecutar_consulta_simple("SELECT * FROM persona WHERE id = '". $persona->getIdPersona() ."'");
+        $check_person = mainModel::ejecutar_consulta_simple("SELECT id as id_usuario FROM persona WHERE id = '". $persona->getIdPersona() ."' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($check_person->rowCount() <= 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se encontró el usuario a editar");
             exit();

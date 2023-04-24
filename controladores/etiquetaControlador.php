@@ -44,8 +44,7 @@ class etiquetaControlador extends etiquetaModelo{
         $etiqueta->setIdEtiqueta(mainModel::limpiarCadena(mainModel::decryption($_POST['id_etiqueta_edit'])));
 
         //Comprobar que la etiqueta exista en la BD
-        $check_etiqueta = mainModel::ejecutar_consulta_simple("SELECT * FROM etiqueta WHERE id = '". $etiqueta->getIdEtiqueta() ."'");
-
+        $check_etiqueta = mainModel::ejecutar_consulta_simple("SELECT * FROM etiqueta WHERE id = '". $etiqueta->getIdEtiqueta() ."' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($check_etiqueta->rowCount() <= 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se encontró la etiqueta a editar");
             exit();
@@ -137,8 +136,7 @@ class etiquetaControlador extends etiquetaModelo{
         $etiqueta->setIdEtiqueta(mainModel::limpiarCadena(mainModel::decryption($_POST['id_docente_etiqueta_edit'])));
 
         //Comprobar que la etiqueta exista en la BD
-        $check_etiqueta = mainModel::ejecutar_consulta_simple("SELECT * FROM etiqueta WHERE id = '". $etiqueta->getIdEtiqueta() ."'");
-
+        $check_etiqueta = mainModel::ejecutar_consulta_simple("SELECT * FROM etiqueta WHERE id = '". $etiqueta->getIdEtiqueta() ."' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($check_etiqueta->rowCount() <= 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se encontró la etiqueta a editar");
             exit();
