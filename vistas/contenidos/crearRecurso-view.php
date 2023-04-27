@@ -7,7 +7,7 @@ $ins_autor = new autorControlador();
 $ins_etiqueta = new etiquetaControlador();
 $ins_curso = new cursoControlador();
 
-$datos_autores = $ins_autor->paginador_autor_controlador(null);
+$datos_autores = $ins_autor->paginadorAutorControlador(null);
 $datos_etiquetas = $ins_etiqueta->paginador_etiqueta_controlador(null);
 $datos_cursos = $ins_curso->paginador_curso_controlador();
 ?>

@@ -16,7 +16,7 @@ if($consultaRecursos->rowCount() > 0){
     $datosRecurso = $consultaRecursos->fetch();
 
     //Se consultan toda la lista de tablas intermedias
-    $listaAutores = $insAutor->paginador_autor_controlador(null, true);
+    $listaAutores = $insAutor->paginadorAutorControlador(null, true);
     $listaCursos = $insCurso->paginador_curso_controlador(true);
     $listaEtiquetas = $insEtiqueta->paginador_etiqueta_controlador(null, true);
 

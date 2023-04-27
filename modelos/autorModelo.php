@@ -20,7 +20,7 @@
          * @throws string Mensaje de error capturado en el try catch
          * 
          */
-        protected static function agregar_autor_modelo(Autor $autor){
+        protected static function agregarAutorModelo(Autor $autor){
             try {
 
                 $sql = mainModel::conectar()->prepare("INSERT INTO autor(nombre, apellido, estado, id_docente) VALUES(?, ?, ?, ?);");
@@ -34,7 +34,7 @@
         }
 
         /*---------- Modelo para eliminar autor ----------*/
-        protected static function eliminar_autor_modelo(Autor $autor){
+        protected static function eliminarAutorModelo(Autor $autor){
             try {
                 $sql = mainModel::conectar()->prepare("UPDATE autor SET estado=? WHERE id=?");
                 $sql->execute([$autor->getEstado(), $autor->getIdAutor()]);
@@ -45,7 +45,7 @@
         }
 
         /*---------- Modelo para editar información de autor ----------*/
-        protected static function editar_autor_modelo(Autor $autor){
+        protected static function editarAutorModelo(Autor $autor){
             try {
                 $sql = mainModel::conectar()->prepare("UPDATE autor SET nombre=?, apellido=?, estado=? WHERE id=?");
                 $sql->execute([$autor->getNombre(), $autor->getApellido(), $autor->getEstado(), $autor->getIdAutor()]);
@@ -62,7 +62,7 @@
          * @param $tipo Tipo de consulta (Unico -> Información de un autor en específico) (Conteo -> Retorna lista de autores con el fin de calcular el total de registros)
          * @param $id Si el tipo de consulta es Conteo, no tiene funcionalidad. Si es Unico, condiciona el autor a consultar
          */
-        protected static function datos_autor_modelo($tipo, $id){
+        protected static function datosAutorModelo($tipo, $id){
             if($tipo == "Unico"){
                 $sql = mainModel::conectar()->prepare("SELECT * 
                 FROM autor 

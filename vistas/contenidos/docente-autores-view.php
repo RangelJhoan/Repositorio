@@ -14,7 +14,7 @@
                 require_once "./controladores/autorControlador.php";
                 require_once "./utilidades/Utilidades.php";
                 $ins_autor = new autorControlador();
-                $datos = $ins_autor->paginador_autor_controlador(null, true);
+                $datos = $ins_autor->paginadorAutorControlador(null, true);
             ?>
             <div class="table-admin-container">
                 <table id="tablaUsuarios" class="tb-admin-records">

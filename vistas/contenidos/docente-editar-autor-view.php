@@ -4,7 +4,7 @@ require_once "./controladores/autorControlador.php";
 require_once "./utilidades/Utilidades.php";
 $ins_autor = new autorControlador();
 
-$datos_autor = $ins_autor->datos_autor_controlador("Unico", $pagina[1]);
+$datos_autor = $ins_autor->datosAutorControlador("Unico", $pagina[1]);
 
 if($datos_autor->rowCount()>0){
     $campos = $datos_autor->fetch();

@@ -8,7 +8,7 @@
     $recursosCalificados = $insRecurso->obtenerListaCalificadosXPersona($_SESSION['id_persona']);
 
     $ins_autor = new autorControlador();
-    $total_autores = $ins_autor->datos_autor_controlador("Conteo", 0);
+    $total_autores = $ins_autor->datosAutorControlador("Conteo", 0);
 
     $ins_etiqueta = new etiquetaControlador();
     $total_etiquetas = $ins_etiqueta->datos_etiqueta_controlador("Conteo", 0);
