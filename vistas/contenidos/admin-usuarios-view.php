@@ -6,7 +6,7 @@ require_once "./utilidades/Utilidades.php";
 $ins_usuario = new usuarioControlador();
 $ins_tipo_documento = new tipoDocumentoControlador();
 
-$datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador();
+$datos_tipo_documento = $ins_tipo_documento->listarTipoDocumentoControlador();
 $datos = $ins_usuario->paginador_usuario_controlador();
 ?>
     <section class="general-admin-container">

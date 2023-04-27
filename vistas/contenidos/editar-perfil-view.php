@@ -3,7 +3,7 @@ require_once "./controladores/tipoDocumentoControlador.php";
 
 $ins_tipo_documento = new tipoDocumentoControlador();
 
-$datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador();
+$datos_tipo_documento = $ins_tipo_documento->listarTipoDocumentoControlador();
 ?>
 <section class="general-admin-container dashboard-container">
         <div class="overview-general-admin overview">

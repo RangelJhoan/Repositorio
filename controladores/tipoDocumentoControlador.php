@@ -12,7 +12,7 @@ if($peticionAjax){
 
 class tipoDocumentoControlador extends tipoDocumentoModelo{
 
-    public function listar_tipo_documento_controlador(){
+    public function listarTipoDocumentoControlador(){
         $sql = mainModel::ejecutar_consulta_simple("SELECT * FROM tipo_documento;");
         return $sql->fetchAll();
     }

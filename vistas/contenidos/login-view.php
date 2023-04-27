@@ -11,7 +11,7 @@ require_once "./controladores/tipoDocumentoControlador.php";
 require_once "./utilidades/Utilidades.php";
 $ins_tipo_documento = new tipoDocumentoControlador();
 
-$datos_tipo_documento = $ins_tipo_documento->listar_tipo_documento_controlador();
+$datos_tipo_documento = $ins_tipo_documento->listarTipoDocumentoControlador();
 ?>
 
     <!-- BARRA DE NAVEGACIÓN -->
