@@ -13,7 +13,7 @@
     $total_programas = $ins_programa->datos_programa_controlador("Conteo", 0);
 
     $ins_curso = new cursoControlador();
-    $total_cursos = $ins_curso->datos_curso_controlador("Conteo", 0);
+    $total_cursos = $ins_curso->datosCursoControlador("Conteo", 0);
 
     $insRecurso = new recursoControlador();
     $totalRecursos = $insRecurso->datos_recurso_controlador("Conteo", 0);

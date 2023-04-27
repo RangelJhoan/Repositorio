@@ -9,7 +9,7 @@ $ins_curso = new cursoControlador();
 
 $datos_autores = $ins_autor->paginadorAutorControlador(null, true);
 $datos_etiquetas = $ins_etiqueta->paginador_etiqueta_controlador(null, true);
-$datos_cursos = $ins_curso->paginador_curso_controlador(true);
+$datos_cursos = $ins_curso->paginadorCursoControlador(true);
 ?>
 <section class="general-admin-container">
         <div class="overview-general-admin">

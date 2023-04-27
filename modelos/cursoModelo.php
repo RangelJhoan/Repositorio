@@ -12,7 +12,7 @@
     class cursoModelo extends mainModel{
 
         /*---------- Modelo para agregar curso ----------*/
-        protected static function agregar_curso_modelo(Curso $curso){
+        protected static function agregarCursoModelo(Curso $curso){
             try{
                 $sql = mainModel::conectar()->prepare("INSERT INTO curso(nombre, descripcion, estado) VALUES(?, ?, ?);");
                 $sql->execute([$curso->getNombre(), $curso->getDescripcion(), $curso->getEstado()]);
@@ -40,7 +40,7 @@
         }
 
         /*---------- Modelo para eliminar curso ----------*/
-        protected static function eliminar_curso_modelo($idCurso){
+        protected static function eliminarCursoModelo($idCurso){
             $sqlEliminarFkCurso = mainModel::conectar()->prepare("DELETE FROM curso_programa WHERE id_curso = ?");
             $sqlEliminarFkCurso->execute([$idCurso]);
 
@@ -55,7 +55,7 @@
         }
 
         /*---------- Modelo para editar estado del curso ----------*/
-        protected static function editar_estado_curso_modelo(Curso $curso){
+        protected static function editarEstadoCursoModelo(Curso $curso){
             try {
                 $sql = mainModel::conectar()->prepare("UPDATE curso SET estado=? WHERE id=?");
                 $sql->execute([$curso->getEstado(), $curso->getIdCurso()]);
@@ -66,7 +66,7 @@
         }
 
         /*---------- Modelo para editar información de curso ----------*/
-        protected static function editar_curso_modelo($curso, $programasAgregados, $programasEliminados, $docentesAgregados, $docentesEliminados){
+        protected static function editarCursoModelo($curso, $programasAgregados, $programasEliminados, $docentesAgregados, $docentesEliminados){
             $sql = mainModel::conectar()->prepare("UPDATE curso SET nombre=?, descripcion=?, estado=? WHERE id=?");
             $sql->execute([$curso->getNombre(), $curso->getDescripcion(), $curso->getEstado() ,$curso->getIdCurso()]);
 
@@ -94,7 +94,7 @@
         }
 
         /*---------- Modelo datos curso ----------*/
-        protected static function datos_curso_modelo($tipo, $id){
+        protected static function datosCursoModelo($tipo, $id){
             if($tipo == "Unico"){
                 $sql = mainModel::conectar()->prepare("SELECT * 
                 FROM curso 
@@ -110,7 +110,7 @@
         }
 
         /*---------- Modelo programas por curso ----------*/
-        protected static function programas_curso_modelo($id){
+        protected static function programasCursoModelo($id){
             $sql = mainModel::conectar()->prepare("SELECT c.id curso_id, c.nombre curso_nombre, c.descripcion curso_desc, cp.id curpro_id, p.id programa_id, p.nombre programa_nombre, p.descripcion programa_desc 
             FROM curso c JOIN curso_programa cp ON c.id = cp.id_curso JOIN programa p ON p.id = cp.id_programa 
             WHERE p.estado != ". Utilidades::getIdEstado("ELIMINADO"). " and c.id = :ID;");
@@ -120,7 +120,7 @@
         }
 
         /*---------- Modelo docentes por curso ----------*/
-        protected static function docentes_curso_modelo($id){
+        protected static function docentesCursoModelo($id){
             $sql = mainModel::conectar()->prepare("SELECT c.id curso_id, c.nombre curso_nombre, c.descripcion curso_desc, p.id idPersona, p.nombre nombrePersona, p.apellido apeliidoDocente 
             FROM curso c 
             JOIN docente_curso dc ON c.id = dc.id_curso 
@@ -132,7 +132,7 @@
         }
 
         /*---------- Modelo id de programas por curso ----------*/
-        protected static function id_programas_curso_modelo($id){
+        protected static function idProgramasCursoModelo($id){
             $sql = mainModel::conectar()->prepare("SELECT p.id programa_id 
             FROM curso c JOIN curso_programa cp ON c.id = cp.id_curso JOIN programa p ON p.id = cp.id_programa 
             WHERE c.id = :ID;");
@@ -142,7 +142,7 @@
         }
 
         /*---------- Modelo id de docentes por curso ----------*/
-        protected static function id_docentes_curso_modelo($id){
+        protected static function idDocentesCursoModelo($id){
             $sql = mainModel::conectar()->prepare("SELECT dc.id_docente docente 
             FROM curso c 
             JOIN docente_curso dc ON c.id = dc.id_curso 

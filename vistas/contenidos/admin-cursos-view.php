@@ -70,7 +70,7 @@ $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
                 require_once "./utilidades/Utilidades.php";
                 $ins_curso = new cursoControlador();
 
-                $datos = $ins_curso->paginador_curso_controlador();
+                $datos = $ins_curso->paginadorCursoControlador();
             ?>
             <div class="table-admin-container">
                 <table id="tablaUsuarios" class="tb-admin-records">
@@ -89,8 +89,8 @@ $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
                         if($datos != 0){
                             $contador = 1;
                             foreach($datos as $rows){
-                                $programas_curso =  $ins_curso->programas_curso_controlador($rows['id']);
-                                $docentesXCurso = $ins_curso->docentes_curso_controlador($rows['id']);
+                                $programas_curso =  $ins_curso->programasCursoControlador($rows['id']);
+                                $docentesXCurso = $ins_curso->docentesCursoControlador($rows['id']);
                         ?>
                         <tr>
                             <td data-titulo="#"><?php echo $contador; ?></td>

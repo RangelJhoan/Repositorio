@@ -9,14 +9,14 @@ $ins_curso = new cursoControlador();
 $ins_programa = new programaControlador();
 $insUsuario = new usuarioControlador();
 
-$datos_curso = $ins_curso->datos_curso_controlador("Unico", $pagina[1]);
+$datos_curso = $ins_curso->datosCursoControlador("Unico", $pagina[1]);
 $datos_programas = $ins_programa->listar_programas_controlador();
 $datosUsuarios = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
 
 if($datos_curso->rowCount()>0){
     $campos_curso = $datos_curso->fetch();
-    $programas_curso = $ins_curso->programas_curso_controlador($campos_curso['id']);
-    $docentesCurso = $ins_curso->docentes_curso_controlador($campos_curso['id']);
+    $programas_curso = $ins_curso->programasCursoControlador($campos_curso['id']);
+    $docentesCurso = $ins_curso->docentesCursoControlador($campos_curso['id']);
     ?>
 <section class="general-admin-container">
     <div class="overview-general-admin">
