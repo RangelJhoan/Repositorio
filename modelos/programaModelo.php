@@ -12,7 +12,7 @@
     class programaModelo extends mainModel{
 
         /*---------- Modelo para agregar programa ----------*/
-        protected static function agregar_programa_modelo(Programa $programa){
+        protected static function agregarProgramaModelo(Programa $programa){
             $sql = mainModel::conectar()->prepare("INSERT INTO programa(nombre, descripcion, estado) VALUES(?, ?, ?);");
             $sql->execute([$programa->getNombre(), $programa->getDescripcion(), $programa->getEstado()]);
 
@@ -20,7 +20,7 @@
         }
 
         /*---------- Modelo para eliminar programa ----------*/
-        protected static function eliminar_programa_modelo($idPrograma){
+        protected static function eliminarProgramaModelo($idPrograma){
             $sqlEliminarPrograma = mainModel::conectar()->prepare("DELETE FROM programa WHERE id = ?");
             $sqlEliminarPrograma->execute([$idPrograma]);
 
@@ -28,7 +28,7 @@
         }
 
         /*---------- Modelo editar programa usuario ----------*/
-        protected static function editar_estado_programa_modelo(Programa $programa){
+        protected static function editarEstadoProgramaModelo(Programa $programa){
             try {
                 $sql = mainModel::conectar()->prepare("UPDATE programa SET estado = ? WHERE id = ?");
                 $sql->execute([$programa->getEstado(), $programa->getIdPrograma()]);
@@ -40,7 +40,7 @@
         }
 
         /*---------- Modelo datos programa ----------*/
-        protected static function datos_programa_modelo($tipo, $id){
+        protected static function datosProgramaModelo($tipo, $id){
             if($tipo == "Unico"){
                 $sql = mainModel::conectar()->prepare("SELECT * 
                 FROM programa 
@@ -56,7 +56,7 @@
         }
 
         /*---------- Modelo editar programa ----------*/
-        protected static function editar_programa_modelo(Programa $programa){
+        protected static function editarProgramaModelo(Programa $programa){
             $sql = mainModel::conectar()->prepare("UPDATE programa SET nombre=?, descripcion=?, estado=? WHERE id=?");
 
             $sql->execute([$programa->getNombre(), $programa->getDescripcion(), $programa->getEstado(), $programa->getIdPrograma()]);

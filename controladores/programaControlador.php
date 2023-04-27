@@ -13,7 +13,7 @@ if($peticionAjax){
 class programaControlador extends programaModelo{
 
     /*---------- Controlador para agregar programa ----------*/
-    public function agregar_programa_controlador(){
+    public function agregarProgramaControlador(){
         $programa = new Programa();
         $programa->setNombre(mainModel::limpiarCadena($_POST['nombre_ins']));
         $programa->setDescripcion(mainModel::limpiarCadena($_POST['descripcion_ins']));
@@ -30,7 +30,7 @@ class programaControlador extends programaModelo{
             echo Utilidades::getAlertaErrorJSON("simple", "El programa ya se encuentra registrado en el repositorio");
             exit();
         }else{
-            $agregar_programa = programaModelo::agregar_programa_modelo($programa);
+            $agregar_programa = programaModelo::agregarProgramaModelo($programa);
 
             if($agregar_programa->rowCount() == 1){
                 echo Utilidades::getAlertaExitosoJSON("recargar", "Programa creado correctamente");
@@ -42,7 +42,7 @@ class programaControlador extends programaModelo{
         }
     }
 
-    public function eliminar_programa_controlador(){
+    public function eliminarProgramaControlador(){
         $programa = new Programa();
         $programa->setIdPrograma(mainModel::limpiarCadena(mainModel::decryption($_POST['id_programa_del'])));
         $programa->setEstado(Utilidades::getIdEstado("ELIMINADO"));
@@ -54,7 +54,7 @@ class programaControlador extends programaModelo{
             exit();
         }
 
-        $editarPrograma = programaModelo::editar_estado_programa_modelo($programa);
+        $editarPrograma = programaModelo::editarEstadoProgramaModelo($programa);
 
         if(is_string($editarPrograma) || $editarPrograma < 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el programa");
@@ -65,14 +65,14 @@ class programaControlador extends programaModelo{
     }
 
     /*---------- Controlador datos programa ----------*/
-    public function datos_programa_controlador($tipo, $id){
+    public function datosProgramaControlador($tipo, $id){
         $id = mainModel::decryption($id);
 
-        return programaModelo::datos_programa_modelo($tipo, $id);
+        return programaModelo::datosProgramaModelo($tipo, $id);
     }
 
     /*---------- Controlador editar programa ----------*/
-    public function editar_programa_controlador(){
+    public function editarProgramaControlador(){
         $programa = new Programa();
         //Recibiendo el ID del programa a editar
         $programa->setIdPrograma(mainModel::limpiarCadena(mainModel::decryption($_POST['id_programa_edit'])));
@@ -99,7 +99,7 @@ class programaControlador extends programaModelo{
             echo Utilidades::getAlertaErrorJSON("simple", "El programa ya se encuentra registrado en el repositorio");
             exit();
         }else{
-            $editarPrograma = programaModelo::editar_programa_modelo($programa);
+            $editarPrograma = programaModelo::editarProgramaModelo($programa);
             if($editarPrograma->rowCount() > 0){
                 echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."admin-programas/");
             }else{
@@ -112,7 +112,7 @@ class programaControlador extends programaModelo{
      * Paginador de programas, vista principal Admin
      *
      */
-    public function paginador_programa_controlador(){
+    public function paginadorProgramaControlador(){
         $consulta = "SELECT * 
         FROM programa 
         WHERE estado != ". Utilidades::getIdEstado("ELIMINADO") ." 
@@ -126,7 +126,7 @@ class programaControlador extends programaModelo{
         return $datos;
     }
 
-    public function listar_programas_controlador(){
+    public function listarProgramasControlador(){
         $sql = mainModel::ejecutar_consulta_simple("SELECT * FROM programa WHERE estado = ". Utilidades::getIdEstado("ACTIVO") .";");
         return $sql->fetchAll();
     }

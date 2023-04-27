@@ -10,7 +10,7 @@ $ins_programa = new programaControlador();
 $insUsuario = new usuarioControlador();
 
 $datos_curso = $ins_curso->datosCursoControlador("Unico", $pagina[1]);
-$datos_programas = $ins_programa->listar_programas_controlador();
+$datos_programas = $ins_programa->listarProgramasControlador();
 $datosUsuarios = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
 
 if($datos_curso->rowCount()>0){

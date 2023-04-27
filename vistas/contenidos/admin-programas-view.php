@@ -39,7 +39,7 @@
                 require_once "./utilidades/Utilidades.php";
                 $ins_programa = new programaControlador();
 
-                $datos = $ins_programa->paginador_programa_controlador();
+                $datos = $ins_programa->paginadorProgramaControlador();
             ?>
             <div class="table-admin-container">
                 <table id="tablaUsuarios" class="tb-admin-records">

@@ -10,7 +10,7 @@
     $total_usuarios = $ins_usuario->datos_usuario_controlador("Conteo", 0);
 
     $ins_programa = new programaControlador();
-    $total_programas = $ins_programa->datos_programa_controlador("Conteo", 0);
+    $total_programas = $ins_programa->datosProgramaControlador("Conteo", 0);
 
     $ins_curso = new cursoControlador();
     $total_cursos = $ins_curso->datosCursoControlador("Conteo", 0);

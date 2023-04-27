@@ -4,7 +4,7 @@ require_once "./controladores/programaControlador.php";
 require_once "./utilidades/Utilidades.php";
 $ins_programa = new programaControlador();
 
-$datos_programa = $ins_programa->datos_programa_controlador("Unico", $pagina[1]);
+$datos_programa = $ins_programa->datosProgramaControlador("Unico", $pagina[1]);
 
 if($datos_programa->rowCount()>0){
     $campos = $datos_programa->fetch();

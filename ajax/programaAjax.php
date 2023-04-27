@@ -7,21 +7,21 @@ require_once "../config/APP.php";
 if(isset($_POST['nombre_ins']) || isset($_POST['id_programa_del']) || isset($_POST['id_programa_edit'])){
     /*--- Instancia al controlador ---*/
     require_once "../controladores/programaControlador.php";
-    $ins_programa = new programaControlador();
+    $insPrograma = new programaControlador();
 
     /*--- Agregar un programa ---*/
     if(isset($_POST['nombre_ins'])){
-        echo $ins_programa->agregar_programa_controlador();
+        echo $insPrograma->agregarProgramaControlador();
     }
 
     /*--- Eliminar un programa ---*/
     if(isset($_POST['id_programa_del'])){
-        echo $ins_programa->eliminar_programa_controlador();
+        echo $insPrograma->eliminarProgramaControlador();
     }
 
     /*--- Editar un programa ---*/
     if(isset($_POST['id_programa_edit'])){
-        echo $ins_programa->editar_programa_controlador();
+        echo $insPrograma->editarProgramaControlador();
     }
 
 }else{

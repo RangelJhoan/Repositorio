@@ -5,7 +5,7 @@ require_once "./controladores/usuarioControlador.php";
 $ins_programa = new programaControlador();
 $insUsuario = new usuarioControlador();
 
-$datos_programas = $ins_programa->listar_programas_controlador();
+$datos_programas = $ins_programa->listarProgramasControlador();
 $datosUsuario = $insUsuario->obtenerPersonasXTipoUsuario("DOCENTE");
     ?>
     <section class="general-admin-container">
