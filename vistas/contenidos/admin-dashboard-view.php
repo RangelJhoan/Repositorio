@@ -22,7 +22,7 @@
     $total_autores = $ins_autor->datosAutorControlador("Conteo", 0);
 
     $ins_etiqueta = new etiquetaControlador();
-    $total_etiquetas = $ins_etiqueta->datos_etiqueta_controlador("Conteo", 0);
+    $total_etiquetas = $ins_etiqueta->datosEtiquetaControlador("Conteo", 0);
 
     ?>
     <section class="dashboard-container">

@@ -10,7 +10,7 @@ if($peticionAjax){
 
 class etiquetaControlador extends etiquetaModelo{
 
-    public function agregar_etiqueta_controlador(){
+    public function agregarEtiquetaControlador(){
         $etiqueta = new Etiqueta();
         $etiqueta->setDescripcion(mainModel::limpiarCadena($_POST['descripcion_ins']));
         $etiqueta->setEstado(Utilidades::getIdEstado("ACTIVO"));
@@ -28,7 +28,7 @@ class etiquetaControlador extends etiquetaModelo{
             exit();
         }
 
-        $agregar_etiqueta = etiquetaModelo::agregar_etiqueta_modelo($etiqueta);
+        $agregar_etiqueta = etiquetaModelo::agregarEtiquetaModelo($etiqueta);
 
         if(is_string($agregar_etiqueta) || $agregar_etiqueta < 0){
             echo Utilidades::getAlertaErrorJSON("simple", "Error al crear la etiqueta");
@@ -39,7 +39,7 @@ class etiquetaControlador extends etiquetaModelo{
     }
 
     /*---------- Controlador editar etiqueta ----------*/
-    public function editar_etiqueta_controlador(){
+    public function editarEtiquetaControlador(){
         $etiqueta = new Etiqueta();
         $etiqueta->setIdEtiqueta(mainModel::limpiarCadena(mainModel::decryption($_POST['id_etiqueta_edit'])));
 
@@ -63,7 +63,7 @@ class etiquetaControlador extends etiquetaModelo{
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
         }
-        $editarEtiqueta = etiquetaModelo::editar_etiqueta_modelo($etiqueta);
+        $editarEtiqueta = etiquetaModelo::editarEtiquetaModelo($etiqueta);
 
         if($editarEtiqueta == 1){
             echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."panel-palabras-clave/");
@@ -72,13 +72,13 @@ class etiquetaControlador extends etiquetaModelo{
         }
     }
 
-    public function eliminar_etiqueta_controlador(){
+    public function eliminarEtiquetaControlador(){
         try {
             $etiqueta = new Etiqueta();
             $etiqueta->setIdEtiqueta(mainModel::limpiarCadena(mainModel::decryption($_POST['id_etiqueta_del'])));
             $etiqueta->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
-            $eliminarEtiqueta = etiquetaModelo::eliminar_etiqueta_modelo($etiqueta);
+            $eliminarEtiqueta = etiquetaModelo::eliminarEtiquetaModelo($etiqueta);
 
             if(is_string($eliminarEtiqueta) || $eliminarEtiqueta < 0){
                 echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar la palabra clave");
@@ -93,10 +93,10 @@ class etiquetaControlador extends etiquetaModelo{
     }
 
     /*---------- Controlador datos etiqueta ----------*/
-    public function datos_etiqueta_controlador($tipo, $id){
+    public function datosEtiquetaControlador($tipo, $id){
         $id = mainModel::decryption($id);
 
-        return etiquetaModelo::datos_etiqueta_modelo($tipo, $id);
+        return etiquetaModelo::datosEtiquetaModelo($tipo, $id);
     }
 
     /**
@@ -104,7 +104,7 @@ class etiquetaControlador extends etiquetaModelo{
      *
      * @return Object Lista de las etiquetas consultadas
      */
-    public function paginador_etiqueta_controlador($idPersona, $isActivo = false){
+    public function paginadorEtiquetaControlador($idPersona, $isActivo = false){
         $consulta = "SELECT e.id as idEtiqueta, e.descripcion, e.estado as estadoEtiqueta, e.fecha_creacion as fechaCreacionEtiqueta, p.nombre, p.apellido 
         FROM etiqueta e
         JOIN persona p ON p.id = e.id_docente
@@ -131,7 +131,7 @@ class etiquetaControlador extends etiquetaModelo{
     }
 
     /*---------- Controlador editar etiqueta desde el perfil del docente ----------*/
-    public function editar_docente_etiqueta_controlador(){
+    public function editarDocenteEtiquetaControlador(){
         $etiqueta = new Etiqueta();
         $etiqueta->setIdEtiqueta(mainModel::limpiarCadena(mainModel::decryption($_POST['id_docente_etiqueta_edit'])));
 
@@ -155,7 +155,7 @@ class etiquetaControlador extends etiquetaModelo{
             echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
             exit();
         }
-        $editarEtiqueta = etiquetaModelo::editar_etiqueta_modelo($etiqueta);
+        $editarEtiqueta = etiquetaModelo::editarEtiquetaModelo($etiqueta);
 
         if($editarEtiqueta == 1){
             echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."docente-mis-palabras-clave/");

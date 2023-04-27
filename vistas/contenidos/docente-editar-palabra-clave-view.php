@@ -4,7 +4,7 @@ require_once "./controladores/etiquetaControlador.php";
 require_once "./utilidades/Utilidades.php";
 $ins_etiqueta = new etiquetaControlador();
 
-$datos = $ins_etiqueta->datos_etiqueta_controlador("Unico", $pagina[1]);
+$datos = $ins_etiqueta->datosEtiquetaControlador("Unico", $pagina[1]);
 
 if($datos->rowCount()>0){
     $campos = $datos->fetch();

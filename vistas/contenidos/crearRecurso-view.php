@@ -8,7 +8,7 @@ $ins_etiqueta = new etiquetaControlador();
 $ins_curso = new cursoControlador();
 
 $datos_autores = $ins_autor->paginadorAutorControlador(null);
-$datos_etiquetas = $ins_etiqueta->paginador_etiqueta_controlador(null);
+$datos_etiquetas = $ins_etiqueta->paginadorEtiquetaControlador(null);
 $datos_cursos = $ins_curso->paginadorCursoControlador();
 ?>
 <section class="general-admin-container">

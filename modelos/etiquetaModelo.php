@@ -11,7 +11,7 @@ if($peticionAjax){
 
 class etiquetaModelo extends mainModel{
 
-    protected static function agregar_etiqueta_modelo(Etiqueta $etiqueta){
+    protected static function agregarEtiquetaModelo(Etiqueta $etiqueta){
         try {
             $sql = mainModel::conectar()->prepare("INSERT INTO etiqueta(descripcion, estado, id_docente) VALUES(?, ?, ?);");
             $sql->execute([$etiqueta->getDescripcion(), $etiqueta->getEstado(), $etiqueta->getIdDocente()]);
@@ -23,7 +23,7 @@ class etiquetaModelo extends mainModel{
     }
 
     /*---------- Modelo para editar información de etiqueta ----------*/
-    protected static function editar_etiqueta_modelo(Etiqueta $etiqueta){
+    protected static function editarEtiquetaModelo(Etiqueta $etiqueta){
         try {
             $sql = mainModel::conectar()->prepare("UPDATE etiqueta SET descripcion=?, estado=? WHERE id=?");
             $sql->execute([$etiqueta->getDescripcion(), $etiqueta->getEstado(), $etiqueta->getIdEtiqueta()]);
@@ -35,7 +35,7 @@ class etiquetaModelo extends mainModel{
     }
 
     /*---------- Modelo para eliminar etiqueta ----------*/
-    protected static function eliminar_etiqueta_modelo(Etiqueta $etiqueta){
+    protected static function eliminarEtiquetaModelo(Etiqueta $etiqueta){
         try {
             $sql = mainModel::conectar()->prepare("UPDATE etiqueta SET estado=? WHERE id=?");
             $sql->execute([$etiqueta->getEstado(), $etiqueta->getIdEtiqueta()]);
@@ -46,7 +46,7 @@ class etiquetaModelo extends mainModel{
     }
 
     /*---------- Modelo datos etiqueta ----------*/
-    protected static function datos_etiqueta_modelo($tipo, $id){
+    protected static function datosEtiquetaModelo($tipo, $id){
         if($tipo == "Unico"){
             $sql = mainModel::conectar()->prepare("SELECT * 
             FROM etiqueta 

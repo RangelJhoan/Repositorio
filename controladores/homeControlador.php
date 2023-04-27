@@ -116,7 +116,7 @@ class homeControlador extends homeModelo{
         
     }
 
-    public function buscar_ruta_archivo($pId){
+    public function buscarRutaArchivo($pId){
         $informacion = homeModelo::ruta_archivo($pId);
         
         return $informacion;

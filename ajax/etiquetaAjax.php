@@ -6,24 +6,24 @@ require_once "../config/APP.php";
 
 if(isset($_POST['descripcion_ins']) || isset($_POST['id_etiqueta_del']) || isset($_POST['id_etiqueta_edit']) || isset($_POST['id_docente_etiqueta_edit'])){
     require_once "../controladores/etiquetaControlador.php";
-    $ins_etiqueta = new etiquetaControlador();
+    $insEtiqueta = new etiquetaControlador();
 
     /*--- ADMINISTRADOR ---*/
     if(isset($_POST['descripcion_ins'])){
-        echo $ins_etiqueta->agregar_etiqueta_controlador();
+        echo $insEtiqueta->agregarEtiquetaControlador();
     }
 
     if(isset($_POST['id_etiqueta_edit'])){
-        echo $ins_etiqueta->editar_etiqueta_controlador();
+        echo $insEtiqueta->editarEtiquetaControlador();
     }
 
     if(isset($_POST['id_etiqueta_del'])){
-        echo $ins_etiqueta->eliminar_etiqueta_controlador();
+        echo $insEtiqueta->eliminarEtiquetaControlador();
     }
 
     /*--- DOCENTE ---*/
     if(isset($_POST['id_docente_etiqueta_edit'])){
-        echo $ins_etiqueta->editar_docente_etiqueta_controlador();
+        echo $insEtiqueta->editarDocenteEtiquetaControlador();
     }
 }else{
     session_start(['name' => 'REPO']);
