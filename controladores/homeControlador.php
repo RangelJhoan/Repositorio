@@ -10,13 +10,13 @@ if($peticionAjax){
 
 class homeControlador extends homeModelo{
 
-    public function listado_filtro_recursos($pTipo, $pBuscar){
-        $listado = homeModelo::filtrar_recursos($pTipo, $pBuscar);
+    public function listadoFiltroRecursos($pTipo, $pBuscar){
+        $listado = homeModelo::filtrarRecursos($pTipo, $pBuscar);
         return $listado->fetchAll();
     }
 
-    public function cargar_informacion_recurso($pId){
-        $informacion = homeModelo::cargar_autores($pId);
+    public function cargarInformacionRecurso($pId){
+        $informacion = homeModelo::cargarAutores($pId);
         $autores = "";
         foreach ($informacion AS $key => $autor){
             $separador = ($key == count($informacion) - 1) ? "" : "; ";
@@ -25,7 +25,7 @@ class homeControlador extends homeModelo{
         return $autores;
     }
 
-    public function cargar_busqueda($pBusqueda){
+    public function cargarBusqueda($pBusqueda){
         $search = "";
         $arrayParametro = explode("¡", $pBusqueda);
         $prueba = "";
@@ -38,70 +38,62 @@ class homeControlador extends homeModelo{
             }
             $search .= $varDato;
         }
-
         return str_replace("~~","",$search);
-
     }
-    public function cargar_recursos_autor($pId){
-        $recursos = homeModelo::cargar_recursos($pId);
+
+    public function cargarRecursosAutor($pId){
+        $recursos = homeModelo::cargarRecursos($pId);
         return $recursos;
     }
 
-    public function cargar_recursos_curso($pId){
-        $recursos = homeModelo::cargar_curso($pId);
-        
+    public function cargarRecursosCurso($pId){
+        $recursos = homeModelo::cargarCurso($pId);
         return $recursos;
     }
 
-    public function capturar_fecha_recurso(){
-        $fechas = homeModelo::fechas_recurso();
-
+    public function capturarFechaRecurso(){
+        $fechas = homeModelo::fechasRecurso();
         return $fechas;
     }
 
-    public function buscar_info_recurso($pId){
-        $informacion = homeModelo::detalles_recurso(mainModel::decryption($pId));
-
+    public function buscarInfoRecurso($pId){
+        $informacion = homeModelo::detallesRecurso(mainModel::decryption($pId));
         return $informacion;
     }
 
-    public function autores_recurso($pId){
-        $informacion = homeModelo::cargar_autores($pId);
-        
+    public function autoresRecurso($pId){
+        $informacion = homeModelo::cargarAutores($pId);
         return $informacion;
     }
 
-    public function curso_recurso($pId){
-        $informacion = homeModelo::cursos_recurso($pId);
-        
+    public function cursoRecurso($pId){
+        $informacion = homeModelo::cursosRecurso($pId);
         return $informacion;
     }
 
-    public function etiquetas_recurso($pId){
-        $informacion = homeModelo::cargar_etiquetas($pId);
-        
+    public function etiquetasRecurso($pId){
+        $informacion = homeModelo::cargarEtiquetas($pId);
         return $informacion;
     }
 
-    public function archivo_recurso($pId){
-        $informacion = homeModelo::cargar_archivos($pId);
-        
+    public function archivoRecurso($pId){
+        $informacion = homeModelo::cargarArchivos($pId);
         return $informacion;
     }
 
-    public function calificar_recurso($pId, $pRespuesta){
+    public function calificarRecurso($pId, $pRespuesta){
         session_start(['name'=>"REPO"]);
         if(isset($_SESSION['id_persona']) && ($_SESSION['tipo_usuario']=="Estudiante" || $_SESSION['tipo_usuario']=="Docente")){
-            $validar = homeModelo::validar_registro_voto($pId);
+            $validar = homeModelo::validarRegistroVoto($pId);
             if(isset($validar['id'])){
-                $valorar = homeModelo::editar_voto($validar['id'],$pRespuesta);
+                $valorar = homeModelo::editarVoto($validar['id'],$pRespuesta);
                 if($valorar>0){
-                    $registrar = homeModelo::quitar_punto($pId, $pRespuesta);
-                    $valorar = homeModelo::evaluar_recurso($pId, $pRespuesta);
+                    $registrar = homeModelo::quitarPunto($pId, $pRespuesta);
+                    $valorar = homeModelo::evaluarRecurso($pId, $pRespuesta);
                 }
             }else{
-                $valorar = homeModelo::evaluar_recurso($pId, $pRespuesta);
-                $registrar = homeModelo::registrar_voto($pId, $pRespuesta);
+                $valorar = homeModelo::evaluarRecurso($pId, $pRespuesta);
+                $registrar = homeModelo::registrarVoto($pId, $pRespuesta);
             }
             if(is_string($valorar)){
                 echo Utilidades::getAlertaErrorJSON("simple", "Error: ".$valorar);
@@ -113,24 +105,22 @@ class homeControlador extends homeModelo{
             echo Utilidades::getAlertaErrorJSON("recargar", "Usted no cuenta con los permisos para calificar el recurso.");
             exit();
         }
-        
     }
 
     public function buscarRutaArchivo($pId){
-        $informacion = homeModelo::ruta_archivo($pId);
-        
+        $informacion = homeModelo::rutaArchivo($pId);
         return $informacion;
     }
 
-    public function agregar_favorito($pId){
+    public function agregarFavorito($pId){
         session_start(['name'=>"REPO"]);
         if(isset($_SESSION['id_persona']) && $_SESSION['tipo_usuario']=="Estudiante"){
-            $validar = homeModelo::validar_favorito($pId);
+            $validar = homeModelo::validarFavorito($pId);
             if(!isset($validar['id'])){
-                $favorito = homeModelo::registrar_favorito($pId);
+                $favorito = homeModelo::registrarFavorito($pId);
                 $textoalert = "Recurso Agregado a Favoritos";
             }else{
-                $favorito = homeModelo::eliminar_favorito($validar['id']);
+                $favorito = homeModelo::eliminarFavorito($validar['id']);
                 $textoalert = "Recurso Eliminado de Favoritos";
             }
 
@@ -162,7 +152,4 @@ class homeControlador extends homeModelo{
     }
     
 }
-
-
-
 ?>

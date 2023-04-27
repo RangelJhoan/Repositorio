@@ -16,7 +16,7 @@
                 require_once "./modelos/mainModel.php";
                 $ins_main = new mainModel();
                 $ins_home = new homeControlador();
-                $fechas = $ins_home->capturar_fecha_recurso();
+                $fechas = $ins_home->capturarFechaRecurso();
                 ?>
                 <form action="<?php echo SERVER_URL ?>ajax/homeAjax.php" method="POST">
                     <div class="containerComboAños">
@@ -42,9 +42,9 @@
                         </thead>
                         <tbody>
                             <?php
-                            $datos_filtro = $ins_home->listado_filtro_recursos($pagina[1],$pagina[2]);
+                            $datos_filtro = $ins_home->listadoFiltroRecursos($pagina[1],$pagina[2]);
                             foreach($datos_filtro as $vRecurso){
-                            $autores = $ins_home->cargar_informacion_recurso($vRecurso['id']);
+                            $autores = $ins_home->cargarInformacionRecurso($vRecurso['id']);
                             ?>
                             <tr>
                                 <td data-titulo="FECHA"><a href="#" class="deleteRedireccionTable"><?php echo $vRecurso['fecha_publicacion_recurso'];?></a></td>

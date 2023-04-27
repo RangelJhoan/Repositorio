@@ -2,11 +2,11 @@
 require_once "./controladores/homeControlador.php";
 $insHome = new homeControlador();
 $listaAutores = $insHome->contarAutoresConRecursos();
-$listaTitulo = $insHome->listado_filtro_recursos("Titulo","");
-$listaFecha = $insHome->listado_filtro_recursos("Fecha","");
+$listaTitulo = $insHome->listadoFiltroRecursos("Titulo","");
+$listaFecha = $insHome->listadoFiltroRecursos("Fecha","");
 $listaCurso = $insHome->contarCursosConRecursos();
-$listaArchivosSi = $insHome->listado_filtro_recursos("Archivos","Si");
-$listaArchivosNo = $insHome->listado_filtro_recursos("Archivos","No");
+$listaArchivosSi = $insHome->listadoFiltroRecursos("Archivos","Si");
+$listaArchivosNo = $insHome->listadoFiltroRecursos("Archivos","No");
 ?>
 <aside class = "asideFilters">
     <h3 class="asideFiltersTitle">Listar</h3>

@@ -10,7 +10,7 @@
         exit();
     }
 
-    $inforecurso = $ins_home->buscar_info_recurso($pagina[1]);
+    $inforecurso = $ins_home->buscarInfoRecurso($pagina[1]);
 
     //El ID del recurso es incorrecto (No existe) o el recurso no está activo
     if($inforecurso == "" || $inforecurso['estado'] != Utilidades::getIdEstado("ACTIVO")){
@@ -18,10 +18,10 @@
         exit();
     }
 
-    $autores = $ins_home->autores_recurso($inforecurso['id']);
-    $cursos = $ins_home->curso_recurso($inforecurso['id']);
-    $etiquetas = $ins_home->etiquetas_recurso($inforecurso['id']);
-    $archivo = $ins_home->archivo_recurso($inforecurso['id']);
+    $autores = $ins_home->autoresRecurso($inforecurso['id']);
+    $cursos = $ins_home->cursoRecurso($inforecurso['id']);
+    $etiquetas = $ins_home->etiquetasRecurso($inforecurso['id']);
+    $archivo = $ins_home->archivoRecurso($inforecurso['id']);
     if(isset($archivo['ruta'])){
         $nArchivo = $archivo['nombre'];
         $tamano = $archivo['tamano'];

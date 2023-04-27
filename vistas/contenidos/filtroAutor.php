@@ -39,9 +39,9 @@
                 <?php 
                     require_once "./controladores/homeControlador.php";
                     $ins_home = new homeControlador();
-                    $datos_filtro = $ins_home->listado_filtro_recursos($pagina[1],$pagina[2]);
+                    $datos_filtro = $ins_home->listadoFiltroRecursos($pagina[1],$pagina[2]);
                     foreach($datos_filtro as $vRecurso){
-                        $recursos = $ins_home->cargar_recursos_autor($vRecurso['id']);
+                        $recursos = $ins_home->cargarRecursosAutor($vRecurso['id']);
                         if($recursos > 0){
                         ?>
                         <tr>

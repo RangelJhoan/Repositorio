@@ -10,7 +10,7 @@
 
     class homeModelo extends mainModel{
 
-        protected static function filtrar_recursos($pTipo, $pBuscar){
+        protected static function filtrarRecursos($pTipo, $pBuscar){
             if($pTipo == "Busqueda"){
                 $arrayParametro = explode("¡", $pBuscar);
                 $search = "";
@@ -70,35 +70,35 @@
             return $sql;
         }
 
-        protected static function cargar_autores($pId){
+        protected static function cargarAutores($pId){
             $sql = mainModel::conectar()->prepare("SELECT a.nombre,a.apellido,a.id FROM autor a JOIN autor_recurso ar ON a.id = ar.id_autor WHERE ar.id_recurso = '".$pId."' AND a.estado = " . Utilidades::getIdEstado("ACTIVO") . " ORDER BY a.apellido");
             $sql->execute();
 
             return $sql->fetchAll();
         }
 
-        protected static function cargar_recursos($pId){
+        protected static function cargarRecursos($pId){
             $sql = mainModel::conectar()->prepare("SELECT COUNT(*) AS recursos FROM autor_recurso ar JOIN recurso r ON r.id=ar.id_recurso WHERE id_autor = '".$pId."' AND r.estado='".Utilidades::getIdEstado("ACTIVO")."'");
             $sql->execute();
 
             return $sql->fetchColumn();
         }
 
-        protected static function cargar_curso($pId){
+        protected static function cargarCurso($pId){
             $sql = mainModel::conectar()->prepare("SELECT COUNT(*) AS recursos FROM curso_recurso cr JOIN recurso r ON r.id=cr.id_recurso WHERE id_curso = '".$pId."' AND r.estado='".Utilidades::getIdEstado("ACTIVO")."'");
             $sql->execute();
 
             return $sql->fetchColumn();
         }
 
-        protected static function fechas_recurso(){
+        protected static function fechasRecurso(){
             $sql = mainModel::conectar()->prepare("SELECT DISTINCT(fecha_publicacion_recurso) AS fecha FROM recurso ORDER BY fecha_publicacion_recurso DESC");
             $sql->execute();
 
             return $sql->fetchAll();
         }
 
-        protected static function detalles_recurso($pId){
+        protected static function detallesRecurso($pId){
             $sql = mainModel::conectar()->prepare("SELECT r.id, r.internal_id, r.titulo, r.fecha_publicacion_recurso, r.resumen, d.nombre, d.apellido, r.fecha_publicacion_profesor, r.enlace, r.editorial, r.isbn, r.estado FROM recurso r JOIN persona d ON d.id = r.id_docente
             WHERE r.id='".$pId."'");
             $sql->execute();
@@ -106,28 +106,28 @@
             return $sql->fetch();
         }
 
-        protected static function cursos_recurso($pId){
+        protected static function cursosRecurso($pId){
             $sql = mainModel::conectar()->prepare("SELECT c.id,c.nombre FROM recurso r JOIN curso_recurso cr ON r.id = cr.id_recurso JOIN curso c ON c.id = cr.id_curso WHERE r.id = '".$pId."' AND c.estado = " . Utilidades::getIdEstado("ACTIVO"));
             $sql->execute();
 
             return $sql->fetchAll();
         }
 
-        protected static function cargar_etiquetas($pId){
+        protected static function cargarEtiquetas($pId){
             $sql = mainModel::conectar()->prepare("SELECT e.descripcion FROM etiqueta e JOIN etiqueta_recurso r ON e.id = r.id_etiqueta WHERE r.id_recurso = '".$pId."' AND e.estado = " . Utilidades::getIdEstado("ACTIVO"));
             $sql->execute();
 
             return $sql->fetchAll();
         }
 
-        protected static function cargar_archivos($pId){
+        protected static function cargarArchivos($pId){
             $sql = mainModel::conectar()->prepare("SELECT ruta,tamano,nombre FROM archivo WHERE id_recurso = '".$pId."'");
             $sql->execute();
 
             return $sql->fetch();
         }
 
-        protected static function evaluar_recurso($pId, $pRespuesta){
+        protected static function evaluarRecurso($pId, $pRespuesta){
             try {
                 $recurso = mainModel::decryption($pId);
                 if($pRespuesta=="Si"){
@@ -145,7 +145,7 @@
             
         }
 
-        protected static function quitar_punto($pId, $pRespuesta){
+        protected static function quitarPunto($pId, $pRespuesta){
             try {
                 $recurso = mainModel::decryption($pId);
                 if($pRespuesta!="Si"){
@@ -162,7 +162,7 @@
             }
         }
 
-        protected static function registrar_voto($pId, $pRespuesta){
+        protected static function registrarVoto($pId, $pRespuesta){
             try {
                 $recurso = mainModel::decryption($pId);
                 if($pRespuesta=="Si"){
@@ -179,7 +179,7 @@
             }
         }
 
-        protected static function editar_voto($pId, $pRespuesta){
+        protected static function editarVoto($pId, $pRespuesta){
             try {
                 if($pRespuesta=="Si"){
                     $voto = 1;
@@ -195,7 +195,7 @@
             }
         }
 
-        protected static function validar_registro_voto($pId){
+        protected static function validarRegistroVoto($pId){
             $recurso = mainModel::decryption($pId);
             $sql = mainModel::conectar()->prepare("SELECT id FROM puntuacion_recurso WHERE id_recurso = '".$recurso."' AND id_estudiante='".$_SESSION['id_persona']."'");
             $sql->execute();
@@ -203,7 +203,7 @@
             return $sql->fetch();
         }
         
-        protected static function ruta_archivo($pId){
+        protected static function rutaArchivo($pId){
             $recurso = mainModel::decryption($pId);
             $sql = mainModel::conectar()->prepare("SELECT ruta,nombre FROM archivo WHERE id_recurso='".$recurso."'");
             $sql->execute();
@@ -211,7 +211,7 @@
             return $sql->fetch();
         }
 
-        protected static function recursos_con_archivo(){
+        protected static function recursosConArchivo(){
             $listado = mainModel::conectar()->prepare("SELECT id_recurso FROM archivo");
             $listado->execute();
             $archivos = $listado->fetchAll();
@@ -221,7 +221,7 @@
             }
         }
 
-        protected static function validar_favorito($pId){
+        protected static function validarFavorito($pId){
             $recurso = mainModel::decryption($pId);
             $sql = mainModel::conectar()->prepare("SELECT id FROM recurso_favorito WHERE id_recurso = '".$recurso."' AND id_persona='".$_SESSION['id_persona']."'");
             $sql->execute();
@@ -229,7 +229,7 @@
             return $sql->fetch();
         }
 
-        protected static function registrar_favorito($pId){
+        protected static function registrarFavorito($pId){
             try {
                 $recurso = mainModel::decryption($pId);
                 $sql = mainModel::conectar()->prepare("INSERT INTO recurso_favorito(id_recurso, id_persona) VALUES(?,?)");
@@ -241,7 +241,7 @@
             }
         }
 
-        protected static function eliminar_favorito($pId){
+        protected static function eliminarFavorito($pId){
             try {
                 $sql = mainModel::conectar()->prepare("DELETE FROM recurso_favorito WHERE id = '".$pId."'");
                 $sql->execute();
