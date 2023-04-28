@@ -7,7 +7,7 @@ $ins_usuario = new usuarioControlador();
 $ins_tipo_documento = new tipoDocumentoControlador();
 
 $datos_tipo_documento = $ins_tipo_documento->listarTipoDocumentoControlador();
-$datos = $ins_usuario->paginador_usuario_controlador();
+$datos = $ins_usuario->paginadorUsuarioControlador();
 ?>
     <section class="general-admin-container">
         <div class="overview-general-admin">

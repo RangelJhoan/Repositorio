@@ -235,6 +235,6 @@ if(isset($_POST['correo']) && isset($_POST['clave'])){
     require_once "./controladores/usuarioControlador.php";
     $ins_usuario = new usuarioControlador();
 
-    $ins_usuario->iniciarSesion_usuario_controlador();
+    $ins_usuario->iniciarSesionUsuarioControlador();
 }
 ?>

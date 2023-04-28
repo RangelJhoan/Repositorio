@@ -7,7 +7,7 @@ require_once "./utilidades/Utilidades.php";
 $ins_usuario = new usuarioControlador();
 $ins_tipo_documento = new tipoDocumentoControlador();
 
-$datos_usuario = $ins_usuario->datos_usuario_controlador("Unico", $pagina[1]);
+$datos_usuario = $ins_usuario->datosUsuarioControlador("Unico", $pagina[1]);
 $datos_tipo_documento = $ins_tipo_documento->listarTipoDocumentoControlador();
 
 if($datos_usuario->rowCount()>0){

@@ -15,7 +15,7 @@ if($peticionAjax){
 class usuarioControlador extends usuarioModelo{
 
     /*---------- Controlador para agregar usuario ----------*/
-    public function agregar_usuario_controlador(){
+    public function agregarUsuarioControlador(){
         session_start(['name'=>'REPO']);
         //Validamos que sólo el super admin pueda crear administradores
         if($_POST['tipoUsuario'] == 1 && $_SESSION['correo_usuario'] != SUPER_ADMIN_EMAIL){
@@ -56,7 +56,7 @@ class usuarioControlador extends usuarioModelo{
             exit();
         }else{
             $persona->setClave(mainModel::encryption($persona->getClave()));
-            $agregar_usuario = usuarioModelo::agregar_usuario_modelo($persona);
+            $agregar_usuario = usuarioModelo::agregarUsuarioModelo($persona);
 
             if($agregar_usuario != 1){
                 echo Utilidades::getAlertaErrorJSON("simple", "Error al crear el usuario");
@@ -110,7 +110,7 @@ class usuarioControlador extends usuarioModelo{
             exit();
         }else{
             $persona->setClave(mainModel::encryption($persona->getClave()));
-            $agregar_usuario = usuarioModelo::agregar_usuario_modelo($persona);
+            $agregar_usuario = usuarioModelo::agregarUsuarioModelo($persona);
 
             if($agregar_usuario != 1){
                 echo Utilidades::getAlertaErrorJSON("simple", "Error al crear el usuario");
@@ -122,7 +122,7 @@ class usuarioControlador extends usuarioModelo{
     }
 
     /*---------- Controlador para iniciar sesion usuario ----------*/
-    public function iniciarSesion_usuario_controlador(){
+    public function iniciarSesionUsuarioControlador(){
         $correo = mainModel::limpiarCadena($_POST['correo']);
         $clave = mainModel::limpiarCadena($_POST['clave']);
 
@@ -212,14 +212,14 @@ class usuarioControlador extends usuarioModelo{
     }
 
     /*---------- Controlador para forzar cierre sesión usuario ----------*/
-    public function forzar_cierre_sesion_controlador(){
+    public function forzarCierreSesionControlador(){
         session_unset();
         session_destroy();
         echo "<script>window.location.href='".SERVER_URL."login/';</script>";
     }
 
     /*---------- Controlador para cerrar sesión usuario ----------*/
-    public function cerrar_sesion_controlador(){
+    public function cerrarSesionControlador(){
         session_start(['name' => 'REPO']);
         $id_persona = mainModel::limpiarCadena(mainModel::decryption($_POST['id_persona']));
         $correo = mainModel::limpiarCadena(mainModel::decryption($_POST['correo_usuario']));
@@ -239,21 +239,21 @@ class usuarioControlador extends usuarioModelo{
     }
 
     /*---------- Controlador para eliminar usuario ----------*/
-    public function eliminar_usuario_controlador(){
+    public function eliminarUsuarioControlador(){
         $persona = new Persona();
         $persona->setIdPersona(mainModel::limpiarCadena(mainModel::decryption($_POST['idPersona'])));
         $persona->setIdUsuario(mainModel::limpiarCadena(mainModel::decryption($_POST['idUsuario'])));
         $persona->setEstadoPersona(Utilidades::getIdEstado("ELIMINADO"));
         $persona->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
-        $editarPersona = usuarioModelo::editar_estado_persona_modelo($persona);
+        $editarPersona = usuarioModelo::editarEstadoPersonaModelo($persona);
 
         if(is_string($editarPersona) || $editarPersona < 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar la persona");
             exit();
         }
 
-        $editarUsuario = usuarioModelo::editar_estado_usuario_modelo($persona);
+        $editarUsuario = usuarioModelo::editarEstadoUsuarioModelo($persona);
 
         if(is_string($editarUsuario) || $editarUsuario < 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el usuario");
@@ -264,14 +264,14 @@ class usuarioControlador extends usuarioModelo{
     }
 
     /*---------- Controlador datos usuario ----------*/
-    public function datos_usuario_controlador($tipo, $id){
+    public function datosUsuarioControlador($tipo, $id){
         $id = mainModel::decryption($id);
 
-        return usuarioModelo::datos_usuario_modelo($tipo, $id);
+        return usuarioModelo::datosUsuarioModelo($tipo, $id);
     }
 
     /*---------- Controlador editar usuario ----------*/
-    public function editar_usuario_controlador(){
+    public function editarUsuarioControlador(){
         session_start(['name'=>'REPO']);
         if($_SESSION['correo_usuario'] != SUPER_ADMIN_EMAIL && $_POST['estado'] == Utilidades::getIdEstado("ELIMINADO")){
             echo Utilidades::getAlertaErrorJSON("simple", "Usted no cuenta con los permisos necesarios para realizar esta acción");
@@ -326,13 +326,13 @@ class usuarioControlador extends usuarioModelo{
             $persona->setClave($datos_user['clave']);
         }
 
-        $editarPersona = usuarioModelo::editar_persona_modelo($persona);
+        $editarPersona = usuarioModelo::editarPersonaModelo($persona);
 
         if(is_string($editarPersona) || $editarPersona < 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información de la persona");
             exit();
         }
-        $editarUsuario = usuarioModelo::editar_usuario_modelo($persona);
+        $editarUsuario = usuarioModelo::editarUsuarioModelo($persona);
         if(is_string($editarUsuario) || $editarUsuario < 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información del usuario");
             exit();
@@ -342,7 +342,7 @@ class usuarioControlador extends usuarioModelo{
     }
 
     /*---------- Controlador editar usuario ----------*/
-    public function editar_perfil_controlador(){
+    public function editarPerfilControlador(){
         $persona = new Persona();
         //Recibiendo el ID del usuario a editar
         $persona->setIdPersona(mainModel::limpiarCadena(mainModel::decryption($_POST['id_usuario_edit_perfil'])));
@@ -386,13 +386,13 @@ class usuarioControlador extends usuarioModelo{
             $persona->setClave($datos_user['clave']);
         }
 
-        $editarPersona = usuarioModelo::editar_persona_perfil_modelo($persona);
+        $editarPersona = usuarioModelo::editarPersonaPerfilModelo($persona);
 
         if(is_string($editarPersona) || $editarPersona < 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información de perfil");
             exit();
         }
-        $editarUsuario = usuarioModelo::editar_usuario_perfil_modelo($persona);
+        $editarUsuario = usuarioModelo::editarUsuarioPerfilModelo($persona);
         if(is_string($editarUsuario) || $editarUsuario < 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la contraseña");
             exit();
@@ -416,7 +416,7 @@ class usuarioControlador extends usuarioModelo{
      *
      * @return array Lista de usuarios de la base de datos
      */
-    public function paginador_usuario_controlador(){
+    public function paginadorUsuarioControlador(){
 
         $consulta = "SELECT SQL_CALC_FOUND_ROWS p.id, p.nombre, p.apellido, p.documento as numeroDocumento, td.descripcion as documento, tu.descripcion as tipoUsuario, p.id_usuario, u.estado, tu.descripcion 
         FROM persona p JOIN tipo_documento td ON td.id = p.id_tipo_documento JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
@@ -541,7 +541,7 @@ class usuarioControlador extends usuarioModelo{
         }
 
         $persona->setClave(mainModel::encryption($claveNueva));
-        $editarUsuario = usuarioModelo::editar_usuario_perfil_modelo($persona);
+        $editarUsuario = usuarioModelo::editarUsuarioPerfilModelo($persona);
         if(is_string($editarUsuario) || $editarUsuario < 0){
             echo Utilidades::getAlertaErrorJSON("simple", "Hubo un error inesperado al restablecer la contraseña");
             exit();

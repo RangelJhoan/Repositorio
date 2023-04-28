@@ -28,7 +28,7 @@
         $uc = new usuarioControlador();
 
         if(!isset($_SESSION['id_persona']) || !isset($_SESSION['correo_usuario']) || !isset($_SESSION['estado_usuario'])){
-            echo $uc->forzar_cierre_sesion_controlador();
+            echo $uc->forzarCierreSesionControlador();
             exit();
         }
 

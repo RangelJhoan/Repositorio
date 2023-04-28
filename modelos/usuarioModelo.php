@@ -12,7 +12,7 @@
     class usuarioModelo extends mainModel{
 
         /*---------- Modelo para agregar usuario ----------*/
-        protected static function agregar_usuario_modelo(Persona $persona){
+        protected static function agregarUsuarioModelo(Persona $persona){
             try {
                 $sql = mainModel::conectar()->prepare("INSERT INTO usuario(correo, clave, estado, id_tipo_usuario) VALUES(?, ?, ?, ?);");
                 $sql->execute([$persona->getCorreo(), $persona->getClave(), $persona->getEstado(), $persona->getIdTipoUsuario()]);
@@ -35,7 +35,7 @@
         }
 
         /*---------- Modelo para eliminar usuario ----------*/
-        protected static function eliminar_usuario_modelo($idPersona, $idUsuario){
+        protected static function eliminarUsuarioModelo($idPersona, $idUsuario){
             $sqlEliminarPersona = mainModel::conectar()->prepare("DELETE FROM persona WHERE id = ?");
             $sqlEliminarPersona->execute([$idPersona]);
 
@@ -50,7 +50,7 @@
         }
 
         /*---------- Modelo datos usuario ----------*/
-        protected static function datos_usuario_modelo($tipo, $id){
+        protected static function datosUsuarioModelo($tipo, $id){
             if($tipo == "Unico"){
                 $sql = mainModel::conectar()->prepare("SELECT p.id, p.nombre, p.apellido, p.documento, td.descripcion as descripcionTipoDocumento, u.correo, u.clave, u.estado, tu.descripcion 
                 FROM persona p JOIN tipo_documento td ON td.id = p.id_tipo_documento JOIN usuario u ON u.id = p.id_usuario JOIN tipo_usuario tu ON tu.id = u.id_tipo_usuario 
@@ -68,7 +68,7 @@
         }
 
         /*---------- Modelo editar persona ----------*/
-        protected static function editar_persona_modelo(Persona $persona){
+        protected static function editarPersonaModelo(Persona $persona){
             try {
                 $sql = mainModel::conectar()->prepare("UPDATE persona SET id_tipo_documento=?, documento=?, nombre=?, apellido=?, estado=? WHERE id=?");
 
@@ -82,7 +82,7 @@
         }
 
         /*---------- Modelo editar estado persona ----------*/
-        protected static function editar_estado_persona_modelo(Persona $persona){
+        protected static function editarEstadoPersonaModelo(Persona $persona){
             try {
                 $sql = mainModel::conectar()->prepare("UPDATE persona SET estado = ? WHERE id = ?");
 
@@ -95,7 +95,7 @@
         }
 
         /*---------- Modelo editar estado usuario ----------*/
-        protected static function editar_estado_usuario_modelo(Persona $persona){
+        protected static function editarEstadoUsuarioModelo(Persona $persona){
             try {
                 $sql = mainModel::conectar()->prepare("UPDATE usuario SET estado = ? WHERE id = ?");
 
@@ -108,7 +108,7 @@
         }
 
         /*---------- Modelo editar usuario ----------*/
-        protected static function editar_usuario_modelo(Persona $persona){
+        protected static function editarUsuarioModelo(Persona $persona){
             try {
                 $sql_usuario = mainModel::conectar()->prepare("UPDATE usuario SET estado=?, clave=? WHERE id=?");
                 $sql_usuario->execute([$persona->getEstado(), $persona->getClave(), $persona->getIdUsuario()]);
@@ -120,7 +120,7 @@
         }
 
         /*---------- Modelo editar persona perfil ----------*/
-        protected static function editar_persona_perfil_modelo(Persona $persona){
+        protected static function editarPersonaPerfilModelo(Persona $persona){
             try {
                 $sql = mainModel::conectar()->prepare("UPDATE persona SET nombre=?, apellido=? WHERE id=?");
 
@@ -133,7 +133,7 @@
         }
 
         /*---------- Modelo editar usuario perfil ----------*/
-        protected static function editar_usuario_perfil_modelo(Persona $persona){
+        protected static function editarUsuarioPerfilModelo(Persona $persona){
             try {
                 $sql_usuario = mainModel::conectar()->prepare("UPDATE usuario SET clave=? WHERE id=?");
                 $sql_usuario->execute([$persona->getClave(), $persona->getIdUsuario()]);

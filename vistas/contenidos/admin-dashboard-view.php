@@ -7,7 +7,7 @@
     require_once "./controladores/recursoControlador.php";
 
     $ins_usuario = new usuarioControlador();
-    $total_usuarios = $ins_usuario->datos_usuario_controlador("Conteo", 0);
+    $total_usuarios = $ins_usuario->datosUsuarioControlador("Conteo", 0);
 
     $ins_programa = new programaControlador();
     $total_programas = $ins_programa->datosProgramaControlador("Conteo", 0);

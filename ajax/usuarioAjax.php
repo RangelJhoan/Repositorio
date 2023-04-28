@@ -8,46 +8,46 @@ if(isset($_POST['correo']) || isset($_POST['idUsuario']) || isset($_POST['id_usu
 isset($_POST['correo_recuperar_clave']) || isset($_POST['correo_registrarme']) || isset($_POST['graficar_admin_usuarios'])){
     /*--- Instancia al controlador ---*/
     require_once "../controladores/usuarioControlador.php";
-    $ins_usuario = new usuarioControlador();
+    $insUsuario = new usuarioControlador();
 
     /*--- Agregar un usuario ---*/
     if(isset($_POST['correo']) && isset($_POST['documento'])){
-        echo $ins_usuario->agregar_usuario_controlador();
+        echo $insUsuario->agregarUsuarioControlador();
     }
 
     /*--- Agregar un estudiante desde la vista del loguin ---*/
     if(isset($_POST['correo_registrarme']) && isset($_POST['documento_registrarme'])){
-        echo $ins_usuario->agregarEstudianteControlador();
+        echo $insUsuario->agregarEstudianteControlador();
     }
 
     /*--- Eliminar un usuario ---*/
     if(isset($_POST['idUsuario'])){
-        echo $ins_usuario->eliminar_usuario_controlador();
+        echo $insUsuario->eliminarUsuarioControlador();
     }
 
     /*--- Editar un usuario ---*/
     if(isset($_POST['id_usuario_editar'])){
-        echo $ins_usuario->editar_usuario_controlador();
+        echo $insUsuario->editarUsuarioControlador();
     }
 
     /*--- Cerrar sesión ---*/
     if(isset($_POST['id_persona']) && isset($_POST['correo_usuario'])){
-        echo $ins_usuario->cerrar_sesion_controlador();
+        echo $insUsuario->cerrarSesionControlador();
     }
 
     /*--- Editar perfil ---*/
     if(isset($_POST['id_usuario_edit_perfil']) && isset($_POST['correo_edit_perfil'])){
-        echo $ins_usuario->editar_perfil_controlador();
+        echo $insUsuario->editarPerfilControlador();
     }
 
     /*--- Recuperar contraseña ---*/
     if(isset($_POST['correo_recuperar_clave'])){
-        echo $ins_usuario->recuperarClaveControlador();
+        echo $insUsuario->recuperarClaveControlador();
     }
 
     /*--- Contar la cantidad de usuarios por tipo de usuario ---*/
     if(isset($_POST['graficar_admin_usuarios'])){
-        echo $ins_usuario->contarCantidadUsuariosXTipo();
+        echo $insUsuario->contarCantidadUsuariosXTipo();
     }
 
 }else{
