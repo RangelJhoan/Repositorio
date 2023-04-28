@@ -1,7 +1,7 @@
 <?php 
     require_once "./controladores/recursoControlador.php";
     $insRecurso = new recursoControlador();
-    $datos = $insRecurso->paginador_recurso_controlador(null, true);
+    $datos = $insRecurso->paginadorRecursoControlador(null, true);
 ?>
 
 <section class="filters-main-container">

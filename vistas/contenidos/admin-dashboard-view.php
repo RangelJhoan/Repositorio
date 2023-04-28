@@ -16,7 +16,7 @@
     $total_cursos = $ins_curso->datosCursoControlador("Conteo", 0);
 
     $insRecurso = new recursoControlador();
-    $totalRecursos = $insRecurso->datos_recurso_controlador("Conteo", 0);
+    $totalRecursos = $insRecurso->datosRecursoControlador("Conteo", 0);
 
     $ins_autor = new autorControlador();
     $total_autores = $ins_autor->datosAutorControlador("Conteo", 0);

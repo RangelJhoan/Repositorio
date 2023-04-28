@@ -7,7 +7,7 @@ $ins_recurso = new recursoControlador();
 $insAutor = new autorControlador();
 $insCurso = new cursoControlador();
 
-$datos = $ins_recurso->paginador_recurso_controlador($_SESSION['id_persona']);
+$datos = $ins_recurso->paginadorRecursoControlador($_SESSION['id_persona']);
 ?>
     <section class="general-admin-container">
         <div class="overview-general-admin">

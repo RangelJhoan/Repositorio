@@ -10,7 +10,7 @@ $insAutor = new autorControlador();
 $insCurso = new cursoControlador();
 $insEtiqueta = new etiquetaControlador();
 
-$consultaRecursos = $insRecurso->datos_recurso_controlador("Unico", $pagina[1]);
+$consultaRecursos = $insRecurso->datosRecursoControlador("Unico", $pagina[1]);
 if($consultaRecursos->rowCount() > 0){
     //Se carga la información del recurso y del archivo
     $datosRecurso = $consultaRecursos->fetch();

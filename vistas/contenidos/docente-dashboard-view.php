@@ -4,7 +4,7 @@
     require_once "./controladores/recursoControlador.php";
 
     $insRecurso = new recursoControlador();
-    $totalRecursos = $insRecurso->datos_recurso_controlador("Conteo", 0);
+    $totalRecursos = $insRecurso->datosRecursoControlador("Conteo", 0);
     $recursosCalificados = $insRecurso->obtenerListaCalificadosXPersona($_SESSION['id_persona']);
 
     $ins_autor = new autorControlador();

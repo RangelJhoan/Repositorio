@@ -15,7 +15,7 @@ if($peticionAjax){
 class recursoControlador extends recursoModelo{
 
     /*---------- Controlador para agregar programa ----------*/
-    public function agregar_recurso_controlador(){
+    public function agregarRecursoControlador(){
         $recurso = new Recurso();
         $recurso->setTitulo(mainModel::limpiarCadena($_POST['titulo_ins']));
         $recurso->setResumen(mainModel::limpiarCadena($_POST['resumen_ins']));
@@ -78,7 +78,7 @@ class recursoControlador extends recursoModelo{
                 exit();
             }
 
-            $agregar_recurso = recursoModelo::agregar_recurso_modelo($recurso);
+            $agregar_recurso = recursoModelo::agregarRecursoModelo($recurso);
 
             if(is_string($agregar_recurso) || $agregar_recurso < 0){
                 echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al cargar el recurso. Por favor intente nuevamente.");
@@ -97,7 +97,7 @@ class recursoControlador extends recursoModelo{
      *
      * @return Object Lista de los recursos consultados
      */
-    public function paginador_recurso_controlador($idPersona, $isActivo = false){
+    public function paginadorRecursoControlador($idPersona, $isActivo = false){
         $consulta = "SELECT r.id as idRecurso, r.titulo, r.puntos_positivos, r.puntos_negativos, r.estado, r.fecha_publicacion_profesor, p.nombre, p.apellido 
         FROM recurso r 
         JOIN persona p ON p.id = r.id_docente 
@@ -119,10 +119,10 @@ class recursoControlador extends recursoModelo{
     }
 
     /*---------- Controlador datos recurso ----------*/
-    public function datos_recurso_controlador($tipo, $id){
+    public function datosRecursoControlador($tipo, $id){
         $id = mainModel::decryption($id);
 
-        return recursoModelo::datos_recurso_modelo($tipo, $id);
+        return recursoModelo::datosRecursoModelo($tipo, $id);
     }
 
     /*---------- Controlador archivo por recurso ----------*/
@@ -130,12 +130,12 @@ class recursoControlador extends recursoModelo{
         return recursoModelo::archivoXRecursoModelo($id)->fetch();
     }
 
-    public function eliminar_recurso_controlador(){
+    public function eliminarRecursoControlador(){
         $recurso = new Recurso();
         $recurso->setIdRecurso(mainModel::limpiarCadena(mainModel::decryption($_POST['id_recurso_del'])));
         $recurso->setEstado(Utilidades::getIdEstado("ELIMINADO"));
 
-        $eliminarRecurso = recursoModelo::editar_estado_recurso_modelo($recurso);
+        $eliminarRecurso = recursoModelo::editarEstadoRecursoModelo($recurso);
 
         if(is_string($eliminarRecurso) || $eliminarRecurso < 0){
             echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el recurso");
@@ -146,7 +146,7 @@ class recursoControlador extends recursoModelo{
 
     }
 
-    public function editar_recurso_controlador(){
+    public function editarRecursoControlador(){
         $recurso = new Recurso();
         $recurso->setIdRecurso(mainModel::limpiarCadena(mainModel::decryption($_POST['id_recurso_edit'])));
 
@@ -205,20 +205,20 @@ class recursoControlador extends recursoModelo{
         $etiquetasAgregadas = array_diff($recurso->getEtiqueta(), $etiquetasActuales);
         $etiquetasEliminadas = array_diff($etiquetasActuales, $recurso->getEtiqueta());
 
-        recursoModelo::editar_recurso_etiqueta_modelo($recurso, $etiquetasAgregadas, $etiquetasEliminadas);
+        recursoModelo::editarRecursoEtiquetaModelo($recurso, $etiquetasAgregadas, $etiquetasEliminadas);
 
         //Obtener los autores seleccionados (Agregar nuevos y Eliminar no seleccionados)
         $autoresActuales = recursoModelo::idAutoresRecurso($recurso->getIdRecurso())->fetchAll(PDO::FETCH_COLUMN, 0);
         $autoresAgregados = array_diff($recurso->getAutor(), $autoresActuales);
         $autoresEliminados = array_diff($autoresActuales, $recurso->getAutor());
 
-        recursoModelo::editar_recurso_autor_modelo($recurso, $autoresAgregados, $autoresEliminados);
+        recursoModelo::editarRecursoAutorModelo($recurso, $autoresAgregados, $autoresEliminados);
 
         //Obtener los cursos seleccionados (Agregar nuevos y Eliminar no seleccionados)
         $cursosActuales = recursoModelo::idCursosRecurso($recurso->getIdRecurso())->fetchAll(PDO::FETCH_COLUMN, 0);
         $cursosAgregados = array_diff($recurso->getCurso(), $cursosActuales);
         $cursosEliminados = array_diff($cursosActuales, $recurso->getCurso());
-        $editarRecurso = recursoModelo::editar_recurso_modelo($recurso, $cursosAgregados, $cursosEliminados);
+        $editarRecurso = recursoModelo::editarRecursoModelo($recurso, $cursosAgregados, $cursosEliminados);
 
         //Editamos o creamos la información del archivo del recurso
         self::editarArchivoRecurso($recurso);
@@ -231,7 +231,7 @@ class recursoControlador extends recursoModelo{
     }
 
     /*---------- Controlador para agregar recurso desde el perfil de docente ----------*/
-    public function agregar_docente_recurso_controlador(){
+    public function agregarDocenteRecursoControlador(){
         $recurso = new Recurso();
         $recurso->setTitulo(mainModel::limpiarCadena($_POST['titulo_docente_ins']));
         $recurso->setResumen(mainModel::limpiarCadena($_POST['resumen_docente_ins']));
@@ -295,7 +295,7 @@ class recursoControlador extends recursoModelo{
                 exit();
             }
 
-            $agregar_recurso = recursoModelo::agregar_recurso_modelo($recurso);
+            $agregar_recurso = recursoModelo::agregarRecursoModelo($recurso);
 
             if(is_string($agregar_recurso) || $agregar_recurso < 0){
                 echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al cargar el recurso. Por favor intente nuevamente.");
@@ -309,7 +309,7 @@ class recursoControlador extends recursoModelo{
 
     }
 
-    public function editar_docente_recurso_controlador(){
+    public function editarDocenteRecursoControlador(){
         $recurso = new Recurso();
         $recurso->setIdRecurso(mainModel::limpiarCadena(mainModel::decryption($_POST['id_docente_recurso_edit'])));
 
@@ -372,20 +372,20 @@ class recursoControlador extends recursoModelo{
         $etiquetasAgregadas = array_diff($recurso->getEtiqueta(), $etiquetasActuales);
         $etiquetasEliminadas = array_diff($etiquetasActuales, $recurso->getEtiqueta());
 
-        recursoModelo::editar_recurso_etiqueta_modelo($recurso, $etiquetasAgregadas, $etiquetasEliminadas);
+        recursoModelo::editarRecursoEtiquetaModelo($recurso, $etiquetasAgregadas, $etiquetasEliminadas);
 
         //Obtener los autores seleccionados (Agregar nuevos y Eliminar no seleccionados)
         $autoresActuales = recursoModelo::idAutoresRecurso($recurso->getIdRecurso())->fetchAll(PDO::FETCH_COLUMN, 0);
         $autoresAgregados = array_diff($recurso->getAutor(), $autoresActuales);
         $autoresEliminados = array_diff($autoresActuales, $recurso->getAutor());
 
-        recursoModelo::editar_recurso_autor_modelo($recurso, $autoresAgregados, $autoresEliminados);
+        recursoModelo::editarRecursoAutorModelo($recurso, $autoresAgregados, $autoresEliminados);
 
         //Obtener los cursos seleccionados (Agregar nuevos y Eliminar no seleccionados)
         $cursosActuales = recursoModelo::idCursosRecurso($recurso->getIdRecurso())->fetchAll(PDO::FETCH_COLUMN, 0);
         $cursosAgregados = array_diff($recurso->getCurso(), $cursosActuales);
         $cursosEliminados = array_diff($cursosActuales, $recurso->getCurso());
-        $editarRecurso = recursoModelo::editar_recurso_modelo($recurso, $cursosAgregados, $cursosEliminados);
+        $editarRecurso = recursoModelo::editarRecursoModelo($recurso, $cursosAgregados, $cursosEliminados);
 
         //Editamos o creamos la información del archivo
         self::editarArchivoRecurso($recurso);
@@ -518,7 +518,7 @@ class recursoControlador extends recursoModelo{
             $codrecurso = $sqlQuery->fetch();
             $recurso->setIdRecurso($codrecurso['id']);
 
-            $agregar_archivo = recursoModelo::agregar_archivo_modelo($recurso);
+            $agregar_archivo = recursoModelo::agregarArchivoModelo($recurso);
 
             if(is_string($agregar_archivo)){
                 echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al cargar el archivo. Por favor intente nuevamente.");
@@ -572,7 +572,7 @@ class recursoControlador extends recursoModelo{
             if($datosArchivo->rowCount() <= 0){
                 //Creamos el registro
 
-                $agregar_archivo = recursoModelo::agregar_archivo_modelo($recurso);
+                $agregar_archivo = recursoModelo::agregarArchivoModelo($recurso);
 
                 if(is_string($agregar_archivo)){
                     echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al crear el archivo. Por favor intente nuevamente.");
@@ -585,7 +585,7 @@ class recursoControlador extends recursoModelo{
                 $fetchArchivo = $datosArchivo->fetch();
                 $archivoAntiguo->setIdArchivo($fetchArchivo['idRecurso']);
 
-                $agregar_archivo = recursoModelo::editar_archivo_modelo($recurso, $archivoAntiguo);
+                $agregar_archivo = recursoModelo::editarArchivoModelo($recurso, $archivoAntiguo);
 
                 if(is_string($agregar_archivo)){
                     echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al editar el archivo. Por favor intente nuevamente.");
