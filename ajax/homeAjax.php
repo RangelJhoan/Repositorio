@@ -31,10 +31,8 @@ if(isset($_POST['barraBusqueda'])){
 }else if(isset($_POST['codano'])){
     $parametro .= $insMain->encryption($_POST['codano']);
     header("Location:".SERVER_URL."busqueda/Fechafiltrar/".$parametro);
-}else if(isset($_POST['respuestaFeedback'])){
-    $idRecurso = $_POST['codrecurso'];
-    $respuesta = $_POST['respuestaFeedback'];
-    echo $insHome->calificarRecurso($idRecurso, $respuesta);
+}else if(isset($_POST['codrecurso'])){
+    echo $insHome->calificarRecurso();
 }else if (isset($_POST['favorito'])) {
     $idFavorito = $_POST['favorito'];
     echo $insHome->agregarFavorito($idFavorito);

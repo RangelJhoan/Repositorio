@@ -81,7 +81,15 @@ class homeControlador extends homeModelo{
         return $informacion;
     }
 
-    public function calificarRecurso($pId, $pRespuesta){
+    public function calificarRecurso(){
+        if(!isset($_POST['respuestaFeedback'])){
+            echo Utilidades::getAlertaErrorJSON("simple", "Por favor seleccione una opción");
+            exit();
+        }
+
+        $pId = $_POST['codrecurso'];
+        $pRespuesta = $_POST['respuestaFeedback'];
+
         session_start(['name'=>"REPO"]);
         if(isset($_SESSION['id_persona']) && ($_SESSION['tipo_usuario']=="Estudiante" || $_SESSION['tipo_usuario']=="Docente")){
             $validar = homeModelo::validarRegistroVoto($pId);
