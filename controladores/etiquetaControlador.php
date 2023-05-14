@@ -35,7 +35,7 @@ class etiquetaControlador extends etiquetaModelo{
             exit();
         }
 
-        echo Utilidades::getAlertaExitosoJSON("recargar", "Etiqueta creada correctamente");
+        return Utilidades::getAlertaExitosoJSON("recargar", "Etiqueta creada correctamente");
     }
 
     /*---------- Controlador editar etiqueta ----------*/
@@ -66,9 +66,9 @@ class etiquetaControlador extends etiquetaModelo{
         $editarEtiqueta = etiquetaModelo::editarEtiquetaModelo($etiqueta);
 
         if($editarEtiqueta == 1){
-            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."panel-palabras-clave/");
+            return Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."panel-palabras-clave/");
         }else{
-            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo editar la información de la etiqueta");
+            return Utilidades::getAlertaErrorJSON("simple", "No se pudo editar la información de la etiqueta");
         }
     }
 
@@ -85,10 +85,9 @@ class etiquetaControlador extends etiquetaModelo{
                 exit();
             }
 
-            echo Utilidades::getAlertaExitosoJSON("recargar", "Etiqueta eliminada exitosamente");
+            return Utilidades::getAlertaExitosoJSON("recargar", "Etiqueta eliminada exitosamente");
         } catch (\Throwable $th) {
-            echo Utilidades::getAlertaErrorJSON("simple", $th->getMessage());
-            exit();
+            return Utilidades::getAlertaErrorJSON("simple", $th->getMessage());
         }
     }
 
