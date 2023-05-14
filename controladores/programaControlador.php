@@ -20,24 +20,20 @@ class programaControlador extends programaModelo{
         $programa->setEstado(Utilidades::getIdEstado("ACTIVO"));
 
         if($programa->getNombre() == "" || $programa->getDescripcion() == ""){
-            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
-            exit();
+            return Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
         }
 
         $check_programa = mainModel::ejecutar_consulta_simple("SELECT id FROM programa WHERE nombre = '".$programa->getNombre()."' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
 
         if($check_programa->rowCount() > 0){
-            echo Utilidades::getAlertaErrorJSON("simple", "El programa ya se encuentra registrado en el repositorio");
-            exit();
+            return Utilidades::getAlertaErrorJSON("simple", "El programa ya se encuentra registrado en el repositorio");
         }else{
             $agregar_programa = programaModelo::agregarProgramaModelo($programa);
 
             if($agregar_programa->rowCount() == 1){
-                echo Utilidades::getAlertaExitosoJSON("recargar", "Programa creado correctamente");
-                exit();
+                return Utilidades::getAlertaExitosoJSON("recargar", "Programa creado correctamente");
             }else{
-                echo Utilidades::getAlertaErrorJSON("simple", "Error al crear el programa");
-                exit();
+                return Utilidades::getAlertaErrorJSON("simple", "Error al crear el programa");
             }
         }
     }
@@ -61,7 +57,7 @@ class programaControlador extends programaModelo{
             exit();
         }
 
-        echo Utilidades::getAlertaExitosoJSON("recargar", "Programa eliminado exitosamente");
+        return Utilidades::getAlertaExitosoJSON("recargar", "Programa eliminado exitosamente");
     }
 
     /*---------- Controlador datos programa ----------*/
@@ -97,13 +93,12 @@ class programaControlador extends programaModelo{
 
         if($check_programa->rowCount() > 0){
             echo Utilidades::getAlertaErrorJSON("simple", "El programa ya se encuentra registrado en el repositorio");
-            exit();
         }else{
             $editarPrograma = programaModelo::editarProgramaModelo($programa);
             if($editarPrograma->rowCount() > 0){
-                echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."admin-programas/");
+                return Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."admin-programas/");
             }else{
-                echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información");
+                return Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información");
             }
         }
     }
