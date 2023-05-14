@@ -21,26 +21,22 @@ class autorControlador extends autorModelo{
 
         $checkAutor = mainModel::ejecutar_consulta_simple("SELECT id FROM autor WHERE nombre = '{$autor->getNombre()}' AND apellido = '{$autor->getApellido()}' AND estado != " . Utilidades::getIdEstado("ELIMINADO"));
         if($checkAutor->rowCount() > 0){
-            echo Utilidades::getAlertaErrorJSON("simple", "El autor a crear ya está registrado en el repositorio");
-            exit();
+            return Utilidades::getAlertaErrorJSON("simple", "El autor a crear ya está registrado en el repositorio");
         }
 
         session_start(['name'=>'REPO']);
         $autor->setIdDocente($_SESSION['id_persona']);
 
         if($autor->getApellido() == ""){
-            echo Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
-            exit();
+            return Utilidades::getAlertaErrorJSON("simple", "Por favor llene todos los campos requeridos");
         }
 
         $agregar_autor = autorModelo::agregarAutorModelo($autor);
 
         if($agregar_autor == 1){
-            echo Utilidades::getAlertaExitosoJSON("recargar", "Autor creado correctamente");
-            exit();
+            return Utilidades::getAlertaExitosoJSON("recargar", "Autor creado correctamente");
         }else{
-            echo Utilidades::getAlertaErrorJSON("simple", "Error al crear el autor");
-            exit();
+            return Utilidades::getAlertaErrorJSON("simple", "Error al crear el autor " . $agregar_autor);
         }
     }
 
@@ -53,15 +49,12 @@ class autorControlador extends autorModelo{
             $eliminarAutor = autorModelo::eliminarAutorModelo($autor);
 
             if(is_string($eliminarAutor) || $eliminarAutor < 0){
-                echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el autor");
-                exit();
+                return Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el autor");
             }else{
-                echo Utilidades::getAlertaExitosoJSON("recargar", "Autor eliminado exitosamente");
-                exit();
+                return Utilidades::getAlertaExitosoJSON("recargar", "Autor eliminado exitosamente");
             }
         } catch (\Throwable $th) {
-            echo Utilidades::getAlertaErrorJSON("simple", $th->getMessage());
-            exit();
+            return Utilidades::getAlertaErrorJSON("simple", $th->getMessage());
         }
     }
 
@@ -101,9 +94,9 @@ class autorControlador extends autorModelo{
         $editarAutor = autorModelo::editarAutorModelo($autor);
 
         if($editarAutor == 1){
-            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."admin-autores/");
+            return Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."admin-autores/");
         }else{
-            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo editar el autor");
+            return Utilidades::getAlertaErrorJSON("simple", "No se pudo editar el autor");
         }
     }
 
