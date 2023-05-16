@@ -19,8 +19,7 @@ class usuarioControlador extends usuarioModelo{
         session_start(['name'=>'REPO']);
         //Validamos que sólo el super admin pueda crear administradores
         if($_POST['tipoUsuario'] == 1 && $_SESSION['correo_usuario'] != SUPER_ADMIN_EMAIL){
-            echo Utilidades::getAlertaErrorJSON("simple", "Usted no cuenta con los permisos necesarios para realizar esta acción");
-            exit();
+            return Utilidades::getAlertaErrorJSON("simple", "Usted no cuenta con los permisos necesarios para realizar esta acción");
         }
         $persona = new Persona();
         $persona->setNombre(mainModel::limpiarCadena($_POST['nombre']));
@@ -59,11 +58,10 @@ class usuarioControlador extends usuarioModelo{
             $agregar_usuario = usuarioModelo::agregarUsuarioModelo($persona);
 
             if($agregar_usuario != 1){
-                echo Utilidades::getAlertaErrorJSON("simple", "Error al crear el usuario");
-                exit();
+                return Utilidades::getAlertaErrorJSON("simple", "Error al crear el usuario");
             }
 
-            echo Utilidades::getAlertaExitosoJSON("recargar", "Usuario creado correctamente");
+            return Utilidades::getAlertaExitosoJSON("recargar", "Usuario creado correctamente");
         }
     }
 
@@ -256,11 +254,10 @@ class usuarioControlador extends usuarioModelo{
         $editarUsuario = usuarioModelo::editarEstadoUsuarioModelo($persona);
 
         if(is_string($editarUsuario) || $editarUsuario < 0){
-            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el usuario");
-            exit();
+            return Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el usuario");
         }
 
-        echo Utilidades::getAlertaExitosoJSON("recargar", "Usuario eliminado exitosamente");
+        return Utilidades::getAlertaExitosoJSON("recargar", "Usuario eliminado exitosamente");
     }
 
     /*---------- Controlador datos usuario ----------*/
@@ -329,16 +326,14 @@ class usuarioControlador extends usuarioModelo{
         $editarPersona = usuarioModelo::editarPersonaModelo($persona);
 
         if(is_string($editarPersona) || $editarPersona < 0){
-            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información de la persona");
-            exit();
+            return Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información de la persona");
         }
         $editarUsuario = usuarioModelo::editarUsuarioModelo($persona);
         if(is_string($editarUsuario) || $editarUsuario < 0){
-            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información del usuario");
-            exit();
+            return Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información del usuario");
         }
 
-        echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados exitosamente", SERVER_URL."admin-usuarios/");
+        return Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados exitosamente", SERVER_URL."admin-usuarios/");
     }
 
     /*---------- Controlador editar usuario ----------*/
