@@ -107,11 +107,10 @@ class homeControlador extends homeModelo{
                 echo Utilidades::getAlertaErrorJSON("simple", "Error: ".$valorar);
                 exit();
             }else{
-                echo Utilidades::getAlertaExitosoJSON("recargar", "Gracias por evaluar el recurso y ayudar a mejorar su calidad. Su retroalimentación es muy valiosa y nos ayudará a identificar áreas de oportunidad para seguir mejorando y ofrecer recursos de gran utilidad.");
+                return Utilidades::getAlertaExitosoJSON("recargar", "Gracias por evaluar el recurso y ayudar a mejorar su calidad. Su retroalimentación es muy valiosa y nos ayudará a identificar áreas de oportunidad para seguir mejorando y ofrecer recursos de gran utilidad.");
             }
         }else{
-            echo Utilidades::getAlertaErrorJSON("recargar", "Usted no cuenta con los permisos para calificar el recurso.");
-            exit();
+            return Utilidades::getAlertaErrorJSON("recargar", "Usted no cuenta con los permisos para calificar el recurso.");
         }
     }
 
@@ -133,13 +132,12 @@ class homeControlador extends homeModelo{
             }
 
             if(is_string($favorito)){
-                echo Utilidades::getAlertaErrorJSON("simple", "Error: ".$favorito);
-                exit();
+                return Utilidades::getAlertaErrorJSON("simple", "Error: ".$favorito);
             }else{
-                echo Utilidades::getAlertaExitosoJSON("recargar", $textoalert);
+                return Utilidades::getAlertaExitosoJSON("recargar", $textoalert);
             }
         }else{
-            echo Utilidades::getAlertaErrorJSON("recargar", "Usted no cuenta con los permisos para agregar a favoritos este recurso.");
+            return Utilidades::getAlertaErrorJSON("recargar", "Usted no cuenta con los permisos para agregar a favoritos este recurso.");
         }
     }
 
