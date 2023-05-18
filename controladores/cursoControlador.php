@@ -42,11 +42,10 @@ class cursoControlador extends cursoModelo{
         $agregar_curso = cursoModelo::agregarCursoModelo($curso);
 
         if(is_string($agregar_curso) || $agregar_curso < 0){
-            echo Utilidades::getAlertaErrorJSON("simple", "Error al crear el curso " . $agregar_curso);
-            exit();
+            return Utilidades::getAlertaErrorJSON("simple", "Error al crear el curso " . $agregar_curso);
         }
 
-        echo Utilidades::getAlertaExitosoJSON("recargar", "Curso creado correctamente");
+        return Utilidades::getAlertaExitosoJSON("recargar", "Curso creado correctamente");
     }
 
     /*---------- Controlador para editar curso ----------*/
@@ -96,9 +95,9 @@ class cursoControlador extends cursoModelo{
         $editarCurso = cursoModelo::editarCursoModelo($curso, $programasAgregados, $programasEliminados, $docentesAgregados, $docentesEliminados);
 
         if($editarCurso->rowCount()>0){
-            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."admin-cursos/");
+            return Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."admin-cursos/");
         }else{
-            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información");
+            return Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información");
         }
     }
 
@@ -111,11 +110,10 @@ class cursoControlador extends cursoModelo{
         $eliminarCurso = cursoModelo::editarEstadoCursoModelo($curso);
 
         if(is_string($eliminarCurso) || $eliminarCurso < 0){
-            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el curso");
-            exit();
+            return Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el curso");
         }
 
-        echo Utilidades::getAlertaExitosoJSON("recargar", "Curso eliminado exitosamente");
+        return Utilidades::getAlertaExitosoJSON("recargar", "Curso eliminado exitosamente");
     }
 
     /**
