@@ -93,6 +93,29 @@ class UsuarioControladorTest extends TestCase{
         $this->assertNotEmpty($this->usuarioControlador->paginadorUsuarioControlador(null));
     }
 
+    public function testIniciarSesionUsuarioControladorAdministrador(){
+        // Ejecutamos el método a probar
+        $_POST['correo'] = "sa.repositorioinstitucional@gmail.com";
+        $_POST['clave'] = "Repo2022*";
+
+        $this->assertEquals("<script>window.location.href='".SERVER_URL."admin-dashboard/';</script>", $this->usuarioControlador->iniciarSesionUsuarioControlador(null));
+    }
+
+    public function testIniciarSesionUsuarioControladorNoExistente(){
+        // Ejecutamos el método a probar
+        $_POST['correo'] = "correonoexistente.2023@gmail.com";
+        $_POST['clave'] = "Repo2022*";
+
+        $this->assertEquals('<script>
+                    Swal.fire({
+                        title: "Error",
+                        text: "Error al validar credenciales del usuario",
+                        icon: "error",
+                        confirmButtonText: "Aceptar"
+                    });
+                </script>', $this->usuarioControlador->iniciarSesionUsuarioControlador(null));
+    }
+
 }
 
 ?>

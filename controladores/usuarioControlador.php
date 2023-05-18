@@ -125,7 +125,7 @@ class usuarioControlador extends usuarioModelo{
         $clave = mainModel::limpiarCadena($_POST['clave']);
 
         if($correo == "" || $clave == ""){
-            echo '<script>
+            return '<script>
                     Swal.fire({
                         title: "Error",
                         text: "Por favor complete todos los campos requeridos",
@@ -133,7 +133,6 @@ class usuarioControlador extends usuarioModelo{
                         confirmButtonText: "Aceptar"
                     });
                 </script>';
-                exit();
         }
 
         $clave = mainModel::encryption($clave);
@@ -144,7 +143,7 @@ class usuarioControlador extends usuarioModelo{
         if($check_account->rowCount() > 0){
             $row = $check_account->fetch();
             if($row['estado'] == Utilidades::getIdEstado("INACTIVO")){
-                echo '<script>
+                return '<script>
                     Swal.fire({
                         title:"Error",
                         text:"Cuenta inactiva. Por favor contacte a un administrador.",
@@ -152,11 +151,10 @@ class usuarioControlador extends usuarioModelo{
                         confirmButtonText: "Aceptar"
                     });
                 </script>';
-                exit();
             }
 
             if($row['estado'] == Utilidades::getIdEstado("PENDIENTE ACTIVACION")){
-                echo '<script>
+                return '<script>
                     Swal.fire({
                         title:"Error",
                         text:"Su cuenta se encuentra pendiente de activación.",
@@ -164,11 +162,10 @@ class usuarioControlador extends usuarioModelo{
                         confirmButtonText: "Aceptar"
                     });
                 </script>';
-                exit();
             }
 
             if($row['estado'] == Utilidades::getIdEstado("ELIMINADO")){
-                echo '<script>
+                return '<script>
                     Swal.fire({
                         title:"Error",
                         text:"Su cuenta se encuentra eliminada. Por favor contacte a un administrador.",
@@ -176,7 +173,6 @@ class usuarioControlador extends usuarioModelo{
                         confirmButtonText: "Aceptar"
                     });
                 </script>';
-                exit();
             }
 
             session_start(['name'=>'REPO']);
@@ -191,14 +187,14 @@ class usuarioControlador extends usuarioModelo{
             $_SESSION['tipo_usuario'] = $row['descripcion'];
 
             if($row['descripcion'] == "Administrador"){
-                echo "<script>window.location.href='".SERVER_URL."admin-dashboard/';</script>";
+                return "<script>window.location.href='".SERVER_URL."admin-dashboard/';</script>";
             }elseif($row['descripcion'] == "Docente"){
-                echo "<script>window.location.href='".SERVER_URL."docente-dashboard/';</script>";
+                return "<script>window.location.href='".SERVER_URL."docente-dashboard/';</script>";
             }elseif($row['descripcion'] == "Estudiante"){
-                echo "<script>window.location.href='".SERVER_URL."estudiante-dashboard/';</script>";
+                return "<script>window.location.href='".SERVER_URL."estudiante-dashboard/';</script>";
             }
         }else{
-            echo '<script>
+            return '<script>
                     Swal.fire({
                         title: "Error",
                         text: "Error al validar credenciales del usuario",
