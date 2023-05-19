@@ -81,13 +81,12 @@ class recursoControlador extends recursoModelo{
             $agregar_recurso = recursoModelo::agregarRecursoModelo($recurso);
 
             if(is_string($agregar_recurso) || $agregar_recurso < 0){
-                echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al cargar el recurso. Por favor intente nuevamente.");
-                exit();
+                return Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un prob " . $agregar_recurso);
             }
 
             self::crearArchivo($recurso);
 
-            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Recurso creado correctamente", SERVER_URL."admin-recursos/");
+            return Utilidades::getAlertaExitosoJSON("redireccionar", "Recurso creado correctamente", SERVER_URL."admin-recursos/");
         }
 
     }
@@ -138,12 +137,10 @@ class recursoControlador extends recursoModelo{
         $eliminarRecurso = recursoModelo::editarEstadoRecursoModelo($recurso);
 
         if(is_string($eliminarRecurso) || $eliminarRecurso < 0){
-            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el recurso");
-            exit();
+            return Utilidades::getAlertaErrorJSON("simple", "No se pudo eliminar el recurso");
         }
 
-        echo Utilidades::getAlertaExitosoJSON("recargar", "Recurso eliminado exitosamente");
-
+        return Utilidades::getAlertaExitosoJSON("recargar", "Recurso eliminado exitosamente");
     }
 
     public function editarRecursoControlador(){
@@ -224,9 +221,9 @@ class recursoControlador extends recursoModelo{
         self::editarArchivoRecurso($recurso);
 
         if(is_string($editarRecurso) || $editarRecurso->rowCount() < 0){
-            echo Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información");
+            return Utilidades::getAlertaErrorJSON("simple", "No se pudo actualizar la información");
         }else{
-            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."admin-recursos/");
+            return Utilidades::getAlertaExitosoJSON("redireccionar", "Los datos han sido actualizados con éxito", SERVER_URL."admin-recursos/");
         }
     }
 
@@ -298,13 +295,12 @@ class recursoControlador extends recursoModelo{
             $agregar_recurso = recursoModelo::agregarRecursoModelo($recurso);
 
             if(is_string($agregar_recurso) || $agregar_recurso < 0){
-                echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al cargar el recurso. Por favor intente nuevamente.");
-                exit();
+                return Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al cargar el recurso. Por favor intente nuevamente.");
             }
 
             self::crearArchivo($recurso);
 
-            echo Utilidades::getAlertaExitosoJSON("redireccionar", "Recurso creado correctamente", SERVER_URL."docente-mis-recursos/");
+            return Utilidades::getAlertaExitosoJSON("redireccionar", "Recurso creado correctamente", SERVER_URL."docente-mis-recursos/");
         }
 
     }
@@ -521,8 +517,7 @@ class recursoControlador extends recursoModelo{
             $agregar_archivo = recursoModelo::agregarArchivoModelo($recurso);
 
             if(is_string($agregar_archivo)){
-                echo Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al cargar el archivo. Por favor intente nuevamente.");
-                exit();
+                return Utilidades::getAlertaErrorJSON("simple", "Ups! Hubo un problema al cargar el archivo. Por favor intente nuevamente.");
             }
         }
     }
