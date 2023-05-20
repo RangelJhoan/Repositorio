@@ -72,9 +72,9 @@ class recursoControlador extends recursoModelo{
                 exit();
             }
 
-            //El tamaño máximo permitido para almacenar un archivo son 100 megas = 104857600 bytes
-            if(isset($_FILES["archivo"]["name"]) && $_FILES["archivo"]["size"] > 104857600){
-                echo Utilidades::getAlertaErrorJSON("simple", "El tamaño del archivo excede el limite permitido (100MB)");
+            //El tamaño máximo permitido para almacenar un archivo son 15 megas = 15728640 bytes
+            if(isset($_FILES["archivo"]["name"]) && $_FILES["archivo"]["size"] > 15728640){
+                echo Utilidades::getAlertaErrorJSON("simple", "El tamaño del archivo excede el limite permitido (15MB)");
                 exit();
             }
 
@@ -197,6 +197,24 @@ class recursoControlador extends recursoModelo{
             }
         }
 
+        //Comprobamos si el recurso tiene archivo o no
+        $datosArchivo = mainModel::ejecutar_consulta_simple("SELECT a.id as idRecurso, a.ruta FROM archivo a JOIN recurso r ON r.id = a.id_recurso WHERE r.id = '". $recurso->getIdRecurso() ."';");
+
+        // Si no tiene archivo hacemos las validaciones
+        if($datosArchivo->rowCount() <= 0){
+            // Validamos que si no viene un enlace sea obligatorio un archivo
+            if(!isset($_FILES["archivo"]["name"]) && $recurso->getEnlace() == ""){
+                echo Utilidades::getAlertaErrorJSON("simple", "Por favor ingrese un enlace o seleccione un archivo");
+                exit();
+            }
+
+            //El tamaño máximo permitido para almacenar un archivo son 15 megas = 15728640 bytes
+            if(isset($_FILES["archivo"]["name"]) && $_FILES["archivo"]["size"] > 15728640){
+                echo Utilidades::getAlertaErrorJSON("simple", "El tamaño del archivo excede el limite permitido (15MB)");
+                exit();
+            }
+        }
+
         //Obtener las etiquetas seleccionadas (Agregar nuevas y Eliminar no seleccionadas)
         $etiquetasActuales = recursoModelo::idEtiquetasRecurso($recurso->getIdRecurso())->fetchAll(PDO::FETCH_COLUMN, 0);
         $etiquetasAgregadas = array_diff($recurso->getEtiqueta(), $etiquetasActuales);
@@ -286,9 +304,9 @@ class recursoControlador extends recursoModelo{
                 exit();
             }
 
-            //El tamaño máximo permitido para almacenar un archivo son 100 megas = 104857600 bytes
-            if(isset($_FILES["archivo"]["name"]) && $_FILES["archivo"]["size"] > 104857600){
-                echo Utilidades::getAlertaErrorJSON("simple", "El tamaño del archivo excede el limite permitido (100MB)");
+            //El tamaño máximo permitido para almacenar un archivo son 15 megas = 15728640 bytes
+            if(isset($_FILES["archivo"]["name"]) && $_FILES["archivo"]["size"] > 15728640){
+                echo Utilidades::getAlertaErrorJSON("simple", "El tamaño del archivo excede el limite permitido (15MB)");
                 exit();
             }
 
@@ -360,6 +378,24 @@ class recursoControlador extends recursoModelo{
                     echo Utilidades::getAlertaErrorJSON("simple", "El enlace ingresado no es válido");
                     exit();
                 }
+            }
+        }
+
+        //Comprobamos si el recurso tiene archivo o no
+        $datosArchivo = mainModel::ejecutar_consulta_simple("SELECT a.id as idRecurso, a.ruta FROM archivo a JOIN recurso r ON r.id = a.id_recurso WHERE r.id = '". $recurso->getIdRecurso() ."';");
+
+        // Si no tiene archivo hacemos las validaciones
+        if($datosArchivo->rowCount() <= 0){
+            // Validamos que si no viene un enlace sea obligatorio un archivo
+            if(!isset($_FILES["archivo"]["name"]) && $recurso->getEnlace() == ""){
+                echo Utilidades::getAlertaErrorJSON("simple", "Por favor ingrese un enlace o seleccione un archivo");
+                exit();
+            }
+
+            //El tamaño máximo permitido para almacenar un archivo son 15 megas = 15728640 bytes
+            if(isset($_FILES["archivo"]["name"]) && $_FILES["archivo"]["size"] > 15728640){
+                echo Utilidades::getAlertaErrorJSON("simple", "El tamaño del archivo excede el limite permitido (15MB)");
+                exit();
             }
         }
 
