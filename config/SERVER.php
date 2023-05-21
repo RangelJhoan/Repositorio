@@ -1,9 +1,9 @@
 <?php
 
-const SERVER = "localhost";
-const DB = "bd_repositorio";
-const USER = "root";
-const PASS = "";
+const SERVER = 'localhost';
+const DB = 'bd_repositorio';
+const USER = 'root';
+const PASS = '';
 
 const SGBD = "mysql:host=".SERVER.";dbname=".DB;
 

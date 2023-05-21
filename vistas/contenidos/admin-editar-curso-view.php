@@ -36,7 +36,7 @@ if($datos_curso->rowCount()>0){
                             <textarea class="textAreaStl" name="descripcion_edit" type="text" required><?php echo $campos_curso['descripcion'] ?></textarea>
                     </div>
 
-                    <label for="programaSeleccion" class="titleComboMultiple">Programa (s)</label>
+                    <label for="programaSeleccion" class="titleComboMultiple">Programa (s) *</label>
                         <select name="programas_edit[]" id="programaSeleccionarCbxCurso" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
                             <?php
                             foreach($datos_programas as $campos){
@@ -53,7 +53,7 @@ if($datos_curso->rowCount()>0){
                             ?>
                         </select>
 
-                    <label for="docenteSeleccion" class="titleComboMultiple">Docente (s)</label>
+                    <label for="docenteSeleccion" class="titleComboMultiple">Docente (s) *</label>
                         <select name="docentes_edit[]" id="docenteSeleccionarCbxCurso" multiple="multiple" title="Por favor, selecciona el o los programas asociados al curso">
                             <?php
                             foreach($datosUsuarios as $campos){
