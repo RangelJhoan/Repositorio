@@ -23,6 +23,11 @@
     $etiquetas = $ins_home->etiquetasRecurso($inforecurso['id']);
     $archivo = $ins_home->archivoRecurso($inforecurso['id']);
     if(isset($archivo['ruta'])){
+        if(!file_exists($archivo['ruta'])){
+            header('Location: ' . SERVER_URL. '404');
+            exit();
+        }
+
         $nArchivo = $archivo['nombre'];
         $tamano = $archivo['tamano'];
         $ruta = $archivo['ruta'];
