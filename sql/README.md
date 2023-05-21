@@ -1,4 +1,4 @@
-#BASES DE DATOS DEL PROTOTIPO FUNCIONAL DEL BANCO DE RECURSOS DIGITALES AUDIOVISUALES PARA LOS CURSOS DEL PROGRAMA DE INGENIERÍA DE SISTEMAS.
+BASES DE DATOS DEL PROTOTIPO FUNCIONAL DEL BANCO DE RECURSOS DIGITALES AUDIOVISUALES PARA LOS CURSOS DEL PROGRAMA DE INGENIERÍA DE SISTEMAS.
 ------------
 ### Base de datos de prueba
 La base de datos de prueba (bd_repositorio.sql) **cuenta con datos** que permiten **ejecutar y validadar las funcionalidades** que se encuentran disponibles en el repositorio institucional. Cuenta con **datos ficticios** (usuarios, programas, cursos, recursos, palabras clave, autores) que dan posibilidad de hacer uso del proyecto de inmediato y sin complicación alguna.
